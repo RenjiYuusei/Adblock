@@ -1,4 +1,4 @@
-name: Refresh Raw Link and Checksum
+name: Refresh Yuusei.txt Link and Checksum
 
 on:
   push:
@@ -11,39 +11,31 @@ permissions:
   contents: write
 
 jobs:
-  refresh-link:
+  refresh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false # This is important for security
 
-      - name: Get file's SHA and construct raw link
-        id: get-link
+      - name: Calculate Checksums and Generate Link
+        id: calculate
         run: |
           FILE_SHA=$(sha256sum Yuusei.txt | awk '{print $1}')
-          RAW_LINK="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/Yuusei.txt?v=$FILE_SHA"
-          echo "::set-output name=raw_link::$RAW_LINK"
-
-      - name: Calculate MD5 checksum
-        id: get-checksum
-        run: |
           MD5_CHECKSUM=$(md5sum Yuusei.txt | awk '{print $1}')
-          echo "::set-output name=md5::$MD5_CHECKSUM"
+          RAW_LINK="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/Yuusei.txt?v=$FILE_SHA"
+          echo "raw_link=$RAW_LINK" >> $GITHUB_OUTPUT
+          echo "md5=$MD5_CHECKSUM" >> $GITHUB_OUTPUT
 
-      - name: Update README with new link and checksum
+      - name: Update README
         if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
         run: |
-          NEW_README=$(cat <<EOF
-          # Adblock
-          Link download: ${{ steps.get-link.outputs.raw_link }}
-          ! Checksum: ${{ steps.get-checksum.outputs.md5 }}
+          sed -i -E \
+            -e "s~(Link download:).*~\1 ${{ steps.calculate.outputs.raw_link }}~" \
+            -e "s~(Checksum:).*~\1 ${{ steps.calculate.outputs.md5 }}~" \
+            README.md
 
-          $(cat README.md | tail -n +3)
-          EOF
-          )
-          echo "$NEW_README" > README.md
-
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Action"
-          git add README.md
-          git commit -m "Update README with refreshed raw link and checksum"
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git commit -am "Update Yuusei.txt link and checksum"
           git push
