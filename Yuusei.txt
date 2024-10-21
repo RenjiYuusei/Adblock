@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Version: 21-10-2024
-! Title: RenjiYuusei List
+! Title: RenjiYuusei Lista
 ! Last modified: 21-10-2024
 ! Checksum: 85c7016bff3f70cf99eddd88a3e72b95
 ! RenjiYuusei List filter
