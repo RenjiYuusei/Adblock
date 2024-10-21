@@ -1,3 +1,3 @@
 # Adblock
-Link download: https://raw.githubusercontent.com/RenjiYuusei/Adblock/cd0ef809a13e919101d2dbd68ef62183a9478672/Yuusei.txt?v=f6f452da859b37b6f738c3feee7a63a2a0b07edef48443b8fc806614a776787f
-! Checksum: 73eab041e01f47a4c76ebc240042626e
+Link download: https://raw.githubusercontent.com/RenjiYuusei/Adblock/353e38297215ba6e4d6ac84bf669d1408f891347/Yuusei.txt?v=d2bf489dfce904dca5e3b4808bc0e3ea995c4232a43aec03a9c86f7ccea706f8
+! Checksum: fabde3dbebd9aeb6688a015fb9c87d10
