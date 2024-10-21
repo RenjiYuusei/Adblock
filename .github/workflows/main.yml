@@ -4,6 +4,11 @@ on:
   push:
     paths:
       - 'Yuusei.txt'
+  schedule:
+    - cron: '0 0 * * 0' # Chạy lúc 00:00 UTC mỗi Chủ Nhật
+
+permissions:
+  contents: write
 
 jobs:
   refresh-link:
@@ -25,22 +30,20 @@ jobs:
           echo "::set-output name=md5::$MD5_CHECKSUM"
 
       - name: Update README with new link and checksum
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
         run: |
-          # Tạo nội dung mới cho README.md
           NEW_README=$(cat <<EOF
           # Adblock
           Link download: ${{ steps.get-link.outputs.raw_link }}
           ! Checksum: ${{ steps.get-checksum.outputs.md5 }}
 
-          # Phần còn lại của README.md
-          $(cat README.md | tail -n +3) # Lấy nội dung từ dòng thứ 3 trở đi
+          $(cat README.md | tail -n +3)
           EOF
           )
-          echo "$NEW_README" > README.md # Ghi nội dung mới vào README.md
+          echo "$NEW_README" > README.md
 
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Action"
           git add README.md
           git commit -m "Update README with refreshed raw link and checksum"
-          git push origin main
+          git push
