@@ -7,6 +7,10 @@
 ! Checksum: 8fb79f9841903343d7f76112e7f92b2024431b15fae5cf0299ce4a9688978821
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
+phimsex18a.net##.happy-header
+phimsex18a.net##.happy-top-player
+phimmoichillz.cc###preload
+phimmoichillz.cc##.close_ad
 ||indienkinderhilfe-sad.de^
 ||berlinwall30.de^
 vailonxx.vip##.banner-preload
