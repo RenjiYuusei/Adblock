@@ -1,8 +1,11 @@
 name: Update Yuusei.txt
 
 on:
+  push:
+    paths:
+      - 'Yuusei.txt' # Chạy khi tệp Yuusei.txt có sự thay đổi
   schedule:
-    - cron: '0 0 * * *' # Chạy mỗi ngày vào lúc 00:00 UTC (07:00 sáng giờ VN)
+    - cron: '0 0 * * *' # Chạy hàng ngày vào lúc 00:00 UTC (07:00 giờ Việt Nam)
   workflow_dispatch: # Cho phép chạy thủ công
 
 jobs:
@@ -23,26 +26,36 @@ jobs:
           echo "TIME=$TIME" >> $GITHUB_ENV
 
       - name: Update Version, Last modified, and Checksum
+        id: update_file
         run: |
-          # Đọc nội dung file
+          # Đọc nội dung tệp
           CONTENT=$(cat Yuusei.txt)
 
           # Cập nhật Version và Last modified
-          CONTENT=$(echo "$CONTENT" | sed "s/Version:.*/Version: $DATE/")
-          CONTENT=$(echo "$CONTENT" | sed "s/Last modified:.*/Last modified: $DATE $TIME/")
+          CONTENT=$(echo "$CONTENT" | sed "s/^! Version:.*/! Version: $DATE/")
+          CONTENT=$(echo "$CONTENT" | sed "s/^! Last modified:.*/! Last modified: $DATE $TIME/")
 
           # Tạo Checksum từ nội dung đã cập nhật
           CHECKSUM=$(echo "$CONTENT" | sha256sum | awk '{print $1}')
-          CONTENT=$(echo "$CONTENT" | sed "s/Checksum:.*/Checksum: $CHECKSUM/")
+          CONTENT=$(echo "$CONTENT" | sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/")
 
-          # Ghi lại nội dung vào file
+          # Ghi lại nội dung vào tệp
           echo "$CONTENT" > Yuusei.txt
 
-      - name: Commit and push changes
+          # Kiểm tra sự thay đổi
+          if git diff --exit-code Yuusei.txt; then
+            echo "No changes detected in Yuusei.txt."
+            echo "CHANGED=false" >> $GITHUB_ENV
+          else
+            echo "Changes detected in Yuusei.txt."
+            echo "CHANGED=true" >> $GITHUB_ENV
+          fi
+
+      - name: Commit and push changes if modified
+        if: env.CHANGED == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add Yuusei.txt
           git commit -m "Auto update Yuusei.txt (Version: $DATE)"
           git push
-
