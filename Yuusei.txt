@@ -1,9 +1,10 @@
-[Adblock Plus 2.0]
+! ----------  About ----------
 ! Version: 12-11-2024
 ! Title: Yuusei
-! Last modified: 12-11-2024 23:48:43
+! Last modified: 12-11-2024
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
+! Checksum:
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
 hhpanda.info###overlay
