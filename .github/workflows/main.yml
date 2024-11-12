@@ -1,0 +1,48 @@
+name: Update Yuusei.txt
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Chạy mỗi ngày vào lúc 00:00 UTC (07:00 sáng giờ VN)
+  workflow_dispatch: # Cho phép chạy thủ công
+
+jobs:
+  update-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set date and time in VN timezone
+        run: |
+          sudo apt-get install -y tzdata
+          export TZ="Asia/Ho_Chi_Minh"
+          DATE=$(date +"%d-%m-%Y")
+          TIME=$(date +"%H:%M:%S")
+          echo "DATE=$DATE" >> $GITHUB_ENV
+          echo "TIME=$TIME" >> $GITHUB_ENV
+
+      - name: Update Version, Last modified, and Checksum
+        run: |
+          # Đọc nội dung file
+          CONTENT=$(cat Yuusei.txt)
+
+          # Cập nhật Version và Last modified
+          CONTENT=$(echo "$CONTENT" | sed "s/Version:.*/Version: $DATE/")
+          CONTENT=$(echo "$CONTENT" | sed "s/Last modified:.*/Last modified: $DATE $TIME/")
+
+          # Tạo Checksum từ nội dung đã cập nhật
+          CHECKSUM=$(echo "$CONTENT" | sha256sum | awk '{print $1}')
+          CONTENT=$(echo "$CONTENT" | sed "s/Checksum:.*/Checksum: $CHECKSUM/")
+
+          # Ghi lại nội dung vào file
+          echo "$CONTENT" > Yuusei.txt
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Yuusei.txt
+          git commit -m "Auto update Yuusei.txt (Version: $DATE)"
+          git push
+
