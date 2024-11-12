@@ -7,6 +7,8 @@
 ! Checksum: 4cdf452fa96fe148d8061413355906f1053cb6ad7f38d54f2921d9a6d8149d09
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
+||indienkinderhilfe-sad.de^
+||berlinwall30.de^
 vailonxx.vip##.banner-preload
 hhpanda.info###overlay
 hhpanda.info###ad_close_popup2
