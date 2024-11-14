@@ -7,6 +7,9 @@
 ! Checksum: 97e2a2ec513e81cc5599ac0cf0eaa6c079e7cf2497f2d95195eef91a0d0dfa59
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
+thund.hindimeguru.com###gads
+s4paad.factsninfo.com###main > .mb-3
+s4paad.factsninfo.com###td_tpc > .mb-3
 phimsex18a.net##.happy-header
 phimsex18a.net##.happy-top-player
 phimmoichillz.cc###preload
