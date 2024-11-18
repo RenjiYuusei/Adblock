@@ -20,8 +20,10 @@ on:
 
 env:
   FILTER_FILE: Yuusei.txt
-  MIN_RULES: 10  # Minimum number of rules required
-  KEEP_RELEASES: 10  # Number of recent releases to keep
+  MIN_RULES: 10
+  KEEP_RELEASES: 10
+  TIMEZONE: "Asia/Ho_Chi_Minh"
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   update-and-release:
@@ -35,33 +37,36 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up timezone and variables
+      - name: Setup environment
+        id: setup
         run: |
-          sudo ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
-          # Date formats
-          echo "DATE=$(date +"%d-%m-%Y")" >> $GITHUB_ENV
-          echo "TIME=$(date +"%H:%M:%S")" >> $GITHUB_ENV
-          echo "RELEASE_DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
-          echo "YEAR=$(date +"%Y")" >> $GITHUB_ENV
-          # Repository info
-          echo "REPO_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-          echo "AUTHOR_NAME=${GITHUB_REPOSITORY%/*}" >> $GITHUB_ENV
+          # Set timezone
+          sudo ln -sf /usr/share/zoneinfo/${{ env.TIMEZONE }} /etc/localtime
+          
+          # Set date variables
+          {
+            echo "DATE=$(date +"%d-%m-%Y")"
+            echo "TIME=$(date +"%H:%M:%S")"
+            echo "RELEASE_DATE=$(date +"%Y.%m.%d")"
+            echo "YEAR=$(date +"%Y")"
+            echo "REPO_NAME=${GITHUB_REPOSITORY#*/}"
+            echo "AUTHOR_NAME=${GITHUB_REPOSITORY%/*}"
+          } >> $GITHUB_ENV
 
       - name: Check existing release
         id: check_release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if gh release view "v${{ env.RELEASE_DATE }}" &>/dev/null; then
-            echo "EXISTS=true" >> $GITHUB_ENV
-            # Delete existing release if it's from today
-            created_at=$(gh release view "v${{ env.RELEASE_DATE }}" --json createdAt -q .createdAt)
             today=$(date -u +%Y-%m-%d)
+            created_at=$(gh release view "v${{ env.RELEASE_DATE }}" --json createdAt -q .createdAt)
             release_date=$(date -u -d "$created_at" +%Y-%m-%d)
+            
             if [ "$release_date" = "$today" ]; then
               echo "Deleting today's existing release..."
               gh release delete "v${{ env.RELEASE_DATE }}" --yes || true
               echo "EXISTS=false" >> $GITHUB_ENV
+            else
+              echo "EXISTS=true" >> $GITHUB_ENV
             fi
           else
             echo "EXISTS=false" >> $GITHUB_ENV
@@ -70,64 +75,68 @@ jobs:
       - name: Validate filter file
         id: validate
         run: |
-          # Enhanced validation
+          # File existence and size check
           if [ ! -f "${{ env.FILTER_FILE }}" ]; then
             echo "Error: Filter file not found!"
             exit 1
           fi
           
-          # Check file size and format
           FILE_SIZE=$(stat -f%z "${{ env.FILTER_FILE }}" 2>/dev/null || stat -c%s "${{ env.FILTER_FILE }}")
           if [ "$FILE_SIZE" -lt 100 ]; then
-            echo "Error: Filter file is too small (< 100 bytes)!"
+            echo "Error: Filter file is too small!"
             exit 1
           fi
           
-          # Validate header format
-          if ! grep -q "^! Title:" "${{ env.FILTER_FILE }}" || \
-             ! grep -q "^! Version:" "${{ env.FILTER_FILE }}" || \
-             ! grep -q "^! Last modified:" "${{ env.FILTER_FILE }}"; then
-            echo "Error: Required header information missing!"
-            exit 1
-          fi
+          # Header validation
+          required_headers=("! Title:" "! Version:" "! Last modified:")
+          for header in "${required_headers[@]}"; do
+            if ! grep -q "^$header" "${{ env.FILTER_FILE }}"; then
+              echo "Error: Missing required header: $header"
+              exit 1
+            fi
+          done
           
-          # Count rules and validate
+          # Rule counting and validation
           RULE_COUNT=$(grep -c "^[^!]" "${{ env.FILTER_FILE }}" || true)
           if [ "$RULE_COUNT" -lt "${{ env.MIN_RULES }}" ]; then
-            echo "Error: Filter contains too few rules (minimum: ${{ env.MIN_RULES }})!"
+            echo "Error: Insufficient rules (minimum: ${{ env.MIN_RULES }})!"
             exit 1
           fi
           echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
           
-          # Check for syntax errors
+          # Syntax validation
           SYNTAX_ERRORS=$(grep -n "^[^!#@|]*[^a-zA-Z0-9.*?^$@#|=/,&_-]" "${{ env.FILTER_FILE }}" || true)
-          if [ ! -z "$SYNTAX_ERRORS" ]; then
-            echo "Warning: Possible syntax errors found:"
+          if [ -n "$SYNTAX_ERRORS" ]; then
+            echo "Warning: Potential syntax issues found:"
             echo "$SYNTAX_ERRORS"
           fi
 
       - name: Update filter metadata
-        id: update_file
+        id: update
         run: |
-          # Create temporary file
+          # Create temp file for updates
           temp_file=$(mktemp)
           
-          # Update metadata with backup
+          # Backup original file
           cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
+          
+          # Update metadata
           sed -E "
             s/^! Version:.*/! Version: ${{ env.DATE }}/
             s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/
             s/^! Updated by:.*/! Updated by: GitHub Actions/
           " "${{ env.FILTER_FILE }}" > "$temp_file"
           
-          # Calculate new checksum
+          # Update checksum
           CHECKSUM=$(sha256sum "$temp_file" | cut -d' ' -f1)
           sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/" "$temp_file" > "${{ env.FILTER_FILE }}"
           
-          # Extract and validate statistics
-          echo "NETWORK_RULES=$(grep -c "^||" "${{ env.FILTER_FILE }}" || true)" >> $GITHUB_ENV
-          echo "COSMETIC_RULES=$(grep -c "##" "${{ env.FILTER_FILE }}" || true)" >> $GITHUB_ENV
-          echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)" >> $GITHUB_ENV
+          # Calculate statistics
+          {
+            echo "NETWORK_RULES=$(grep -c "^||" "${{ env.FILTER_FILE }}" || true)"
+            echo "COSMETIC_RULES=$(grep -c "##" "${{ env.FILTER_FILE }}" || true)"
+            echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)"
+          } >> $GITHUB_ENV
           
           # Check for changes
           if [[ "${{ github.event.inputs.force_update }}" == "true" ]] || ! git diff --quiet "${{ env.FILTER_FILE }}"; then
@@ -143,11 +152,9 @@ jobs:
         run: |
           mkdir -p .github/badges
           
-          # Enhanced badge creation function
-          create_badge() {
-            local label=$1
-            local message=$2
-            local color=$3
+          # Badge generation function
+          generate_badge() {
+            local label=$1 message=$2 color=$3
             local filename=".github/badges/${label// /_}.json"
             echo "{
               \"schemaVersion\": 1,
@@ -158,14 +165,15 @@ jobs:
             }" > "$filename"
           }
           
-          create_badge "version" "${{ env.RELEASE_DATE }}" "blue"
-          create_badge "rules" "${{ env.RULE_COUNT }}" "brightgreen"
-          create_badge "updated" "${{ env.DATE }}" "success"
-          create_badge "network rules" "${{ env.NETWORK_RULES }}" "informational"
-          create_badge "cosmetic rules" "${{ env.COSMETIC_RULES }}" "yellow"
-          create_badge "whitelist rules" "${{ env.WHITELIST_RULES }}" "orange"
+          # Generate badges
+          generate_badge "version" "${{ env.RELEASE_DATE }}" "blue"
+          generate_badge "rules" "${{ env.RULE_COUNT }}" "brightgreen"
+          generate_badge "updated" "${{ env.DATE }}" "success"
+          generate_badge "network rules" "${{ env.NETWORK_RULES }}" "informational"
+          generate_badge "cosmetic rules" "${{ env.COSMETIC_RULES }}" "yellow"
+          generate_badge "whitelist rules" "${{ env.WHITELIST_RULES }}" "orange"
 
-      - name: Update README.md
+      - name: Generate README
         if: env.CHANGED == 'true'
         run: |
           cat > README.md << 'EOF'
@@ -173,10 +181,10 @@ jobs:
           
           # 🛡️ Yuusei Filter List
           
-          ![Version](https://img.shields.io/badge/version-${{ env.RELEASE_DATE }}-blue?style=flat-square)
-          ![Rules](https://img.shields.io/badge/rules-${{ env.RULE_COUNT }}-brightgreen?style=flat-square)
-          ![Updated](https://img.shields.io/badge/updated-${{ env.DATE }}-success?style=flat-square)
-          [![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](LICENSE)
+          <img src="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/version.svg" alt="Version">
+          <img src="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/rules.svg" alt="Rules">
+          <img src="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/updated.svg" alt="Updated">
+          <img src="https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square" alt="License">
           
           A powerful and efficient filter list for ad blockers, meticulously maintained and automatically updated.
           
@@ -187,17 +195,15 @@ jobs:
           ## 📦 Installation
           
           ### ⚡ Quick Install
-          Choose your ad blocker:
           
           <div align="center">
           
-          [![Install with uBlock Origin](https://img.shields.io/badge/install%20with-uBlock%20Origin-red?style=for-the-badge&logo=ublock-origin)](https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
-          [![Install with AdGuard](https://img.shields.io/badge/install%20with-AdGuard-green?style=for-the-badge&logo=adguard)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
+          [![Install with uBlock Origin](https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/ublock.svg)](https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
+          [![Install with AdGuard](https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/adguard.svg)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
           
           </div>
           
           ### 🔧 Manual Setup
-          Add this URL to your ad blocker's filter lists:
           ```
           https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt
           ```
@@ -215,9 +221,9 @@ jobs:
           
           ### ⏰ Update Schedule
           - **Version**: ${{ env.RELEASE_DATE }}
-          - **Last Updated**: ${{ env.DATE }} ${{ env.TIME }} (Vietnam/ICT)
-          - **Auto Updates**: Daily at 07:00 (Vietnam/ICT)
-          - **Manual Updates**: On-demand for critical changes
+          - **Last Updated**: ${{ env.DATE }} ${{ env.TIME }} (${{ env.TIMEZONE }})
+          - **Auto Updates**: Daily at 00:00 UTC
+          - **Manual Updates**: On-demand via workflow dispatch
           
           ## 🛡️ Protection Features
           
@@ -226,7 +232,7 @@ jobs:
           - Sponsored content removal
           - Pop-up & overlay prevention
           
-          ### 🔒 Privacy Shield
+          ### 🔒 Privacy Protection
           - Tracker blocking
           - Anti-fingerprinting
           - Analytics protection
@@ -234,31 +240,31 @@ jobs:
           ### ⚡ Performance
           - Faster page loads
           - Reduced bandwidth usage
-          - Smoother browsing
+          - Optimized browsing experience
           
           ### 🔄 Maintenance
-          - Daily updates
-          - Strict validation
-          - Quick fixes for false positives
+          - Automated daily updates
+          - Strict validation checks
+          - Quick false positive fixes
           
           ## 🤝 Contributing
           
           ### 🐛 Report Issues
-          Found a problem? [Open an issue](https://github.com/${{ github.repository }}/issues)
+          Found a bug? [Open an issue](https://github.com/${{ github.repository }}/issues)
           
           ### 💡 Suggest Rules
           Have ideas? [Create a pull request](https://github.com/${{ github.repository }}/pulls)
           
           ### 💬 Get Help
-          Need assistance? [Join discussions](https://github.com/${{ github.repository }}/discussions)
+          Need help? [Join discussions](https://github.com/${{ github.repository }}/discussions)
           
           ## 📜 License
           
-          Licensed under [GNU GPL v3.0](LICENSE)
+          This project is licensed under [GNU GPL v3.0](LICENSE)
           
-          ## ⭐ Support Us
+          ## ⭐ Support
           
-          If you find Yuusei Filter helpful:
+          If you find this project helpful:
           - Star the repository
           - Share with others
           - Report issues
@@ -270,12 +276,12 @@ jobs:
           
           Made with ❤️ by [Yuusei](https://github.com/${{ env.AUTHOR_NAME }}) | © ${{ env.YEAR }}
           
-          <sub>Updated daily by GitHub Actions 🤖</sub>
+          <sub>Updated automatically by GitHub Actions 🤖</sub>
           
           </div>
           EOF
 
-      - name: Commit and push changes
+      - name: Commit changes
         if: env.CHANGED == 'true'
         run: |
           git config user.name "github-actions[bot]"
@@ -284,16 +290,15 @@ jobs:
           git commit -m "🔄 Auto update (Version: ${{ env.DATE }})"
           git push
 
-      - name: Create GitHub Release
+      - name: Create release
         if: env.CHANGED == 'true' && env.EXISTS == 'false'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Generate enhanced changelog
+          # Generate changelog
           if [ -n "${{ github.event.inputs.release_note }}" ]; then
             CHANGELOG="${{ github.event.inputs.release_note }}"
           else
-            CHANGELOG="## 🔄 Update Summary (v${{ env.RELEASE_DATE }})
+            cat << EOF > changelog.md
+          ## 🔄 Update Summary (v${{ env.RELEASE_DATE }})
           
           ### 📊 Statistics
           | Metric | Count |
@@ -304,24 +309,25 @@ jobs:
           | Whitelist Rules | ${{ env.WHITELIST_RULES }} |
           
           ### 🔍 Changes
-          - ✨ Updated filter version to ${{ env.DATE }}
-          - 🔒 Recalculated checksum
+          - ✨ Updated to version ${{ env.DATE }}
+          - 🔒 Updated checksum
           - ✅ Validated all rules
-          - 🧹 Optimized filter structure
+          - 🧹 Optimized filters
           
           ### 📝 Notes
-          - 🤖 Automatic update via GitHub Actions
-          - 🛡️ All rules validated and optimized
-          - 📈 Performance improvements
+          - 🤖 Automated update via GitHub Actions
+          - 🛡️ All rules validated
+          - 📈 Performance optimized
           
           ### 📦 Installation
           \`\`\`
           https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt
           \`\`\`
-          "
+          EOF
+            CHANGELOG=$(cat changelog.md)
           fi
           
-          # Create release with assets
+          # Create release
           gh release create "v${{ env.RELEASE_DATE }}" \
             --title "📦 Yuusei Filter v${{ env.RELEASE_DATE }}" \
             --notes "$CHANGELOG" \
@@ -330,10 +336,7 @@ jobs:
 
       - name: Cleanup old releases
         if: env.CHANGED == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Keep latest N releases
           releases=$(gh release list -L 100 | tail -n +$((${{ env.KEEP_RELEASES }} + 1)) | cut -f1)
           for release in $releases; do
             gh release delete $release --yes || true
