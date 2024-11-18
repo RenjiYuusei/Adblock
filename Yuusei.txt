@@ -1,10 +1,10 @@
 ! ----------  About ----------
-! Version: 17-11-2024
+! Version: 18-11-2024
 ! Title: Yuusei
-! Last modified: 17-11-2024 08:37:29
+! Last modified: 18-11-2024 08:10:57
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
-! Checksum: 2ade8c256fa94b8b3810ec14acf58731ed52507f4459d490999d3ff03226c42e
+! Checksum: fa41a880e654e6912b33a505b7ca927c1f71a332c07036d05b8aa67d63195eac
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
 phimsexchaua.top##.catfish-bottom
