@@ -1,46 +1,50 @@
-name: Update Yuusei.txt
+name: Update Yuusei.txt and Create Release
 
 on:
   push:
     paths:
       - 'Yuusei.txt'
   schedule:
-    - cron: '0 0 * * *'  # Fixed cron syntax: Run daily at 00:00 UTC
+    - cron: '0 0 * * *'  # Run daily at 00:00 UTC
   workflow_dispatch:
 
 jobs:
-  update-file:
+  update-and-release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Explicitly declare required permissions
-    
+      contents: write
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1  # Optimize git checkout by fetching only the latest commit
-
+          fetch-depth: 0  # Fetch all history for proper versioning
+          
       - name: Set up timezone and datetime
         run: |
           sudo ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
           echo "DATE=$(date +"%d-%m-%Y")" >> $GITHUB_ENV
           echo "TIME=$(date +"%H:%M:%S")" >> $GITHUB_ENV
+          echo "RELEASE_DATE=$(date +"%Y%m%d")" >> $GITHUB_ENV
 
       - name: Update file metadata and calculate checksum
         id: update_file
         run: |
-          # Create temporary file to avoid in-place sed issues
+          # Create temporary file
           temp_file=$(mktemp)
           
-          # Update Version, Last modified, and calculate new checksum
+          # Update metadata
           sed -E "
             s/^! Version:.*/! Version: ${{ env.DATE }}/
             s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/
           " Yuusei.txt > "$temp_file"
           
-          # Calculate new checksum from the updated content
+          # Calculate new checksum
           CHECKSUM=$(sha256sum "$temp_file" | cut -d' ' -f1)
           sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/" "$temp_file" > Yuusei.txt
+          
+          # Store checksum for release notes
+          echo "CHECKSUM=$CHECKSUM" >> $GITHUB_ENV
           
           # Check for changes
           if git diff --quiet Yuusei.txt; then
@@ -49,15 +53,63 @@ jobs:
           else
             echo "CHANGED=true" >> $GITHUB_ENV
             echo "Changes detected in Yuusei.txt"
+            
+            # Count rules for release notes
+            RULE_COUNT=$(grep -c "^||" Yuusei.txt || true)
+            echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
           fi
           
           rm "$temp_file"
 
-      - name: Commit and push changes
+      - name: Commit changes
         if: env.CHANGED == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add Yuusei.txt
           git commit -m "Auto update Yuusei.txt (Version: ${{ env.DATE }})"
+          git push
+          
+      - name: Create Release
+        if: env.CHANGED == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.RELEASE_DATE }}
+          name: "Release ${{ env.DATE }}"
+          body: |
+            ## Yuusei Filter List Update
+            
+            **Version:** ${{ env.DATE }}
+            **Release Date:** ${{ env.DATE }} ${{ env.TIME }} (Vietnam/ICT)
+            
+            ### Statistics
+            - Total Rules: ${{ env.RULE_COUNT }}
+            - Checksum (SHA-256): ${{ env.CHECKSUM }}
+            
+            ### Usage
+            To use this filter list, add the following URL to your ad blocker:
+            ```
+            https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt
+            ```
+            
+            ### Changes
+            For detailed changes, please check the [commit history](https://github.com/${{ github.repository }}/commits/main/Yuusei.txt)
+          files: |
+            Yuusei.txt
+          draft: false
+          prerelease: false
+          
+      - name: Update README statistics
+        if: env.CHANGED == 'true'
+        run: |
+          # Update README.md with latest statistics
+          sed -i -E "
+            s/Rules: [0-9]+/Rules: ${{ env.RULE_COUNT }}/;
+            s/Updated: [0-9]{2}-[0-9]{2}-[0-9]{4}/Updated: ${{ env.DATE }}/;
+            s/Version: [0-9]{2}-[0-9]{2}-[0-9]{4}/Version: ${{ env.DATE }}/
+          " README.md
+          
+          # Commit README changes
+          git add README.md
+          git commit -m "Update README statistics [skip ci]"
           git push
