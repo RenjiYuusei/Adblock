@@ -2,10 +2,10 @@
 
 # 🛡️ Yuusei Filter List
 
-![Version](https://img.shields.io/badge/version-2024.11.18-blue?style=flat-square)
-![Rules](https://img.shields.io/badge/rules-1064-brightgreen?style=flat-square)
-![Updated](https://img.shields.io/badge/updated-18-11-2024-success?style=flat-square)
-[![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](LICENSE)
+<img src="https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/version.svg" alt="Version">
+<img src="https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.svg" alt="Rules">
+<img src="https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/updated.svg" alt="Updated">
+<img src="https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square" alt="License">
 
 A powerful and efficient filter list for ad blockers, meticulously maintained and automatically updated.
 
@@ -16,17 +16,15 @@ A powerful and efficient filter list for ad blockers, meticulously maintained an
 ## 📦 Installation
 
 ### ⚡ Quick Install
-Choose your ad blocker:
 
 <div align="center">
 
-[![Install with uBlock Origin](https://img.shields.io/badge/install%20with-uBlock%20Origin-red?style=for-the-badge&logo=ublock-origin)](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
-[![Install with AdGuard](https://img.shields.io/badge/install%20with-AdGuard-green?style=for-the-badge&logo=adguard)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
+[![Install with uBlock Origin](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/ublock.svg)](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
+[![Install with AdGuard](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/adguard.svg)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
 
 </div>
 
 ### 🔧 Manual Setup
-Add this URL to your ad blocker's filter lists:
 ```
 https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 ```
@@ -44,9 +42,9 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ### ⏰ Update Schedule
 - **Version**: 2024.11.18
-- **Last Updated**: 18-11-2024 14:12:44 (Vietnam/ICT)
-- **Auto Updates**: Daily at 07:00 (Vietnam/ICT)
-- **Manual Updates**: On-demand for critical changes
+- **Last Updated**: 18-11-2024 14:22:23 (Asia/Ho_Chi_Minh)
+- **Auto Updates**: Daily at 00:00 UTC
+- **Manual Updates**: On-demand via workflow dispatch
 
 ## 🛡️ Protection Features
 
@@ -55,7 +53,7 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 - Sponsored content removal
 - Pop-up & overlay prevention
 
-### 🔒 Privacy Shield
+### 🔒 Privacy Protection
 - Tracker blocking
 - Anti-fingerprinting
 - Analytics protection
@@ -63,31 +61,31 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 ### ⚡ Performance
 - Faster page loads
 - Reduced bandwidth usage
-- Smoother browsing
+- Optimized browsing experience
 
 ### 🔄 Maintenance
-- Daily updates
-- Strict validation
-- Quick fixes for false positives
+- Automated daily updates
+- Strict validation checks
+- Quick false positive fixes
 
 ## 🤝 Contributing
 
 ### 🐛 Report Issues
-Found a problem? [Open an issue](https://github.com/RenjiYuusei/Adblock/issues)
+Found a bug? [Open an issue](https://github.com/RenjiYuusei/Adblock/issues)
 
 ### 💡 Suggest Rules
 Have ideas? [Create a pull request](https://github.com/RenjiYuusei/Adblock/pulls)
 
 ### 💬 Get Help
-Need assistance? [Join discussions](https://github.com/RenjiYuusei/Adblock/discussions)
+Need help? [Join discussions](https://github.com/RenjiYuusei/Adblock/discussions)
 
 ## 📜 License
 
-Licensed under [GNU GPL v3.0](LICENSE)
+This project is licensed under [GNU GPL v3.0](LICENSE)
 
-## ⭐ Support Us
+## ⭐ Support
 
-If you find Yuusei Filter helpful:
+If you find this project helpful:
 - Star the repository
 - Share with others
 - Report issues
@@ -99,6 +97,6 @@ If you find Yuusei Filter helpful:
 
 Made with ❤️ by [Yuusei](https://github.com/RenjiYuusei) | © 2024
 
-<sub>Updated daily by GitHub Actions 🤖</sub>
+<sub>Updated automatically by GitHub Actions 🤖</sub>
 
 </div>
