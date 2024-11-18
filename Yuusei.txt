@@ -7,6 +7,9 @@
 ! Checksum: 8601379367a7484a5f608956f61283156908445117b785d03cd25b34b6b9a243
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
+s4paad.factsninfo.com##.bottom-ad-parent.tac.bottom
+s4paad.factsninfo.com###td_3733
+s4paad.factsninfo.com###td_3733
 smartjobalert.in##.jhfdiuh0.BR-Footer-Ads
 smartjobalert.in###overlay
 mkomsel.com##div.text-gray-400.text-center:nth-of-type(1)
