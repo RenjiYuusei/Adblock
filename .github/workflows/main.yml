@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -40,15 +40,12 @@ jobs:
       - name: Setup environment
         id: setup
         run: |
-          # Set timezone
           sudo ln -sf /usr/share/zoneinfo/${{ env.TIMEZONE }} /etc/localtime
-          
-          # Set date variables
           {
-            echo "DATE=$(date +"%d-%m-%Y")"
-            echo "TIME=$(date +"%H:%M:%S")"
-            echo "RELEASE_DATE=$(date +"%Y.%m.%d")"
-            echo "YEAR=$(date +"%Y")"
+            echo "DATE=$(date +'%d-%m-%Y')"
+            echo "TIME=$(date +'%H:%M:%S')"
+            echo "RELEASE_DATE=$(date +'%Y.%m.%d')"
+            echo "YEAR=$(date +'%Y')"
             echo "REPO_NAME=${GITHUB_REPOSITORY#*/}"
             echo "AUTHOR_NAME=${GITHUB_REPOSITORY%/*}"
           } >> $GITHUB_ENV
@@ -60,7 +57,6 @@ jobs:
             today=$(date -u +%Y-%m-%d)
             created_at=$(gh release view "v${{ env.RELEASE_DATE }}" --json createdAt -q .createdAt)
             release_date=$(date -u -d "$created_at" +%Y-%m-%d)
-            
             if [ "$release_date" = "$today" ]; then
               echo "Deleting today's existing release..."
               gh release delete "v${{ env.RELEASE_DATE }}" --yes || true
@@ -75,19 +71,15 @@ jobs:
       - name: Validate filter file
         id: validate
         run: |
-          # File existence and size check
           if [ ! -f "${{ env.FILTER_FILE }}" ]; then
             echo "Error: Filter file not found!"
             exit 1
           fi
-          
           FILE_SIZE=$(stat -f%z "${{ env.FILTER_FILE }}" 2>/dev/null || stat -c%s "${{ env.FILTER_FILE }}")
           if [ "$FILE_SIZE" -lt 100 ]; then
             echo "Error: Filter file is too small!"
             exit 1
           fi
-          
-          # Header validation
           required_headers=("! Title:" "! Version:" "! Last modified:")
           for header in "${required_headers[@]}"; do
             if ! grep -q "^$header" "${{ env.FILTER_FILE }}"; then
@@ -95,16 +87,12 @@ jobs:
               exit 1
             fi
           done
-          
-          # Rule counting and validation
           RULE_COUNT=$(grep -c "^[^!]" "${{ env.FILTER_FILE }}" || true)
           if [ "$RULE_COUNT" -lt "${{ env.MIN_RULES }}" ]; then
             echo "Error: Insufficient rules (minimum: ${{ env.MIN_RULES }})!"
             exit 1
           fi
           echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
-          
-          # Syntax validation
           SYNTAX_ERRORS=$(grep -n "^[^!#@|]*[^a-zA-Z0-9.*?^$@#|=/,&_-]" "${{ env.FILTER_FILE }}" || true)
           if [ -n "$SYNTAX_ERRORS" ]; then
             echo "Warning: Potential syntax issues found:"
@@ -114,170 +102,160 @@ jobs:
       - name: Update filter metadata
         id: update
         run: |
-          # Create temp file for updates
           temp_file=$(mktemp)
-          
-          # Backup original file
           cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
-          
-          # Update metadata
-          sed -E "
-            s/^! Version:.*/! Version: ${{ env.DATE }}/
-            s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/
-            s/^! Updated by:.*/! Updated by: GitHub Actions/
-          " "${{ env.FILTER_FILE }}" > "$temp_file"
-          
-          # Update checksum
+          sed -E "s/^! Version:.*/! Version: ${{ env.DATE }}/;s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/;s/^! Updated by:.*/! Updated by: GitHub Actions/" "${{ env.FILTER_FILE }}" > "$temp_file"
           CHECKSUM=$(sha256sum "$temp_file" | cut -d' ' -f1)
           sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/" "$temp_file" > "${{ env.FILTER_FILE }}"
-          
-          # Calculate statistics
           {
             echo "NETWORK_RULES=$(grep -c "^||" "${{ env.FILTER_FILE }}" || true)"
             echo "COSMETIC_RULES=$(grep -c "##" "${{ env.FILTER_FILE }}" || true)"
             echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)"
           } >> $GITHUB_ENV
-          
-          # Check for changes
           if [[ "${{ github.event.inputs.force_update }}" == "true" ]] || ! git diff --quiet "${{ env.FILTER_FILE }}"; then
             echo "CHANGED=true" >> $GITHUB_ENV
           else
             echo "CHANGED=false" >> $GITHUB_ENV
           fi
-          
           rm "$temp_file"
 
-      - name: Generate badges
+      - name: Generate badges and README
         if: env.CHANGED == 'true'
         run: |
           mkdir -p .github/badges
-          
-          # Badge generation function
           generate_badge() {
-            local label=$1 message=$2 color=$3
+            local label=$1 message=$2 color=$3 style=${4:-flat-square}
             local filename=".github/badges/${label// /_}.json"
-            echo "{
-              \"schemaVersion\": 1,
-              \"label\": \"$label\",
-              \"message\": \"$message\",
-              \"color\": \"$color\",
-              \"style\": \"flat-square\"
-            }" > "$filename"
+            echo "{ \"schemaVersion\": 1, \"label\": \"$label\", \"message\": \"$message\", \"color\": \"$color\", \"style\": \"$style\" }" > "$filename"
           }
-          
-          # Generate badges
           generate_badge "version" "${{ env.RELEASE_DATE }}" "blue"
           generate_badge "rules" "${{ env.RULE_COUNT }}" "brightgreen"
           generate_badge "updated" "${{ env.DATE }}" "success"
           generate_badge "network rules" "${{ env.NETWORK_RULES }}" "informational"
           generate_badge "cosmetic rules" "${{ env.COSMETIC_RULES }}" "yellow"
           generate_badge "whitelist rules" "${{ env.WHITELIST_RULES }}" "orange"
+          generate_badge "ublock" "Install for uBlock Origin" "1a73e8" "for-the-badge"
+          generate_badge "adguard" "Install for AdGuard" "67b279" "for-the-badge"
 
-      - name: Generate README
-        if: env.CHANGED == 'true'
-        run: |
-          cat > README.md << 'EOF'
+          cat > README.md << EOF
           <div align="center">
-          
           # 🛡️ Yuusei Filter List
-          
-          <img src="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/version.svg" alt="Version">
-          <img src="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/rules.svg" alt="Rules">
-          <img src="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/updated.svg" alt="Updated">
-          <img src="https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square" alt="License">
-          
-          A powerful and efficient filter list for ad blockers, meticulously maintained and automatically updated.
-          
-          [📦 Install](#-installation) • [📊 Statistics](#-statistics) • [📝 Features](#-features) • [📜 License](#-license)
-          
+          _A powerful and efficient filter list for ad blockers, automatically updated._
+          [![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/version.json)](https://github.com/your-username/your-repo/releases/latest)
+          [![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/rules.json)](https://raw.githubusercontent.com/your-username/your-repo/main/Yuusei.txt)
+          [![Updated](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/updated.json)](https://github.com/your-username/your-repo/commits/main)
+          [![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](LICENSE)
+          [![Stars](https://img.shields.io/github/stars/your-username/your-repo?style=flat-square&color=yellow)](https://github.com/your-username/your-repo/stargazers)
+          [![Issues](https://img.shields.io/github/issues/your-username/your-repo?style=flat-square&color=blue)](https://github.com/your-username/your-repo/issues)
           </div>
-          
+          <p align="center">
+            <a href="#-installation">📦 Install</a> •
+            <a href="#-statistics">📊 Stats</a> •
+            <a href="#-protection-features">🛡️ Features</a> •
+            <a href="#-contributing">🤝 Contribute</a> •
+            <a href="#-license">📜 License</a>
+          </p>
+
           ## 📦 Installation
-          
+
           ### ⚡ Quick Install
-          
+
           <div align="center">
-          
-          [![Install with uBlock Origin](https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/ublock.svg)](https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
-          [![Install with AdGuard](https://raw.githubusercontent.com/${{ github.repository }}/main/.github/badges/adguard.svg)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
-          
+
+          [![Install with uBlock Origin](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/ublock.json)](https://raw.githubusercontent.com/your-username/your-repo/main/Yuusei.txt)
+          [![Install with AdGuard](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/adguard.json)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/your-username/your-repo/main/Yuusei.txt)
+
           </div>
-          
+
           ### 🔧 Manual Setup
+
+          Add this URL to your ad blocker:
           ```
-          https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt
+          https://raw.githubusercontent.com/your-username/your-repo/main/Yuusei.txt
           ```
-          
+
           ## 📊 Statistics
-          
+
           ### 📈 Current Status
-          
-          | Metric | Count |
-          |--------|-------|
-          | Total Rules | ${{ env.RULE_COUNT }} |
-          | Network Rules | ${{ env.NETWORK_RULES }} |
-          | Cosmetic Rules | ${{ env.COSMETIC_RULES }} |
-          | Whitelist Rules | ${{ env.WHITELIST_RULES }} |
-          
-          ### ⏰ Update Schedule
-          - **Version**: ${{ env.RELEASE_DATE }}
-          - **Last Updated**: ${{ env.DATE }} ${{ env.TIME }} (${{ env.TIMEZONE }})
-          - **Auto Updates**: Daily at 00:00 UTC
-          - **Manual Updates**: On-demand via workflow dispatch
-          
-          ## 🛡️ Protection Features
-          
-          ### 🚫 Ad Blocking
-          - Comprehensive ad server blocking
-          - Sponsored content removal
-          - Pop-up & overlay prevention
-          
-          ### 🔒 Privacy Protection
-          - Tracker blocking
-          - Anti-fingerprinting
-          - Analytics protection
-          
-          ### ⚡ Performance
-          - Faster page loads
-          - Reduced bandwidth usage
-          - Optimized browsing experience
-          
-          ### 🔄 Maintenance
-          - Automated daily updates
-          - Strict validation checks
-          - Quick false positive fixes
-          
-          ## 🤝 Contributing
-          
-          ### 🐛 Report Issues
-          Found a bug? [Open an issue](https://github.com/${{ github.repository }}/issues)
-          
-          ### 💡 Suggest Rules
-          Have ideas? [Create a pull request](https://github.com/${{ github.repository }}/pulls)
-          
-          ### 💬 Get Help
-          Need help? [Join discussions](https://github.com/${{ github.repository }}/discussions)
-          
-          ## 📜 License
-          
-          This project is licensed under [GNU GPL v3.0](LICENSE)
-          
-          ## ⭐ Support
-          
-          If you find this project helpful:
-          - Star the repository
-          - Share with others
-          - Report issues
-          - Contribute improvements
-          
-          ---
-          
+
           <div align="center">
-          
-          Made with ❤️ by [Yuusei](https://github.com/${{ env.AUTHOR_NAME }}) | © ${{ env.YEAR }}
-          
-          <sub>Updated automatically by GitHub Actions 🤖</sub>
-          
+
+          | Metric | Count | Status |
+          |--------|-------|---------|
+          | Total Rules | ${{ env.RULE_COUNT }} | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/rules.json) |
+          | Network Rules | ${{ env.NETWORK_RULES }} | ![Network Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/network_rules.json) |
+          | Cosmetic Rules | ${{ env.COSMETIC_RULES }} | ![Cosmetic Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/cosmetic_rules.json) |
+          | Whitelist Rules | ${{ env.WHITELIST_RULES }} | ![Whitelist Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/whitelist_rules.json) |
+
+          </div>
+
+          ### ⏰ Update Schedule
+
+          <div align="center">
+
+          | Metric | Value |
+          |--------|--------|
+          | Version | ${{ env.RELEASE_DATE }} |
+          | Last Updated | ${{ env.DATE }} ${{ env.TIME }} |
+          | Time Zone | ${{ env.TIMEZONE }} |
+          | Auto Updates | Daily at 00:00 UTC |
+          | Manual Updates | Via workflow dispatch |
+
+          </div>
+
+          ## 🛡️ Protection Features
+
+          ### 🚫 Ad Blocking
+          - **Complete Protection**: Blocks all types of advertisements
+          - **Anti-Sponsorship**: Removes sponsored content and promotions
+          - **Pop-up Shield**: Prevents annoying pop-ups and overlays
+
+          ### 🔒 Privacy Protection
+          - **Tracker Defense**: Blocks tracking scripts and pixels
+          - **Anti-Fingerprint**: Reduces browser fingerprinting
+          - **Analytics Block**: Protects against analytics tracking
+
+          ### ⚡ Performance
+          - **Fast Loading**: Reduces page load times
+          - **Bandwidth Saver**: Decreases data usage
+          - **Clean Browsing**: Optimized web experience
+
+          ### 🔄 Maintenance
+          - **Daily Updates**: Automatic daily maintenance
+          - **Quality Control**: Strict validation system
+          - **Quick Fixes**: Rapid false positive resolution
+
+          ## 🤝 Contributing
+
+          <div align="center">
+
+          [![Submit Issue](https://img.shields.io/badge/Report%20Bug-Submit%20Issue-red?style=for-the-badge)](https://github.com/your-username/your-repo/issues/new?assignees=&labels=bug&template=bug_report.md)
+          [![Feature Request](https://img.shields.io/badge/Request%20Feature-Submit%20Idea-blue?style=for-the-badge)](https://github.com/your-username/your-repo/issues/new?assignees=&labels=enhancement&template=feature_request.md)
+
+          </div>
+
+          ## 📜 License
+
+          This project is licensed under [GNU GPL v3.0](LICENSE)
+
+          ## ⭐ Support
+
+          If you find this project helpful, please consider:
+          - Starring the repository ⭐
+          - Sharing with others 🔄
+          - Reporting issues 🐛
+          - Contributing improvements 🛠️
+
+          ---
+
+          <div align="center">
+
+          Made with ❤️ by [Yuusei](https://github.com/your-username/your-repo) | © ${{ env.YEAR }}
+
+          <sub>Automatically updated by GitHub Actions 🤖</sub>
+
+          _Last updated: ${{ env.DATE }} ${{ env.TIME }} (${{ env.TIMEZONE }})_
+
           </div>
           EOF
 
@@ -299,7 +277,7 @@ jobs:
           else
             cat << EOF > changelog.md
           ## 🔄 Update Summary (v${{ env.RELEASE_DATE }})
-          
+
           ### 📊 Statistics
           | Metric | Count |
           |--------|-------|
@@ -307,27 +285,26 @@ jobs:
           | Network Rules | ${{ env.NETWORK_RULES }} |
           | Cosmetic Rules | ${{ env.COSMETIC_RULES }} |
           | Whitelist Rules | ${{ env.WHITELIST_RULES }} |
-          
+
           ### 🔍 Changes
           - ✨ Updated to version ${{ env.DATE }}
           - 🔒 Updated checksum
           - ✅ Validated all rules
           - 🧹 Optimized filters
-          
+
           ### 📝 Notes
           - 🤖 Automated update via GitHub Actions
           - 🛡️ All rules validated
           - 📈 Performance optimized
-          
+
           ### 📦 Installation
           \`\`\`
-          https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt
+          https://raw.githubusercontent.com/your-username/your-repo/main/Yuusei.txt
           \`\`\`
           EOF
             CHANGELOG=$(cat changelog.md)
           fi
-          
-          # Create release
+
           gh release create "v${{ env.RELEASE_DATE }}" \
             --title "📦 Yuusei Filter v${{ env.RELEASE_DATE }}" \
             --notes "$CHANGELOG" \
