@@ -2,5 +2,6 @@
     "schemaVersion": 1,
     "label": "version",
     "message": "2024.11.18",
-    "color": "blue"
+    "color": "blue",
+    "style": "flat-square"
   }
