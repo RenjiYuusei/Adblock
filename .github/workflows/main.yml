@@ -3,59 +3,61 @@ name: Update Yuusei.txt
 on:
   push:
     paths:
-      - 'Yuusei.txt' # Chạy khi tệp Yuusei.txt có sự thay đổi
+      - 'Yuusei.txt'
   schedule:
-    - cron: '0 0 * * *' # Chạy hàng ngày vào lúc 00:00 UTC (07:00 giờ Việt Nam)
-  workflow_dispatch: # Cho phép chạy thủ công
+    - cron: '0 0 * * *'  # Fixed cron syntax: Run daily at 00:00 UTC
+  workflow_dispatch:
 
 jobs:
   update-file:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write  # Explicitly declare required permissions
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1  # Optimize git checkout by fetching only the latest commit
 
-      - name: Set date and time in VN timezone
+      - name: Set up timezone and datetime
         run: |
-          sudo apt-get install -y tzdata
-          export TZ="Asia/Ho_Chi_Minh"
-          DATE=$(date +"%d-%m-%Y")
-          TIME=$(date +"%H:%M:%S")
-          echo "DATE=$DATE" >> $GITHUB_ENV
-          echo "TIME=$TIME" >> $GITHUB_ENV
+          sudo ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+          echo "DATE=$(date +"%d-%m-%Y")" >> $GITHUB_ENV
+          echo "TIME=$(date +"%H:%M:%S")" >> $GITHUB_ENV
 
-      - name: Update Version, Last modified, and Checksum
+      - name: Update file metadata and calculate checksum
         id: update_file
         run: |
-          # Đọc nội dung tệp
-          CONTENT=$(cat Yuusei.txt)
-
-          # Cập nhật Version và Last modified
-          CONTENT=$(echo "$CONTENT" | sed "s/^! Version:.*/! Version: $DATE/")
-          CONTENT=$(echo "$CONTENT" | sed "s/^! Last modified:.*/! Last modified: $DATE $TIME/")
-
-          # Tạo Checksum từ nội dung đã cập nhật
-          CHECKSUM=$(echo "$CONTENT" | sha256sum | awk '{print $1}')
-          CONTENT=$(echo "$CONTENT" | sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/")
-
-          # Ghi lại nội dung vào tệp
-          echo "$CONTENT" > Yuusei.txt
-
-          # Kiểm tra sự thay đổi
-          if git diff --exit-code Yuusei.txt; then
-            echo "No changes detected in Yuusei.txt."
+          # Create temporary file to avoid in-place sed issues
+          temp_file=$(mktemp)
+          
+          # Update Version, Last modified, and calculate new checksum
+          sed -E "
+            s/^! Version:.*/! Version: ${{ env.DATE }}/
+            s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/
+          " Yuusei.txt > "$temp_file"
+          
+          # Calculate new checksum from the updated content
+          CHECKSUM=$(sha256sum "$temp_file" | cut -d' ' -f1)
+          sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/" "$temp_file" > Yuusei.txt
+          
+          # Check for changes
+          if git diff --quiet Yuusei.txt; then
             echo "CHANGED=false" >> $GITHUB_ENV
+            echo "No changes detected in Yuusei.txt"
           else
-            echo "Changes detected in Yuusei.txt."
             echo "CHANGED=true" >> $GITHUB_ENV
+            echo "Changes detected in Yuusei.txt"
           fi
+          
+          rm "$temp_file"
 
-      - name: Commit and push changes if modified
+      - name: Commit and push changes
         if: env.CHANGED == 'true'
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add Yuusei.txt
-          git commit -m "Auto update Yuusei.txt (Version: $DATE)"
+          git commit -m "Auto update Yuusei.txt (Version: ${{ env.DATE }})"
           git push
