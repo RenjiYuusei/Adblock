@@ -12,10 +12,16 @@ on:
         description: 'Custom release notes'
         required: false
         type: string
+      force_update:
+        description: 'Force update even if no changes'
+        required: false
+        type: boolean
+        default: false
 
 env:
   FILTER_FILE: Yuusei.txt
   MIN_RULES: 10  # Minimum number of rules required
+  KEEP_RELEASES: 10  # Number of recent releases to keep
 
 jobs:
   update-and-release:
@@ -41,29 +47,64 @@ jobs:
           echo "REPO_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
           echo "AUTHOR_NAME=${GITHUB_REPOSITORY%/*}" >> $GITHUB_ENV
 
+      - name: Check existing release
+        id: check_release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "v${{ env.RELEASE_DATE }}" &>/dev/null; then
+            echo "EXISTS=true" >> $GITHUB_ENV
+            # Delete existing release if it's from today
+            created_at=$(gh release view "v${{ env.RELEASE_DATE }}" --json createdAt -q .createdAt)
+            today=$(date -u +%Y-%m-%d)
+            release_date=$(date -u -d "$created_at" +%Y-%m-%d)
+            if [ "$release_date" = "$today" ]; then
+              echo "Deleting today's existing release..."
+              gh release delete "v${{ env.RELEASE_DATE }}" --yes || true
+              echo "EXISTS=false" >> $GITHUB_ENV
+            fi
+          else
+            echo "EXISTS=false" >> $GITHUB_ENV
+          fi
+
       - name: Validate filter file
         id: validate
         run: |
-          # Check if file exists
+          # Enhanced validation
           if [ ! -f "${{ env.FILTER_FILE }}" ]; then
             echo "Error: Filter file not found!"
             exit 1
           fi
           
-          # Check file size
+          # Check file size and format
           FILE_SIZE=$(stat -f%z "${{ env.FILTER_FILE }}" 2>/dev/null || stat -c%s "${{ env.FILTER_FILE }}")
           if [ "$FILE_SIZE" -lt 100 ]; then
-            echo "Warning: Filter file seems too small!"
+            echo "Error: Filter file is too small (< 100 bytes)!"
             exit 1
           fi
           
-          # Count rules
+          # Validate header format
+          if ! grep -q "^! Title:" "${{ env.FILTER_FILE }}" || \
+             ! grep -q "^! Version:" "${{ env.FILTER_FILE }}" || \
+             ! grep -q "^! Last modified:" "${{ env.FILTER_FILE }}"; then
+            echo "Error: Required header information missing!"
+            exit 1
+          fi
+          
+          # Count rules and validate
           RULE_COUNT=$(grep -c "^[^!]" "${{ env.FILTER_FILE }}" || true)
           if [ "$RULE_COUNT" -lt "${{ env.MIN_RULES }}" ]; then
-            echo "Error: Filter contains too few rules!"
+            echo "Error: Filter contains too few rules (minimum: ${{ env.MIN_RULES }})!"
             exit 1
           fi
           echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
+          
+          # Check for syntax errors
+          SYNTAX_ERRORS=$(grep -n "^[^!#@|]*[^a-zA-Z0-9.*?^$@#|=/,&_-]" "${{ env.FILTER_FILE }}" || true)
+          if [ ! -z "$SYNTAX_ERRORS" ]; then
+            echo "Warning: Possible syntax errors found:"
+            echo "$SYNTAX_ERRORS"
+          fi
 
       - name: Update filter metadata
         id: update_file
@@ -71,7 +112,8 @@ jobs:
           # Create temporary file
           temp_file=$(mktemp)
           
-          # Update metadata
+          # Update metadata with backup
+          cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
           sed -E "
             s/^! Version:.*/! Version: ${{ env.DATE }}/
             s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/
@@ -82,16 +124,16 @@ jobs:
           CHECKSUM=$(sha256sum "$temp_file" | cut -d' ' -f1)
           sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/" "$temp_file" > "${{ env.FILTER_FILE }}"
           
-          # Extract statistics
+          # Extract and validate statistics
           echo "NETWORK_RULES=$(grep -c "^||" "${{ env.FILTER_FILE }}" || true)" >> $GITHUB_ENV
           echo "COSMETIC_RULES=$(grep -c "##" "${{ env.FILTER_FILE }}" || true)" >> $GITHUB_ENV
           echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)" >> $GITHUB_ENV
           
           # Check for changes
-          if git diff --quiet "${{ env.FILTER_FILE }}"; then
-            echo "CHANGED=false" >> $GITHUB_ENV
-          else
+          if [[ "${{ github.event.inputs.force_update }}" == "true" ]] || ! git diff --quiet "${{ env.FILTER_FILE }}"; then
             echo "CHANGED=true" >> $GITHUB_ENV
+          else
+            echo "CHANGED=false" >> $GITHUB_ENV
           fi
           
           rm "$temp_file"
@@ -101,22 +143,27 @@ jobs:
         run: |
           mkdir -p .github/badges
           
-          # Function to create badge JSON
+          # Enhanced badge creation function
           create_badge() {
             local label=$1
             local message=$2
             local color=$3
+            local filename=".github/badges/${label// /_}.json"
             echo "{
               \"schemaVersion\": 1,
               \"label\": \"$label\",
               \"message\": \"$message\",
-              \"color\": \"$color\"
-            }" > ".github/badges/$label.json"
+              \"color\": \"$color\",
+              \"style\": \"flat-square\"
+            }" > "$filename"
           }
           
           create_badge "version" "${{ env.RELEASE_DATE }}" "blue"
           create_badge "rules" "${{ env.RULE_COUNT }}" "brightgreen"
           create_badge "updated" "${{ env.DATE }}" "success"
+          create_badge "network rules" "${{ env.NETWORK_RULES }}" "informational"
+          create_badge "cosmetic rules" "${{ env.COSMETIC_RULES }}" "yellow"
+          create_badge "whitelist rules" "${{ env.WHITELIST_RULES }}" "orange"
 
       - name: Update README.md
         if: env.CHANGED == 'true'
@@ -126,10 +173,10 @@ jobs:
           
           # 🛡️ Yuusei Filter List
           
-          ![Version](https://img.shields.io/badge/version-${{ env.RELEASE_DATE }}-blue)
-          ![Rules](https://img.shields.io/badge/rules-${{ env.RULE_COUNT }}-brightgreen)
-          ![Updated](https://img.shields.io/badge/updated-${{ env.DATE }}-success)
-          [![License](https://img.shields.io/badge/license-GPL--3.0-orange)](LICENSE)
+          ![Version](https://img.shields.io/badge/version-${{ env.RELEASE_DATE }}-blue?style=flat-square)
+          ![Rules](https://img.shields.io/badge/rules-${{ env.RULE_COUNT }}-brightgreen?style=flat-square)
+          ![Updated](https://img.shields.io/badge/updated-${{ env.DATE }}-success?style=flat-square)
+          [![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](LICENSE)
           
           A powerful and efficient filter list for ad blockers, meticulously maintained and automatically updated.
           
@@ -139,174 +186,142 @@ jobs:
           
           ## 📦 Installation
           
-          ### One-Click Installation
-          Click the appropriate link for your ad blocker:
-          - [Subscribe with uBlock Origin](https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
-          - [Subscribe with AdGuard](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
+          ### ⚡ Quick Install
+          Choose your ad blocker:
           
-          ### Manual Installation
-          Add the following URL to your ad blocker's filter lists:
+          <div align="center">
+          
+          [![Install with uBlock Origin](https://img.shields.io/badge/install%20with-uBlock%20Origin-red?style=for-the-badge&logo=ublock-origin)](https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
+          [![Install with AdGuard](https://img.shields.io/badge/install%20with-AdGuard-green?style=for-the-badge&logo=adguard)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt)
+          
+          </div>
+          
+          ### 🔧 Manual Setup
+          Add this URL to your ad blocker's filter lists:
           ```
           https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt
           ```
           
           ## 📊 Statistics
           
-          ### Filter Information
+          ### 📈 Current Status
+          
+          | Metric | Count |
+          |--------|-------|
+          | Total Rules | ${{ env.RULE_COUNT }} |
+          | Network Rules | ${{ env.NETWORK_RULES }} |
+          | Cosmetic Rules | ${{ env.COSMETIC_RULES }} |
+          | Whitelist Rules | ${{ env.WHITELIST_RULES }} |
+          
+          ### ⏰ Update Schedule
           - **Version**: ${{ env.RELEASE_DATE }}
-          - **Last Updated**: ${{ env.DATE }} ${{ env.TIME }} (Vietnam time)
-          - **Total Rules**: ${{ env.RULE_COUNT }}
+          - **Last Updated**: ${{ env.DATE }} ${{ env.TIME }} (Vietnam/ICT)
+          - **Auto Updates**: Daily at 07:00 (Vietnam/ICT)
+          - **Manual Updates**: On-demand for critical changes
           
-          ### Rule Breakdown
-          - **Network Rules**: ${{ env.NETWORK_RULES }}
-          - **Cosmetic Rules**: ${{ env.COSMETIC_RULES }}
-          - **Whitelist Rules**: ${{ env.WHITELIST_RULES }}
+          ## 🛡️ Protection Features
           
-          ## 🔄 Updates
+          ### 🚫 Ad Blocking
+          - Comprehensive ad server blocking
+          - Sponsored content removal
+          - Pop-up & overlay prevention
           
-          - **Automatic Updates**: Daily at 07:00 (Vietnam time)
-          - **Manual Updates**: As needed for critical changes
-          - **Version History**: Available in [Releases](https://github.com/${{ github.repository }}/releases)
+          ### 🔒 Privacy Shield
+          - Tracker blocking
+          - Anti-fingerprinting
+          - Analytics protection
           
-          ## 📝 Features
+          ### ⚡ Performance
+          - Faster page loads
+          - Reduced bandwidth usage
+          - Smoother browsing
           
-          - **🚫 Advertisement Blocking**
-            - Blocks common ad servers and networks
-            - Removes sponsored content and promotions
-            - Prevents pop-ups and overlay ads
-          
-          - **🛡️ Privacy Protection**
-            - Blocks tracking scripts and pixels
-            - Prevents user behavior monitoring
-            - Reduces digital fingerprinting
-          
-          - **⚡ Performance Optimization**
-            - Reduces page load times
-            - Decreases bandwidth usage
-            - Improves browsing experience
-          
-          - **🔄 Regular Maintenance**
-            - Daily automated updates
-            - Regular rule validation
-            - Quick response to false positives
-          
-          ## 💬 Support
-          
-          - **Report Issues**: [Open an issue](https://github.com/${{ github.repository }}/issues)
-          - **Suggest Changes**: [Create a pull request](https://github.com/${{ github.repository }}/pulls)
-          - **Get Help**: [Discussions](https://github.com/${{ github.repository }}/discussions)
-          
-          ## 📜 License
-          
-          This filter list is licensed under the [GNU General Public License v3.0](LICENSE).
+          ### 🔄 Maintenance
+          - Daily updates
+          - Strict validation
+          - Quick fixes for false positives
           
           ## 🤝 Contributing
           
-          We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+          ### 🐛 Report Issues
+          Found a problem? [Open an issue](https://github.com/${{ github.repository }}/issues)
           
-          ## ⭐ Show Your Support
+          ### 💡 Suggest Rules
+          Have ideas? [Create a pull request](https://github.com/${{ github.repository }}/pulls)
           
-          If you find this filter list helpful, please consider:
-          - Starring the repository
-          - Sharing with others
-          - Contributing improvements
+          ### 💬 Get Help
+          Need assistance? [Join discussions](https://github.com/${{ github.repository }}/discussions)
+          
+          ## 📜 License
+          
+          Licensed under [GNU GPL v3.0](LICENSE)
+          
+          ## ⭐ Support Us
+          
+          If you find Yuusei Filter helpful:
+          - Star the repository
+          - Share with others
+          - Report issues
+          - Contribute improvements
           
           ---
           
           <div align="center">
           
-          Made with ❤️ by [Yuusei](${{ github.repository_owner }}) | Copyright © ${{ env.YEAR }}
+          Made with ❤️ by [Yuusei](https://github.com/${{ env.AUTHOR_NAME }}) | © ${{ env.YEAR }}
+          
+          <sub>Updated daily by GitHub Actions 🤖</sub>
           
           </div>
           EOF
-
-      - name: Create CONTRIBUTING.md if not exists
-        if: env.CHANGED == 'true'
-        run: |
-          if [ ! -f CONTRIBUTING.md ]; then
-            cat > CONTRIBUTING.md << 'EOF'
-          # Contributing to Yuusei Filter List
-          
-          Thank you for your interest in contributing to the Yuusei Filter List! 
-          
-          ## How to Contribute
-          
-          ### Reporting Issues
-          - Check if the issue already exists
-          - Use the issue template when available
-          - Provide detailed information about the problem
-          
-          ### Suggesting New Rules
-          - Test the rule before submitting
-          - Provide the website where the rule applies
-          - Explain what the rule blocks
-          
-          ### Pull Requests
-          1. Fork the repository
-          2. Create a new branch
-          3. Make your changes
-          4. Test your changes
-          5. Submit a pull request
-          
-          ## Rule Writing Guidelines
-          
-          ### General Rules
-          - Keep rules as specific as possible
-          - Avoid overlapping rules
-          - Test rules before submitting
-          
-          ### Syntax
-          - Follow uBlock Origin syntax
-          - Use appropriate rule types
-          - Document complex rules
-          
-          ## Code of Conduct
-          
-          - Be respectful and inclusive
-          - Focus on constructive feedback
-          - Help others learn and grow
-          
-          EOF
-          fi
 
       - name: Commit and push changes
         if: env.CHANGED == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "${{ env.FILTER_FILE }}" README.md CONTRIBUTING.md .github/badges || true
+          git add "${{ env.FILTER_FILE }}" README.md .github/badges || true
           git commit -m "🔄 Auto update (Version: ${{ env.DATE }})"
           git push
 
       - name: Create GitHub Release
-        if: env.CHANGED == 'true'
+        if: env.CHANGED == 'true' && env.EXISTS == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Generate changelog
+          # Generate enhanced changelog
           if [ -n "${{ github.event.inputs.release_note }}" ]; then
             CHANGELOG="${{ github.event.inputs.release_note }}"
           else
-            CHANGELOG="## 🔄 Update Summary
+            CHANGELOG="## 🔄 Update Summary (v${{ env.RELEASE_DATE }})
           
           ### 📊 Statistics
-          - Total Rules: ${{ env.RULE_COUNT }}
-          - Network Rules: ${{ env.NETWORK_RULES }}
-          - Cosmetic Rules: ${{ env.COSMETIC_RULES }}
-          - Whitelist Rules: ${{ env.WHITELIST_RULES }}
+          | Metric | Count |
+          |--------|-------|
+          | Total Rules | ${{ env.RULE_COUNT }} |
+          | Network Rules | ${{ env.NETWORK_RULES }} |
+          | Cosmetic Rules | ${{ env.COSMETIC_RULES }} |
+          | Whitelist Rules | ${{ env.WHITELIST_RULES }} |
           
           ### 🔍 Changes
-          - Updated filter version to ${{ env.DATE }}
-          - Recalculated checksum
-          - Validated all rules
+          - ✨ Updated filter version to ${{ env.DATE }}
+          - 🔒 Recalculated checksum
+          - ✅ Validated all rules
+          - 🧹 Optimized filter structure
           
           ### 📝 Notes
-          - Automatic update via GitHub Actions
-          - Filter file validated and optimized
+          - 🤖 Automatic update via GitHub Actions
+          - 🛡️ All rules validated and optimized
+          - 📈 Performance improvements
+          
+          ### 📦 Installation
+          \`\`\`
+          https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt
+          \`\`\`
           "
           fi
           
-          # Create release
+          # Create release with assets
           gh release create "v${{ env.RELEASE_DATE }}" \
             --title "📦 Yuusei Filter v${{ env.RELEASE_DATE }}" \
             --notes "$CHANGELOG" \
@@ -318,8 +333,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Keep latest 10 releases
-          releases=$(gh release list -L 100 | tail -n +11 | cut -f1)
+          # Keep latest N releases
+          releases=$(gh release list -L 100 | tail -n +$((${{ env.KEEP_RELEASES }} + 1)) | cut -f1)
           for release in $releases; do
             gh release delete $release --yes || true
           done
