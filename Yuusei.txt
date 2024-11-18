@@ -7,6 +7,14 @@
 ! Checksum: e8a1b4ecff05d660c6a961c6a47656db51d3f143348c918d7b458fc3ce9ddab8
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
+smartjobalert.in##.jhfdiuh0.BR-Footer-Ads
+smartjobalert.in###overlay
+mkomsel.com##div.text-gray-400.text-center:nth-of-type(1)
+mkomsel.com##.space-y-4.text-center > div > .text-gray-400 > small > em
+mkomsel.com##.space-y-6.rounded-lg.lg\:px-8.p-6.border > div.text-gray-400.text-center > small > em
+hentaivn.love##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
+lxmanga.store###mobile-catfish-2
+lxmanga.store###mobile-catfish-1 > .sticky-footer-content > .sticky-x-button
 phimsexchaua.top##.catfish-bottom
 phimsexchaua.net##.catfish-bottom
 nungsex.pro##.catfish-top
