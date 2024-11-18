@@ -1,7 +1,1 @@
-{
-    "schemaVersion": 1,
-    "label": "whitelist rules",
-    "message": "37",
-    "color": "orange",
-    "style": "flat-square"
-  }
+{ "schemaVersion": 1, "label": "whitelist rules", "message": "37", "color": "orange", "style": "flat-square" }

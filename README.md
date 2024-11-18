@@ -1,17 +1,20 @@
 <div align="center">
-
 # 🛡️ Yuusei Filter List
-
-<img src="https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/version.svg" alt="Version">
-<img src="https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.svg" alt="Rules">
-<img src="https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/updated.svg" alt="Updated">
-<img src="https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square" alt="License">
-
-A powerful and efficient filter list for ad blockers, meticulously maintained and automatically updated.
-
-[📦 Install](#-installation) • [📊 Statistics](#-statistics) • [📝 Features](#-features) • [📜 License](#-license)
-
+_A powerful and efficient filter list for ad blockers, automatically updated._
+[![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/version.json)](https://github.com/your-username/your-repo/releases/latest)
+[![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/rules.json)](https://raw.githubusercontent.com/your-username/your-repo/main/Yuusei.txt)
+[![Updated](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/updated.json)](https://github.com/your-username/your-repo/commits/main)
+[![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/your-username/your-repo?style=flat-square&color=yellow)](https://github.com/your-username/your-repo/stargazers)
+[![Issues](https://img.shields.io/github/issues/your-username/your-repo?style=flat-square&color=blue)](https://github.com/your-username/your-repo/issues)
 </div>
+<p align="center">
+  <a href="#-installation">📦 Install</a> •
+  <a href="#-statistics">📊 Stats</a> •
+  <a href="#-protection-features">🛡️ Features</a> •
+  <a href="#-contributing">🤝 Contribute</a> •
+  <a href="#-license">📜 License</a>
+</p>
 
 ## 📦 Installation
 
@@ -19,65 +22,75 @@ A powerful and efficient filter list for ad blockers, meticulously maintained an
 
 <div align="center">
 
-[![Install with uBlock Origin](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/ublock.svg)](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
-[![Install with AdGuard](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/adguard.svg)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
+[![Install with uBlock Origin](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/ublock.json)](https://raw.githubusercontent.com/your-username/your-repo/main/Yuusei.txt)
+[![Install with AdGuard](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/adguard.json)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/your-username/your-repo/main/Yuusei.txt)
 
 </div>
 
 ### 🔧 Manual Setup
-```
-https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
-```
+
+Add this URL to your ad blocker:
+
 
 ## 📊 Statistics
 
 ### 📈 Current Status
 
-| Metric | Count |
-|--------|-------|
-| Total Rules | 1064 |
-| Network Rules | 309 |
-| Cosmetic Rules | 481 |
-| Whitelist Rules | 37 |
+<div align="center">
+
+| Metric | Count | Status |
+|--------|-------|---------|
+| Total Rules | 1064 | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/rules.json) |
+| Network Rules | 309 | ![Network Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/network_rules.json) |
+| Cosmetic Rules | 481 | ![Cosmetic Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/cosmetic_rules.json) |
+| Whitelist Rules | 37 | ![Whitelist Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/your-username/your-repo/main/.github/badges/whitelist_rules.json) |
+
+</div>
 
 ### ⏰ Update Schedule
-- **Version**: 2024.11.18
-- **Last Updated**: 18-11-2024 14:22:23 (Asia/Ho_Chi_Minh)
-- **Auto Updates**: Daily at 00:00 UTC
-- **Manual Updates**: On-demand via workflow dispatch
+
+<div align="center">
+
+| Metric | Value |
+|--------|--------|
+| Version | 2024.11.18 |
+| Last Updated | 18-11-2024 14:28:05 |
+| Time Zone | Asia/Ho_Chi_Minh |
+| Auto Updates | Daily at 00:00 UTC |
+| Manual Updates | Via workflow dispatch |
+
+</div>
 
 ## 🛡️ Protection Features
 
 ### 🚫 Ad Blocking
-- Comprehensive ad server blocking
-- Sponsored content removal
-- Pop-up & overlay prevention
+- **Complete Protection**: Blocks all types of advertisements
+- **Anti-Sponsorship**: Removes sponsored content and promotions
+- **Pop-up Shield**: Prevents annoying pop-ups and overlays
 
 ### 🔒 Privacy Protection
-- Tracker blocking
-- Anti-fingerprinting
-- Analytics protection
+- **Tracker Defense**: Blocks tracking scripts and pixels
+- **Anti-Fingerprint**: Reduces browser fingerprinting
+- **Analytics Block**: Protects against analytics tracking
 
 ### ⚡ Performance
-- Faster page loads
-- Reduced bandwidth usage
-- Optimized browsing experience
+- **Fast Loading**: Reduces page load times
+- **Bandwidth Saver**: Decreases data usage
+- **Clean Browsing**: Optimized web experience
 
 ### 🔄 Maintenance
-- Automated daily updates
-- Strict validation checks
-- Quick false positive fixes
+- **Daily Updates**: Automatic daily maintenance
+- **Quality Control**: Strict validation system
+- **Quick Fixes**: Rapid false positive resolution
 
 ## 🤝 Contributing
 
-### 🐛 Report Issues
-Found a bug? [Open an issue](https://github.com/RenjiYuusei/Adblock/issues)
+<div align="center">
 
-### 💡 Suggest Rules
-Have ideas? [Create a pull request](https://github.com/RenjiYuusei/Adblock/pulls)
+[![Submit Issue](https://img.shields.io/badge/Report%20Bug-Submit%20Issue-red?style=for-the-badge)](https://github.com/your-username/your-repo/issues/new?assignees=&labels=bug&template=bug_report.md)
+[![Feature Request](https://img.shields.io/badge/Request%20Feature-Submit%20Idea-blue?style=for-the-badge)](https://github.com/your-username/your-repo/issues/new?assignees=&labels=enhancement&template=feature_request.md)
 
-### 💬 Get Help
-Need help? [Join discussions](https://github.com/RenjiYuusei/Adblock/discussions)
+</div>
 
 ## 📜 License
 
@@ -85,18 +98,20 @@ This project is licensed under [GNU GPL v3.0](LICENSE)
 
 ## ⭐ Support
 
-If you find this project helpful:
-- Star the repository
-- Share with others
-- Report issues
-- Contribute improvements
+If you find this project helpful, please consider:
+- Starring the repository ⭐
+- Sharing with others 🔄
+- Reporting issues 🐛
+- Contributing improvements 🛠️
 
 ---
 
 <div align="center">
 
-Made with ❤️ by [Yuusei](https://github.com/RenjiYuusei) | © 2024
+Made with ❤️ by [Yuusei](https://github.com/your-username/your-repo) | © 2024
 
-<sub>Updated automatically by GitHub Actions 🤖</sub>
+<sub>Automatically updated by GitHub Actions 🤖</sub>
+
+_Last updated: 18-11-2024 14:28:05 (Asia/Ho_Chi_Minh)_
 
 </div>
