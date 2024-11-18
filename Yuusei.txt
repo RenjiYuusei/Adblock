@@ -7,6 +7,20 @@
 ! Checksum: 2ade8c256fa94b8b3810ec14acf58731ed52507f4459d490999d3ff03226c42e
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
+phimsexchaua.top##.catfish-bottom
+phimsexchaua.net##.catfish-bottom
+nungsex.pro##.catfish-top
+phimsexlonto.net##.catfish-bottom
+phimhayxxx.pro##.float-ck
+xxvl.org###catfishContainer
+||xxvl.org/*.gif$image
+xxvl.org##.topBanner
+vlxxcom.org##.float-ck
+phimsexheo3x.com##.catfish-bottom
+phe18.vip##.adx1
+phimsexhay1s.net##.happy-header
+phimsexsub.app##.thongbao2.thongbaogoc
+phimsexdidong.net##.catfish-bottom
 www.fshare.vn##.popup-vip-cus__visibility.popup-vip-cus
 www.fshare.vn###p_first_paid_gift_float_icon
 www.fshare.vn##.mdc-dialog--open.mdc-dialog
