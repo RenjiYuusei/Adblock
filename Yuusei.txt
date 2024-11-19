@@ -9,7 +9,6 @@
 ! ----------  Rules  ----------
 s4paad.factsninfo.com##.bottom-ad-parent.tac.bottom
 s4paad.factsninfo.com###td_3733
-s4paad.factsninfo.com###td_3733
 smartjobalert.in##.jhfdiuh0.BR-Footer-Ads
 smartjobalert.in###overlay
 mkomsel.com##div.text-gray-400.text-center:nth-of-type(1)
