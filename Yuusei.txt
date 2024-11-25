@@ -1,10 +1,10 @@
 ! ----------  About ----------
-! Version: 24-11-2024
+! Version: 25-11-2024
 ! Title: Yuusei
-! Last modified: 24-11-2024 08:15:56
+! Last modified: 25-11-2024 08:12:16
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
-! Checksum: afe93fddedcadef05148bc482f55eea07f72aac82ecc7dcaeacd94c8acfdd42e
+! Checksum: 2b89587160975a4cd153de52f50ffc42ca05dc7164c3f539a9b5460f579f8faf
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
 s4paad.factsninfo.com##.bottom-ad-parent.tac.bottom
