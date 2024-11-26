@@ -32,9 +32,9 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 | Category | Count | Status |
 |----------|--------|---------|
-| Total Rules | 1063 | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.json) |
+| Total Rules | 1079 | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.json) |
 | Network Rules | 309 | ![Network](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/network_rules.json) |
-| Cosmetic Rules | 480 | ![Cosmetic](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/cosmetic_rules.json) |
+| Cosmetic Rules | 496 | ![Cosmetic](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/cosmetic_rules.json) |
 | Whitelist Rules | 37 | ![Whitelist](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/whitelist_rules.json) |
 
 </div>
@@ -94,6 +94,6 @@ Made with ❤️ by [Yuusei](https://github.com/RenjiYuusei/Adblock) | © 2024
 
 <sub>Updated automatically by GitHub Actions</sub>
 
-_Last updated: 26-11-2024 08:11:24 (Asia/Ho_Chi_Minh)_
+_Last updated: 26-11-2024 20:16:57 (Asia/Ho_Chi_Minh)_
 
 </div>
