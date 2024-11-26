@@ -7,6 +7,22 @@
 ! Checksum: 953d5e0cb4a50c0bb695ef2058223889a9440e3aa7fd3d47c0ec3fdde83c04ed
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
+www.sayhentai.art##.float-ck-center-lt
+client.pylexnodes.net###stickyfooterad
+free.pylexnodes.net###stickyfooterad
+free.pylexnodes.net##.euuynw.ServerConsoleContainer___StyledDiv-sc-1jk042-0
+free.pylexnodes.net##.eZeGkS.ServerConsoleContainer___StyledTitledGreyBox2-sc-1jk042-3.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.hQgnbz.FileManagerContainer___StyledTitledGreyBox-sc-1ehiwhq-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.gyZswY.FileManagerContainer___StyledTitledGreyBox2-sc-1ehiwhq-7.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.hbztpF.DatabasesContainer___StyledTitledGreyBox-sc-1hfwugg-1.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.gfJGPm.ScheduleContainer___StyledTitledGreyBox-sc-dlqnx9-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.cUNjQr.UsersContainer___StyledDiv-sc-rg2v3f-1
+free.pylexnodes.net##.egOIEL.BackupContainer___StyledDiv-sc-1vjo0fh-1
+free.pylexnodes.net##.fnKhuh.NetworkContainer___StyledDiv-sc-1covx0t-0
+free.pylexnodes.net##.jqxwfQ.StartupContainer___StyledTitledGreyBox-sc-163imy2-1.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.byOWBE.SettingsContainer___StyledTitledGreyBox-sc-1e5ycmz-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.byUBMH.ServerActivityLogContainer___StyledDiv-sc-1vvgkxn-0
+free.pylexnodes.net##.RStZC.AccountOverviewContainer___StyledTitledGreyBox-sc-12to0iy-3.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
 s4paad.factsninfo.com##.bottom-ad-parent.tac.bottom
 s4paad.factsninfo.com###td_3733
 smartjobalert.in##.jhfdiuh0.BR-Footer-Ads
