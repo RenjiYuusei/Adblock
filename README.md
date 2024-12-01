@@ -94,6 +94,6 @@ Made with ❤️ by [Yuusei](https://github.com/RenjiYuusei/Adblock) | © 2024
 
 <sub>Updated automatically by GitHub Actions</sub>
 
-_Last updated: 30-11-2024 08:10:27 (Asia/Ho_Chi_Minh)_
+_Last updated: 01-12-2024 08:23:31 (Asia/Ho_Chi_Minh)_
 
 </div>
