@@ -4,6 +4,7 @@
 ! Last modified: 06-12-2024 08:12:52
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
+! Homepage: https://github.com/RenjiYuusei/Adblock
 ! Checksum: 0de1909f96d16930c8ab1f109dc6923661a55f1f0e680228983a81c3d988a2dd
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
