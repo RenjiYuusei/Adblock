@@ -3,159 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Yuusei Filter List - Bộ lọc quảng cáo hiệu quả">
-    <title>Yuusei Filter List</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.16/base.min.css" rel="stylesheet">
+    <meta name="description" content="Yuusei Filter List - Bộ lọc quảng cáo hiệu quả cho người Việt">
+    <meta name="keywords" content="adblock, filter list, ublock origin, adguard, quảng cáo, việt nam">
+    <meta name="author" content="RenjiYuusei">
+    <meta property="og:title" content="Yuusei Filter List - Bộ lọc quảng cáo Việt Nam">
+    <meta property="og:description" content="Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn">
+    <meta property="og:image" content="https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/assets/logo.png">
+    <meta property="og:url" content="https://RenjiYuusei.github.io/Adblock">
+    <title>Yuusei Filter List - Bộ lọc quảng cáo Việt Nam</title>
+    <link rel="icon" type="image/png" href=".github/assets/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.16/base.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.16/lib/index.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #1a73e8;
+            --hover-color: #1557b0;
+        }
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+        }
         .theme-toggle {
             position: fixed;
             top: 1rem;
             right: 1rem;
             padding: 0.75rem;
             border-radius: 50%;
-            background: #1a73e8;
+            background: var(--primary-color);
             color: white;
             cursor: pointer;
             z-index: 1000;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
-        .card:hover { transform: translateY(-5px); }
+        .theme-toggle:hover {
+            background: var(--hover-color);
+            transform: scale(1.1);
+        }
+        .card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
         .copy-link {
             cursor: pointer;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem;
             background: #f0f0f0;
             border-radius: 0.5rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
-        .dark .copy-link { background: #2d3748; }
+        .dark .copy-link {
+            background: #2d3748;
+        }
+        .copy-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .contributor-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .contributor-card:hover {
+            transform: translateY(-3px);
+        }
+        .btn-primary {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn-primary:active::after {
+            width: 200px;
+            height: 200px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 min-h-screen">
-    <button id="theme-toggle" class="theme-toggle">
+<body class="bg-gradient-to-br from-gray-100 via-blue-50 to-gray-200 dark:from-gray-900 dark:via-blue-900 dark:to-gray-800 min-h-screen transition-colors duration-300">
+    <div class="fixed inset-0 bg-gradient-to-br from-blue-100/50 to-purple-100/50 dark:from-blue-900/30 dark:to-purple-900/30 pointer-events-none"></div>
+    
+    <button id="theme-toggle" class="theme-toggle" aria-label="Chuyển đổi giao diện sáng/tối">
         <i class="fas fa-sun dark:hidden"></i>
         <i class="fas fa-moon hidden dark:block"></i>
     </button>
 
-    <div class="container mx-auto px-4 py-8">
-        <header class="text-center mb-16">
-            <h1 class="text-6xl font-bold text-gray-800 dark:text-white mb-6">
+    <div class="container mx-auto px-4 py-12 relative">
+        <header class="text-center mb-20 animate-fade-in">
+            <h1 class="text-6xl font-bold text-gray-800 dark:text-white mb-8">
                 🛡️ Yuusei Filter List
             </h1>
-            <p class="text-2xl text-gray-600 dark:text-gray-300 mb-8">
-                Bảo vệ trải nghiệm web của bạn
+            <p class="text-2xl text-gray-600 dark:text-gray-300 mb-12">
+                Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn
             </p>
             
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <div class="flex flex-col sm:flex-row justify-center gap-6 mb-12">
                 <a href="https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt" 
-                   class="bg-blue-600 text-white px-8 py-4 rounded-xl hover:bg-blue-700">
-                   <i class="fas fa-shield-alt mr-2"></i>Cài đặt cho uBlock Origin
+                   class="btn-primary bg-blue-600 text-white px-8 py-4 rounded-xl hover:bg-blue-700 flex items-center justify-center gap-2 shadow-lg">
+                   <i class="fas fa-shield-alt"></i>
+                   <span>Cài đặt cho uBlock Origin</span>
                 </a>
                 <a href="https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt"
-                   class="bg-green-600 text-white px-8 py-4 rounded-xl hover:bg-green-700">
-                   <i class="fas fa-check-circle mr-2"></i>Cài đặt cho AdGuard
+                   class="btn-primary bg-green-600 text-white px-8 py-4 rounded-xl hover:bg-green-700 flex items-center justify-center gap-2 shadow-lg">
+                   <i class="fas fa-check-circle"></i>
+                   <span>Cài đặt cho AdGuard</span>
                 </a>
             </div>
 
-            <div class="copy-link" onclick="copyFilterLink()">
+            <div class="copy-link glass-effect" onclick="copyFilterLink()" role="button" tabindex="0">
                 <i class="fas fa-copy"></i>
                 <span>Copy Link Filter List</span>
             </div>
         </header>
 
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-                <h3 class="text-xl font-semibold mb-4">
-                    <i class="fas fa-shield-alt text-blue-500 mr-2"></i>Tổng số Rules
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            <div class="card glass-effect rounded-xl p-8 shadow-lg">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <i class="fas fa-shield-alt text-blue-500"></i>
+                    <span>Tổng số Rules</span>
                 </h3>
-                <p class="text-4xl font-bold text-blue-600">
-                    1079
+                <p class="text-4xl font-bold text-blue-600 dark:text-blue-400">
+                    1062
                 </p>
             </div>
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-                <h3 class="text-xl font-semibold mb-4">
-                    <i class="fas fa-globe text-green-500 mr-2"></i>Rules Mạng
+            <div class="card glass-effect rounded-xl p-8 shadow-lg">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <i class="fas fa-globe text-green-500"></i>
+                    <span>Rules Mạng</span>
                 </h3>
-                <p class="text-4xl font-bold text-green-600">
-                    309
+                <p class="text-4xl font-bold text-green-600 dark:text-green-400">
+                    300
                 </p>
             </div>
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-                <h3 class="text-xl font-semibold mb-4">
-                    <i class="fas fa-paint-brush text-yellow-500 mr-2"></i>Rules Giao Diện
+            <div class="card glass-effect rounded-xl p-8 shadow-lg">
+                <h3 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                    <i class="fas fa-paint-brush text-yellow-500"></i>
+                    <span>Rules Giao Diện</span>
                 </h3>
-                <p class="text-4xl font-bold text-yellow-600">
-                    496
+                <p class="text-4xl font-bold text-yellow-600 dark:text-yellow-400">
+                    489
                 </p>
             </div>
         </section>
 
-        <section id="contributors" class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg mb-16">
-            <h2 class="text-3xl font-bold mb-8">
-                <i class="fas fa-users text-purple-500 mr-3"></i>Người Đóng Góp
+        <section id="contributors" class="glass-effect rounded-xl p-8 shadow-lg mb-16">
+            <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+                <i class="fas fa-users text-purple-500"></i>
+                <span>Người Đóng Góp</span>
             </h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="contributors-container"></div>
         </section>
 
         <footer class="text-center text-gray-600 dark:text-gray-400">
             <p class="mb-4">
-                Cập nhật: 06-12-2024 17:04:35
+                Cập nhật lần cuối: 06-12-2024 17:13:23
             </p>
-            <a href="https://github.com/RenjiYuusei/Adblock" 
-               class="text-gray-400 hover:text-gray-600">
-                <i class="fab fa-github text-2xl"></i>
-            </a>
+            <div class="flex justify-center gap-4">
+                <a href="https://github.com/RenjiYuusei/Adblock" 
+                   class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                   aria-label="GitHub Repository">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+            </div>
         </footer>
     </div>
 
     <script>
-        // Theme toggle
+        // Theme toggle with smooth transition
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
         
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
+        function setTheme(isDark) {
+            if (isDark) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+            localStorage.theme = isDark ? 'dark' : 'light';
         }
 
+        // Initial theme with system preference detection
+        setTheme(
+            localStorage.theme === 'dark' || 
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        );
+
         themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+            setTheme(!html.classList.contains('dark'));
         });
 
-        // Copy link function
+        // Enhanced copy link function with better feedback
         function copyFilterLink() {
             const filterLink = 'https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt';
             navigator.clipboard.writeText(filterLink).then(() => {
                 const copyBtn = document.querySelector('.copy-link');
-                const originalText = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<i class="fas fa-check"></i><span>Đã sao chép!</span>';
-                setTimeout(() => copyBtn.innerHTML = originalText, 2000);
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check text-green-500"></i><span>Đã sao chép!</span>';
+                copyBtn.classList.add('bg-green-100', 'dark:bg-green-900');
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.classList.remove('bg-green-100', 'dark:bg-green-900');
+                }, 2000);
+            }).catch(err => {
+                console.error('Lỗi khi sao chép:', err);
+                alert('Không thể sao chép link. Vui lòng thử lại.');
             });
         }
 
-        // Load contributors
-        const contributors = [{"avatar_url":"https://avatars.githubusercontent.com/in/15368?v=4","contributions":56,"html_url":"https://github.com/apps/github-actions","login":"github-actions[bot]"},{"avatar_url":"https://avatars.githubusercontent.com/u/166010224?v=4","contributions":47,"html_url":"https://github.com/RenjiYuusei","login":"RenjiYuusei"}];
-        const container = document.getElementById('contributors-container');
-        
-        contributors.forEach(contributor => {
-            container.innerHTML += `
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 text-center">
+        // Enhanced contributors loading with animation
+        try {
+            const contributors = [{"avatar_url":"https://avatars.githubusercontent.com/in/15368?v=4","contributions":61,"html_url":"https://github.com/apps/github-actions","login":"github-actions[bot]"},{"avatar_url":"https://avatars.githubusercontent.com/u/166010224?v=4","contributions":58,"html_url":"https://github.com/RenjiYuusei","login":"RenjiYuusei"}];
+            const container = document.getElementById('contributors-container');
+            
+            contributors.forEach((contributor, index) => {
+                const card = document.createElement('div');
+                card.className = 'contributor-card glass-effect rounded-xl p-4 text-center';
+                card.style.animation = `fadeIn 0.5s ease-out ${index * 0.1}s both`;
+                card.innerHTML = `
                     <img src="${contributor.avatar_url}" alt="${contributor.login}" 
-                         class="w-20 h-20 rounded-full mx-auto mb-3 border-4 border-white dark:border-gray-600"
+                         class="w-20 h-20 rounded-full mx-auto mb-3 border-4 border-white dark:border-gray-600 hover:scale-110 transition-transform"
                          loading="lazy">
                     <a href="${contributor.html_url}" 
                        class="font-bold text-blue-600 dark:text-blue-400 hover:underline block mb-1"
-                       target="_blank" rel="noopener">
+                       target="_blank" rel="noopener noreferrer">
                         ${contributor.login}
                     </a>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         ${contributor.contributions} đóng góp
                     </p>
-                </div>
-            `;
-        });
+                `;
+                container.appendChild(card);
+            });
+        } catch (error) {
+            console.error('Lỗi khi tải thông tin người đóng góp:', error);
+            document.getElementById('contributors').style.display = 'none';
+        }
     </script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 ! ----------  About ----------
 ! Version: 2024.12.06
 ! Title: Yuusei
-! Last modified: 06-12-2024 17:04:35
+! Last modified: 06-12-2024 17:13:23
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 6f87251303dfb82590c0a95083774609c2673a6f2cdadcde87856661eb802699
+! Checksum: 98b9930fdf6952ed214bf1728dfa4b6fbec7db3bced07bd36abc1ba163d497c9
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
 !--------Element Hiding Exception--------------
@@ -74,7 +74,6 @@ $third-party,script,domain=sexdiaryx.one
 /i.imgur.com/$domain=xemphimchill.xyz
 /i.imgur.com/*.gif$domain=keonhacai5.mom|phimlongtieng.net|phimdinhcao.com|phimdinhcao.net|xoilaci.cc|andaluciainvestiga.com|veboz19.live|unfriendcoal.com|plvb.xyz|listnhacai88.com|xoilaczz31.live|xemtivingon.org|phimlongtieng.com|newsmavens.com|rakhoiz7.live|plcdn.xyz|phimmoi.onl|motphimww.com
 /media.discordapp/$domain=phimno4.xyz|socolivebongda.net
-/mmo/*$xmlhttprequest,image,domain=vuighe3.com
 /mmo/*$xmlhttprequest,image,domain=vuighe3.com
 /newchill/*gif$image
 /player/vast.js$script
@@ -309,7 +308,6 @@ animevietsub.tube###Tp-Wp > div.Body.Container:nth-child(2) > div.Content > div.
 animevietsub.tube###watch-block > div.Ads.bellow_ads_player:nth-child(4) > div.below-playerm
 animevietsub.tube##.ad-center-header
 animevietsub.tube##.Ads
-animevietsub.tube##.Ads
 animevietsub.tube##.ads-300
 animevietsub.tube##.adsbygoogle
 animevietsub.tube##.adsbygoogle-noablate
@@ -321,8 +319,6 @@ animevietsub.tube##.Header
 animevietsub.tube##.header-ads-mobile
 animevietsub.tube##.home_ads
 animevietsub.tube##.mb_catfix_adv
-animevietsub.tube##.mb_catfix_adv
-animevietsub.tube##.mobile-catfixx
 animevietsub.tube##.mobile-catfixx
 animevietsub.tube,tiemsachhay.net##.pc-catfixx
 animevietsubs.net##[href="javascript:hide_catfish();"]
@@ -415,7 +411,6 @@ hh3d.biz###catfish
 hh3d.biz###catfishads
 hh3d.biz###header-ads
 hh3d.biz##.closecf
-hhninja.xyz###header-ads
 hhninja.xyz###header-ads
 hhpanda.info###ad_close_popup2
 hhpanda.info###overlay
@@ -566,7 +561,6 @@ sex.sieudamtv.biz##.quang-cao
 sexchauau.link##.ad.header-ad.ads-full
 sexchauau.link##.ads-full
 sexchauau.link##.ads-wrap
-sexchauau.link##.ads-wrap
 sexchauau.link##.xx-ads
 sexchauau.link##.xx-ads-close
 sexchauau.link##.xx-ads.catfish
@@ -576,10 +570,8 @@ sexhihi.mobi##.ads-header
 sexhihi.mobi##.ads-mobile
 sexhihi.mobi##.ads-pc
 sexhihi.mobi##.ads-wrap
-sexhihi.mobi##.ads-wrap
 sexhihi.mobi##.hiadu
 sexhihi.mobi##.xx-ads
-sexhihi.mobi##.xx-ads-close
 sexhihi.mobi##.xx-ads-close
 sexhihi.mobi##.xx-ads.ads-mobile.ads-header
 sexhihi.mobi##.xx-ads.ads-pc.ads-header
@@ -783,7 +775,6 @@ _reklama_$domain=~youtube.com
 ||30b16ddf8d4459051dcc.hllgvga.com^
 ||30b16ddf8d4459051dg.krbulhb.com^
 ||3pkf5m0gd.com^
-||3pkf5m0gd.com^
 ||3x.clipsexhot.net/theme/main.isa.js$script,domain=3x.clipsexhot.net
 ||3x.sexkhongchehd.com/theme/main.isa.js^$script
 ||6v41p4bsq.com^
@@ -804,7 +795,6 @@ _reklama_$domain=~youtube.com
 ||adtima-static.zadn.vn^$script
 ||adtima-static.zascdn.me^
 ||adtima.vn^$third-party
-||adtima.vn^$third-party
 ||adtimaserver.vn^
 ||aff.cdnntx.com^
 ||affordedseasick.com^
@@ -821,7 +811,6 @@ _reklama_$domain=~youtube.com
 ||animehay.de/ad_banner/under_player/pc.gif$image
 ||animehay.de/themes/img/ads_click.png$image
 ||animevietsubs.net/vast/0867jz21.gif$image
-||ants.vn^$third-party
 ||ants.vn^$third-party
 ||api.adfly.vn^
 ||api.trackpush.com^$script
@@ -847,7 +836,6 @@ _reklama_$domain=~youtube.com
 ||cdn-01.w3img.com^*.gif$image,domain=javhd.tech|sexvietco.net|viet69new.net|vlxxai.net|javhd.social|sexsoc.info
 ||cdn.adop.asia^
 ||cdn.adschill.com^
-||cdn.adxcontent.com^
 ||cdn.adxcontent.com^
 ||cdn.hentaicube.net/qcs/*.gif
 ||cdn.javbabe.net^$subdocument
@@ -883,7 +871,6 @@ _reklama_$domain=~youtube.com
 ||demo123.info/*ads/$image,domain=xem.sex-sub.com
 ||demo123.info^
 ||dhaacmpiqdur.com^
-||dinhvu.pro^$third-party
 ||dinhvu.pro^$third-party
 ||discordapp.$image,domain=phym18.lol|phim18vip.vip|avvietsub.info|phimsexsub.xyz
 ||dotyruntchan.com^
@@ -926,7 +913,6 @@ _reklama_$domain=~youtube.com
 ||i.imgur.com^$image,domain=phym18.lol|phim18hd.sex|xamvn.taxi|fullcliphot.com|x.sexkhongchehd.com|xx.sexkhongchemoi.com|bimmup.net
 ||i9zk5f8szj4x8saj5wcks8acja5sk1dz8stjs2g8isdcn6ejxn8zsr5xjs5h.com^
 ||iads.staticscdn.net^
-||iads.staticscdn.net^
 ||ilyf4amifh.com^
 ||imad24.com^
 ||img.av3x.net/upload/av3x.net/banners/$domain=phimsexhay669.pro
@@ -951,7 +937,6 @@ _reklama_$domain=~youtube.com
 ||mairbeets.com^
 ||mangadm.cc$csp=script-src 'self' 'unsafe-inline' http
 ||meherdewogoud.com^
-||meta.vn^$third-party
 ||meta.vn^$third-party
 ||mgid.com^$third-party
 ||mgid.com^$third-party,domain=~24h.com.vn|~gamek.vn
@@ -1035,7 +1020,6 @@ _reklama_$domain=~youtube.com
 ||t.dtscdn.com^
 ||t7cp4fldl.com^
 ||taboola.com^$script,third-party
-||taboola.com^$script,third-party
 ||tag.adbro.me^
 ||tags.crwdcntrl.net^
 ||tags.fly-ads.net^
@@ -1060,7 +1044,6 @@ _reklama_$domain=~youtube.com
 ||vads.net.vn^
 ||vietxxx.club/theme/custom.int.js$script,~third-party
 ||vipads.live^
-||visariomedia.com^
 ||visariomedia.com^
 ||vl3x.vip/ads/$script
 ||waisheph.com^
