@@ -1,10 +1,10 @@
 ! ----------  About ----------
 ! Version: 06-12-2024
 ! Title: Yuusei
-! Last modified: 06-12-2024 08:30:52
+! Last modified: 06-12-2024 15:48:59
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
-! Checksum: a215587d9c72c2d2d6005f6639914b66091e99e82a1e815512cb489aa7986746
+! Checksum: 87ebf787466110825547e32d3202f5ff7286c9c7856ac858d446cf7901af6e5d
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
 !--------Element Hiding Exception--------------
@@ -496,6 +496,7 @@ phimmoichill3.net###mobiads
 phimmoichill3.net###pcads
 phimmoichill3.net###pm_quangcao
 phimmoichill3.net##.gnarty-offads
+phimmoichilltv.net##[href="javascript:an_catfish()"]
 phimmoichillz.cc###preload
 phimmoichillz.cc##.close_ad
 phimmoiday.net###content > div.clearfix.wrap-content > a:nth-child(13) > img
@@ -590,6 +591,7 @@ sieukhungz.org##.adspopupright
 sieukhungz.org##.float-ckgiua
 smartjobalert.in###overlay
 smartjobalert.in##.jhfdiuh0.BR-Footer-Ads
+static.truyenfull.io/min/g/mainjs-05122024_3.js^
 thanhnien.vn#@#.imageads
 thongtintruyen.com###pc-catfixx
 thund.hindimeguru.com###gads
@@ -732,8 +734,6 @@ wibuz.net###top_ads
 wibuz.net##.Ads
 wibuz.net##.bellow_ads_player
 wibuz.net##.closecf
-phimmoichilltv.net##[href="javascript:an_catfish()"]
-static.truyenfull.io/min/g/mainjs-05122024_3.js^
 www.anitoku.net###HTML22 > .widget-content
 www.anitoku.net###container-ads
 www.buomtv.vip##._9xtpcl.c4je67d.c1qs0lzc.c1hrlkpu.cc2icwl.c1i0iccj.cfd18df
@@ -784,6 +784,7 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||6v41p4bsq.com^
 ||a.magsrv.com^
 ||a.realsrv.com^
+||abysscdn.com^-party
 ||ad.vidverto.io^
 ||adflex.vn^$third-party
 ||admicro.vn^$third-party
@@ -793,13 +794,17 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||ads-pixiv.net^$third-party
 ||ads.6789live.com^
 ||ads.cdn2-img.net/^*.gif
+||ads.gmodules.com^-party
 ||ads.mxhnkn.pro/popup/popup-under-v2-qiqi*.js$script
 ||ads.starzd.com^
+||ads.youtube.com^-party
+||adservice.google.*^-party
 ||adsv.cki.name^
 ||adtima-static.zadn.vn^$script
 ||adtima-static.zascdn.me^
 ||adtima.vn^$third-party
 ||adtimaserver.vn^
+||afamily.vn^-party
 ||aff.cdnntx.com^
 ||affordedseasick.com^
 ||aj1047.online^
@@ -810,6 +815,7 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||alnzupnulzaw.com^
 ||amcdn.vn^
 ||amxswiolhod.com^
+||analytics.google.com^-party
 ||animehay.de/ad_banner/728x90.gif$image
 ||animehay.de/ad_banner/da88.gif$image
 ||animehay.de/ad_banner/under_player/pc.gif$image
@@ -832,10 +838,12 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||blogger.googleusercontent.com^*.gif$image,domain=gvnvh18.com
 ||blueseed.tv^$third-party
 ||blurbreimbursetrombone.com^
+||bongdaso66.net^-party
 ||br.dewbeambeslash.com^
 ||brittlesturdyunlovable.com^
 ||bullionglidingscuttle.com^
 ||c.adsco.re^
+||cafef.vn^-party
 ||caulicuzooque.net^
 ||cdn-01.w3img.com^*.gif$image,domain=javhd.tech|sexvietco.net|viet69new.net|vlxxai.net|javhd.social|sexsoc.info
 ||cdn.adop.asia^
@@ -869,6 +877,7 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||criteo.com^$third-party,domain=~vnexpress.net|~zingnews.vn|~kenh14.vn
 ||critical-replacement.com^
 ||d13k7prax1yi04.cloudfront.net^
+||dantri.com.vn^-party
 ||data.voz.vn/94bf/166a6849b5cd7d.jpg$domain=voz.vn
 ||datqagdkurce.com^
 ||delivery.yomedia.vn^
@@ -879,6 +888,7 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||dinhvu.pro^$third-party
 ||discordapp.$image,domain=phym18.lol|phim18vip.vip|avvietsub.info|phimsexsub.xyz
 ||dotyruntchan.com^
+||doubleclick.net^-party
 ||doubtedprompts.com^
 ||e.dtscout.com^
 ||earringsatisfiedsplice.com^
@@ -886,16 +896,29 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||endowmentoverhangutmost.com^
 ||fauphoaglu.net^
 ||fpgedsewst.com^
+||freeplayervideo.com^-party
 ||fundingchoicesmessages.google.com^
 ||fv.togataurnfuls.com^
+||gamek.vn^-party
 ||gammaplatform.com^$third-party
 ||gekeebsirs.com^
 ||gelatinerespectivelyhector.com^
 ||genieesspv.jp^$third-party
+||genk.vn^-party
 ||genmonet.com^
+||geoip.redirect-ads.com^-party
 ||gingagonkc.com^
 ||glaubsoopsehen.net^
+||google-analytics.com^-party
+||google-cn^-party
+||google.com^-party
+||googleadservices.com^-party
+||googleanalytics.com^-party
+||googleapis.com^-party
+||googlesyndication.com^-party
 ||googletagmanager.com^$third-party,domain=~thethao247.vn|~cafef.vn
+||googletagmanager.com^-party
+||googletagservices.com^-party
 ||grubsnuchale.com^
 ||grunoaph.net^
 ||gullyending.com^
@@ -930,17 +953,22 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||js.aiservice.vn^
 ||jsc.adskeeper.co.uk/site/*$script
 ||jsc.yodimedia.com^
+||kenh14.vn^-party
 ||kgfjrb711.com^
 ||ku42hjr2e.com^
+||l.google.com^-party
 ||lavanetwork.net^$third-party
 ||laxativestuckunclog.com^
 ||lh3.googleusercontent.com/*=s0$image
 ||lh6.googleusercontent.com/niNvqW87lyRKXDaWknU-K7iiTx6_sAPg_cyDtbJhk_RhXK1hFYPGjIsdM9F6DDyqsDD9IdPZv3hKHkkM2lNZGMFaDdvll8bV6B0n3SFONcjrGY9YY1gM6KQd28Zl=s0$image
 ||link.cado.pro^
+||linkneverdie.net^-party
 ||lxmanga.life/storage/images/banners
 ||m.youtube.com/get_midroll_$domain=youtube.com
 ||mairbeets.com^
 ||mangadm.cc$csp=script-src 'self' 'unsafe-inline' http
+||marsvenus.vn^-party
+||mcleaks.net^-party
 ||meherdewogoud.com^
 ||meta.vn^$third-party
 ||mgid.com^$third-party
@@ -954,9 +982,11 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||nrs6ffl9w.com^
 ||obtaintrout.com^
 ||ofglicoron.net^
+||optimize.google.com^-party
 ||othmzasruj.com^
 ||outbrain.com^$third-party
 ||outwingullom.com^
+||pagead2.googlesyndication.com^
 ||pbyfdgnh.com
 ||phim.sexhayvl.org/theme/main.isa.js$script
 ||phimsexsub.best/wp-admin/admin-ajax.php?action=htmlcountry_get_data
@@ -968,7 +998,9 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||pl16314303.cpmrevenuegate.com^
 ||platform.adlinknetwork.vn^
 ||play.stream4.me/jwplayer/vast.js$script,domain=play.stream4.me
+||player-cdn.com^-party
 ||player.gliacloud.com^
+||playhydrax.com^-party
 ||popads.net^$third-party,domain=~phimmoi.net|~blogtruyen.vn
 ||propellerads.com^$third-party
 ||propellerads.com^$third-party,domain=~tinmoi.vn|~baomoi.com
@@ -1005,6 +1037,7 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||sayhentai.one/storage/images/banner/$image
 ||sbbanner.com^
 ||sexdiaryx.one$csp=script-src 'self' 'unsafe-eval'
+||sexdiaryx.one^-party
 ||sexhd88.live/wp-content/themes/vidorev/img/jun881.png$image
 ||sexhd88.live^*.gif$image
 ||sexsub.pro^*.gif$image,domain=tuoi69.my|javhay.my|sexsub.pro|xem.phim18c.org
@@ -1013,6 +1046,7 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||shope.ee^$popup,domain=chillphimmoizzz.org|blogtruyenmoi.com|cunghocvui.com|truyensextv.com
 ||sieukhungz.org^*.gif$image
 ||skiddyteapots.com^
+||soha.vn^-party
 ||spankbangdl.com/files/*.gif$image,domain=avvietsub.info
 ||sponsor.imacdn.com^
 ||ss.sonshiplevesel.com^
@@ -1032,6 +1066,7 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||telegra.ph/file/$image,domain=full.cliphot69.live
 ||telegra.ph^$image,domain=fulllivehot.com
 ||thanhdieu.com/files/ads-blocked.js^
+||thegioididong.com^-party
 ||topcreativeformat.com^
 ||topviet69.com^*.gif$image
 ||truyen18.one/media/abc/$image
@@ -1040,6 +1075,7 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||truyensextv.com^*.gif
 ||truyentuan.xyz^$subdocument,~third-party
 ||truyenvn.fit^*banner$image
+||tuoitre.vn^-party
 ||tusheedrosep.net^
 ||tutsterblanche.com^
 ||tvc.biphim.club^
@@ -1051,12 +1087,15 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||vipads.live^
 ||visariomedia.com^
 ||vl3x.vip/ads/$script
+||vtv.vn^-party
 ||waisheph.com^
 ||weirddistribution.pro^
 ||whoolrulr.net^
 ||widgetlogic.org^
 ||www.buomtv.vip/palivn/ad/$image
 ||www.displayvertising.com^
+||www.google-analytics.com^
+||www.googletagmanager.com^
 ||x.sexkhongchehd.com/theme/main.isa.js$script,~third-party
 ||xem.phim18c.org/theme/custom.int.js$script,~third-party
 ||xemphimsex3x.net^*.gif$image
@@ -1071,47 +1110,8 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||youtube.com/embed/C-iDzdvIg1Y$domain=biznews.com
 ||youtube.com/get_video_info?*adunit$~third-party
 ||youtube.com/pagead/
+||youtube.com^-party
 ||yr.fopbandido.com^
 ||zaloads.com^$third-party 
 ||zunsoach.com^
 ||zz.bdstatic.com^
-||abysscdn.com^-party
-||ads.gmodules.com^-party
-||ads.youtube.com^-party
-||adservice.google.*^-party
-||afamily.vn^-party
-||analytics.google.com^-party
-||bongdaso66.net^-party
-||cafef.vn^-party
-||dantri.com.vn^-party
-||doubleclick.net^-party
-||freeplayervideo.com^-party
-||gamek.vn^-party
-||genk.vn^-party
-||geoip.redirect-ads.com^-party
-||google-analytics.com^-party
-||google-cn^-party
-||google.com^-party
-||googleadservices.com^-party
-||googleanalytics.com^-party
-||googleapis.com^-party
-||googlesyndication.com^-party
-||googletagmanager.com^-party
-||googletagservices.com^-party
-||kenh14.vn^-party
-||l.google.com^-party
-||linkneverdie.net^-party
-||marsvenus.vn^-party
-||mcleaks.net^-party
-||optimize.google.com^-party
-||pagead2.googlesyndication.com^
-||player-cdn.com^-party
-||playhydrax.com^-party
-||sexdiaryx.one^-party
-||soha.vn^-party
-||thegioididong.com^-party
-||tuoitre.vn^-party
-||vtv.vn^-party
-||www.google-analytics.com^
-||www.googletagmanager.com^
-||youtube.com^-party
