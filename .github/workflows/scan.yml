@@ -68,189 +68,114 @@ jobs:
                       return urlparse(url).netloc
 
                   def extract_ad_elements(soup, current_url, ad_elements):
+                      # Cải tiến regex patterns
                       ad_patterns = [
-                          r'ads?[-_]?(?:preload|box|slot|unit|banner|container|wrapper|frame|block|space|zone|spot|content|display|holder)',
-                          r'banner[-_]?(?:preload|top|bottom|left|right|side|float|sticky|fixed|mobile|main|center)',
-                          r'catfish[-_]?(?:bottom|top|left|right|mobile|sticky|float)',
-                          r'(?:top|bottom|left|right)[-_]?(?:banner|ads?|adv|float|sticky)',
-                          r'mobile[-_]?(?:ads?|banner|catfish|sticky|float)',
-                          r'(?:pm|net|box|zone)[-_]?(?:adv?|banner|display)',
-                          r'(?:google|gg|fb|facebook|twitter)[-_]?(?:ads?|adsense|pixel)',
-                          r'(?:close|remove|skip)[-_]?(?:ads?|adv|banner)',
-                          r'(?:jw|video|player)[-_]?(?:cue|ads?|overlay)',
-                          r'(?:mid|pre|post)[-_]?roll[-_]?(?:marker|ads?|container)',
-                          r'quang[-_]?cao[-_]?(?:banner|box|container)',
-                          r'(?:sam|tpm|adnow)[-_]?(?:banner|ads?|container)',
-                          r'(?:float|sticky|overlay|modal|popup|lightbox)[-_]?(?:ads?|banner|box|container)',
-                          r'(?:tracking|analytics|pixel|remarketing|affiliate|conversion)[-_]?(?:box|container|unit|pixel)',
-                          r'(?:promo|marketing|campaign|special)[-_]?(?:box|banner|container|content)',
-                          r'(?:social|share|follow)[-_]?(?:buttons?|container|widget|plugin)',
-                          r'(?:notification|alert|message)[-_]?(?:banner|popup|modal|box)',
-                          r'(?:aswift|adsbygoogle|adskeeper)[-_]?\d*',
-                          r'(?:leaflet|map)[-_]?(?:pane|container|overlay)',
-                          r'(?:img|banner)[-_]?adv[-_]?[xyz]',
-                          r'(?:ff|flash)[-_]?(?:banner|overlay)',
-                          r'(?:balloon|bubble|float)[-_]?(?:ads?|popup|banner)',
-                          r'(?:video|player|media)[-_]?(?:ads?|overlay|banner|container)',
-                          r'(?:sponsor|partner|premium)[-_]?(?:box|banner|content|section)',
-                          r'(?:recommend|suggest|related)[-_]?(?:box|content|posts)',
-                          r'(?:newsletter|subscribe)[-_]?(?:popup|modal|form|box)',
-                          r'(?:cookie|gdpr|privacy)[-_]?(?:notice|banner|consent|policy)',
-                          r'(?:chat|messenger|support)[-_]?(?:box|widget|container)',
-                          r'(?:social|community)[-_]?(?:widget|plugin|feed)',
-                          r'(?:live|stream|comment)[-_]?(?:chat|feed|section)',
-                          r'(?:back|scroll|return)[-_]?to[-_]?(?:top|up)',
-                          r'(?:loading|preload|spinner)[-_]?(?:screen|overlay|animation)',
-                          r'(?:search|menu|nav)[-_]?(?:overlay|popup|modal)',
-                          r'(?:mobile|responsive)[-_]?(?:menu|nav|header)',
-                          r'(?:sidebar|widget|toolbar)[-_]?(?:container|wrapper|fixed)'
+                          r'(?:ads?|advert(?:isement)?|quangcao)[-_]?(?:preload|box|slot|unit|banner|container|wrapper|frame|block|space|zone|spot|content|display|holder)',
+                          r'banner[-_]?(?:preload|top|bottom|left|right|side|float|sticky|fixed|mobile|main|center|ads?)',
+                          r'(?:catfish|float|sticky|overlay|modal|popup|lightbox)[-_]?(?:ads?|banner|box|container|bottom|top|left|right|mobile)',
+                          r'(?:google|gg|fb|facebook|twitter|tiktok)[-_]?(?:ads?|adsense|pixel|tracking)',
+                          r'(?:tracking|analytics|pixel|remarketing|affiliate|conversion)[-_]?(?:box|container|unit|pixel|tag)',
+                          r'(?:promo|marketing|campaign|special|sponsor|partner)[-_]?(?:box|banner|container|content|section)',
+                          r'(?:notification|alert|message|cookie|gdpr|privacy)[-_]?(?:banner|popup|modal|box|consent)',
+                          r'(?:video|player|media|jw)[-_]?(?:ads?|overlay|banner|container|cue)',
+                          r'(?:social|share|follow|community)[-_]?(?:buttons?|container|widget|plugin|feed)',
+                          r'(?:newsletter|subscribe|chat|messenger|support)[-_]?(?:popup|modal|form|box|widget)',
+                          r'(?:mobile|responsive)[-_]?(?:menu|nav|header|ads?|banner)',
+                          r'(?:sidebar|widget|toolbar)[-_]?(?:container|wrapper|fixed|ads?)',
+                          r'(?:aswift|adsbygoogle|adskeeper|adnow|admicro|adtima)[-_]?\d*'
                       ]
 
-                      # Tìm kiếm các phần tử theo class và id với cải tiến
+                      # Cải tiến xử lý elements
+                      def process_element(el, selector_type=''):
+                          if not el.name:
+                              return None
+                              
+                          selector_parts = [current_url, "##", el.name]
+                          
+                          # Xử lý ID và Class thông minh hơn
+                          if 'id' in el.attrs:
+                              selector_parts.append(f"#{el['id']}")
+                          elif 'class' in el.attrs:
+                              classes = el['class'] if isinstance(el['class'], list) else [el['class']]
+                              filtered_classes = [c for c in classes if len(c) > 2]  # Lọc class quá ngắn
+                              if filtered_classes:
+                                  selector_parts.append(f".{'.'.join(filtered_classes)}")
+                                  
+                          # Thêm các thuộc tính đặc biệt
+                          special_attrs = ['data-id', 'data-name', 'role', 'data-ad', 'data-type']
+                          for attr in special_attrs:
+                              if attr in el.attrs:
+                                  selector_parts.append(f"[{attr}={el[attr]}]")
+                                  
+                          selector = ''.join(selector_parts)
+                          if selector_type:
+                              selector += f"${selector_type}"
+                          return selector
+
+                      # Xử lý elements theo patterns
                       for pattern in ad_patterns:
                           elements = soup.find_all(lambda tag: any(
-                              re.search(pattern, attr_value, re.I)
+                              re.search(pattern, str(attr_value), re.I)
                               for attr_name, attr_value in tag.attrs.items()
                               if isinstance(attr_value, (str, list))
                           ))
                           
                           for el in elements:
-                              if el.name:
-                                  # Tạo selector thông minh hơn
-                                  selector_parts = [current_url, "##", el.name]
-                                  
-                                  if 'id' in el.attrs:
-                                      selector_parts.append(f"#{el['id']}")
-                                  elif 'class' in el.attrs:
-                                      classes = el['class'] if isinstance(el['class'], list) else [el['class']]
-                                      selector_parts.append(f".{'.'.join(classes)}")
-                                      
-                                  # Thêm các thuộc tính đặc biệt
-                                  for attr in ['data-id', 'data-name', 'role']:
-                                      if attr in el.attrs:
-                                          selector_parts.append(f"[{attr}={el[attr]}]")
-                                          
-                                  selector = ''.join(selector_parts)
+                              selector = process_element(el)
+                              if selector:
                                   ad_elements.add(selector)
 
-                      # Mở rộng script patterns
+                      # Xử lý scripts với patterns cải tiến
                       script_patterns = [
-                          r'(?:ads?|adv)(?:ertis(?:ing|ements?)|manager|loader|config)?',
-                          r'analytics?(?:[-_]?(?:tracking|pixel|tag|event))?',
-                          r'track(?:er|ing)(?:[-_]?(?:pixel|script|code))?',
-                          r'(?:pixel|beacon|tag)(?:[-_]?(?:tracking|conversion))?',
-                          r'remarket(?:ing)?(?:[-_]?(?:tag|pixel))?',
-                          r'affiliate(?:[-_]?(?:tracking|program))?',
-                          r'g(?:oogle)?[-_]?(?:analytics|tag|ads?|adsense)',
-                          r'(?:facebook|fb)[-_]?(?:pixel|sdk|connect)',
-                          r'(?:hotjar|optimizely|segment|mixpanel|chartbeat)',
-                          r'(?:clicktale|crazyegg|quantserve|nielsen|comscore)',
-                          r'(?:ad|tag)[-_]?(?:manager|server|network|exchange)',
-                          r'(?:social|share)[-_]?(?:buttons?|widget)',
-                          r'(?:chat|support)[-_]?(?:widget|messenger)',
-                          r'(?:push|notification)[-_]?(?:service|sdk)',
-                          r'(?:retargeting|remarketing)[-_]?(?:code|pixel)'
+                          r'(?:ads?|adv|analytics|track)(?:ertis(?:ing|ements?)|manager|loader|config|pixel|tag|event)?',
+                          r'(?:google|facebook|fb|tiktok)[-_]?(?:analytics|tag|ads?|adsense|pixel|sdk)',
+                          r'(?:hotjar|optimizely|segment|mixpanel|chartbeat|crazyegg|comscore)',
+                          r'(?:retargeting|remarketing|affiliate)[-_]?(?:code|pixel|tracking)',
+                          r'(?:social|share|chat|push|notification)[-_]?(?:buttons?|widget|sdk)'
                       ]
 
-                      # Xử lý scripts
-                      scripts = soup.find_all('script', src=True)
-                      for script in scripts:
+                      for script in soup.find_all('script', src=True):
                           src = script['src'].lower()
                           if any(re.search(p, src, re.I) for p in script_patterns):
                               domain = urlparse(src).netloc
                               if domain:
-                                  ad_elements.add(f"||{domain}^$script")
-                                  # Thêm rule chặn third-party
-                                  ad_elements.add(f"||{domain}^$third-party")
+                                  ad_elements.add(f"||{domain}^$script,third-party")
 
-                      # Mở rộng iframe patterns
-                      iframe_patterns = ad_patterns + [
+                      # Xử lý iframes và images
+                      media_patterns = ad_patterns + [
                           r'(?:video|player)[-_]?(?:embed|frame|container)',
-                          r'(?:social|share)[-_]?(?:plugin|widget|button)',
-                          r'(?:chat|support|help)[-_]?(?:widget|frame|box)',
-                          r'(?:map|location)[-_]?(?:embed|frame|container)',
-                          r'(?:payment|checkout)[-_]?(?:frame|form|widget)',
-                          r'(?:survey|poll|quiz)[-_]?(?:embed|frame|container)',
-                          r'(?:login|auth)[-_]?(?:frame|form|popup)',
-                          r'(?:newsletter|subscribe)[-_]?(?:frame|form)',
-                          r'(?:feedback|contact)[-_]?(?:widget|form)'
-                      ]
-
-                      # Xử lý iframes
-                      iframes = soup.find_all(['iframe', 'embed'])
-                      for iframe in iframes:
-                          src = iframe.get('src', '').lower()
-                          if src and any(re.search(p, src, re.I) for p in iframe_patterns):
-                              domain = urlparse(src).netloc
-                              if domain:
-                                  ad_elements.add(f"||{domain}^$subdocument")
-                                  # Thêm rule chặn third-party
-                                  ad_elements.add(f"||{domain}^$third-party")
-
-                      # Mở rộng image patterns
-                      img_patterns = ad_patterns + [
-                          r'\.(?:gif|png|jpe?g)$',
+                          r'(?:map|location|payment|survey)[-_]?(?:embed|frame|container)',
                           r'banner[-_]?(?:image|img|ad)',
-                          r'ads?[-_]?(?:image|img|banner)',
-                          r'quangcao[-_]?(?:image|banner)',
-                          r'(?:promo|special)[-_]?(?:image|banner|content)',
-                          r'(?:sponsor|partner)[-_]?(?:logo|image|banner)',
-                          r'(?:advert|campaign)[-_]?(?:image|banner|content)',
-                          r'(?:slider|carousel)[-_]?(?:image|banner|item)',
-                          r'(?:background|bg)[-_]?(?:ad|banner)',
-                          r'(?:header|footer)[-_]?(?:banner|ad)',
-                          r'(?:mobile|responsive)[-_]?(?:banner|ad)'
+                          r'(?:background|bg|header|footer)[-_]?(?:ad|banner)'
                       ]
 
-                      # Xử lý images
-                      images = soup.find_all(['img', 'picture', 'source'])
-                      for img in images:
-                          src = img.get('src', '').lower()
-                          if src and any(re.search(p, src, re.I) for p in img_patterns):
+                      for el in soup.find_all(['iframe', 'embed', 'img', 'picture', 'source']):
+                          src = el.get('src', '').lower()
+                          if src and any(re.search(p, src, re.I) for p in media_patterns):
                               domain = urlparse(src).netloc
                               if domain:
-                                  ad_elements.add(f"||{domain}^$image")
-                                  # Thêm rule chặn third-party
-                                  ad_elements.add(f"||{domain}^$third-party")
+                                  el_type = 'subdocument' if el.name in ['iframe', 'embed'] else 'image'
+                                  ad_elements.add(f"||{domain}^${el_type},third-party")
 
                       # Xử lý divs với style
                       style_patterns = [
-                          r'position:\s*(?:fixed|absolute|sticky)',
+                          r'position:\s*(?:fixed|sticky)',
                           r'z-index:\s*[0-9]{4,}',
                           r'(?:width|height):\s*100(?:vh|vw|%)',
                           r'display:\s*(?:flex|grid)',
-                          r'overflow:\s*(?:hidden|visible)',
-                          r'opacity:\s*[01](?:\.[0-9]+)?',
-                          r'transform'
+                          r'opacity:\s*[01](?:\.[0-9]+)?'
                       ]
 
-                      divs = soup.find_all(['div', 'section', 'aside'], style=True)
-                      for div in divs:
+                      for div in soup.find_all(['div', 'section', 'aside'], style=True):
                           style = div['style'].lower()
                           if any(re.search(p, style, re.I) for p in style_patterns):
-                              selector_parts = [current_url, "##"]
-                              if 'id' in div.attrs:
-                                  selector_parts.extend([div.name, f"#{div['id']}"])
-                              elif 'class' in div.attrs:
-                                  classes = div['class'] if isinstance(div['class'], list) else [div['class']]
-                                  selector_parts.extend([div.name, f".{'.'.join(classes)}"])
-                              ad_elements.add(''.join(selector_parts))
-
-                      # Danh sách domain quảng cáo phổ biến (đã có trong code gốc)
-                      common_ad_domains = [
-                          # ... (giữ nguyên danh sách domain hiện có)
-                      ]
-                      
-                      for domain in common_ad_domains:
-                          ad_elements.add(f"||{domain}^$third-party")
-                          # Thêm các biến thể
-                          ad_elements.add(f"||{domain}^$script")
-                          ad_elements.add(f"||{domain}^$image")
-                          ad_elements.add(f"||{domain}^$subdocument")
+                              selector = process_element(div)
+                              if selector:
+                                  ad_elements.add(selector)
 
                   def scan_website(url, max_depth=1):
                       chrome_options = Options()
-                      chrome_options.add_argument('--headless')
+                      chrome_options.add_argument('--headless=new')
                       chrome_options.add_argument('--no-sandbox')
                       chrome_options.add_argument('--disable-dev-shm-usage')
                       chrome_options.add_argument('--disable-gpu')
@@ -267,7 +192,7 @@ jobs:
                       urls_to_scan = [(url, 0)]
                       
                       try:
-                          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+                          with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
                               future_to_url = {}
                               
                               for current_url, depth in tqdm(urls_to_scan):
@@ -279,38 +204,50 @@ jobs:
                                   
                                   try:
                                       driver.get(current_url)
-                                      time.sleep(3)
+                                      time.sleep(2)
                                       
-                                      # Scroll thông minh
-                                      last_height = driver.execute_script("return document.body.scrollHeight")
-                                      while True:
+                                      # Scroll thông minh với kiểm tra dynamic content
+                                      scroll_count = 0
+                                      max_scrolls = 5
+                                      while scroll_count < max_scrolls:
                                           driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                                          time.sleep(2)
+                                          time.sleep(1)
+                                          
+                                          # Kiểm tra dynamic content
                                           new_height = driver.execute_script("return document.body.scrollHeight")
-                                          if new_height == last_height:
+                                          if scroll_count > 0 and new_height == last_height:
                                               break
                                           last_height = new_height
+                                          scroll_count += 1
                                       
-                                      # Click vào các nút "load more" hoặc "xem thêm"
-                                      load_more_buttons = driver.find_elements(By.XPATH, 
-                                          "//*[contains(text(), 'load more') or contains(text(), 'xem thêm') or contains(text(), 'Xem thêm')]")
-                                      for button in load_more_buttons:
+                                      # Click các nút "load more" thông minh hơn
+                                      load_more_patterns = [
+                                          "//button[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'load more')]",
+                                          "//button[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'xem thêm')]",
+                                          "//a[contains(@class, 'load-more')]",
+                                          "//div[contains(@class, 'load-more')]"
+                                      ]
+                                      
+                                      for pattern in load_more_patterns:
                                           try:
-                                              button.click()
-                                              time.sleep(2)
+                                              buttons = driver.find_elements(By.XPATH, pattern)
+                                              for button in buttons[:3]:  # Giới hạn số lần click
+                                                  if button.is_displayed():
+                                                      button.click()
+                                                      time.sleep(1)
                                           except:
-                                              pass
+                                              continue
                                       
                                       page_source = driver.page_source
                                       
                                       if depth < max_depth - 1:
                                           soup = BeautifulSoup(page_source, 'html.parser')
-                                          for link in soup.find_all('a', href=True):
+                                          links = soup.find_all('a', href=True)
+                                          for link in links:
                                               next_url = urljoin(current_url, link['href'])
-                                              if get_domain(next_url) == base_domain:
+                                              if get_domain(next_url) == base_domain and next_url not in scanned_urls:
                                                   urls_to_scan.append((next_url, depth + 1))
                                       
-                                      # Xử lý bất đồng bộ
                                       future = executor.submit(extract_ad_elements, 
                                                             BeautifulSoup(page_source, 'html.parser'),
                                                             current_url, 
@@ -321,7 +258,6 @@ jobs:
                                       logging.error(f'Lỗi khi quét {current_url}: {str(e)}')
                                       continue
                                   
-                              # Chờ tất cả các tasks hoàn thành
                               for future in concurrent.futures.as_completed(future_to_url):
                                   url = future_to_url[future]
                                   try:
@@ -332,15 +268,23 @@ jobs:
                       finally:
                           driver.quit()
                           
-                      # Lọc và sắp xếp rules
+                      # Lọc và chuẩn hóa rules
                       filtered_rules = set()
+                      seen_hashes = set()
+                      
                       for rule in ad_elements:
-                          # Chuẩn hóa rule
                           rule = rule.strip()
                           if rule and len(rule) > 1:
-                              # Tạo hash để kiểm tra trùng lặp
+                              # Chuẩn hóa rule
+                              rule = re.sub(r'\s+', ' ', rule)
+                              rule = re.sub(r'[\u200b-\u200f\u2028-\u202f\u205f-\u206f]', '', rule)
+                              
+                              # Tạo hash từ nội dung rule đã chuẩn hóa
                               rule_hash = hashlib.md5(rule.encode()).hexdigest()
-                              filtered_rules.add(rule)
+                              
+                              if rule_hash not in seen_hashes:
+                                  seen_hashes.add(rule_hash)
+                                  filtered_rules.add(rule)
                               
                       return sorted(list(filtered_rules))
 
@@ -360,17 +304,35 @@ jobs:
                   if [ -s new_rules.txt ]; then
                     git pull origin main
                     
-                    cp Yuusei.txt Yuusei.txt.bak
+                    # Tạo temporary file để lưu rules mới
+                    touch temp_rules.txt
                     
-                    echo "Rules từ ${{ github.event.inputs.website_url }} - $(date +'%Y-%m-%d')" >> Yuusei.txt
-                    cat new_rules.txt >> Yuusei.txt
-                    echo "" >> Yuusei.txt
+                    # Đọc rules hiện tại và rules mới, loại bỏ trùng lặp
+                    if [ -f Yuusei.txt ]; then
+                      grep -v '^#' Yuusei.txt | grep -v '^$' > temp_rules.txt
+                    fi
+                    cat new_rules.txt >> temp_rules.txt
                     
-                    awk '!seen[$0]++ && !/^#/' Yuusei.txt > Yuusei.txt.tmp
-                    mv Yuusei.txt.tmp Yuusei.txt
+                    # Sắp xếp và loại bỏ trùng lặp
+                    sort -u temp_rules.txt > unique_rules.txt
                     
-                    sed -i "s/Version: .*/Version: $(date +'%d-%m-%Y')/" Yuusei.txt
-                    sed -i "s/Last modified: .*/Last modified: $(date +'%d-%m-%Y %H:%M:%S')/" Yuusei.txt
+                    # Tạo file mới với header
+                    {
+                      echo "! Title: Yuusei Filter List"
+                      echo "! Description: Bộ lọc quảng cáo cho người Việt"
+                      echo "! Version: $(date +'%d-%m-%Y')"
+                      echo "! Last modified: $(date +'%d-%m-%Y %H:%M:%S')"
+                      echo "! Expires: 1 days"
+                      echo "! Homepage: https://github.com/JustaTama/Yuusei-Extensions"
+                      echo "! License: https://github.com/JustaTama/Yuusei-Extensions/blob/main/LICENSE"
+                      echo ""
+                      echo "! Rules từ ${{ github.event.inputs.website_url }} - $(date +'%Y-%m-%d')"
+                      cat unique_rules.txt
+                      echo ""
+                    } > Yuusei.txt
+                    
+                    # Cleanup
+                    rm temp_rules.txt unique_rules.txt
                     
                     new_rules=$(wc -l < new_rules.txt)
                     
