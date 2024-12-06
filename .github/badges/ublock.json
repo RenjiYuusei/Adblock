@@ -1,1 +1,10 @@
-{ "schemaVersion": 1, "label": "ublock", "message": "Cài đặt cho uBlock Origin", "color": "1a73e8", "style": "for-the-badge" }
+{
+    "schemaVersion": 1,
+    "label": "ublock",
+    "message": "Cài đặt cho uBlock Origin",
+    "color": "1a73e8",
+    "style": "for-the-badge",
+    "cacheSeconds": 300,
+    "isError": false,
+    "timestamp": "1733472691"
+  }

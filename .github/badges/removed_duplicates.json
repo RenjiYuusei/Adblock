@@ -1,1 +1,10 @@
-{ "schemaVersion": 1, "label": "removed duplicates", "message": "17", "color": "red", "style": "flat-square" }
+{
+    "schemaVersion": 1,
+    "label": "removed duplicates",
+    "message": "0",
+    "color": "red",
+    "style": "flat-square",
+    "cacheSeconds": 300,
+    "isError": false,
+    "timestamp": "1733472691"
+  }

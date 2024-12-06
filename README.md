@@ -33,11 +33,11 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 | Danh mục | Số lượng | Trạng thái |
 |----------|--------|---------|
-| Tổng số Rules | 1066 | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.json) |
+| Tổng số Rules | 1031 | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.json) |
 | Rules mạng | 301 | ![Network](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/network_rules.json) |
 | Rules giao diện | 492 | ![Cosmetic](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/cosmetic_rules.json) |
 | Rules whitelist | 37 | ![Whitelist](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/whitelist_rules.json) |
-| Rules trùng đã xóa | 17 | ![Removed Duplicates](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/removed_duplicates.json) |
+| Rules trùng đã xóa | 0 | ![Removed Duplicates](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/removed_duplicates.json) |
 
 </div>
 
@@ -96,6 +96,6 @@ Nếu bạn thấy dự án này hữu ích:
 
 <sub>Cập nhật tự động bởi GitHub Actions</sub>
 
-_Cập nhật lần cuối: 06-12-2024 14:52:31 (Asia/Ho_Chi_Minh)_
+_Cập nhật lần cuối: 06-12-2024 15:11:31 (Asia/Ho_Chi_Minh)_
 
 </div>
