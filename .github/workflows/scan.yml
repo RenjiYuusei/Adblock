@@ -250,6 +250,9 @@ jobs:
             - name: Update Yuusei.txt
               run: |
                   if [ -s new_rules.txt ]; then
+                    # Pull trước khi thực hiện thay đổi
+                    git pull origin main
+                    
                     # Tạo backup
                     cp Yuusei.txt Yuusei.txt.bak
                     
