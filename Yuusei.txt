@@ -1,229 +1,14 @@
 ! ----------  About ----------
-! Version: 06-12-2024
+! Version: 2024.12.06
 ! Title: Yuusei
-! Last modified: 06-12-2024 08:12:52
+! Last modified: 06-12-2024 16:47:29
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
-! Checksum: 0de1909f96d16930c8ab1f109dc6923661a55f1f0e680228983a81c3d988a2dd
+! Checksum: b44d17be3bb20364bbef9752cbf492aa54c9052868d2ff593b9d9ae20d92ecba
 ! Homepage: https://github.com/RenjiYuusei/Adblock
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
-www.sayhentai.art##.float-ck-center-lt
-client.pylexnodes.net###stickyfooterad
-free.pylexnodes.net###stickyfooterad
-free.pylexnodes.net##.euuynw.ServerConsoleContainer___StyledDiv-sc-1jk042-0
-free.pylexnodes.net##.eZeGkS.ServerConsoleContainer___StyledTitledGreyBox2-sc-1jk042-3.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
-free.pylexnodes.net##.hQgnbz.FileManagerContainer___StyledTitledGreyBox-sc-1ehiwhq-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
-free.pylexnodes.net##.gyZswY.FileManagerContainer___StyledTitledGreyBox2-sc-1ehiwhq-7.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
-free.pylexnodes.net##.hbztpF.DatabasesContainer___StyledTitledGreyBox-sc-1hfwugg-1.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
-free.pylexnodes.net##.gfJGPm.ScheduleContainer___StyledTitledGreyBox-sc-dlqnx9-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
-free.pylexnodes.net##.cUNjQr.UsersContainer___StyledDiv-sc-rg2v3f-1
-free.pylexnodes.net##.egOIEL.BackupContainer___StyledDiv-sc-1vjo0fh-1
-free.pylexnodes.net##.fnKhuh.NetworkContainer___StyledDiv-sc-1covx0t-0
-free.pylexnodes.net##.jqxwfQ.StartupContainer___StyledTitledGreyBox-sc-163imy2-1.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
-free.pylexnodes.net##.byOWBE.SettingsContainer___StyledTitledGreyBox-sc-1e5ycmz-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
-free.pylexnodes.net##.byUBMH.ServerActivityLogContainer___StyledDiv-sc-1vvgkxn-0
-free.pylexnodes.net##.RStZC.AccountOverviewContainer___StyledTitledGreyBox-sc-12to0iy-3.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
-s4paad.factsninfo.com##.bottom-ad-parent.tac.bottom
-s4paad.factsninfo.com###td_3733
-smartjobalert.in##.jhfdiuh0.BR-Footer-Ads
-smartjobalert.in###overlay
-mkomsel.com##div.text-gray-400.text-center:nth-of-type(1)
-mkomsel.com##.space-y-4.text-center > div > .text-gray-400 > small > em
-mkomsel.com##.space-y-6.rounded-lg.lg\:px-8.p-6.border > div.text-gray-400.text-center > small > em
-hentaivn.love##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
-lxmanga.store###mobile-catfish-2
-lxmanga.store###mobile-catfish-1 > .sticky-footer-content > .sticky-x-button
-phimsexchaua.top##.catfish-bottom
-phimsexchaua.net##.catfish-bottom
-nungsex.pro##.catfish-top
-phimsexlonto.net##.catfish-bottom
-phimhayxxx.pro##.float-ck
-xxvl.org###catfishContainer
-||xxvl.org/*.gif$image
-xxvl.org##.topBanner
-vlxxcom.org##.float-ck
-phimsexheo3x.com##.catfish-bottom
-phe18.vip##.adx1
-phimsexhay1s.net##.happy-header
-phimsexsub.app##.thongbao2.thongbaogoc
-phimsexdidong.net##.catfish-bottom
-www.fshare.vn##.popup-vip-cus__visibility.popup-vip-cus
-www.fshare.vn###p_first_paid_gift_float_icon
-www.fshare.vn##.mdc-dialog--open.mdc-dialog
-||lh6.googleusercontent.com/niNvqW87lyRKXDaWknU-K7iiTx6_sAPg_cyDtbJhk_RhXK1hFYPGjIsdM9F6DDyqsDD9IdPZv3hKHkkM2lNZGMFaDdvll8bV6B0n3SFONcjrGY9YY1gM6KQd28Zl=s0$image
-s4paad.factsninfo.com##.pds
-s4paad.factsninfo.com##.s2
-s4paad.factsninfo.com##div.signature > table
-thund.hindimeguru.com###gads
-s4paad.factsninfo.com###main > .mb-3
-s4paad.factsninfo.com###td_tpc > .mb-3
-phimsex18a.net##.happy-header
-phimsex18a.net##.happy-top-player
-phimmoichillz.cc###preload
-phimmoichillz.cc##.close_ad
-||indienkinderhilfe-sad.de^
-||berlinwall30.de^
-vailonxx.vip##.banner-preload
-hhpanda.info###overlay
-hhpanda.info###ad_close_popup2
-||https://hhpanda.info/ads/ads_xx.js^
-hhpanda.info##.underplayer_btn
-vailonxx.vip##.banner-preload-container
-123host.vn##.bg-light.text-center.overflow-hidden.position-relative
-||123host.vn/uploads/banner/b*-2024*-mobile.jpg$image
-hentaivn.wiki##[href="javascript:hide_catfish();"]
-www.anitoku.net###container-ads
-www.anitoku.net###HTML22 > .widget-content
-www.gvnvh.net##[href="https://twin789.club/"] > .wp-image-165.size-full.alignnone
-||blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsE*zaaa.jpg$image
-||blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsE*.jpg$image
-www.gvnvh.net##[href^="https://toliomassfiles.click/"] > button
-www.gvnvh.net##center:nth-of-type(6)
-www.gvnvh.net##center:nth-of-type(2)
-haysex3xyz.net##.catfish-bottom
-vuighe4.com##.affiliate.clear-both.s1024\:p-0.pr-\[10px\].pl-\[10px\].mt-\[30px\]
-vuighe4.com##[href="https://lnk.do/QW0onqn/"]
-||adsv.cki.name^
-||qipshozipsah.com^
-truyenqqto.com##.mobile-image
-truyenqqto.com##.banner
-truyenqqto.com###ad_info_top
-truyenqqto.com##div#ad_info:nth-of-type(3)
-truyenqqto.com##div.justify-content-center.align-items-center.d-flex > .ads-banner
-truyenqqto.com##.catfish-content
-truyenqqto.com###__clb-2041479_1_container
-||animehay.de/ad_banner/da88.gif$image
-truyenvn.wiki###banner-ad
-lxmanga.site##[href="https://154.82.109.161/1534640.html"] > [src="https://lxmanga.site/ads/400x300.jpg"]
-lxmanga.site###pc-catfish-2 > .sticky-pc-footer-content.sticky-footer-content > .sticky-x-button
-lxmanga.site###pc-catfish-1 > .sticky-pc-footer-content.sticky-footer-content > .sticky-x-button
-||outwingullom.com^
-||pbyfdgnh.com
-||topcreativeformat.com^
-||intelligenceadx.com^
-||helmethomicidal.com^
-||c.adsco.re^
-vlxx.pet##.movie-info-block > center
-vlxx.pet###home-top > center > [src="about:blank"]
-vlxx.pet##.blockrow.block > center > [src="about:blank"]
-vlxx.pet##center:nth-of-type(1)
-phimmoi.gay###catfish
-phimmoii.org##.float-ck-center-lt
-phimmoii.org##.class-hinh-anh
-phimmoichill.biz##[href="javascript:an_catfish()"]
-phimmoi.club##.module_home_ads
-phimmoi.club###floating_ads_bottom_textcss_container
-||animevietsubs.net/vast/0867jz21.gif$image
-animevietsubs.net##[href="javascript:hide_catfish();"]
-||nhat9.vip^
-||tusheedrosep.net^
-hentaivl.icu##.float-ck
-||hentaivn.love/wp-content/plugins/wp-popups-lite/src/assets/js/wppopups.js
-$popup,domain=player-cdn.com|freeplayervideo.com|abysscdn.com|geoip.redirect-ads.com|playhydrax.com
-.com/cpc/$script
-.com/qc/
-.net/ads/$domain=~mcleaks.net|~linkneverdie.net
-.net/cpf/$script
-.tv/ads/$image,script,subdocument
-.vn/Ad/
-.vn/c3s-ad/$xmlhttprequest
-.vn/qc/
-/Content/JS/jwplayer/vast.js$script
-/_BannerSlot.aspx$subdocument,domain=bongdaso66.net
-/aas/r45d/vki/*$script
-/ads/*.gif$domain=~mcleaks.net
-/ads/*.xml$xmlhttprequest
-/ads/popup_
-/adv/*$image,domain=bongdaso66.net
-/banner-ads.
-/banner/*.gif$domain=~marsvenus.vn
-/beardeddragon$script
-/blueserving.
-/cms/Arfcc.min.js$script,third-party,domain=cafef.vn|gamek.vn|genk.vn|kenh14.vn|soha.vn|tuoitre.vn|afamily.vn
-/cms/arf-$script,third-party,domain=cafef.vn|gamek.vn|genk.vn|kenh14.vn|soha.vn|tuoitre.vn|afamily.vn
-/core/*$script,domain=gamek.vn|genk.vn|kenh14.vn|cafef.vn
-/detroitchicago$script
-/disable-devtool.min.js$script
-/giadinhonline.vn/files/qc/
-/i.imgur.com/$domain=xemphimchill.xyz
-/i.imgur.com/*.gif$domain=keonhacai5.mom|phimlongtieng.net|phimdinhcao.com|phimdinhcao.net|xoilaci.cc|andaluciainvestiga.com|veboz19.live|unfriendcoal.com|plvb.xyz|listnhacai88.com|xoilaczz31.live|xemtivingon.org|phimlongtieng.com|newsmavens.com|rakhoiz7.live|plcdn.xyz|phimmoi.onl|motphimww.com
-/media.discordapp/$domain=phimno4.xyz|socolivebongda.net
-/mmo/*$xmlhttprequest,image,domain=vuighe3.com
-/newchill/*gif$image
-/polyad.
-/popunder7.
-/porpoiseant$script
-/qcao/*$domain=~thegioididong.com
-/quang%20cao/*
-/quang_cao/*
-/quangcao.
-/quangcao/*
-/root/ads/*
-/sbbanner.com
-/script/oneAds.js$script,~third-party
-/siropu/am/core.min.js$script
-/storage.adpia.vn$image,script
-/stores/ads_data/*
-/taichinhdoanhnghiep.net.vn/files/qc
-/tinhocdongthap.com\/wp-content\/plugins\/wp-[\w-]+\/[\w-]+\.js/$script
-/tracking_info.gif$domain=cafef.vn|gamek.vn|genk.vn|kenh14.vn|soha.vn|tuoitre.vn|afamily.vn
-/v/*/vast.js$script,domain=~cdn2.kenhvn2.com
-/vast.js$script,domain=phimmoi.tuphim.net|boctem.com|phimvietsub.pro|phimdacap.tv|hoathinhtq.site|tvhay26.com|phimmoisz.org|tvzinghd.co
-/videojs.ads.$domain=~danet.vn|~tn.com.ar
-/videojs.ima.js$domain=~jut.su|~earthcam.com
-hentaicube.xyz###mb-catfish
-hentaicube.xyz###pc-catfish
-hentaicube.xyz###ban-top-mb
-hentaicube.xyz###ban-top-pc
-hentaicube.xyz##.sticky-pc-footer-content
-hentaicube.xyz##.sticky-mb-footer-content
-||animehay.de/themes/img/ads_click.png$image
-||animehay.de/ad_banner/728x90.gif$image
-||animehay.de/ad_banner/under_player/pc.gif$image
-animehay.de##div[style*="position: absolute; bottom: 100%; right: 1px; background: rgb(161, 90, 90); padding: 5px 10px;"]
-animevietsub.tube###hide_catfix > a
-animevietsub.tube###Tp-Wp > div.Body.Container:nth-child(2) > div.Content > div.TpRwCont:last-child > main:first-child > div.Ads.ads_player:first-child
-animevietsub.tube###watch-block > div.Ads.bellow_ads_player:nth-child(4) > div.below-playerm
-animevietsub.tube###Tp-Wp > div.Body.Container:nth-child(2) > div.Content > div.TpRwCont:last-child > main:first-child > div.Ads.bellow_ads_player:nth-child(3) > div.below-playerm
-animevietsub.tube###Tp-Wp > div.Body.Container:nth-child(2) > div.Content > div.Adv.ad-center-header:nth-child(2) > div.header-ads-mobile
-animevietsub.tube###mobile-catfixx > div.mb_catfix_adv:last-child
-animevietsub.tube###invideo_wrapper
-animevietsub.tube##.Ads
-animevietsub.tube##.mobile-catfixx
-animevietsub.tube,tiemsachhay.net##.pc-catfixx
-animew.org##div.py-2.md\:py-6.mx-auto.w-full.max-w-screen-3xl>div.relative
-anivn.club###quang-cao
-api.anime3s.com,live4.xoilac34.org,zphim18.net,freeplayervideo.com,abysscdn.com,player-cdn.com,geoip.redirect-ads.com,watch.rkplayer.xyz,animevietsub.tube,phimss.net,fdcdn.xyz,cloudasiatv.xyz##.jw-logo
-vuighe3.com###balloon
-vuighe3.com##.affiliate
-vuighe3.com##.player-midpoint-progress
-vuighe3.com##.banner-masthead
-/mmo/*$xmlhttprequest,image,domain=vuighe3.com
-phimmoiiii.net###floating_ads_bottom_textcss_x
-phimmoiiii.net###contenedor > div.module_home_ads
-phimmoiiii.net###floating_ads_bottom_textcss_ad
-phimmoiday.net###floating_ads_bottom_textcss_container
-phimmoiday.net###content > div.clearfix.wrap-content > a:nth-child(13) > img
-phimmoiday.net##div.container:nth-child(3)
-hhvsub.com,hhtrungquoc6.com,hhninja.xyz,hentaiz.wiki###catfish
-hhpanda.tube##div.container:nth-child(3) > div.row:last-child > div.underplayer_btn:nth-child(5)
-hhpanda.tube###top_addd
-hhpanda.tube###footer_fixed_ads > div.banner-sticky-footer-wrapper
-hhpanda.tube###overlay > div.overlay_content
-hhninja.xyz###header-ads
-thongtintruyen.com###pc-catfixx
-hhninja.xyz###header-ads
-m.blogtruyenmoi.com##div:nth-child(18)
-viet69.name,ungtycomicsvip.com,vlxx.mobi,dualeotruyenbi.com,yurineko.net,vlxyz.tube,javhay.click,phimsexhay669.pro,cliphot69.blog,doctruyen3qtv.pro,hentaizz.biz,heo69.moe,top1sex.club,sexmup18.com,hentaivn.today,streamvl.top,www.buomtv.vip,truyenvn.cam,cdnstream.sbs,javtiful.com,truyengihotdo.net,truyengihotzay.net,truyengihotnha.com,truyengihotnha.net,truyengihotqua.net,truyengihotqua.com,truyengihotnay.com,sexvn.tuoi69s.com,quatvn.baby,tenmientruyengi.net,topviet69.com,phim18hd.sex,live.sexviet88.dev,sexnhe.biz,demo.14412882.com,sexphimhd.vip,ungtycomicsvip.net,vn.cliphot69.live,hhtq5.vip,sayhentai.one,sexdiary.club#%#//scriptlet("abort-current-inline-script", "WebAssembly", "instantiate")
-manwa.me###detail > div:nth-child(3) > div:last-child > p:last-child > a > img
-manwa.me##div.main-content:first-child > div.footer:nth-child(14) > div.custom-ad-area.ad-area.ad-area-fix-bottom:first-child
-boctem.com###popup-giua-man-hinh
-boctem.com###freebie
-m.blogtruyenmoi.com##div:nth-child(16)
-m.blogtruyenmoi.com##div:nth-child(17)
-wibuz.net###html.flexbox.flexboxlegacy.no-flexboxtweener.flexwrap.objectfit.object-fit > body#body-click > div#Tp-Wp > div.Body.Container > div#catfish > button.closecf
-boctem.com##div.modal-backdrop.fade.in:last-child
+!--------Element Hiding Exception--------------
 ###ads-preload
 ###banner-top
 ###mobileCatfish
@@ -240,646 +25,240 @@ boctem.com##div.modal-backdrop.fade.in:last-child
 ##.tpm-unit
 ##[class^="adHTML"]
 ##[href^="http://www.sbbanner.com/"]
+##[href^="https://www.i9017.com/"]
 ##[id^="adm-slot"]
 ##[id^="bn_bottom_fixed_"]
-hay-sex.pro##div.catfish-bottom:nth-child(10)
-hayanime.info###antiblocker
-hayanime.info###antiblocker_underplayer
-||static.cdnno.com/storage/topbox/*.webp$image,domain=metruyencv.com
-metruyencv.info,metruyencv.net,metruyencv.com###js-read-body>.text-center.pb-3
-metruyencv.info,metruyencv.net,metruyencv.com###js-read__body + .mt-3
-metruyencv.info,metruyencv.net,metruyencv.com##.nh-read__alert
-metruyencv.info,metruyencv.net,metruyencv.com##[href$="/goout/lazada"]
-metruyencv.info,metruyencv.net,metruyencv.com##section.nh-section:nth-of-type(5)
-metruyencv.info,metruyencv.net,metruyencv.com#?#.text-center:-abp-has(small:-abp-contains(QUẢNG CÁO))
-toptruyenviet.info##.advertisement
-toptruyenviet.info##.advertisement.visible-mobile
-toptruyenviet.info##.adsbygoogle
-animevietsub.tube##.Ads
-animevietsub.tube##.home_ads
-animevietsub.tube##.Header
-animevietsub.tube##.Adv
-animevietsub.tube##.ad-center-header
-animevietsub.tube##.header-ads-mobile
-animevietsub.tube##.ads-300
-animevietsub.tube##.mb_catfix_adv
-animevietsub.tube##.BgA
-animevietsub.tube##.EcBgA
-animevietsub.tube##.adsbygoogle
-animevietsub.tube##.adsbygoogle-noablate
-animevietsub.tube##.adsbygoogle.adsbygoogle-noablate
-animevietsub.tube##.mb_catfix_adv
-animevietsub.tube###mobile-catfixx
-animevietsub.tube###hide_catfix
-animevietsub.tube##.mobile-catfixx
-obfuscator.io##.adsbygoogle
-phimmoichill3.net###headerpcads
-phimmoichill3.net###headermbads
-phimmoichill3.net###mobiads
-phimmoichill3.net###pcads
-phimmoichill3.net###pm_quangcao
-phimmoichill3.net###an_catfish
-phimmoichill3.net##.gnarty-offads
-hh3d.biz###ad-floating-left
-hh3d.biz###ad-floating-right
-hh3d.biz###box_ads
-hh3d.biz###catfish
-hh3d.biz###catfishads
-hh3d.biz###header-ads
-hh3d.biz##.closecf
-greasyfork.org##.adsbygoogle
-greasyfork.org##.adsbygoogle-noablate
-greasyfork.org##.ad
-greasyfork.org##.ad-ga
-greasyfork.org##.ad-content
-greasyfork.org##.ads_mpu_small
-greasyfork.org##.sidebar-header-ads
-greasyfork.org##.related_post_google_ad
-greasyfork.org##.adbox300
-greasyfork.org##.ad-sidebar-180-150
-truyenfull.io##.badge
-truyenfull.io##.ads-lien-quan
-truyenfull.io##.fade
-truyenfull.io##.ads-iads
-truyenfull.io##.iads-all-content
-truyenfull.io##.smf-ads-box
-truyenfull.io###_admDivFlashdt
-truyenfull.io##.header-ads
-truyenfull.io##.header-ads-full
-truyenfull.io##.branch-banner-content
-truyenfull.io##.iads-box-ads
-truyenfull.io##.iads-head
-truyenfull.io##.iads-head-title
-truyenfull.io##.iads-url-go-to
-truyenfull.io##.iads-body
-truyenfull.io##.iads-item-ad
-truyenfull.io##.iads-item-content
-truyenfull.io##.iads-img
-truyenfull.io##.iads-link-ads
-truyenfull.io##.ads-responsive
-truyenfull.io##.ads-chapter-bottom-lien-quan
-truyenfull.io###ads-install-app
-truyenfull.io###header-ads
-truyenfull.io###header-ads-full
-truyenfull.io###truyen-ads-hot
-truyenfull.io###banner-bio-link
-truyenfull.io###iads-63bbeb608afa7d190035bd33
-truyenfull.io###banner_image_home
-truyenfull.io###truyen-ads-full
-truyenfull.io###ads-lien-quan-0
-truyenfull.io###ads-lien-quan-1
-truyenfull.io###ads-lien-quan-2
-truyenfull.io###ads-lien-quan-3
-truyenfull.io###ads-lien-quan-4
-truyenfull.io###ads-lien-quan-6
-truyenfull.io###ads-xuyentrang-bottom
-truyenfull.io###ads-flyicon
-truyenfull.tv##.ads
-ipauniverse.com##.adsbygoogle
-ipauniverse.com##.adsbygoogle-noablate
-phimmoi.sale###floating_ads_bottom_textcss_container
-phimmoi.sale###floating_ads_bottom_textcss_wrap
-phimmoi.sale###floating_ads_bottom_textcss_ad
-phimmoi.sale###floating_ads_bottom_textcss_close
-phimmoi.sale###floating_ads_bottom_textcss_x
-phimmoi.sale##.module_home_ads
-codebeautify.org###adBlockerShare
-voz.vn##.adsbypubpower
-voz.vn##.v-element>.v-responsive
-voz.vn##div.message--post
-voz.vn##div[style]:has(.adsbypubpower)
-vozer.net,btcvn.org##.Notices.PanelScroller
-_reklama_$domain=~youtube.com
-ads.google.com,youtube.com#@#.video-ads
-youtube.com###masthead-ad
-youtube.com###player-ads
-youtube.com###shorts-inner-container > .ytd-shorts:has(> .ytd-reel-video-renderer > ytd-ad-slot-renderer)
-youtube.com##.YtdShortsSuggestedActionStaticHostContainer
-youtube.com##.ytd-merch-shelf-renderer
-www.youtube.com##.ytp-featured-product
-youtube.com##.ytp-suggested-action > button.ytp-suggested-action-badge
-m.youtube.com##lazy-list > ad-slot-renderer
-youtube.com##ytd-ad-slot-renderer
-youtube.com##ytd-rich-item-renderer:has(> #content > ytd-ad-slot-renderer)
-youtube.com##ytd-search-pyv-renderer
-m.youtube.com##ytm-companion-slot[data-content-type] > ytm-companion-ad-renderer
-m.youtube.com##ytm-rich-item-renderer > ad-slot-renderer
-tienichhay.net###adsbygoogle-fix
-tienichhay.net##.adsbygoogle
-tienichhay.net##.adsbygoogle-ablated-ad-slot
-tienichhay.net##.adsbygoogle-noablate
-pixiv.net##iframe[height="300"][name="responsive"]
-pixiv.net##iframe[height="520"][name="expandedFooter"]
-pixiv.net##iframe[width="300"][height="250"]
-pixiv.net##div[style="height: 540px; opacity: 1;"]
-pixiv.net##div[style="font-size: 0px;"] a[target="premium_noads"]
-pixiv.net##div[id^="adsdk-"]
-pixiv.net##.ad-mobile-anchor
-pixiv.net##.ad-footer
-pixiv.net##.ad-frame-container
-wibuz.net##.closecf
-wibuz.net##.bellow_ads_player
-wibuz.net###top_ads
-wibuz.net##.Ads
-animevietsub.ink##[href="javascript:hide_catfix()"]
-||lh3.googleusercontent.com/*=s0$image
-||mplmncb.com^
-||cdn.adschill.com^
-||ofglicoron.net^
-||ur.versinehopper.com^
-||alnzupnulzaw.com^
-|su6t2a0v1cbj6fu8o2cjdo1dx0oxdm6kgl6f7zdjxt6aqxjlwrt7cu2r5g2d.me^
-||caulicuzooque.net^
-||cheechoups.net^
-||ak.ptailadsol.net^
-||clunkyentirelinked.com^
-||gingagonkc.com^
-||ads-pixiv.net^$third-party
-@@||ads-twitter.com/uwt.js$domain=factory.pixiv.net
-||datqagdkurce.com^
-||meherdewogoud.com^
-||obtaintrout.com^
-||pl16314303.cpmrevenuegate.com^
-@@||voz.vn/u/adx.$xmlhttprequest
-||data.voz.vn/94bf/166a6849b5cd7d.jpg$domain=voz.vn
-@@||www.youtube.com^$generichide
-@@||tv.youtube.com^$generichide
-@@||music.youtube.com^$generichide
-||youtube.com/get_video_info?*adunit$~third-party
-@@||youtube.com/get_video_info?$xmlhttprequest,domain=music.youtube.com|tv.youtube.com
-||m.youtube.com/get_midroll_$domain=youtube.com
-||youtube.com/pagead/
-||youtube.com/embed/C-iDzdvIg1Y$domain=biznews.com
-||dotyruntchan.com^
-||demo123.info^
-||critical-replacement.com^
-||earringsatisfiedsplice.com^
-||weirddistribution.pro^
-||hhbypdoecp.com^
-||h74v6kerf.com^
-||dhaacmpiqdur.com^
-||30b16ddf8d4459051dcc.hllgvga.com^
-||e.dtscout.com^
-||zz.bdstatic.com^
-||30b16ddf8d4459051dg.krbulhb.com^
-||s10.histats.com^
-||apps.bdimg.com^
-||s4.histats.com^
-||tags.crwdcntrl.net^
-||t.dtscdn.com^
-||amxswiolhod.com^
-||iads.staticscdn.net^
-||citadelpathstatue.com^
-||glaubsoopsehen.net^
-||fauphoaglu.net^
-||br.dewbeambeslash.com^
-||murlackmoyle.com^
-||fundingchoicesmessages.google.com^
-||gekeebsirs.com^
-||zunsoach.com^
-||visariomedia.com^
-||3pkf5m0gd.com^
-||bullionglidingscuttle.com^
-||thanhdieu.com/files/ads-blocked.js^
-||d13k7prax1yi04.cloudfront.net^
-||visariomedia.com^
-||othmzasruj.com^
-||whoolrulr.net^
-||xugrikalbmm.com^
-||clkofafcbk.com^
-||tag.adbro.me^
-||doubtedprompts.com^
-||chaseherbalpasty.com^
-||jsc.adskeeper.co.uk/site/*$script
-||childlessporcupinevaluables.com^
-||api.trackpush.com^$script
-||3x.sexkhongchehd.com/theme/main.isa.js^$script
-||adtima.vn^$third-party
-||ants.vn^$third-party
-||criteo.com^$third-party,domain=~vnexpress.net|~zingnews.vn|~kenh14.vn
-||delivery.yomedia.vn^$third-party
-||dinhvu.pro^$third-party
-||googletagmanager.com^$third-party,domain=~thethao247.vn|~cafef.vn
-||lavanetwork.net^$third-party
-||meta.vn^$third-party
-||mgid.com^$third-party,domain=~24h.com.vn|~gamek.vn
-||popads.net^$third-party,domain=~phimmoi.net|~blogtruyen.vn
-||propellerads.com^$third-party,domain=~tinmoi.vn|~baomoi.com
-||pubmatic.com^$third-party,domain=~dantri.com.vn|~kenh14.vn
-||rubiconproject.com^$third-party,domain=~vtv.vn|~tuoitre.vn
-||yomedia.vn^$third-party
-||zaloads.com^$third-party 
-||admicro.vn^$third-party
-||adnow.com^$third-party
-||criteo.com^$third-party
-||mgid.com^$third-party
-||propellerads.com^$third-party
-||revcontent.com^$third-party
-||taboola.com^$script,third-party
-||outbrain.com^$third-party
-||https://blogtruyenmoi.com/Scripts/pre-cat.min.js^
-||r.trackwilltrk.com^
-||recordedthereby.com/sfp.js^
-||s3t3d2y8.afcdn.net^
-||recedechatprotestant.com^
-||qnp16tstw.com^
-||ilyf4amifh.com^
-||a.realsrv.com^
-||tzegilo.com^
-||recordedthereby.com^
-||a.magsrv.com^
-||clmm.webcam/ads^
-||quoracdn.net^$image,domain=vlxx.mobi|vlxyz.tube|sieudamtv.dev|sex.chichnhau.net
-||huongdanjava.com$csp=script-src data: 'self' 'unsafe-inline' http: https:
-||cdn.adxcontent.com^
-||shope.ee^$popup,domain=chillphimmoizzz.org|blogtruyenmoi.com|cunghocvui.com|truyensextv.com
-||cdn.vipads.cc^
-||hoathinh3d.run/pop/pop.js
-||3pkf5m0gd.com^
-||hhpanda.tube/ads/ads_xx.js
-||ads.cdn2-img.net/^*.gif
-||sponsor.imacdn.com^
-||s682.imacdn.com^
-||clobberprocurertightwad.com^
-||ku42hjr2e.com^
-||vipads.live^
-||6v41p4bsq.com^
-||ad.vidverto.io^
-||adflex.vn^$third-party
-||adpia.vn^$third-party
-||ads-cdn.fptplay.net^
-||ads.starzd.com^
-||adtima-static.zadn.vn^$script
-||adtima-static.zascdn.me^
-||adtima.vn^$third-party
-||adtimaserver.vn^
-||aff.cdnntx.com^
-||affordedseasick.com^
-||aj1047.online^
-||aj1559.online^
-||aj2393.online^
-||ajsc.yodimedia.com^
-||amcdn.vn^
-||ants.vn^$third-party
-||api.adfly.vn^
-||apinas.nct.vn^
-||ar.pagodaskeeker.com^
-||asg.phukienthoitranggiare.com^
-||baobabsruesome.com^
-||bardicjazzed.com^
-||bidgear-syndication.com^
-||waisheph.com^
-||blueseed.tv^$third-party
-||brittlesturdyunlovable.com^
-||cdn.adop.asia^
-||cdn.tpmedia.online^
-||cdnv.tpmedia.online^
-||ce.ineptsundial.com^
-||chouthep.net^
-||click.advertnative.com^
-||cnt.trvdp.com^
-||contineljs.com^
-||couldblindly.com^
-||delivery.yomedia.vn^
-||dinhvu.pro^$third-party
-||effacedefend.com^
-||fpgedsewst.com^
-||fv.togataurnfuls.com^
-||gammaplatform.com^$third-party
-||gelatinerespectivelyhector.com^
-||genieesspv.jp^$third-party
-||genmonet.com^
-||grubsnuchale.com^
-||grunoaph.net^
-||gullyending.com^
-||hqq.to^$popup
-||hymenvapour.com^
-||iads.staticscdn.net^
-||imad24.com^
-||img.yeuketqua.net^
-||js.aiservice.vn^
-||jsc.yodimedia.com^
-||link.cado.pro^
-||mairbeets.com^
-||meta.vn^$third-party
-||midgetmaying.com^
-||pi.beaufintorque.com^
-||pk910324e.com^
-||platform.adlinknetwork.vn^
-||player.gliacloud.com^
-||pub.akadigital.vn^
-||pub.lavamedia.vn^
-||pub.lavanetwork.net^$third-party
-||qc.coccoc.com^$third-party
-||qc.violet.vn^
-||qcv5.blogtruyenmoi.com^
-||qz.almudestilths.com^
-||realclick.vn^$third-party
-||rkgwzfwjgk.com^
-||rq.overseagyassa.com^
-||sbbanner.com^
-||skiddyteapots.com^
-||ss.sonshiplevesel.com^
-||ss.yomedia.vn^
-||static.adconnect.vn^
-||static.philacct.com^
-||stummertitis.com^
-||syphonseity.com^
-||taboola.com^$script,third-party
-||tags.fly-ads.net^
-||tags.native-ad.net^
-||truyentuan.xyz^$subdocument,~third-party
-||tutsterblanche.com^
-||tvc.biphim.club^
-||v9banners.com^
-||vads.net.vn^
-||xenosmussal.com^
-||xszpuvwr7.com^
-||zaloweb.
-||qph.cf2.quoracdn.net/main-qimg-*
-||blurbreimbursetrombone.com^
-||endowmentoverhangutmost.com^
-||holahupa.com^
-||cdn.hentaicube.net/qcs/*.gif
-||laxativestuckunclog.com^
-||widgetlogic.org^
-||ads.mxhnkn.pro/popup/popup-under-v2-qiqi*.js$script
+#[ads.gmodules.com]
+#[ads.youtube.com]
+#[adservice.google.*]
+#[analytics.google.com]
+#[doubleclick.net]
+#[google-analytics.com]
+#[google-cn]
+#[google.com]
+#[googleadservices.com]
+#[googleanalytics.com]
+#[googleapis.com]
+#[googlesyndication.com]
+#[googletagmanager.com]
+#[googletagservices.com]
+#[l.google.com]
+#[optimize.google.com]
+$popup,domain=player-cdn.com|freeplayervideo.com|abysscdn.com|geoip.redirect-ads.com|playhydrax.com
 $third-party,script,domain=sexdiaryx.one
+.com/cpc/$script
+.com/qc/
+.net/ads/$domain=~mcleaks.net|~linkneverdie.net
+.net/cpf/$script
+.tv/ads/$image,script,subdocument
+.vn/Ad/
+.vn/c3s-ad/$xmlhttprequest
+.vn/qc/
+/aas/r45d/vki/*$script
+/ads/*.gif$domain=~mcleaks.net
+/ads/*.xml$xmlhttprequest
+/ads/popup_
+/adv/*$image,domain=bongdaso66.net
 /assets/js/vast.js$script
+/banner-ads.
+/banner/*.gif$domain=~marsvenus.vn
+/beardeddragon$script
+/blueserving.
+/cms/arf-$script,third-party,domain=cafef.vn|gamek.vn|genk.vn|kenh14.vn|soha.vn|tuoitre.vn|afamily.vn
+/cms/Arfcc.min.js$script,third-party,domain=cafef.vn|gamek.vn|genk.vn|kenh14.vn|soha.vn|tuoitre.vn|afamily.vn
+/Content/JS/jwplayer/vast.js$script
+/core/*$script,domain=gamek.vn|genk.vn|kenh14.vn|cafef.vn
+/detroitchicago$script
+/disable-devtool.min.js$script
+/giadinhonline.vn/files/qc/
+/i.imgur.com/$domain=xemphimchill.xyz
+/i.imgur.com/*.gif$domain=keonhacai5.mom|phimlongtieng.net|phimdinhcao.com|phimdinhcao.net|xoilaci.cc|andaluciainvestiga.com|veboz19.live|unfriendcoal.com|plvb.xyz|listnhacai88.com|xoilaczz31.live|xemtivingon.org|phimlongtieng.com|newsmavens.com|rakhoiz7.live|plcdn.xyz|phimmoi.onl|motphimww.com
+/media.discordapp/$domain=phimno4.xyz|socolivebongda.net
+/mmo/*$xmlhttprequest,image,domain=vuighe3.com
+/mmo/*$xmlhttprequest,image,domain=vuighe3.com
+/newchill/*gif$image
 /player/vast.js$script
+/polyad.
+/popunder7.
+/porpoiseant$script
+/qcao/*$domain=~thegioididong.com
+/quang%20cao/*
+/quangcao.
+/quangcao/*
+/quang_cao/*
+/root/ads/*
+/sbbanner.com
+/script/oneAds.js$script,~third-party
+/siropu/am/core.min.js$script
+/storage.adpia.vn$image,script
+/stores/ads_data/*
+/taichinhdoanhnghiep.net.vn/files/qc
 /theme/custom.int.js$script,domain=top1sex.me|tuoi69.my|javhay.my|web.motsex.net|vuasex.club|phimsexviet.io|phimsexvietnam.app|mobi.clipsex.xxx|gm.phimsexnhanh.tv|clipsex.cam|mobi.ditnhau.cc
+/tinhocdongthap.com\/wp-content\/plugins\/wp-[\w-]+\/[\w-]+\.js/$script
+/tracking_info.gif$domain=cafef.vn|gamek.vn|genk.vn|kenh14.vn|soha.vn|tuoitre.vn|afamily.vn
+/v/*/vast.js$script,domain=~cdn2.kenhvn2.com
+/vast.js$script,domain=phimmoi.tuphim.net|boctem.com|phimvietsub.pro|phimdacap.tv|hoathinhtq.site|tvhay26.com|phimmoisz.org|tvzinghd.co
+/videojs.ads.$domain=~danet.vn|~tn.com.ar
+/videojs.ima.js$domain=~jut.su|~earthcam.com
 /wp-content/uploads/*.gif$image,domain=tuoi69zz.xyz|tuoinung.men|teletiengviet.com|phevkl.vc
-||3x.clipsexhot.net/theme/main.isa.js$script,domain=3x.clipsexhot.net
-||ads.6789live.com^
-||avhduwvirosl.com^
-||blogger.googleusercontent.com^*.gif$image,domain=gvnvh18.com
-||cdn-01.w3img.com^*.gif$image,domain=javhd.tech|sexvietco.net|viet69new.net|vlxxai.net|javhd.social|sexsoc.info
-||cdn.adxcontent.com^
-||cdn.javbabe.net^$subdocument
-||cliphot69.sbs$csp=script-src 'self' 'unsafe-inline'
-||cliphot69.sbs^*.gif$image
-||cliphotvn69.com^*.gif$image
-||cloufdlare.com/ads/vn1.html$subdocument,domain=vl.phe.to
-||demo123.info/*ads/$image,domain=xem.sex-sub.com
-||discordapp.$image,domain=phym18.lol|phim18vip.vip|avvietsub.info|phimsexsub.xyz
-||hentaihvn.tv/qx/$subdocument
-||hentaivn.blog^*.gif$image
-||i.ibb.co^*.gif$image,domain=javnong.cc
-||i.imgur.com^$image,domain=phym18.lol|phim18hd.sex|xamvn.taxi|fullcliphot.com|x.sexkhongchehd.com|xx.sexkhongchemoi.com|bimmup.net
-||i9zk5f8szj4x8saj5wcks8acja5sk1dz8stjs2g8isdcn6ejxn8zsr5xjs5h.com^
-||img.av3x.net/upload/av3x.net/banners/$domain=phimsexhay669.pro
-||img.buomtv.vip/palivn/ad/$image,domain=www.buomtv.vip
-||img.congdongmassage.com/banner/$image,domain=congdongmassage.com
-||javtopxx.com/public/images/banner/$image
-||kgfjrb711.com^
-||lxmanga.life/storage/images/banners
-||mangadm.cc$csp=script-src 'self' 'unsafe-inline' http
-||mneydirec.com^
-||ngaytho.me^*.gif
-||nrs6ffl9w.com^
-||phim.sexhayvl.org/theme/main.isa.js$script
-||phimsexsub.best/wp-admin/admin-ajax.php?action=htmlcountry_get_data
-||phimsexsub.best^*.gif$image
-||phimsexsub.xyz/css/pss.webp$image,domain=nhentaivn.online
-||phym18.lol/static/js/adlia.js
-||play.stream4.me/jwplayer/vast.js$script,domain=play.stream4.me
-||qcvip.xyz/popup$script,domain=phevkl.vc
-||quatvn.store/ads.js$script
-||quoracdn.net^$image,domain=vlxx.mx|vlxyz.tube|sex.sieudamtv.biz|sex.chichnhau.me|phevkl.vc|viet69.cx
-||rphang.online^*.gif
-||sayhentai.one/assets/js/ads.js
-||sayhentai.one/storage/images/banner/$image
-||sexdiaryx.one$csp=script-src 'self' 'unsafe-eval'
-||sexhd88.live/wp-content/themes/vidorev/img/jun881.png$image
-||sexhd88.live^*.gif$image
-||sexsub.pro^*.gif$image,domain=tuoi69.my|javhay.my|sexsub.pro|xem.phim18c.org
-||sexsub.pro^*.gif$image,domain=vietxxx.club
-||sexviet1.me^*.gif$image
-||sieukhungz.org^*.gif$image
-||spankbangdl.com/files/*.gif$image,domain=avvietsub.info
-||t7cp4fldl.com^
-||telegra.ph/file/$image,domain=full.cliphot69.live
-||telegra.ph^$image,domain=fulllivehot.com
-||topviet69.com^*.gif$image
-||truyen18.one/media/abc/$image
-||truyen18.one/media/banner/$image
-||truyensextv.com/anh/$image
-||truyensextv.com^*.gif
-||truyenvn.fit^*banner$image
-||vietxxx.club/theme/custom.int.js$script,~third-party
-||vl3x.vip/ads/$script
-||www.buomtv.vip/palivn/ad/$image
-||www.displayvertising.com^
-||x.sexkhongchehd.com/theme/main.isa.js$script,~third-party
-||xem.phim18c.org/theme/custom.int.js$script,~third-party
-||xemphimsex3x.net^*.gif$image
-||xmupvl.net^*.gif$image,domain=xmupvl.net|damsextv.pro
-||xx.sexkhongchemoi.com/theme/main.isa.js$script,domain=xx.sexkhongchemoi.com
-||ybs2ffs7v.com^
-||yr.fopbandido.com^
-||hentaivn.love/wp-content/uploads/2024/10/*$image
-hentaivn.love##.spu-container
-hentaivn.love##.wppopups-whole
-hentaivn.love###hide_catfish
-phimsextoy.net##.catfish-bottom
-s.javn.tv##.close-btn
-s.javn.tv##.cashfit-ads__banner
-s.javn.tv##.cashfit-ads__container
-v5.sex30s.com###outer
-sexmy69.pro##div.float-ck:nth-child(9)
-sexchauau.link##.ads-full
-sexchauau.link##.xx-ads
-sexchauau.link##.ads-wrap
-sexchauau.link##.xx-ads-close
-sexchauau.link##.ad.header-ad.ads-full
-sexchauau.link##.xx-ads.catfish
-sexchauau.link##.ads-wrap
-phimsexsub.tel##.thongbaogoc.thongbao1
-phimsexsub.tel##.thongbaogoc.thongbao2
-jav.sexvietsub.moe##.nopop
-vl18.pro##.img-adv-x
-vl18.pro##.close-adv
-vl18.pro##.banner-adv
-vl18.pro##.banner-adv-center
-vl18.pro##.adv-box
-vl18.pro##.banner-preload
-vl18.pro##.banner-preload-container
-vl18.pro##.banner-preload-close
-sayhentai.one###hide_catfish
-sayhentai.one###catfish_content
-truyenvn.fit###banner-ad
-truyenvn.fit##div.wrap:first-child > div.body-wrap > div.aligncenter.ads-abc:nth-child(2)
-truyenvn.fit##.ads-abc
-truyenvn.fit##.ad
-truyenvn.fit##.c-ads
-lxmanga.life###mobile-catfish-2
-damconuongz.com###close-all-ads
-damconuongz.com###catfish-ad
-hentaiz.wiki###spu-2738
-3xsex.pro##.xx-ads
+/_BannerSlot.aspx$subdocument,domain=bongdaso66.net
+0.0.0.0 10.afs.googleadservices.com
+0.0.0.0 18.afs.googleadservices.com
+0.0.0.0 2.afs.googleadservices.com
+0.0.0.0 2mdn-cn.net
+0.0.0.0 4.afs.googleadservices.com
+0.0.0.0 accounts.doubleclick.net
+0.0.0.0 ad-apac.doubleclick.net
+0.0.0.0 ad-emea.doubleclick.net
+0.0.0.0 ad-g.doubleclick.net
+0.0.0.0 ad.au.doubleclick.net
+0.0.0.0 ad.bg.doubleclick.net
+0.0.0.0 ad.br.doubleclick.net
+0.0.0.0 ad.cl.doubleclick.net
+0.0.0.0 ad.cn.doubleclick.net
+0.0.0.0 ad.doubleclick.net
+0.0.0.0 ad.eg.doubleclick.net
+0.0.0.0 ad.es.doubleclick.net
+0.0.0.0 ad.fr.doubleclick.net
+0.0.0.0 ad.il.doubleclick.net
+0.0.0.0 ad.mo.doubleclick.net
+0.0.0.0 ad.nl.doubleclick.net
+0.0.0.0 ad.pl.doubleclick.net
+0.0.0.0 ad.sg.doubleclick.net
+0.0.0.0 ad.uk.doubleclick.net
+0.0.0.0 ad2.doubleclick.net
+0.0.0.0 adclick.g.doubleclick.net
+0.0.0.0 ade.googlesyndication.com
+0.0.0.0 admob-cn.com
+0.0.0.0 ads-bid.l.doubleclick.net
+0.0.0.0 ads.gmodules.com
+0.0.0.0 ads.google.com
+0.0.0.0 ads.youtube.com
+0.0.0.0 adservice.google.ca
+0.0.0.0 adservice.google.co.jp
+0.0.0.0 adservice.google.com
+0.0.0.0 adservice.google.com.hk
+0.0.0.0 adservice.google.com.sg
+0.0.0.0 adservice.google.com.tr
+0.0.0.0 adservice.google.com.vn
+0.0.0.0 adservice.google.de
+0.0.0.0 adx.g.doubleclick.net
+0.0.0.0 afs.googlesyndication.com
+0.0.0.0 alt2.googleanalytics.com
+0.0.0.0 alt4.googleanalytics.com
+0.0.0.0 analytics-alv.google.com
+0.0.0.0 analytics.google.com
+0.0.0.0 androidtvchannels-pa.googleapis.com
+0.0.0.0 androidtvwatsonfe-pa.googleapis.com
+0.0.0.0 apac.doubleclick.net
+0.0.0.0 bid.g.doubleclick.net
+0.0.0.0 buttons.googlesyndication.com
+0.0.0.0 click.google-analytics.com
+0.0.0.0 click.googleanalytics.com
+0.0.0.0 clientmetrics-pa.googleapis.com
+0.0.0.0 clouderrorreporting.googleapis.com
+0.0.0.0 cm.g.doubleclick.net
+0.0.0.0 crashlyticsreports-pa.googleapis.com
+0.0.0.0 dart-apac.l.doubleclick.net
+0.0.0.0 dart.l.doubleclick.net
+0.0.0.0 dfp.doubleclick.net
+0.0.0.0 dmp.doubleclick.net
+0.0.0.0 doubleclick-cn.net
+0.0.0.0 doubleclick.net
+0.0.0.0 dp.g.doubleclick.net
+0.0.0.0 dsengine.doubleclick.net
+0.0.0.0 emea.doubleclick.net
+0.0.0.0 feedads.g.doubleclick.net
+0.0.0.0 firebaselogging.googleapis.com
+0.0.0.0 fls.doubleclick.net
+0.0.0.0 fls.uk.doubleclick.net
+0.0.0.0 g.doubleclick.net
+0.0.0.0 gan.doubleclick.net
+0.0.0.0 google-analytics-cn.com
+0.0.0.0 google-analytics.com
+0.0.0.0 googleads-cn.com
+0.0.0.0 googleads.g.doubleclick.net
+0.0.0.0 googleads2.g.doubleclick.net
+0.0.0.0 googleads4.g.doubleclick.net
+0.0.0.0 googleadservices-cn.com
+0.0.0.0 googleadservices.com
+0.0.0.0 googleadsserving.cn
+0.0.0.0 googleanalytics.com
+0.0.0.0 googleoptimize-cn.com
+0.0.0.0 googleoptimize.com
+0.0.0.0 googlesyndication.com
+0.0.0.0 googletagmanager-cn.com
+0.0.0.0 googletagmanager.com
+0.0.0.0 googletagservices-cn.com
+0.0.0.0 googletagservices.com
+0.0.0.0 googlevads-cn.com
+0.0.0.0 ir.doubleclick.net
+0.0.0.0 iv.doubleclick.net
+0.0.0.0 l.doubleclick.net
+0.0.0.0 m.doubleclick.net
+0.0.0.0 mail-ads.google.com
+0.0.0.0 mediavisor.doubleclick.net
+0.0.0.0 mobile-displayads.l.doubleclick.net
+0.0.0.0 n4052ad.doubleclick.net
+0.0.0.0 n4403ad.doubleclick.net
+0.0.0.0 optimize.google.com
+0.0.0.0 pagead-googlehosted.l.google.com
+0.0.0.0 pagead-tpc.l.google.com
+0.0.0.0 pagead.l.doubleclick.net
+0.0.0.0 pagead.l.google.com
+0.0.0.0 pagead2.googleadservices.com
+0.0.0.0 pagead2.googlesyndication.com
+0.0.0.0 pagead46.googlesyndication.com
+0.0.0.0 pagead46.l.doubleclick.net
+0.0.0.0 partner.googleadservices.com
+0.0.0.0 partnerad.l.doubleclick.net
+0.0.0.0 partnerad.l.google.com
+0.0.0.0 partnerssl.googleadservices.com
+0.0.0.0 paypalssl.doubleclick.net
+0.0.0.0 pubads.g.doubleclick.net
+0.0.0.0 publisherportal.doubleclick.net
+0.0.0.0 region1.analytics.google.com
+0.0.0.0 region1.google-analytics.com
+0.0.0.0 reportcentral.doubleclick.net
+0.0.0.0 s0.doubleclick.net
+0.0.0.0 s1.doubleclick.net
+0.0.0.0 sandbox.google-analytics.com
+0.0.0.0 sandbox.googleanalytics.com
+0.0.0.0 secureframe.doubleclick.net
+0.0.0.0 securepubads.g.doubleclick.net
+0.0.0.0 ssl-google-analytics.l.google.com
+0.0.0.0 ssl.google-analytics.com
+0.0.0.0 ssl.googleanalytics.com
+0.0.0.0 static-doubleclick-net.l.google.com
+0.0.0.0 static.doubleclick.net
+0.0.0.0 stats.g.doubleclick.net
+0.0.0.0 stats.l.doubleclick.net
+0.0.0.0 survey.g.doubleclick.net
+0.0.0.0 tpc.googlesyndication.com
+0.0.0.0 tpcnc.googlesyndication.com
+0.0.0.0 undefined.fls.doubleclick.net
+0.0.0.0 video-ad-stats.googlesyndication.com
+0.0.0.0 www-alv.google-analytics.com
+0.0.0.0 www-google-analytics.l.google.com
+0.0.0.0 www-googletagmanager.l.google.com
+0.0.0.0 www.doubleclick.net
+0.0.0.0 www.google-analytics.com
+0.0.0.0 www.googleadservices.com
+0.0.0.0 www.googleanalytics.com
+0.0.0.0 www.googleoptimize.com
+0.0.0.0 www.googletagmanager.com
+0.0.0.0 www.googletagservices.com
+0.0.0.0 www3.doubleclick.net
+123host.vn##.bg-light.text-center.overflow-hidden.position-relative
+3x.sexkhongchehd.com###ads-js
+3x.sexkhongchehd.com###menu-header
+3x.sexkhongchehd.com##.ios-header
 3xsex.pro##.ads-header
+3xsex.pro##.ads-mobile
 3xsex.pro##.ads-pc
 3xsex.pro##.hiadu
-3xsex.pro##.ads-mobile
-trangsexhay.net##.catfish-bottom
-trangsexhay.net##.banner-catfish-bottom
-heovl.blog##div#sticky-top-ads
-heovl.blog##button.close-ads-btn
-hentaivn.vin###banner-ad
-hentaivn.vin##.ads-abc
-hentaivn.vin##.ad
-hentaivn.vin##.c-ads
-hentaivn.vin##.footer-ads
-sexhihi.mobi##.xx-ads
-sexhihi.mobi##.ads-header
-sexhihi.mobi##.ads-pc
-sexhihi.mobi##.ads-mobile
-sexhihi.mobi##.ads-wrap
-sexhihi.mobi##.xx-ads-close
-sexhihi.mobi##.xx-ads.ads-mobile.ads-header
-sexhihi.mobi##.xx-ads.ads-pc.ads-header
-sexhihi.mobi##.ads-wrap
-sexhihi.mobi##.xx-ads-close
-sexhihi.mobi##.hiadu
-3x.sexkhongchehd.com##.ios-header
-3x.sexkhongchehd.com###menu-header
-3x.sexkhongchehd.com###ads-js
-##[href^="https://www.i9017.com/"]
-avvietsub.info###ds_top
-avvietsub.info##.hidden-md.right.col-3
-avvietsub.info##body>.container>div
-bimmup.net###popup-giua-man-hinh
-bimmup.net##.ads_below_player
-cliphot69.sbs###custom_html-42
-cliphotvn69.com,mobiblogz.me,cliphot69.sbs,phevkl.vc,gvnvh18.com,topviet69.com,sayhentai.one,viet69.cx##.float-ck-center-lt
-damconuong.pro##.pc-catfixx
-damconuong.pro##a[rel="nofollow"]
-dualeotruyenceo.com##[id$="bnr"]
-filemoon.sx##body>[style*="position: fixed;"]
-full.cliphot69.live###mp-preload-pp-overlay
-full.cliphot69.live##.adpl
-fullcliphot.com##.banner-ads
-fullcliphot.com##div#recent-content:nth-of-type(1)
-fullcliphot.com,fulllivehot.com##.popup
-fulllivehot.com##.cashfish
-gockhuat.net###ad_global_below_navbar
-hentaihvn.tv##.qx_135
-hentaivn.blog###catfish
-hentaivn.blog##.wppopups-whole
-heo69.moe,damsextv.pro##.catfix
-javfc2.net##.pum-overlay
-javhay.my##.v4j-header>center
-javhd.shop,vlxxai.net,heovlvn.net,javhd.social,sexsoc.info##.hd-tube-desktop
-javhd.shop,vlxxai.net,heovlvn.net,javhd.social,sexsoc.info##.hd-tube-mobile
-javhd.tech###AgeModal
-javtiful.com###latest-censored-videos>.row>div.pb-3.col:nth-of-type(1)
-javtiful.com##.v3sb-box
-javtopxx.com##.cat-fish.a-play
-javtopxx.com##.overlay
-lxmanga.online##.ads-wrapper
-lxmanga.online##.sticky-x-button
-lxmanga.online##div.sticky-footer.hidden-mb
-lxmanga.online##div#pc-catfish-2
-m.phimsexdacbiet.pro,sexgaidep69.pro,sexabc.us##.quangcaomobile
-nasz-pobor.pl##.code-block
-ngaytho.me##.body_wrapper1
-nhentaivn.online###popup_fi
-phevkl.vc##.separator
-phevkl.vc,viet69.bio###mp-preload-popup-overlay
-phevkl.vc,viet69.cx###preload
-phim18hd.sex##.cash-fish
-phim18hd.sex##.cash-fish-pc
-phim18hd.sex##.preload-pc
-phim18hd.sex##.top-mobile-banner
-phim18hd.sex##.under-player-pc-banner
-phimsexhay669.pro##.v4j-header>a[target="_blank"]
-phym18.lol##.black-layout>div:nth-child(2)
-phym18.lol##.popup_u
-phym18.lol##div[style^="position: absolute;top: 0;"]
-phym18.lol,nhentaivn.online,avvietsub.info###backgroundPopupp
-phym18.lol,nhentaivn.online,avvietsub.info###popupContact
-phym18.lol,nhentaivn.online,avvietsub.info,phimsexsub.xyz###wap_bottombanner
-play.anh.moe##.btm_bar
-rphang.zip##.bbMediaWrapper-inner>.samCodeUnit
-rphang.zip##.js-replyNewMessageContainer.block-body>div.samCodeUnit>.samItem
-rphang.zip##.p-footer
-rphang.zip##.samVideoOverlay
-rphang.zip,phim18vip.vip,checkgaigoi8.cc,sex.sieudamtv.biz##.float-ck
-sex.chichnhau.me##.in.fade.modal-backdrop
-sex.chichnhau.me,sex.sieudamtv.biz###pc-preload-modal
-sex.chichnhau.me,sex.sieudamtv.biz###popup
-sex.sieudamtv.biz##.quang-cao
-sexhd88.live##.classvi
-sexhd88.live##.elementor-section-height-default.elementor-section-boxed.elementor-element-e601265.elementor-element.elementor-top-section.elementor-section
-sexsub.pro##.v4j-watch-1.v4j-content
-sexsub.pro##body>div[class]
-sexviet1.me##.preload
-sexvietco.net,javhd.tech,viet69new.net,sexheovl.com,sexvip1z.net,heovlvn.net,vlxxai.net,javhd.social,sexsoc.info###f186fb23a33995d91ce3c2212189178c8
-sexvn2024.pro###tut4ktream_idAdLink
-sieukhungz.org##.adspopupgiua
-sieukhungz.org##.adspopupleft
-sieukhungz.org##.adspopupright
-sieukhungz.org##.float-ckgiua
-truyen18.one##.a-header
-truyen18.one##.apu
-truyen18.one##.header
-truyenfull.io###shoppe_ads_fly
-truyensextv.com,lxmanga.life##.sticky-footer
-tuoi69.my##.v4j-header.v4j-content
-tuoi69zz.xyz###bar_float_r
-tuoi69zz.xyz##.quangcaomb
-tuoinung.men###hide_float_right
-tut4ktream.online###idAdLink
-vailonxx.vip###adsbottom
-vailonxx.vip##.happy-under-player
-vailonxx.vip##.vailo-sticky
-vailonxx.vip##.vailo-under-navbar
-vailonxx.vip##.vailo-under-navbar-mobile
-viet69.cx##.popup-overlay
-viet69.zip##.footer-fixed-br-container
-viet69new.net,sexheovl.com,sexvip1z.net,heovlvn.net##.w1e48c4420b7073bc11916c6c1de226bb
-vietxxx.club##.v4j-watch-1.v4j-content>center
-vl.phe.to##.sdzhead
-vl.phe.to,xem.sex-sub.com###divExoLayerWrapper
-vlxx.mx###adx
-vlxx.mx##.banner-preload
-vlxx.mx##.catfish-top
-vlxx.mx##.ff-banner
-vlxx.mx##div.banner-catfish-bottom
-vlxx.mx###banner-preload
-vlxx.mx###banner-preload-container
-vlxx.mx###banner-preload-close
-vlxx.mx###catfish-bottom
-vlxx.mx###banner-catfish-bottom
-vlxx.mx###catfish-bottom-close
-vlxx.mx###catfish-top
-vlxx.mx###banner-catfish-top
-vlxx.mx###catfish-top-close
-vlxx.mx###vl-header-adx
-vlxx.mx,javtopxx.com##.ads
-vlxx.mx,xemphimsex3x.net##.catfish-bottom
-vlxyz.tube,xmupvl.net##.xx-ads
-vn.javbabe.net##.b-player
-vn.phym18.lol##div#bnads
-www.buomtv.vip##._9xtpcl.c4je67d.c1qs0lzc.c1hrlkpu.cc2icwl.c1i0iccj.cfd18df
-www.buomtv.vip##._9xtpcl.e1e6v8dt
-www.buomtv.vip##.blbew80
-www.buomtv.vip##.llnefd1
-www.buomtv.vip##.lpp0nsn
-www.buomtv.vip##.luq51lg.a13wihj
-www.buomtv.vip##.pointer-events-auto.block
-www.buomtv.vip##.zbgpvb19.zbgpvb16.zbgpvbj.zbgpvbh.zbgpvbg.zbgpvbf.zbgpvbe.zbgpvb1
-www.gaingon18.me###iklan-atas-wrapper
-www.vlxxhot.net##.adx1
-www.vlxxhot.net,vailonxx.vip###ab_ctl
-www.vlxxhot.net,vailonxx.vip##.bannerads
-xem.javkche.info##[onclick^="__a.hide"]
-xem.javkche.info##div:has([class$="-modal"])
-xem.sex-sub.com##.banner-catfish-bottom
-xx.ditnhauvietnam.com,javhdvip.net##.alldiv ~ div[class]
-youtubeporn.pro##div[style^="position:fixed;inset:0px;z-index:100000;"]
-youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
-!--------Element Hiding Exception--------------
+3xsex.pro##.xx-ads
+@@||ads-twitter.com/uwt.js$domain=factory.pixiv.net
 @@||blog.yopo.vn$generichide
 @@||cotuong.top$generichide
 @@||covua.top$generichide
@@ -899,193 +278,814 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 @@||misskon.com$generichide
 @@||mod.lnpchannel.com$generichide
 @@||molympiad.net$generichide
+@@||music.youtube.com^$generichide
 @@||romgoc.net$generichide
 @@||tainhanhvn.com$generichide
 @@||traderviet.tv$generichide
 @@||truyenaudiocv.org$generichide
+@@||tv.youtube.com^$generichide
 @@||vn-z.vn$generichide
+@@||voz.vn/u/adx.$xmlhttprequest
 @@||web1s.asia$generichide
 @@||web1s.com$generichide
 @@||windowslite.net$generichide
 @@||www.taimods.com$generichide
 @@||www.tiengnhatdongian.com$generichide
+@@||www.youtube.com^$generichide
 @@||ycongnghe.com$generichide
 @@||yhocdata.com$generichide
+@@||youtube.com/get_video_info?$xmlhttprequest,domain=music.youtube.com|tv.youtube.com
+ads.google.com,youtube.com#@#.video-ads
+animehay.de##div[style*="position: absolute; bottom: 100%; right: 1px; background: rgb(161, 90, 90); padding: 5px 10px;"]
+animevietsub.ink##[href="javascript:hide_catfix()"]
+animevietsub.tube###hide_catfix
+animevietsub.tube###hide_catfix > a
+animevietsub.tube###invideo_wrapper
+animevietsub.tube###mobile-catfixx
+animevietsub.tube###mobile-catfixx > div.mb_catfix_adv:last-child
+animevietsub.tube###Tp-Wp > div.Body.Container:nth-child(2) > div.Content > div.Adv.ad-center-header:nth-child(2) > div.header-ads-mobile
+animevietsub.tube###Tp-Wp > div.Body.Container:nth-child(2) > div.Content > div.TpRwCont:last-child > main:first-child > div.Ads.ads_player:first-child
+animevietsub.tube###Tp-Wp > div.Body.Container:nth-child(2) > div.Content > div.TpRwCont:last-child > main:first-child > div.Ads.bellow_ads_player:nth-child(3) > div.below-playerm
+animevietsub.tube###watch-block > div.Ads.bellow_ads_player:nth-child(4) > div.below-playerm
+animevietsub.tube##.ad-center-header
+animevietsub.tube##.Ads
+animevietsub.tube##.Ads
+animevietsub.tube##.ads-300
+animevietsub.tube##.adsbygoogle
+animevietsub.tube##.adsbygoogle-noablate
+animevietsub.tube##.adsbygoogle.adsbygoogle-noablate
+animevietsub.tube##.Adv
+animevietsub.tube##.BgA
+animevietsub.tube##.EcBgA
+animevietsub.tube##.Header
+animevietsub.tube##.header-ads-mobile
+animevietsub.tube##.home_ads
+animevietsub.tube##.mb_catfix_adv
+animevietsub.tube##.mb_catfix_adv
+animevietsub.tube##.mobile-catfixx
+animevietsub.tube##.mobile-catfixx
+animevietsub.tube,tiemsachhay.net##.pc-catfixx
+animevietsubs.net##[href="javascript:hide_catfish();"]
+animew.org##div.py-2.md\:py-6.mx-auto.w-full.max-w-screen-3xl>div.relative
+anivn.club###quang-cao
+api.anime3s.com,live4.xoilac34.org,zphim18.net,freeplayervideo.com,abysscdn.com,player-cdn.com,geoip.redirect-ads.com,watch.rkplayer.xyz,animevietsub.tube,phimss.net,fdcdn.xyz,cloudasiatv.xyz##.jw-logo
+avvietsub.info###ds_top
+avvietsub.info##.hidden-md.right.col-3
+avvietsub.info##body>.container>div
+bimmup.net###popup-giua-man-hinh
+bimmup.net##.ads_below_player
+boctem.com###freebie
+boctem.com###popup-giua-man-hinh
+boctem.com##div.modal-backdrop.fade.in:last-child
+client.pylexnodes.net###stickyfooterad
+cliphot69.sbs###custom_html-42
+cliphotvn69.com,mobiblogz.me,cliphot69.sbs,phevkl.vc,gvnvh18.com,topviet69.com,sayhentai.one,viet69.cx##.float-ck-center-lt
+codebeautify.org###adBlockerShare
+damconuong.pro##.pc-catfixx
+damconuong.pro##a[rel="nofollow"]
+damconuongz.com###catfish-ad
+damconuongz.com###close-all-ads
+dualeotruyenceo.com##[id$="bnr"]
+filemoon.sx##body>[style*="position: fixed;"]
+free.pylexnodes.net###stickyfooterad
+free.pylexnodes.net##.byOWBE.SettingsContainer___StyledTitledGreyBox-sc-1e5ycmz-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.byUBMH.ServerActivityLogContainer___StyledDiv-sc-1vvgkxn-0
+free.pylexnodes.net##.cUNjQr.UsersContainer___StyledDiv-sc-rg2v3f-1
+free.pylexnodes.net##.egOIEL.BackupContainer___StyledDiv-sc-1vjo0fh-1
+free.pylexnodes.net##.euuynw.ServerConsoleContainer___StyledDiv-sc-1jk042-0
+free.pylexnodes.net##.eZeGkS.ServerConsoleContainer___StyledTitledGreyBox2-sc-1jk042-3.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.fnKhuh.NetworkContainer___StyledDiv-sc-1covx0t-0
+free.pylexnodes.net##.gfJGPm.ScheduleContainer___StyledTitledGreyBox-sc-dlqnx9-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.gyZswY.FileManagerContainer___StyledTitledGreyBox2-sc-1ehiwhq-7.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.hbztpF.DatabasesContainer___StyledTitledGreyBox-sc-1hfwugg-1.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.hQgnbz.FileManagerContainer___StyledTitledGreyBox-sc-1ehiwhq-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.jqxwfQ.StartupContainer___StyledTitledGreyBox-sc-163imy2-1.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+free.pylexnodes.net##.RStZC.AccountOverviewContainer___StyledTitledGreyBox-sc-12to0iy-3.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
+full.cliphot69.live###mp-preload-pp-overlay
+full.cliphot69.live##.adpl
+fullcliphot.com##.banner-ads
+fullcliphot.com##div#recent-content:nth-of-type(1)
+fullcliphot.com,fulllivehot.com##.popup
+fulllivehot.com##.cashfish
 game24h.vn#@#.adsbyvli
 gicovietnam.blogspot.com#@#.inline-ad
+gockhuat.net###ad_global_below_navbar
+greasyfork.org##.ad
+greasyfork.org##.ad-content
+greasyfork.org##.ad-ga
+greasyfork.org##.ad-sidebar-180-150
+greasyfork.org##.adbox300
+greasyfork.org##.adsbygoogle
+greasyfork.org##.adsbygoogle-noablate
+greasyfork.org##.ads_mpu_small
+greasyfork.org##.related_post_google_ad
+greasyfork.org##.sidebar-header-ads
+hay-sex.pro##div.catfish-bottom:nth-child(10)
+hayanime.info###antiblocker
+hayanime.info###antiblocker_underplayer
+haysex3xyz.net##.catfish-bottom
+hentaicube.xyz###ban-top-mb
+hentaicube.xyz###ban-top-pc
+hentaicube.xyz###mb-catfish
+hentaicube.xyz###pc-catfish
+hentaicube.xyz##.sticky-mb-footer-content
+hentaicube.xyz##.sticky-pc-footer-content
+hentaihvn.tv##.qx_135
+hentaivl.icu##.float-ck
+hentaivn.blog###catfish
+hentaivn.blog##.wppopups-whole
+hentaivn.love###hide_catfish
+hentaivn.love##.spu-container
+hentaivn.love##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
+hentaivn.love##.wppopups-whole
+hentaivn.vin###banner-ad
+hentaivn.vin##.ad
+hentaivn.vin##.ads-abc
+hentaivn.vin##.c-ads
+hentaivn.vin##.footer-ads
+hentaivn.wiki##[href="javascript:hide_catfish();"]
+hentaiz.wiki###spu-2738
+heo69.moe,damsextv.pro##.catfix
+heovl.blog##button.close-ads-btn
+heovl.blog##div#sticky-top-ads
+hh3d.biz###ad-floating-left
+hh3d.biz###ad-floating-right
+hh3d.biz###box_ads
+hh3d.biz###catfish
+hh3d.biz###catfishads
+hh3d.biz###header-ads
+hh3d.biz##.closecf
+hhninja.xyz###header-ads
+hhninja.xyz###header-ads
+hhpanda.info###ad_close_popup2
+hhpanda.info###overlay
+hhpanda.info##.underplayer_btn
+hhpanda.tube###footer_fixed_ads > div.banner-sticky-footer-wrapper
+hhpanda.tube###overlay > div.overlay_content
+hhpanda.tube###top_addd
+hhpanda.tube##div.container:nth-child(3) > div.row:last-child > div.underplayer_btn:nth-child(5)
+hhvsub.com,hhtrungquoc6.com,hhninja.xyz,hentaiz.wiki###catfish
 ios.codevn.net#@#div[id*="ScriptRoot"]
 ios.codevn.net,ipacrack.com#@#ins.adsbygoogle[data-ad-slot]
+ipauniverse.com##.adsbygoogle
+ipauniverse.com##.adsbygoogle-noablate
+jav.sexvietsub.moe##.nopop
+javfc2.net##.pum-overlay
+javhay.my##.v4j-header>center
+javhd.shop,vlxxai.net,heovlvn.net,javhd.social,sexsoc.info##.hd-tube-desktop
+javhd.shop,vlxxai.net,heovlvn.net,javhd.social,sexsoc.info##.hd-tube-mobile
+javhd.tech###AgeModal
+javtiful.com###latest-censored-videos>.row>div.pb-3.col:nth-of-type(1)
+javtiful.com##.v3sb-box
+javtopxx.com##.cat-fish.a-play
+javtopxx.com##.overlay
 ket-noi.com#@##adcontent
+lxmanga.life###mobile-catfish-2
+lxmanga.online##.ads-wrapper
+lxmanga.online##.sticky-x-button
+lxmanga.online##div#pc-catfish-2
+lxmanga.online##div.sticky-footer.hidden-mb
+lxmanga.site###pc-catfish-1 > .sticky-pc-footer-content.sticky-footer-content > .sticky-x-button
+lxmanga.site###pc-catfish-2 > .sticky-pc-footer-content.sticky-footer-content > .sticky-x-button
+lxmanga.site##[href="https://154.82.109.161/1534640.html"] > [src="https://lxmanga.site/ads/400x300.jpg"]
+lxmanga.store###mobile-catfish-1 > .sticky-footer-content > .sticky-x-button
+lxmanga.store###mobile-catfish-2
+m.blogtruyenmoi.com##div:nth-child(16)
+m.blogtruyenmoi.com##div:nth-child(17)
+m.blogtruyenmoi.com##div:nth-child(18)
+m.phimsexdacbiet.pro,sexgaidep69.pro,sexabc.us##.quangcaomobile
+m.youtube.com##lazy-list > ad-slot-renderer
+m.youtube.com##ytm-companion-slot[data-content-type] > ytm-companion-ad-renderer
+m.youtube.com##ytm-rich-item-renderer > ad-slot-renderer
+manwa.me###detail > div:nth-child(3) > div:last-child > p:last-child > a > img
+manwa.me##div.main-content:first-child > div.footer:nth-child(14) > div.custom-ad-area.ad-area.ad-area-fix-bottom:first-child
+metruyencv.info,metruyencv.net,metruyencv.com###js-read-body>.text-center.pb-3
+metruyencv.info,metruyencv.net,metruyencv.com###js-read__body + .mt-3
+metruyencv.info,metruyencv.net,metruyencv.com##.nh-read__alert
+metruyencv.info,metruyencv.net,metruyencv.com##section.nh-section:nth-of-type(5)
+metruyencv.info,metruyencv.net,metruyencv.com##[href$="/goout/lazada"]
+metruyencv.info,metruyencv.net,metruyencv.com#?#.text-center:-abp-has(small:-abp-contains(QUẢNG CÁO))
+mkomsel.com##.space-y-4.text-center > div > .text-gray-400 > small > em
+mkomsel.com##.space-y-6.rounded-lg.lg\:px-8.p-6.border > div.text-gray-400.text-center > small > em
+mkomsel.com##div.text-gray-400.text-center:nth-of-type(1)
+nasz-pobor.pl##.code-block
+ngaytho.me##.body_wrapper1
+nhentaivn.online###popup_fi
 nhipcaudautu.vn#@#.ads_top
+nungsex.pro##.catfish-top
+obfuscator.io##.adsbygoogle
+phe18.vip##.adx1
+phevkl.vc##.separator
+phevkl.vc,viet69.bio###mp-preload-popup-overlay
+phevkl.vc,viet69.cx###preload
+phim18hd.sex##.cash-fish
+phim18hd.sex##.cash-fish-pc
+phim18hd.sex##.preload-pc
+phim18hd.sex##.top-mobile-banner
+phim18hd.sex##.under-player-pc-banner
+phimhayxxx.pro##.float-ck
+phimmoi.club###floating_ads_bottom_textcss_container
+phimmoi.club##.module_home_ads
+phimmoi.gay###catfish
+phimmoi.sale###floating_ads_bottom_textcss_ad
+phimmoi.sale###floating_ads_bottom_textcss_close
+phimmoi.sale###floating_ads_bottom_textcss_container
+phimmoi.sale###floating_ads_bottom_textcss_wrap
+phimmoi.sale###floating_ads_bottom_textcss_x
+phimmoi.sale##.module_home_ads
+phimmoichill.biz##[href="javascript:an_catfish()"]
+phimmoichill3.net###an_catfish
+phimmoichill3.net###headermbads
+phimmoichill3.net###headerpcads
+phimmoichill3.net###mobiads
+phimmoichill3.net###pcads
+phimmoichill3.net###pm_quangcao
+phimmoichill3.net##.gnarty-offads
+phimmoichillz.cc###preload
+phimmoichillz.cc##.close_ad
+phimmoiday.net###content > div.clearfix.wrap-content > a:nth-child(13) > img
+phimmoiday.net###floating_ads_bottom_textcss_container
+phimmoiday.net##div.container:nth-child(3)
+phimmoii.org##.class-hinh-anh
+phimmoii.org##.float-ck-center-lt
+phimmoiiii.net###contenedor > div.module_home_ads
+phimmoiiii.net###floating_ads_bottom_textcss_ad
+phimmoiiii.net###floating_ads_bottom_textcss_x
+phimsex18a.net##.happy-header
+phimsex18a.net##.happy-top-player
+phimsexchaua.net##.catfish-bottom
+phimsexchaua.top##.catfish-bottom
+phimsexdidong.net##.catfish-bottom
+phimsexhay1s.net##.happy-header
+phimsexhay669.pro##.v4j-header>a[target="_blank"]
+phimsexheo3x.com##.catfish-bottom
+phimsexlonto.net##.catfish-bottom
+phimsexsub.app##.thongbao2.thongbaogoc
+phimsexsub.tel##.thongbaogoc.thongbao1
+phimsexsub.tel##.thongbaogoc.thongbao2
+phimsextoy.net##.catfish-bottom
+phym18.lol##.black-layout>div:nth-child(2)
+phym18.lol##.popup_u
+phym18.lol##div[style^="position: absolute;top: 0;"]
+phym18.lol,nhentaivn.online,avvietsub.info###backgroundPopupp
+phym18.lol,nhentaivn.online,avvietsub.info###popupContact
+phym18.lol,nhentaivn.online,avvietsub.info,phimsexsub.xyz###wap_bottombanner
+pixiv.net##.ad-footer
+pixiv.net##.ad-frame-container
+pixiv.net##.ad-mobile-anchor
+pixiv.net##div[id^="adsdk-"]
+pixiv.net##div[style="font-size: 0px;"] a[target="premium_noads"]
+pixiv.net##div[style="height: 540px; opacity: 1;"]
+pixiv.net##iframe[height="300"][name="responsive"]
+pixiv.net##iframe[height="520"][name="expandedFooter"]
+pixiv.net##iframe[width="300"][height="250"]
+play.anh.moe##.btm_bar
 pops.vn#@##adsContainer
 pops.vn#@#.ad-placement
+rphang.zip##.bbMediaWrapper-inner>.samCodeUnit
+rphang.zip##.js-replyNewMessageContainer.block-body>div.samCodeUnit>.samItem
+rphang.zip##.p-footer
+rphang.zip##.samVideoOverlay
+rphang.zip,phim18vip.vip,checkgaigoi8.cc,sex.sieudamtv.biz##.float-ck
+s.javn.tv##.cashfit-ads__banner
+s.javn.tv##.cashfit-ads__container
+s.javn.tv##.close-btn
+s4paad.factsninfo.com###main > .mb-3
+s4paad.factsninfo.com###td_3733
+s4paad.factsninfo.com###td_tpc > .mb-3
+s4paad.factsninfo.com##.bottom-ad-parent.tac.bottom
+s4paad.factsninfo.com##.pds
+s4paad.factsninfo.com##.s2
+s4paad.factsninfo.com##div.signature > table
+sayhentai.one###catfish_content
+sayhentai.one###hide_catfish
+sex.chichnhau.me##.in.fade.modal-backdrop
+sex.chichnhau.me,sex.sieudamtv.biz###pc-preload-modal
+sex.chichnhau.me,sex.sieudamtv.biz###popup
+sex.sieudamtv.biz##.quang-cao
+sexchauau.link##.ad.header-ad.ads-full
+sexchauau.link##.ads-full
+sexchauau.link##.ads-wrap
+sexchauau.link##.ads-wrap
+sexchauau.link##.xx-ads
+sexchauau.link##.xx-ads-close
+sexchauau.link##.xx-ads.catfish
+sexhd88.live##.classvi
+sexhd88.live##.elementor-section-height-default.elementor-section-boxed.elementor-element-e601265.elementor-element.elementor-top-section.elementor-section
+sexhihi.mobi##.ads-header
+sexhihi.mobi##.ads-mobile
+sexhihi.mobi##.ads-pc
+sexhihi.mobi##.ads-wrap
+sexhihi.mobi##.ads-wrap
+sexhihi.mobi##.hiadu
+sexhihi.mobi##.xx-ads
+sexhihi.mobi##.xx-ads-close
+sexhihi.mobi##.xx-ads-close
+sexhihi.mobi##.xx-ads.ads-mobile.ads-header
+sexhihi.mobi##.xx-ads.ads-pc.ads-header
+sexmy69.pro##div.float-ck:nth-child(9)
+sexsub.pro##.v4j-watch-1.v4j-content
+sexsub.pro##body>div[class]
+sexviet1.me##.preload
+sexvietco.net,javhd.tech,viet69new.net,sexheovl.com,sexvip1z.net,heovlvn.net,vlxxai.net,javhd.social,sexsoc.info###f186fb23a33995d91ce3c2212189178c8
+sexvn2024.pro###tut4ktream_idAdLink
+sieukhungz.org##.adspopupgiua
+sieukhungz.org##.adspopupleft
+sieukhungz.org##.adspopupright
+sieukhungz.org##.float-ckgiua
+smartjobalert.in###overlay
+smartjobalert.in##.jhfdiuh0.BR-Footer-Ads
 thanhnien.vn#@#.imageads
+thongtintruyen.com###pc-catfixx
+thund.hindimeguru.com###gads
+tienichhay.net###adsbygoogle-fix
+tienichhay.net##.adsbygoogle
+tienichhay.net##.adsbygoogle-ablated-ad-slot
+tienichhay.net##.adsbygoogle-noablate
 timvanban.vn#@##ad-slot
+toptruyenviet.info##.adsbygoogle
+toptruyenviet.info##.advertisement
+toptruyenviet.info##.advertisement.visible-mobile
+trangsexhay.net##.banner-catfish-bottom
+trangsexhay.net##.catfish-bottom
 tratu.soha.vn#@#.adheader
+truyen18.one##.a-header
+truyen18.one##.apu
+truyen18.one##.header
 truyenaudiocv.org#@#.ads-large
+truyenfull.io###ads-flyicon
+truyenfull.io###ads-install-app
+truyenfull.io###ads-lien-quan-0
+truyenfull.io###ads-lien-quan-1
+truyenfull.io###ads-lien-quan-2
+truyenfull.io###ads-lien-quan-3
+truyenfull.io###ads-lien-quan-4
+truyenfull.io###ads-lien-quan-6
+truyenfull.io###ads-xuyentrang-bottom
+truyenfull.io###banner-bio-link
+truyenfull.io###banner_image_home
+truyenfull.io###header-ads
+truyenfull.io###header-ads-full
+truyenfull.io###iads-63bbeb608afa7d190035bd33
+truyenfull.io###shoppe_ads_fly
+truyenfull.io###truyen-ads-full
+truyenfull.io###truyen-ads-hot
+truyenfull.io###_admDivFlashdt
+truyenfull.io##.ads-chapter-bottom-lien-quan
+truyenfull.io##.ads-iads
+truyenfull.io##.ads-lien-quan
+truyenfull.io##.ads-responsive
+truyenfull.io##.badge
+truyenfull.io##.branch-banner-content
+truyenfull.io##.fade
+truyenfull.io##.header-ads
+truyenfull.io##.header-ads-full
+truyenfull.io##.iads-all-content
+truyenfull.io##.iads-body
+truyenfull.io##.iads-box-ads
+truyenfull.io##.iads-head
+truyenfull.io##.iads-head-title
+truyenfull.io##.iads-img
+truyenfull.io##.iads-item-ad
+truyenfull.io##.iads-item-content
+truyenfull.io##.iads-link-ads
+truyenfull.io##.iads-url-go-to
+truyenfull.io##.smf-ads-box
+truyenfull.tv##.ads
+truyenqqto.com###ad_info_top
+truyenqqto.com###__clb-2041479_1_container
+truyenqqto.com##.banner
+truyenqqto.com##.catfish-content
+truyenqqto.com##.mobile-image
+truyenqqto.com##div#ad_info:nth-of-type(3)
+truyenqqto.com##div.justify-content-center.align-items-center.d-flex > .ads-banner
+truyensextv.com,lxmanga.life##.sticky-footer
+truyenvn.fit###banner-ad
+truyenvn.fit##.ad
+truyenvn.fit##.ads-abc
+truyenvn.fit##.c-ads
+truyenvn.fit##div.wrap:first-child > div.body-wrap > div.aligncenter.ads-abc:nth-child(2)
+truyenvn.wiki###banner-ad
+tuoi69.my##.v4j-header.v4j-content
+tuoi69zz.xyz###bar_float_r
+tuoi69zz.xyz##.quangcaomb
+tuoinung.men###hide_float_right
+tut4ktream.online###idAdLink
+v5.sex30s.com###outer
+vailonxx.vip###adsbottom
+vailonxx.vip##.banner-preload
+vailonxx.vip##.banner-preload-container
+vailonxx.vip##.happy-under-player
+vailonxx.vip##.vailo-sticky
+vailonxx.vip##.vailo-under-navbar
+vailonxx.vip##.vailo-under-navbar-mobile
+viet69.cx##.popup-overlay
+viet69.name,ungtycomicsvip.com,vlxx.mobi,dualeotruyenbi.com,yurineko.net,vlxyz.tube,javhay.click,phimsexhay669.pro,cliphot69.blog,doctruyen3qtv.pro,hentaizz.biz,heo69.moe,top1sex.club,sexmup18.com,hentaivn.today,streamvl.top,www.buomtv.vip,truyenvn.cam,cdnstream.sbs,javtiful.com,truyengihotdo.net,truyengihotzay.net,truyengihotnha.com,truyengihotnha.net,truyengihotqua.net,truyengihotqua.com,truyengihotnay.com,sexvn.tuoi69s.com,quatvn.baby,tenmientruyengi.net,topviet69.com,phim18hd.sex,live.sexviet88.dev,sexnhe.biz,demo.14412882.com,sexphimhd.vip,ungtycomicsvip.net,vn.cliphot69.live,hhtq5.vip,sayhentai.one,sexdiary.club#%#//scriptlet("abort-current-inline-script", "WebAssembly", "instantiate")
+viet69.zip##.footer-fixed-br-container
+viet69new.net,sexheovl.com,sexvip1z.net,heovlvn.net##.w1e48c4420b7073bc11916c6c1de226bb
+vietxxx.club##.v4j-watch-1.v4j-content>center
+vl.phe.to##.sdzhead
+vl.phe.to,xem.sex-sub.com###divExoLayerWrapper
+vl18.pro##.adv-box
+vl18.pro##.banner-adv
+vl18.pro##.banner-adv-center
+vl18.pro##.banner-preload
+vl18.pro##.banner-preload-close
+vl18.pro##.banner-preload-container
+vl18.pro##.close-adv
+vl18.pro##.img-adv-x
+vlxx.mx###adx
+vlxx.mx###banner-catfish-bottom
+vlxx.mx###banner-catfish-top
+vlxx.mx###banner-preload
+vlxx.mx###banner-preload-close
+vlxx.mx###banner-preload-container
+vlxx.mx###catfish-bottom
+vlxx.mx###catfish-bottom-close
+vlxx.mx###catfish-top
+vlxx.mx###catfish-top-close
+vlxx.mx###vl-header-adx
+vlxx.mx##.banner-preload
+vlxx.mx##.catfish-top
+vlxx.mx##.ff-banner
+vlxx.mx##div.banner-catfish-bottom
+vlxx.mx,javtopxx.com##.ads
+vlxx.mx,xemphimsex3x.net##.catfish-bottom
+vlxx.pet###home-top > center > [src="about:blank"]
+vlxx.pet##.blockrow.block > center > [src="about:blank"]
+vlxx.pet##.movie-info-block > center
+vlxx.pet##center:nth-of-type(1)
+vlxxcom.org##.float-ck
+vlxyz.tube,xmupvl.net##.xx-ads
+vn.javbabe.net##.b-player
+vn.phym18.lol##div#bnads
 vn2.vn#@#.advertiser
 vndoc.com#@#.showads
-#[doubleclick.net]
-0.0.0.0 doubleclick.net
-0.0.0.0 accounts.doubleclick.net
-0.0.0.0 ad.au.doubleclick.net
-0.0.0.0 ad.bg.doubleclick.net
-0.0.0.0 ad.br.doubleclick.net
-0.0.0.0 ad.cl.doubleclick.net
-0.0.0.0 ad.cn.doubleclick.net
-0.0.0.0 ad.doubleclick.net
-0.0.0.0 ad.eg.doubleclick.net
-0.0.0.0 ad.es.doubleclick.net
-0.0.0.0 ad.fr.doubleclick.net
-0.0.0.0 ad.il.doubleclick.net
-0.0.0.0 ad.mo.doubleclick.net
-0.0.0.0 ad.nl.doubleclick.net
-0.0.0.0 ad.pl.doubleclick.net
-0.0.0.0 ad.sg.doubleclick.net
-0.0.0.0 ad.uk.doubleclick.net
-0.0.0.0 ad2.doubleclick.net
-0.0.0.0 ad-apac.doubleclick.net
-0.0.0.0 adclick.g.doubleclick.net
-0.0.0.0 ad-emea.doubleclick.net
-0.0.0.0 ad-g.doubleclick.net
-0.0.0.0 ads-bid.l.doubleclick.net
-0.0.0.0 adx.g.doubleclick.net
-0.0.0.0 apac.doubleclick.net
-0.0.0.0 bid.g.doubleclick.net
-0.0.0.0 cm.g.doubleclick.net
-0.0.0.0 dart.l.doubleclick.net
-0.0.0.0 dart-apac.l.doubleclick.net
-0.0.0.0 dfp.doubleclick.net
-0.0.0.0 dmp.doubleclick.net
-0.0.0.0 dp.g.doubleclick.net
-0.0.0.0 dsengine.doubleclick.net
-0.0.0.0 emea.doubleclick.net
-0.0.0.0 feedads.g.doubleclick.net
-0.0.0.0 fls.uk.doubleclick.net
-0.0.0.0 g.doubleclick.net
-0.0.0.0 gan.doubleclick.net
-0.0.0.0 googleads.g.doubleclick.net
-0.0.0.0 googleads2.g.doubleclick.net
-0.0.0.0 googleads4.g.doubleclick.net
-0.0.0.0 ir.doubleclick.net
-0.0.0.0 iv.doubleclick.net
-0.0.0.0 l.doubleclick.net
-0.0.0.0 m.doubleclick.net
-0.0.0.0 mediavisor.doubleclick.net
-0.0.0.0 mobile-displayads.l.doubleclick.net
-0.0.0.0 n4052ad.doubleclick.net
-0.0.0.0 n4403ad.doubleclick.net
-0.0.0.0 pagead.l.doubleclick.net
-0.0.0.0 pagead46.l.doubleclick.net
-0.0.0.0 partnerad.l.doubleclick.net
-0.0.0.0 paypalssl.doubleclick.net
-0.0.0.0 pubads.g.doubleclick.net
-0.0.0.0 publisherportal.doubleclick.net
-0.0.0.0 reportcentral.doubleclick.net
-0.0.0.0 s0.doubleclick.net
-0.0.0.0 s1.doubleclick.net
-0.0.0.0 secureframe.doubleclick.net
-0.0.0.0 securepubads.g.doubleclick.net
-0.0.0.0 static.doubleclick.net
-0.0.0.0 stats.g.doubleclick.net
-0.0.0.0 stats.l.doubleclick.net
-0.0.0.0 survey.g.doubleclick.net
-0.0.0.0 www.doubleclick.net
-0.0.0.0 www3.doubleclick.net
-0.0.0.0 fls.doubleclick.net
-0.0.0.0 undefined.fls.doubleclick.net
-#[adservice.google.*]
-0.0.0.0 adservice.google.ca
-0.0.0.0 adservice.google.co.jp
-0.0.0.0 adservice.google.com
-0.0.0.0 adservice.google.com.hk
-0.0.0.0 adservice.google.com.sg
-0.0.0.0 adservice.google.com.tr
-0.0.0.0 adservice.google.com.vn
-0.0.0.0 adservice.google.de
-#[googlesyndication.com]
-0.0.0.0 googlesyndication.com
-0.0.0.0 ade.googlesyndication.com
-0.0.0.0 afs.googlesyndication.com
-0.0.0.0 buttons.googlesyndication.com
-0.0.0.0 pagead2.googlesyndication.com
-0.0.0.0 pagead46.googlesyndication.com
-0.0.0.0 tpc.googlesyndication.com
-0.0.0.0 tpcnc.googlesyndication.com
-0.0.0.0 video-ad-stats.googlesyndication.com
-#[googletagmanager.com]
-0.0.0.0 googletagmanager.com
-0.0.0.0 www.googletagmanager.com
-#[googletagservices.com]
-0.0.0.0 googletagservices.com
-0.0.0.0 www.googletagservices.com
-#[googleadservices.com]
-0.0.0.0 10.afs.googleadservices.com
-0.0.0.0 18.afs.googleadservices.com
-0.0.0.0 2.afs.googleadservices.com
-0.0.0.0 4.afs.googleadservices.com
-0.0.0.0 googleadservices.com
-0.0.0.0 pagead2.googleadservices.com
-0.0.0.0 partner.googleadservices.com
-0.0.0.0 partnerssl.googleadservices.com
-0.0.0.0 www.googleadservices.com
-#[analytics.google.com]
-0.0.0.0 analytics.google.com
-0.0.0.0 region1.analytics.google.com
-#[google-analytics.com]
-0.0.0.0 click.google-analytics.com
-0.0.0.0 google-analytics.com
-0.0.0.0 region1.google-analytics.com
-0.0.0.0 sandbox.google-analytics.com
-0.0.0.0 ssl.google-analytics.com
-0.0.0.0 www-alv.google-analytics.com
-0.0.0.0 www.google-analytics.com
-#[googleanalytics.com]
-0.0.0.0 alt2.googleanalytics.com
-0.0.0.0 alt4.googleanalytics.com
-0.0.0.0 click.googleanalytics.com
-0.0.0.0 googleanalytics.com
-0.0.0.0 sandbox.googleanalytics.com
-0.0.0.0 ssl.googleanalytics.com
-0.0.0.0 www.googleanalytics.com
-#[optimize.google.com]
-0.0.0.0 optimize.google.com
-0.0.0.0 googleoptimize.com
-0.0.0.0 www.googleoptimize.com
-#[googleapis.com]
-0.0.0.0 androidtvchannels-pa.googleapis.com
-0.0.0.0 androidtvwatsonfe-pa.googleapis.com
-0.0.0.0 clientmetrics-pa.googleapis.com
-0.0.0.0 clouderrorreporting.googleapis.com
-0.0.0.0 crashlyticsreports-pa.googleapis.com
-0.0.0.0 firebaselogging.googleapis.com
-#[l.google.com]
-0.0.0.0 pagead-googlehosted.l.google.com
-0.0.0.0 pagead-tpc.l.google.com
-0.0.0.0 pagead.l.google.com
-0.0.0.0 partnerad.l.google.com
-0.0.0.0 ssl-google-analytics.l.google.com
-0.0.0.0 static-doubleclick-net.l.google.com
-0.0.0.0 www-google-analytics.l.google.com
-0.0.0.0 www-googletagmanager.l.google.com
-#[ads.gmodules.com]
-0.0.0.0 ads.gmodules.com
-#[ads.youtube.com]
-0.0.0.0 ads.youtube.com
-#[google.com]
-0.0.0.0 ads.google.com
-0.0.0.0 analytics-alv.google.com
-0.0.0.0 mail-ads.google.com
-#[google-cn]
-0.0.0.0 2mdn-cn.net
-0.0.0.0 admob-cn.com
-0.0.0.0 doubleclick-cn.net
-0.0.0.0 google-analytics-cn.com
-0.0.0.0 googleads-cn.com
-0.0.0.0 googleadservices-cn.com
-0.0.0.0 googleadsserving.cn
-0.0.0.0 googleoptimize-cn.com
-0.0.0.0 googletagmanager-cn.com
-0.0.0.0 googletagservices-cn.com
-0.0.0.0 googlevads-cn.com
+voz.vn##.adsbypubpower
+voz.vn##.v-element>.v-responsive
+voz.vn##div.message--post
+voz.vn##div[style]:has(.adsbypubpower)
+vozer.net,btcvn.org##.Notices.PanelScroller
+vuighe3.com###balloon
+vuighe3.com##.affiliate
+vuighe3.com##.banner-masthead
+vuighe3.com##.player-midpoint-progress
+vuighe4.com##.affiliate.clear-both.s1024\:p-0.pr-\[10px\].pl-\[10px\].mt-\[30px\]
+vuighe4.com##[href="https://lnk.do/QW0onqn/"]
+wibuz.net###html.flexbox.flexboxlegacy.no-flexboxtweener.flexwrap.objectfit.object-fit > body#body-click > div#Tp-Wp > div.Body.Container > div#catfish > button.closecf
+wibuz.net###top_ads
+wibuz.net##.Ads
+wibuz.net##.bellow_ads_player
+wibuz.net##.closecf
+www.anitoku.net###container-ads
+www.anitoku.net###HTML22 > .widget-content
+www.buomtv.vip##.blbew80
+www.buomtv.vip##.llnefd1
+www.buomtv.vip##.lpp0nsn
+www.buomtv.vip##.luq51lg.a13wihj
+www.buomtv.vip##.pointer-events-auto.block
+www.buomtv.vip##.zbgpvb19.zbgpvb16.zbgpvbj.zbgpvbh.zbgpvbg.zbgpvbf.zbgpvbe.zbgpvb1
+www.buomtv.vip##._9xtpcl.c4je67d.c1qs0lzc.c1hrlkpu.cc2icwl.c1i0iccj.cfd18df
+www.buomtv.vip##._9xtpcl.e1e6v8dt
+www.fshare.vn###p_first_paid_gift_float_icon
+www.fshare.vn##.mdc-dialog--open.mdc-dialog
+www.fshare.vn##.popup-vip-cus__visibility.popup-vip-cus
+www.gaingon18.me###iklan-atas-wrapper
+www.gvnvh.net##center:nth-of-type(2)
+www.gvnvh.net##center:nth-of-type(6)
+www.gvnvh.net##[href="https://twin789.club/"] > .wp-image-165.size-full.alignnone
+www.gvnvh.net##[href^="https://toliomassfiles.click/"] > button
+www.sayhentai.art##.float-ck-center-lt
+www.vlxxhot.net##.adx1
+www.vlxxhot.net,vailonxx.vip###ab_ctl
+www.vlxxhot.net,vailonxx.vip##.bannerads
+www.youtube.com##.ytp-featured-product
+xem.javkche.info##div:has([class$="-modal"])
+xem.javkche.info##[onclick^="__a.hide"]
+xem.sex-sub.com##.banner-catfish-bottom
+xx.ditnhauvietnam.com,javhdvip.net##.alldiv ~ div[class]
+xxvl.org###catfishContainer
+xxvl.org##.topBanner
+youtube.com###masthead-ad
+youtube.com###player-ads
+youtube.com###shorts-inner-container > .ytd-shorts:has(> .ytd-reel-video-renderer > ytd-ad-slot-renderer)
+youtube.com##.ytd-merch-shelf-renderer
+youtube.com##.YtdShortsSuggestedActionStaticHostContainer
+youtube.com##.ytp-suggested-action > button.ytp-suggested-action-badge
+youtube.com##ytd-ad-slot-renderer
+youtube.com##ytd-rich-item-renderer:has(> #content > ytd-ad-slot-renderer)
+youtube.com##ytd-search-pyv-renderer
+youtubeporn.pro##div[style^="position:fixed;inset:0px;z-index:100000;"]
+youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
+_reklama_$domain=~youtube.com
+|su6t2a0v1cbj6fu8o2cjdo1dx0oxdm6kgl6f7zdjxt6aqxjlwrt7cu2r5g2d.me^
+||123host.vn/uploads/banner/b*-2024*-mobile.jpg$image
+||30b16ddf8d4459051dcc.hllgvga.com^
+||30b16ddf8d4459051dg.krbulhb.com^
+||3pkf5m0gd.com^
+||3pkf5m0gd.com^
+||3x.clipsexhot.net/theme/main.isa.js$script,domain=3x.clipsexhot.net
+||3x.sexkhongchehd.com/theme/main.isa.js^$script
+||6v41p4bsq.com^
+||a.magsrv.com^
+||a.realsrv.com^
+||ad.vidverto.io^
+||adflex.vn^$third-party
+||admicro.vn^$third-party
+||adnow.com^$third-party
+||adpia.vn^$third-party
+||ads-cdn.fptplay.net^
+||ads-pixiv.net^$third-party
+||ads.6789live.com^
+||ads.cdn2-img.net/^*.gif
+||ads.mxhnkn.pro/popup/popup-under-v2-qiqi*.js$script
+||ads.starzd.com^
+||adsv.cki.name^
+||adtima-static.zadn.vn^$script
+||adtima-static.zascdn.me^
+||adtima.vn^$third-party
+||adtima.vn^$third-party
+||adtimaserver.vn^
+||aff.cdnntx.com^
+||affordedseasick.com^
+||aj1047.online^
+||aj1559.online^
+||aj2393.online^
+||ajsc.yodimedia.com^
+||ak.ptailadsol.net^
+||alnzupnulzaw.com^
+||amcdn.vn^
+||amxswiolhod.com^
+||animehay.de/ad_banner/728x90.gif$image
+||animehay.de/ad_banner/da88.gif$image
+||animehay.de/ad_banner/under_player/pc.gif$image
+||animehay.de/themes/img/ads_click.png$image
+||animevietsubs.net/vast/0867jz21.gif$image
+||ants.vn^$third-party
+||ants.vn^$third-party
+||api.adfly.vn^
+||api.trackpush.com^$script
+||apinas.nct.vn^
+||apps.bdimg.com^
+||ar.pagodaskeeker.com^
+||asg.phukienthoitranggiare.com^
+||avhduwvirosl.com^
+||baobabsruesome.com^
+||bardicjazzed.com^
+||berlinwall30.de^
+||bidgear-syndication.com^
+||blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsE*.jpg$image
+||blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsE*zaaa.jpg$image
+||blogger.googleusercontent.com^*.gif$image,domain=gvnvh18.com
+||blueseed.tv^$third-party
+||blurbreimbursetrombone.com^
+||br.dewbeambeslash.com^
+||brittlesturdyunlovable.com^
+||bullionglidingscuttle.com^
+||c.adsco.re^
+||caulicuzooque.net^
+||cdn-01.w3img.com^*.gif$image,domain=javhd.tech|sexvietco.net|viet69new.net|vlxxai.net|javhd.social|sexsoc.info
+||cdn.adop.asia^
+||cdn.adschill.com^
+||cdn.adxcontent.com^
+||cdn.adxcontent.com^
+||cdn.hentaicube.net/qcs/*.gif
+||cdn.javbabe.net^$subdocument
+||cdn.tpmedia.online^
+||cdn.vipads.cc^
+||cdnv.tpmedia.online^
+||ce.ineptsundial.com^
+||chaseherbalpasty.com^
+||cheechoups.net^
+||childlessporcupinevaluables.com^
+||chouthep.net^
+||citadelpathstatue.com^
+||click.advertnative.com^
+||cliphot69.sbs$csp=script-src 'self' 'unsafe-inline'
+||cliphot69.sbs^*.gif$image
+||cliphotvn69.com^*.gif$image
+||clkofafcbk.com^
+||clmm.webcam/ads^
+||clobberprocurertightwad.com^
+||cloufdlare.com/ads/vn1.html$subdocument,domain=vl.phe.to
+||clunkyentirelinked.com^
+||cnt.trvdp.com^
+||contineljs.com^
+||couldblindly.com^
+||criteo.com^$third-party
+||criteo.com^$third-party,domain=~vnexpress.net|~zingnews.vn|~kenh14.vn
+||critical-replacement.com^
+||d13k7prax1yi04.cloudfront.net^
+||data.voz.vn/94bf/166a6849b5cd7d.jpg$domain=voz.vn
+||datqagdkurce.com^
+||delivery.yomedia.vn^
+||delivery.yomedia.vn^$third-party
+||demo123.info/*ads/$image,domain=xem.sex-sub.com
+||demo123.info^
+||dhaacmpiqdur.com^
+||dinhvu.pro^$third-party
+||dinhvu.pro^$third-party
+||discordapp.$image,domain=phym18.lol|phim18vip.vip|avvietsub.info|phimsexsub.xyz
+||dotyruntchan.com^
+||doubtedprompts.com^
+||e.dtscout.com^
+||earringsatisfiedsplice.com^
+||effacedefend.com^
+||endowmentoverhangutmost.com^
+||fauphoaglu.net^
+||fpgedsewst.com^
+||fundingchoicesmessages.google.com^
+||fv.togataurnfuls.com^
+||gammaplatform.com^$third-party
+||gekeebsirs.com^
+||gelatinerespectivelyhector.com^
+||genieesspv.jp^$third-party
+||genmonet.com^
+||gingagonkc.com^
+||glaubsoopsehen.net^
+||googletagmanager.com^$third-party,domain=~thethao247.vn|~cafef.vn
+||grubsnuchale.com^
+||grunoaph.net^
+||gullyending.com^
+||h74v6kerf.com^
+||helmethomicidal.com^
+||hentaihvn.tv/qx/$subdocument
+||hentaivn.blog^*.gif$image
+||hentaivn.love/wp-content/plugins/wp-popups-lite/src/assets/js/wppopups.js
+||hentaivn.love/wp-content/uploads/2024/10/*$image
+||hhbypdoecp.com^
+||hhpanda.tube/ads/ads_xx.js
+||hoathinh3d.run/pop/pop.js
+||holahupa.com^
+||hqq.to^$popup
+||https://blogtruyenmoi.com/Scripts/pre-cat.min.js^
+||https://hhpanda.info/ads/ads_xx.js^
+||huongdanjava.com$csp=script-src data: 'self' 'unsafe-inline' http: https:
+||hymenvapour.com^
+||i.ibb.co^*.gif$image,domain=javnong.cc
+||i.imgur.com^$image,domain=phym18.lol|phim18hd.sex|xamvn.taxi|fullcliphot.com|x.sexkhongchehd.com|xx.sexkhongchemoi.com|bimmup.net
+||i9zk5f8szj4x8saj5wcks8acja5sk1dz8stjs2g8isdcn6ejxn8zsr5xjs5h.com^
+||iads.staticscdn.net^
+||iads.staticscdn.net^
+||ilyf4amifh.com^
+||imad24.com^
+||img.av3x.net/upload/av3x.net/banners/$domain=phimsexhay669.pro
+||img.buomtv.vip/palivn/ad/$image,domain=www.buomtv.vip
+||img.congdongmassage.com/banner/$image,domain=congdongmassage.com
+||img.yeuketqua.net^
+||indienkinderhilfe-sad.de^
+||intelligenceadx.com^
+||javtopxx.com/public/images/banner/$image
+||js.aiservice.vn^
+||jsc.adskeeper.co.uk/site/*$script
+||jsc.yodimedia.com^
+||kgfjrb711.com^
+||ku42hjr2e.com^
+||lavanetwork.net^$third-party
+||laxativestuckunclog.com^
+||lh3.googleusercontent.com/*=s0$image
+||lh6.googleusercontent.com/niNvqW87lyRKXDaWknU-K7iiTx6_sAPg_cyDtbJhk_RhXK1hFYPGjIsdM9F6DDyqsDD9IdPZv3hKHkkM2lNZGMFaDdvll8bV6B0n3SFONcjrGY9YY1gM6KQd28Zl=s0$image
+||link.cado.pro^
+||lxmanga.life/storage/images/banners
+||m.youtube.com/get_midroll_$domain=youtube.com
+||mairbeets.com^
+||mangadm.cc$csp=script-src 'self' 'unsafe-inline' http
+||meherdewogoud.com^
+||meta.vn^$third-party
+||meta.vn^$third-party
+||mgid.com^$third-party
+||mgid.com^$third-party,domain=~24h.com.vn|~gamek.vn
+||midgetmaying.com^
+||mneydirec.com^
+||mplmncb.com^
+||murlackmoyle.com^
+||ngaytho.me^*.gif
+||nhat9.vip^
+||nrs6ffl9w.com^
+||obtaintrout.com^
+||ofglicoron.net^
+||othmzasruj.com^
+||outbrain.com^$third-party
+||outwingullom.com^
+||pbyfdgnh.com
+||phim.sexhayvl.org/theme/main.isa.js$script
+||phimsexsub.best/wp-admin/admin-ajax.php?action=htmlcountry_get_data
+||phimsexsub.best^*.gif$image
+||phimsexsub.xyz/css/pss.webp$image,domain=nhentaivn.online
+||phym18.lol/static/js/adlia.js
+||pi.beaufintorque.com^
+||pk910324e.com^
+||pl16314303.cpmrevenuegate.com^
+||platform.adlinknetwork.vn^
+||play.stream4.me/jwplayer/vast.js$script,domain=play.stream4.me
+||player.gliacloud.com^
+||popads.net^$third-party,domain=~phimmoi.net|~blogtruyen.vn
+||propellerads.com^$third-party
+||propellerads.com^$third-party,domain=~tinmoi.vn|~baomoi.com
+||pub.akadigital.vn^
+||pub.lavamedia.vn^
+||pub.lavanetwork.net^$third-party
+||pubmatic.com^$third-party,domain=~dantri.com.vn|~kenh14.vn
+||qc.coccoc.com^$third-party
+||qc.violet.vn^
+||qcv5.blogtruyenmoi.com^
+||qcvip.xyz/popup$script,domain=phevkl.vc
+||qipshozipsah.com^
+||qnp16tstw.com^
+||qph.cf2.quoracdn.net/main-qimg-*
+||quatvn.store/ads.js$script
+||quoracdn.net^$image,domain=vlxx.mobi|vlxyz.tube|sieudamtv.dev|sex.chichnhau.net
+||quoracdn.net^$image,domain=vlxx.mx|vlxyz.tube|sex.sieudamtv.biz|sex.chichnhau.me|phevkl.vc|viet69.cx
+||qz.almudestilths.com^
+||r.trackwilltrk.com^
+||realclick.vn^$third-party
+||recedechatprotestant.com^
+||recordedthereby.com/sfp.js^
+||recordedthereby.com^
+||revcontent.com^$third-party
+||rkgwzfwjgk.com^
+||rphang.online^*.gif
+||rq.overseagyassa.com^
+||rubiconproject.com^$third-party,domain=~vtv.vn|~tuoitre.vn
+||s10.histats.com^
+||s3t3d2y8.afcdn.net^
+||s4.histats.com^
+||s682.imacdn.com^
+||sayhentai.one/assets/js/ads.js
+||sayhentai.one/storage/images/banner/$image
+||sbbanner.com^
+||sexdiaryx.one$csp=script-src 'self' 'unsafe-eval'
+||sexhd88.live/wp-content/themes/vidorev/img/jun881.png$image
+||sexhd88.live^*.gif$image
+||sexsub.pro^*.gif$image,domain=tuoi69.my|javhay.my|sexsub.pro|xem.phim18c.org
+||sexsub.pro^*.gif$image,domain=vietxxx.club
+||sexviet1.me^*.gif$image
+||shope.ee^$popup,domain=chillphimmoizzz.org|blogtruyenmoi.com|cunghocvui.com|truyensextv.com
+||sieukhungz.org^*.gif$image
+||skiddyteapots.com^
+||spankbangdl.com/files/*.gif$image,domain=avvietsub.info
+||sponsor.imacdn.com^
+||ss.sonshiplevesel.com^
+||ss.yomedia.vn^
+||static.adconnect.vn^
+||static.cdnno.com/storage/topbox/*.webp$image,domain=metruyencv.com
+||static.philacct.com^
 ||static.truyenfull.io/min/g/mainjs-05122024_3.js^
+||stummertitis.com^
+||syphonseity.com^
+||t.dtscdn.com^
+||t7cp4fldl.com^
+||taboola.com^$script,third-party
+||taboola.com^$script,third-party
+||tag.adbro.me^
+||tags.crwdcntrl.net^
+||tags.fly-ads.net^
+||tags.native-ad.net^
+||telegra.ph/file/$image,domain=full.cliphot69.live
+||telegra.ph^$image,domain=fulllivehot.com
+||thanhdieu.com/files/ads-blocked.js^
+||topcreativeformat.com^
+||topviet69.com^*.gif$image
+||truyen18.one/media/abc/$image
+||truyen18.one/media/banner/$image
+||truyensextv.com/anh/$image
+||truyensextv.com^*.gif
+||truyentuan.xyz^$subdocument,~third-party
+||truyenvn.fit^*banner$image
+||tusheedrosep.net^
+||tutsterblanche.com^
+||tvc.biphim.club^
+||tzegilo.com^
+||ur.versinehopper.com^
+||v9banners.com^
+||vads.net.vn^
+||vietxxx.club/theme/custom.int.js$script,~third-party
+||vipads.live^
+||visariomedia.com^
+||visariomedia.com^
+||vl3x.vip/ads/$script
+||waisheph.com^
+||weirddistribution.pro^
+||whoolrulr.net^
+||widgetlogic.org^
+||www.buomtv.vip/palivn/ad/$image
+||www.displayvertising.com^
+||x.sexkhongchehd.com/theme/main.isa.js$script,~third-party
+||xem.phim18c.org/theme/custom.int.js$script,~third-party
+||xemphimsex3x.net^*.gif$image
+||xenosmussal.com^
+||xmupvl.net^*.gif$image,domain=xmupvl.net|damsextv.pro
+||xszpuvwr7.com^
+||xugrikalbmm.com^
+||xx.sexkhongchemoi.com/theme/main.isa.js$script,domain=xx.sexkhongchemoi.com
+||xxvl.org/*.gif$image
+||ybs2ffs7v.com^
+||yomedia.vn^$third-party
+||youtube.com/embed/C-iDzdvIg1Y$domain=biznews.com
+||youtube.com/get_video_info?*adunit$~third-party
+||youtube.com/pagead/
+||yr.fopbandido.com^
+||zaloads.com^$third-party 
+||zaloweb.
+||zunsoach.com^
+||zz.bdstatic.com^
