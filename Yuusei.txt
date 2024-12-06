@@ -5,6 +5,7 @@
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Checksum: 87ebf787466110825547e32d3202f5ff7286c9c7856ac858d446cf7901af6e5d
+! Homepage: https://github.com/RenjiYuusei/Adblock
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
 !--------Element Hiding Exception--------------
