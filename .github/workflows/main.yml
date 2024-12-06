@@ -148,9 +148,8 @@ jobs:
                       <meta property="og:url" content="https://${{ env.AUTHOR_NAME }}.github.io/${{ env.REPO_NAME }}">
                       <title>Yuusei Filter List - Bộ lọc quảng cáo Việt Nam</title>
                       <link rel="icon" type="image/png" href=".github/assets/favicon.png">
-                      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.16/base.min.css">
-                      <script src="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.16/lib/index.min.js"></script>
-                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+                      <script src="https://cdn.tailwindcss.com"></script>
+                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
                       <link rel="preconnect" href="https://fonts.googleapis.com">
                       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                       <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
