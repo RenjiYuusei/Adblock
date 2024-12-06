@@ -1,0 +1,245 @@
+name: Scan Website for Ads
+
+on:
+    workflow_dispatch:
+        inputs:
+            website_url:
+                description: 'URL của website cần quét'
+                required: true
+                type: string
+            scan_depth:
+                description: 'Độ sâu quét (1-5)'
+                required: false
+                default: '1'
+                type: choice
+                options:
+                    - '1'
+                    - '2'
+                    - '3'
+                    - '4'
+                    - '5'
+
+jobs:
+    scan-ads:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: '3.x'
+                  cache: 'pip'
+
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install -r requirements.txt || pip install requests beautifulsoup4 selenium webdriver-manager tqdm
+
+            - name: Scan website for ads
+              id: scan
+              run: |
+                  python - <<EOF
+                  import re
+                  import time
+                  import logging
+                  from bs4 import BeautifulSoup
+                  import requests
+                  from selenium import webdriver
+                  from selenium.webdriver.chrome.service import Service
+                  from selenium.webdriver.chrome.options import Options
+                  from selenium.webdriver.support.ui import WebDriverWait
+                  from selenium.webdriver.support import expected_conditions as EC
+                  from webdriver_manager.chrome import ChromeDriverManager
+                  from urllib.parse import urljoin, urlparse
+                  from tqdm import tqdm
+
+                  # Thiết lập logging
+                  logging.basicConfig(
+                      level=logging.INFO,
+                      format='%(asctime)s - %(levelname)s - %(message)s'
+                  )
+
+                  def get_domain(url):
+                      return urlparse(url).netloc
+
+                  def extract_ad_elements(soup, current_url, ad_elements):
+                      # Mở rộng các mẫu quảng cáo
+                      ad_patterns = [
+                          r'ads?[-_]',
+                          r'adv(ert)?',
+                          r'banner',
+                          r'sponsor',
+                          r'popup',
+                          r'qc|quangcao',
+                          r'tracking',
+                          r'analytics',
+                          r'pixel',
+                          r'float[-_]',
+                          r'sticky[-_]',
+                          r'overlay',
+                          r'modal',
+                          r'promo',
+                          r'marketing',
+                          r'campaign',
+                          r'remarketing',
+                          r'affiliate',
+                          r'social[-_]share',
+                          r'notification'
+                      ]
+
+                      # Tìm theo class và id
+                      for pattern in ad_patterns:
+                          elements = soup.find_all(class_=re.compile(pattern, re.I))
+                          elements.extend(soup.find_all(id=re.compile(pattern, re.I)))
+                          for el in elements:
+                              if el.name:
+                                  selector = f"{current_url}##{el.name}"
+                                  if 'class' in el.attrs:
+                                      selector += f".{'.'.join(el['class'])}"
+                                  elif 'id' in el.attrs:
+                                      selector += f"#{el['id']}"
+                                  ad_elements.add(selector)
+
+                      # Tìm các script quảng cáo
+                      scripts = soup.find_all('script', src=True)
+                      for script in scripts:
+                          src = script['src'].lower()
+                          if any(p in src for p in ['ads', 'analytics', 'tracker', 'pixel', 'tracking', 'remarketing', 'affiliate']):
+                              domain = script['src'].split('/')[2]
+                              ad_elements.add(f"||{domain}^$script")
+
+                      # Tìm các iframe quảng cáo
+                      iframes = soup.find_all('iframe')
+                      for iframe in iframes:
+                          if 'src' in iframe.attrs:
+                              src = iframe['src'].lower()
+                              if any(p in src for p in ad_patterns):
+                                  domain = urlparse(src).netloc
+                                  ad_elements.add(f"||{domain}^$subdocument")
+
+                      # Tìm các thẻ img quảng cáo
+                      images = soup.find_all('img')
+                      for img in images:
+                          if 'src' in img.attrs:
+                              src = img['src'].lower()
+                              if any(p in src for p in ad_patterns):
+                                  domain = urlparse(src).netloc
+                                  ad_elements.add(f"||{domain}^$image")
+
+                      # Tìm các div có kích thước cố định (thường là quảng cáo)
+                      divs = soup.find_all('div', style=True)
+                      for div in divs:
+                          style = div['style'].lower()
+                          if 'width' in style and 'height' in style:
+                              if 'class' in div.attrs:
+                                  selector = f"{current_url}##div.{'.'.join(div['class'])}"
+                                  ad_elements.add(selector)
+                              elif 'id' in div.attrs:
+                                  selector = f"{current_url}##div#{div['id']}"
+                                  ad_elements.add(selector)
+
+                  def scan_website(url, max_depth=1):
+                      chrome_options = Options()
+                      chrome_options.add_argument('--headless')
+                      chrome_options.add_argument('--no-sandbox')
+                      chrome_options.add_argument('--disable-dev-shm-usage')
+                      chrome_options.add_argument('--disable-gpu')
+                      chrome_options.add_argument('--window-size=1920,1080')
+                      chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
+                      
+                      service = Service(ChromeDriverManager().install())
+                      driver = webdriver.Chrome(service=service, options=chrome_options)
+                      wait = WebDriverWait(driver, 10)
+                      
+                      ad_elements = set()
+                      scanned_urls = set()
+                      base_domain = get_domain(url)
+                      urls_to_scan = [(url, 0)]
+                      
+                      try:
+                          for current_url, depth in tqdm(urls_to_scan):
+                              if depth >= max_depth or current_url in scanned_urls:
+                                  continue
+                                  
+                              scanned_urls.add(current_url)
+                              logging.info(f'Đang quét: {current_url}')
+                              
+                              try:
+                                  driver.get(current_url)
+                                  time.sleep(3)  # Tăng thời gian chờ
+                                  
+                                  # Cuộn trang để load thêm nội dung
+                                  driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                                  time.sleep(1)
+                                  driver.execute_script("window.scrollTo(0, 0);")
+                                  
+                                  page_source = driver.page_source
+                                  
+                                  # Thu thập links cho quét sâu hơn
+                                  if depth < max_depth - 1:
+                                      soup = BeautifulSoup(page_source, 'html.parser')
+                                      for link in soup.find_all('a', href=True):
+                                          next_url = urljoin(current_url, link['href'])
+                                          if get_domain(next_url) == base_domain:
+                                              urls_to_scan.append((next_url, depth + 1))
+                                  
+                                  soup = BeautifulSoup(page_source, 'html.parser')
+                                  extract_ad_elements(soup, current_url, ad_elements)
+                                              
+                              except Exception as e:
+                                  logging.error(f'Lỗi khi quét {current_url}: {str(e)}')
+                                  continue
+                                  
+                      finally:
+                          driver.quit()
+                          
+                      return sorted(list(ad_elements))
+
+                  url = "${{ github.event.inputs.website_url }}"
+                  max_depth = int("${{ github.event.inputs.scan_depth }}")
+
+                  logging.info(f'Bắt đầu quét {url} với độ sâu {max_depth}')
+                  ad_rules = scan_website(url, max_depth)
+                  logging.info(f'Đã tìm thấy {len(ad_rules)} rules')
+
+                  with open('new_rules.txt', 'w', encoding='utf-8') as f:
+                      f.write('\n'.join(ad_rules))
+                  EOF
+
+            - name: Update Yuusei.txt
+              run: |
+                  if [ -s new_rules.txt ]; then
+                    # Tạo backup
+                    cp Yuusei.txt Yuusei.txt.bak
+                    
+                    # Thêm rules mới và comment
+                    echo "# Rules từ ${{ github.event.inputs.website_url }} - $(date +'%Y-%m-%d')" >> Yuusei.txt
+                    cat new_rules.txt >> Yuusei.txt
+                    echo "" >> Yuusei.txt
+                    
+                    # Sắp xếp và loại bỏ trùng lặp, giữ lại comments
+                    awk '!seen[$0]++' Yuusei.txt > Yuusei.txt.tmp
+                    mv Yuusei.txt.tmp Yuusei.txt
+                    
+                    # Cập nhật version và checksum
+                    sed -i "s/Version: .*/Version: $(date +'%d-%m-%Y')/" Yuusei.txt
+                    sed -i "s/Last modified: .*/Last modified: $(date +'%d-%m-%Y %H:%M:%S')/" Yuusei.txt
+                    
+                    # Đếm số rules mới
+                    new_rules=$(wc -l < new_rules.txt)
+                    
+                    # Commit thay đổi
+                    git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                    git config --local user.name "github-actions[bot]"
+                    git add Yuusei.txt
+                    git commit -m "✨ Thêm $new_rules rules từ ${{ github.event.inputs.website_url }}
+
+                    - Website: ${{ github.event.inputs.website_url }}
+                    - Độ sâu quét: ${{ github.event.inputs.scan_depth }}
+                    - Số rules mới: $new_rules
+                    - Thời gian: $(date +'%Y-%m-%d %H:%M:%S')"
+                    git push
+                  fi

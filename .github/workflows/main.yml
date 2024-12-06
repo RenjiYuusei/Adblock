@@ -19,6 +19,8 @@ env:
     MIN_RULES: 10
     TIMEZONE: 'Asia/Ho_Chi_Minh'
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    OUTPUT_DIR: .github/badges
+    BACKUP_DIR: .github/backup
 
 jobs:
     update-filter:
@@ -35,14 +37,24 @@ jobs:
             - name: Setup environment
               id: setup
               run: |
+                  # Tạo thư mục output và backup nếu chưa tồn tại
+                  mkdir -p ${{ env.OUTPUT_DIR }} ${{ env.BACKUP_DIR }}
+
+                  # Cài đặt múi giờ
                   sudo ln -sf /usr/share/zoneinfo/${{ env.TIMEZONE }} /etc/localtime
+
+                  # Thiết lập các biến môi trường
                   {
                     echo "DATE=$(date +'%d-%m-%Y')"
                     echo "TIME=$(date +'%H:%M:%S')"
                     echo "YEAR=$(date +'%Y')"
                     echo "REPO_NAME=${GITHUB_REPOSITORY#*/}"
                     echo "AUTHOR_NAME=${GITHUB_REPOSITORY%/*}"
+                    echo "TIMESTAMP=$(date +%s)"
                   } >> $GITHUB_ENV
+
+                  # Sao lưu file gốc
+                  cp "${{ env.FILTER_FILE }}" "${{ env.BACKUP_DIR }}/${FILTER_FILE}_$(date +%Y%m%d_%H%M%S).bak"
 
             - name: Remove duplicate rules
               id: deduplicate
@@ -50,51 +62,73 @@ jobs:
                   # Tạo file tạm để lưu rules không trùng lặp
                   temp_file=$(mktemp)
 
-                  # Giữ lại header (các dòng bắt đầu bằng !)
-                  grep "^!" "${{ env.FILTER_FILE }}" > "$temp_file"
+                  # Phân loại và xử lý rules
+                  {
+                    # Giữ lại header và comment
+                    grep "^[!#]" "${{ env.FILTER_FILE }}"
+                    
+                    # Xử lý và sắp xếp các rules không trùng lặp
+                    grep -v "^[!#]" "${{ env.FILTER_FILE }}" | \
+                    sort -u | \
+                    # Loại bỏ khoảng trắng thừa
+                    sed 's/^[ \t]*//;s/[ \t]*$//'
+                  } > "$temp_file"
 
-                  # Lọc và sắp xếp các rules không trùng lặp
-                  grep -v "^!" "${{ env.FILTER_FILE }}" | sort -u >> "$temp_file"
-
-                  # Đếm số rules trùng lặp đã xóa
-                  original_count=$(grep -cv "^!" "${{ env.FILTER_FILE }}")
-                  new_count=$(grep -cv "^!" "$temp_file")
+                  # Tính toán số lượng rules đã xóa
+                  original_count=$(grep -cv "^[!#]" "${{ env.FILTER_FILE }}")
+                  new_count=$(grep -cv "^[!#]" "$temp_file")
                   removed_count=$((original_count - new_count))
 
+                  # Ghi log
                   echo "Đã xóa $removed_count rules trùng lặp"
                   echo "REMOVED_DUPLICATES=$removed_count" >> $GITHUB_ENV
 
-                  # Thay thế file gốc bằng file đã lọc
+                  # Cập nhật file gốc
                   mv "$temp_file" "${{ env.FILTER_FILE }}"
 
             - name: Validate filter file
               id: validate
               run: |
-                  # Hàm ghi log lỗi
-                  log_error() {
-                    echo "::error::$1"
-                    exit 1
+                  # Hàm kiểm tra và ghi log
+                  validate_and_log() {
+                    local check_name=$1
+                    local check_command=$2
+                    local error_message=$3
+                    
+                    if ! eval "$check_command"; then
+                      echo "::error::[$check_name] $error_message"
+                      return 1
+                    fi
+                    echo "::debug::[$check_name] Kiểm tra thành công"
+                    return 0
                   }
 
-                  # Kiểm tra file tồn tại
-                  [ -f "${{ env.FILTER_FILE }}" ] || log_error "Không tìm thấy file filter!"
+                  # Kiểm tra tất cả điều kiện
+                  validate_and_log "File exists" \
+                    "[ -f '${{ env.FILTER_FILE }}' ]" \
+                    "Không tìm thấy file filter!"
 
-                  # Kiểm tra kích thước file
-                  FILE_SIZE=$(stat -f%z "${{ env.FILTER_FILE }}" 2>/dev/null || stat -c%s "${{ env.FILTER_FILE }}")
-                  [ "$FILE_SIZE" -ge 100 ] || log_error "File filter quá nhỏ!"
+                  validate_and_log "File size" \
+                    "[ $(stat -f%z '${{ env.FILTER_FILE }}' 2>/dev/null || stat -c%s '${{ env.FILTER_FILE }}') -ge 100 ]" \
+                    "File filter quá nhỏ!"
 
-                  # Xác thực các header bắt buộc
+                  # Kiểm tra headers
                   required_headers=("! Title:" "! Version:" "! Last modified:")
                   for header in "${required_headers[@]}"; do
-                    grep -q "^$header" "${{ env.FILTER_FILE }}" || log_error "Thiếu header bắt buộc: $header"
+                    validate_and_log "Header $header" \
+                      "grep -q '^$header' '${{ env.FILTER_FILE }}'" \
+                      "Thiếu header bắt buộc: $header"
                   done
 
-                  # Đếm và xác thực số lượng rules
-                  RULE_COUNT=$(grep -c "^[^!]" "${{ env.FILTER_FILE }}" || true)
-                  [ "$RULE_COUNT" -ge "${{ env.MIN_RULES }}" ] || log_error "Không đủ rules (tối thiểu: ${{ env.MIN_RULES }})!"
+                  # Đếm và kiểm tra số lượng rules
+                  RULE_COUNT=$(grep -c "^[^!#]" "${{ env.FILTER_FILE }}" || true)
+                  validate_and_log "Rule count" \
+                    "[ $RULE_COUNT -ge ${{ env.MIN_RULES }} ]" \
+                    "Không đủ rules (tối thiểu: ${{ env.MIN_RULES }})!"
+
                   echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
 
-                  # Kiểm tra lỗi cú pháp
+                  # Kiểm tra cú pháp
                   SYNTAX_ERRORS=$(grep -n "^[^!#@|]*[^a-zA-Z0-9.*?^$@#|=/,&_-]" "${{ env.FILTER_FILE }}" || true)
                   if [ -n "$SYNTAX_ERRORS" ]; then
                     echo "::warning::Phát hiện lỗi cú pháp tiềm ẩn:"
@@ -106,23 +140,25 @@ jobs:
               run: |
                   # Tạo file tạm
                   temp_file=$(mktemp)
-                  cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
 
-                  # Cập nhật metadata
-                  sed -E "s/^! Version:.*/! Version: ${{ env.DATE }}/;\
-                         s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/;\
-                         s/^! Updated by:.*/! Updated by: GitHub Actions/" \
-                  "${{ env.FILTER_FILE }}" > "$temp_file"
+                  # Cập nhật metadata với sed
+                  sed -E "
+                    s/^! Version:.*/! Version: ${{ env.DATE }}/
+                    s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/
+                    s/^! Updated by:.*/! Updated by: GitHub Actions/
+                    s/^! Timestamp:.*/! Timestamp: ${{ env.TIMESTAMP }}/
+                  " "${{ env.FILTER_FILE }}" > "$temp_file"
 
-                  # Tính toán và cập nhật checksum
+                  # Tính toán và thêm checksum
                   CHECKSUM=$(sha256sum "$temp_file" | cut -d' ' -f1)
                   sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/" "$temp_file" > "${{ env.FILTER_FILE }}"
 
-                  # Đếm các loại rules
+                  # Phân tích và đếm các loại rules
                   {
                     echo "NETWORK_RULES=$(grep -c "^||" "${{ env.FILTER_FILE }}" || true)"
                     echo "COSMETIC_RULES=$(grep -c "##" "${{ env.FILTER_FILE }}" || true)"
                     echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)"
+                    echo "CHECKSUM=$CHECKSUM"
                   } >> $GITHUB_ENV
 
                   # Kiểm tra thay đổi
@@ -137,16 +173,24 @@ jobs:
             - name: Generate badges and README
               if: env.CHANGED == 'true'
               run: |
-                  mkdir -p .github/badges
-
-                  # Hàm tạo badges
+                  # Hàm tạo badges với cache busting
                   generate_badge() {
                     local label=$1 message=$2 color=$3 style=${4:-flat-square}
-                    local filename=".github/badges/${label// /_}.json"
-                    echo "{ \"schemaVersion\": 1, \"label\": \"$label\", \"message\": \"$message\", \"color\": \"$color\", \"style\": \"$style\" }" > "$filename"
+                    local filename="${{ env.OUTPUT_DIR }}/${label// /_}.json"
+                    local cache_buster=$(date +%s)
+                    echo "{
+                      \"schemaVersion\": 1,
+                      \"label\": \"$label\",
+                      \"message\": \"$message\",
+                      \"color\": \"$color\",
+                      \"style\": \"$style\",
+                      \"cacheSeconds\": 300,
+                      \"isError\": false,
+                      \"timestamp\": \"$cache_buster\"
+                    }" > "$filename"
                   }
 
-                  # Tạo tất cả badges
+                  # Tạo tất cả badges với thông tin cập nhật
                   generate_badge "version" "${{ env.DATE }}" "blue"
                   generate_badge "rules" "${{ env.RULE_COUNT }}" "brightgreen"
                   generate_badge "updated" "${{ env.DATE }}" "success"
@@ -157,7 +201,7 @@ jobs:
                   generate_badge "ublock" "Cài đặt cho uBlock Origin" "1a73e8" "for-the-badge"
                   generate_badge "adguard" "Cài đặt cho AdGuard" "67b279" "for-the-badge"
 
-                  # Tạo README
+                  # Tạo README với thông tin mới nhất
                   cat > README.md << 'EOF'
                   <div align="center">
 
@@ -265,8 +309,25 @@ jobs:
             - name: Commit changes
               if: env.CHANGED == 'true'
               run: |
+                  # Cấu hình git
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                  git add "${{ env.FILTER_FILE }}" README.md .github/badges || true
-                  git commit -m "🔄 Cập nhật tự động (Phiên bản: ${{ env.DATE }}, Đã xóa ${{ env.REMOVED_DUPLICATES }} rules trùng lặp)"
+
+                  # Thêm các file đã thay đổi
+                  git add "${{ env.FILTER_FILE }}" README.md "${{ env.OUTPUT_DIR }}" || true
+
+                  # Tạo commit message với thông tin chi tiết
+                  commit_message="🔄 Cập nhật tự động
+
+                  Phiên bản: ${{ env.DATE }}
+                  Checksum: ${{ env.CHECKSUM }}
+                  Rules: ${{ env.RULE_COUNT }}
+                  Đã xóa: ${{ env.REMOVED_DUPLICATES }} rules trùng lặp
+
+                  Network rules: ${{ env.NETWORK_RULES }}
+                  Cosmetic rules: ${{ env.COSMETIC_RULES }}
+                  Whitelist rules: ${{ env.WHITELIST_RULES }}"
+
+                  # Commit và push
+                  git commit -m "$commit_message"
                   git push
