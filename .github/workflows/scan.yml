@@ -66,8 +66,27 @@ jobs:
                       return urlparse(url).netloc
 
                   def extract_ad_elements(soup, current_url, ad_elements):
-                      # Mở rộng các mẫu quảng cáo
+                      # Mở rộng các mẫu quảng cáo từ Yuusei.txt
                       ad_patterns = [
+                          r'ads-preload',
+                          r'banner-top',
+                          r'mobileCatfish',
+                          r'pmadv',
+                          r'aanetwork-ads-box',
+                          r'ad_location',
+                          r'close-ads',
+                          r'google-auto-placed',
+                          r'jw-cue',
+                          r'midroll-marker',
+                          r'quangcao',
+                          r'right-box.top-block',
+                          r'samBannerUnit',
+                          r'tpm-unit',
+                          r'adHTML',
+                          r'sbbanner.com',
+                          r'i9017.com',
+                          r'adm-slot',
+                          r'bn_bottom_fixed_',
                           r'ads?[-_]',
                           r'adv(ert)?',
                           r'banner',
@@ -87,26 +106,7 @@ jobs:
                           r'remarketing',
                           r'affiliate',
                           r'social[-_]share',
-                          r'notification',
-                          r'ads-preload',
-                          r'banner-top',
-                          r'mobileCatfish',
-                          r'pmadv',
-                          r'aanetwork-ads-box',
-                          r'ad_location',
-                          r'close-ads',
-                          r'google-auto-placed',
-                          r'jw-cue',
-                          r'midroll-marker',
-                          r'quangcao',
-                          r'right-box.top-block',
-                          r'samBannerUnit',
-                          r'tpm-unit',
-                          r'adHTML',
-                          r'sbbanner.com',
-                          r'i9017.com',
-                          r'adm-slot',
-                          r'bn_bottom_fixed_'
+                          r'notification'
                       ]
 
                       # Tìm theo class và id
@@ -160,20 +160,45 @@ jobs:
                                   selector = f"{current_url}##div#{div['id']}"
                                   ad_elements.add(selector)
 
-                      # Thêm các domain quảng cáo phổ biến
+                      # Thêm các domain quảng cáo từ Yuusei.txt
                       common_ad_domains = [
                           'ads.gmodules.com',
-                          'ads.youtube.com',
+                          'ads.youtube.com', 
                           'adservice.google.*',
                           'analytics.google.com',
                           'doubleclick.net',
                           'google-analytics.com',
+                          'google-cn',
+                          'google.com',
                           'googleadservices.com',
                           'googleanalytics.com',
                           'googleapis.com',
                           'googlesyndication.com',
                           'googletagmanager.com',
-                          'googletagservices.com'
+                          'googletagservices.com',
+                          'l.google.com',
+                          'optimize.google.com',
+                          'player-cdn.com',
+                          'freeplayervideo.com',
+                          'abysscdn.com',
+                          'geoip.redirect-ads.com',
+                          'playhydrax.com',
+                          'sexdiaryx.one',
+                          'mcleaks.net',
+                          'linkneverdie.net',
+                          'bongdaso66.net',
+                          'marsvenus.vn',
+                          'cafef.vn',
+                          'gamek.vn', 
+                          'genk.vn',
+                          'kenh14.vn',
+                          'soha.vn',
+                          'tuoitre.vn',
+                          'afamily.vn',
+                          'thegioididong.com',
+                          'dantri.com.vn',
+                          'vtv.vn',
+                          'youtube.com'
                       ]
                       
                       for domain in common_ad_domains:
