@@ -1,10 +1,1 @@
-{
-    "schemaVersion": 1,
-    "label": "cosmetic rules",
-    "message": "492",
-    "color": "yellow",
-    "style": "flat-square",
-    "cacheSeconds": 300,
-    "isError": false,
-    "timestamp": "1733473243"
-  }
+{ "schemaVersion": 1, "label": "cosmetic rules", "message": "492", "color": "yellow", "style": "flat-square" }
