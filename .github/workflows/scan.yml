@@ -36,7 +36,7 @@ jobs:
             - name: Install dependencies
               run: |
                   python -m pip install --upgrade pip
-                  pip install -r requirements.txt || pip install requests beautifulsoup4 selenium webdriver-manager tqdm
+                  pip install requests beautifulsoup4 selenium webdriver-manager tqdm
 
             - name: Scan website for ads
               id: scan
@@ -87,7 +87,26 @@ jobs:
                           r'remarketing',
                           r'affiliate',
                           r'social[-_]share',
-                          r'notification'
+                          r'notification',
+                          r'ads-preload',
+                          r'banner-top',
+                          r'mobileCatfish',
+                          r'pmadv',
+                          r'aanetwork-ads-box',
+                          r'ad_location',
+                          r'close-ads',
+                          r'google-auto-placed',
+                          r'jw-cue',
+                          r'midroll-marker',
+                          r'quangcao',
+                          r'right-box.top-block',
+                          r'samBannerUnit',
+                          r'tpm-unit',
+                          r'adHTML',
+                          r'sbbanner.com',
+                          r'i9017.com',
+                          r'adm-slot',
+                          r'bn_bottom_fixed_'
                       ]
 
                       # Tìm theo class và id
@@ -107,7 +126,7 @@ jobs:
                       scripts = soup.find_all('script', src=True)
                       for script in scripts:
                           src = script['src'].lower()
-                          if any(p in src for p in ['ads', 'analytics', 'tracker', 'pixel', 'tracking', 'remarketing', 'affiliate']):
+                          if any(p in src for p in ['ads', 'analytics', 'tracker', 'pixel', 'tracking', 'remarketing', 'affiliate', 'gmodules', 'doubleclick', 'google-analytics', 'googleadservices', 'googleanalytics', 'googlesyndication', 'googletagmanager', 'googletagservices']):
                               domain = script['src'].split('/')[2]
                               ad_elements.add(f"||{domain}^$script")
 
@@ -125,7 +144,7 @@ jobs:
                       for img in images:
                           if 'src' in img.attrs:
                               src = img['src'].lower()
-                              if any(p in src for p in ad_patterns):
+                              if any(p in src for p in ad_patterns + ['.gif', 'banner', 'ads', 'quangcao']):
                                   domain = urlparse(src).netloc
                                   ad_elements.add(f"||{domain}^$image")
 
@@ -140,6 +159,25 @@ jobs:
                               elif 'id' in div.attrs:
                                   selector = f"{current_url}##div#{div['id']}"
                                   ad_elements.add(selector)
+
+                      # Thêm các domain quảng cáo phổ biến
+                      common_ad_domains = [
+                          'ads.gmodules.com',
+                          'ads.youtube.com',
+                          'adservice.google.*',
+                          'analytics.google.com',
+                          'doubleclick.net',
+                          'google-analytics.com',
+                          'googleadservices.com',
+                          'googleanalytics.com',
+                          'googleapis.com',
+                          'googlesyndication.com',
+                          'googletagmanager.com',
+                          'googletagservices.com'
+                      ]
+                      
+                      for domain in common_ad_domains:
+                          ad_elements.add(f"||{domain}^$third-party")
 
                   def scan_website(url, max_depth=1):
                       chrome_options = Options()
