@@ -1,7 +1,7 @@
 ! ----------  About ----------
 ! Version: 06-12-2024
 ! Title: Yuusei
-! Last modified: 06-12-2024 15:26:13
+! Last modified: 06-12-2024 08:30:52
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Checksum: a215587d9c72c2d2d6005f6639914b66091e99e82a1e815512cb489aa7986746
@@ -1074,3 +1074,53 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||zaloweb.
 ||zunsoach.com^
 ||zz.bdstatic.com^
+# Rules từ https://checkip.com.vn/ - 2024-12-06
+https://checkip.com.vn/##div#aswift_0_host
+https://checkip.com.vn/##div#aswift_1_host
+https://checkip.com.vn/##div#aswift_2_host
+https://checkip.com.vn/##div#aswift_3_host
+https://checkip.com.vn/##div.google-auto-placed
+https://checkip.com.vn/##div.google-auto-placed.ap_container
+https://checkip.com.vn/##div.leaflet-pane.leaflet-overlay-pane
+https://checkip.com.vn/##div.leaflet-pane.leaflet-popup-pane
+||^
+||abysscdn.com^-party
+||ads.gmodules.com^-party
+||ads.youtube.com^-party
+||adservice.google.*^-party
+||afamily.vn^-party
+||analytics.google.com^-party
+||bongdaso66.net^-party
+||cafef.vn^-party
+||dantri.com.vn^-party
+||doubleclick.net^-party
+||freeplayervideo.com^-party
+||gamek.vn^-party
+||genk.vn^-party
+||geoip.redirect-ads.com^-party
+||google-analytics.com^-party
+||google-cn^-party
+||google.com^-party
+||googleadservices.com^-party
+||googleanalytics.com^-party
+||googleapis.com^-party
+||googlesyndication.com^-party
+||googletagmanager.com^-party
+||googletagservices.com^-party
+||kenh14.vn^-party
+||l.google.com^-party
+||linkneverdie.net^-party
+||marsvenus.vn^-party
+||mcleaks.net^-party
+||optimize.google.com^-party
+||pagead2.googlesyndication.com^
+||player-cdn.com^-party
+||playhydrax.com^-party
+||sexdiaryx.one^-party
+||soha.vn^-party
+||thegioididong.com^-party
+||tuoitre.vn^-party
+||vtv.vn^-party
+||www.google-analytics.com^
+||www.googletagmanager.com^
+||youtube.com^-party
