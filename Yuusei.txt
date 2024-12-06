@@ -7,6 +7,10 @@
 ! Checksum: 0de1909f96d16930c8ab1f109dc6923661a55f1f0e680228983a81c3d988a2dd
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
+phimsexsub.xyz###popupContact
+phimsexsub.xyz###backgroundPopupp
+phimsexsub.xyz##center
+||checkip.com.vn/uploads/photos/1/ads/*.jpg$image
 www.sayhentai.art##.float-ck-center-lt
 client.pylexnodes.net###stickyfooterad
 free.pylexnodes.net###stickyfooterad
