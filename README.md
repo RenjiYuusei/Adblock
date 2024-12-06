@@ -2,7 +2,7 @@
 
 # 🛡️ Yuusei Filter List
 
-_Bộ lọc quảng cáo nâng cao với cập nhật tự động hàng ngày_
+_Bộ lọc quảng cáo nâng cao với cập nhật tự động hai lần mỗi ngày_
 
 [![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/version.json)](https://github.com/RenjiYuusei/Adblock/main/Yuusei.txt)
 [![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.json)](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
@@ -27,7 +27,7 @@ _Bộ lọc quảng cáo nâng cao với cập nhật tự động hàng ngày_
 https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 ```
 
-## 📊 Thống kê
+## 📊 Thống kê chi tiết
 
 <div align="center">
 
@@ -37,37 +37,43 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 | Rules mạng | 340 | ![Network](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/network_rules.json) |
 | Rules giao diện | 493 | ![Cosmetic](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/cosmetic_rules.json) |
 | Rules whitelist | 37 | ![Whitelist](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/whitelist_rules.json) |
+| Rules important | 0 | ![Important](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/important_rules.json) |
+| Rules redirect | 0 | ![Redirect](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/redirect_rules.json) |
 | Rules trùng đã xóa | 0 | ![Removed Duplicates](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/removed_duplicates.json) |
 
 </div>
 
-## 🛡️ Tính năng
+## 🛡️ Tính năng chính
 
-### 🚫 Chặn quảng cáo
+### 🚫 Chặn quảng cáo toàn diện
 - Chặn hoàn toàn quảng cáo trên các trang web
 - Loại bỏ nội dung được tài trợ và quảng cáo
 - Bảo vệ khỏi pop-up và overlay
 - Vượt qua chống chặn quảng cáo
+- Chặn quảng cáo trên YouTube và các nền tảng video
 
-### 🔒 Bảo vệ quyền riêng tư
+### 🔒 Bảo vệ quyền riêng tư tối đa
 - Chặn script và pixel theo dõi
 - Ngăn chặn browser fingerprinting
 - Bảo vệ khỏi theo dõi analytics
-- Trải nghiệm duyệt web an toàn
+- Chặn các trình theo dõi của bên thứ 3
+- Bảo vệ khỏi malware và phishing
 
-### ⚡ Tối ưu hiệu suất
-- Tăng tốc độ tải trang
-- Giảm sử dụng băng thông
-- Trải nghiệm duyệt web sạch sẽ
-- Tối ưu sử dụng bộ nhớ
+### ⚡ Tối ưu hiệu suất cao
+- Tăng tốc độ tải trang đáng kể
+- Giảm sử dụng băng thông và bộ nhớ
+- Trải nghiệm duyệt web mượt mà
+- Tối ưu sử dụng tài nguyên
+- Giảm thời gian tải trang
 
-### 🔄 Bảo trì
-- Cập nhật tự động hàng ngày
+### 🔄 Bảo trì chuyên nghiệp
+- Cập nhật tự động 2 lần mỗi ngày
 - Kiểm soát chất lượng nghiêm ngặt
 - Giải quyết vấn đề nhanh chóng
 - Tối ưu hóa thường xuyên
+- Hỗ trợ kỹ thuật 24/7
 
-## 🤝 Đóng góp
+## 🤝 Đóng góp và phát triển
 
 <div align="center">
 
@@ -80,13 +86,14 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 Dự án này được cấp phép theo [GNU GPL v3.0](LICENSE)
 
-## ⭐ Hỗ trợ
+## ⭐ Hỗ trợ dự án
 
 Nếu bạn thấy dự án này hữu ích:
 - Star repository ⭐
 - Chia sẻ với mọi người 🔄
-- Báo cáo lỗi 🐛
-- Đóng góp cải tiến 🛠️
+- Báo cáo lỗi và góp ý 🐛
+- Đóng góp cải tiến mã nguồn 🛠️
+- Tham gia phát triển dự án 👥
 
 ---
 
@@ -96,6 +103,6 @@ Nếu bạn thấy dự án này hữu ích:
 
 <sub>Cập nhật tự động bởi GitHub Actions</sub>
 
-_Cập nhật lần cuối: 06-12-2024 15:48:59 (Asia/Ho_Chi_Minh)_
+_Cập nhật lần cuối: 06-12-2024 15:58:35 (Asia/Ho_Chi_Minh)_
 
 </div>
