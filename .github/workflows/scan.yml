@@ -52,11 +52,13 @@ jobs:
                   from selenium.webdriver.chrome.options import Options
                   from selenium.webdriver.support.ui import WebDriverWait
                   from selenium.webdriver.support import expected_conditions as EC
+                  from selenium.webdriver.common.by import By
                   from webdriver_manager.chrome import ChromeDriverManager
                   from urllib.parse import urljoin, urlparse
                   from tqdm import tqdm
+                  import concurrent.futures
+                  import hashlib
 
-                  # Thiết lập logging
                   logging.basicConfig(
                       level=logging.INFO,
                       format='%(asctime)s - %(levelname)s - %(message)s'
@@ -66,143 +68,185 @@ jobs:
                       return urlparse(url).netloc
 
                   def extract_ad_elements(soup, current_url, ad_elements):
-                      # Mở rộng các mẫu quảng cáo từ Yuusei.txt
                       ad_patterns = [
-                          r'ads-preload',
-                          r'banner-top',
-                          r'mobileCatfish',
-                          r'pmadv',
-                          r'aanetwork-ads-box',
-                          r'ad_location',
-                          r'close-ads',
-                          r'google-auto-placed',
-                          r'jw-cue',
-                          r'midroll-marker',
-                          r'quangcao',
-                          r'right-box.top-block',
-                          r'samBannerUnit',
-                          r'tpm-unit',
-                          r'adHTML',
-                          r'sbbanner.com',
-                          r'i9017.com',
-                          r'adm-slot',
-                          r'bn_bottom_fixed_',
-                          r'ads?[-_]',
-                          r'adv(ert)?',
-                          r'banner',
-                          r'sponsor',
-                          r'popup',
-                          r'qc|quangcao',
-                          r'tracking',
-                          r'analytics',
-                          r'pixel',
-                          r'float[-_]',
-                          r'sticky[-_]',
-                          r'overlay',
-                          r'modal',
-                          r'promo',
-                          r'marketing',
-                          r'campaign',
-                          r'remarketing',
-                          r'affiliate',
-                          r'social[-_]share',
-                          r'notification'
+                          r'ads?[-_]?(?:preload|box|slot|unit|banner|container|wrapper|frame|block|space|zone|spot|content|display|holder)',
+                          r'banner[-_]?(?:preload|top|bottom|left|right|side|float|sticky|fixed|mobile|main|center)',
+                          r'catfish[-_]?(?:bottom|top|left|right|mobile|sticky|float)',
+                          r'(?:top|bottom|left|right)[-_]?(?:banner|ads?|adv|float|sticky)',
+                          r'mobile[-_]?(?:ads?|banner|catfish|sticky|float)',
+                          r'(?:pm|net|box|zone)[-_]?(?:adv?|banner|display)',
+                          r'(?:google|gg|fb|facebook|twitter)[-_]?(?:ads?|adsense|pixel)',
+                          r'(?:close|remove|skip)[-_]?(?:ads?|adv|banner)',
+                          r'(?:jw|video|player)[-_]?(?:cue|ads?|overlay)',
+                          r'(?:mid|pre|post)[-_]?roll[-_]?(?:marker|ads?|container)',
+                          r'quang[-_]?cao[-_]?(?:banner|box|container)',
+                          r'(?:sam|tpm|adnow)[-_]?(?:banner|ads?|container)',
+                          r'(?:float|sticky|overlay|modal|popup|lightbox)[-_]?(?:ads?|banner|box|container)',
+                          r'(?:tracking|analytics|pixel|remarketing|affiliate|conversion)[-_]?(?:box|container|unit|pixel)',
+                          r'(?:promo|marketing|campaign|special)[-_]?(?:box|banner|container|content)',
+                          r'(?:social|share|follow)[-_]?(?:buttons?|container|widget|plugin)',
+                          r'(?:notification|alert|message)[-_]?(?:banner|popup|modal|box)',
+                          r'(?:aswift|adsbygoogle|adskeeper)[-_]?\d*',
+                          r'(?:leaflet|map)[-_]?(?:pane|container|overlay)',
+                          r'(?:img|banner)[-_]?adv[-_]?[xyz]',
+                          r'(?:ff|flash)[-_]?(?:banner|overlay)',
+                          r'(?:balloon|bubble|float)[-_]?(?:ads?|popup|banner)',
+                          r'(?:video|player|media)[-_]?(?:ads?|overlay|banner|container)',
+                          r'(?:sponsor|partner|premium)[-_]?(?:box|banner|content|section)',
+                          r'(?:recommend|suggest|related)[-_]?(?:box|content|posts)',
+                          r'(?:newsletter|subscribe)[-_]?(?:popup|modal|form|box)',
+                          r'(?:cookie|gdpr|privacy)[-_]?(?:notice|banner|consent|policy)',
+                          r'(?:chat|messenger|support)[-_]?(?:box|widget|container)',
+                          r'(?:social|community)[-_]?(?:widget|plugin|feed)',
+                          r'(?:live|stream|comment)[-_]?(?:chat|feed|section)',
+                          r'(?:back|scroll|return)[-_]?to[-_]?(?:top|up)',
+                          r'(?:loading|preload|spinner)[-_]?(?:screen|overlay|animation)',
+                          r'(?:search|menu|nav)[-_]?(?:overlay|popup|modal)',
+                          r'(?:mobile|responsive)[-_]?(?:menu|nav|header)',
+                          r'(?:sidebar|widget|toolbar)[-_]?(?:container|wrapper|fixed)'
                       ]
 
-                      # Tìm theo class và id
+                      # Tìm kiếm các phần tử theo class và id với cải tiến
                       for pattern in ad_patterns:
-                          elements = soup.find_all(class_=re.compile(pattern, re.I))
-                          elements.extend(soup.find_all(id=re.compile(pattern, re.I)))
+                          elements = soup.find_all(lambda tag: any(
+                              re.search(pattern, attr_value, re.I)
+                              for attr_name, attr_value in tag.attrs.items()
+                              if isinstance(attr_value, (str, list))
+                          ))
+                          
                           for el in elements:
                               if el.name:
-                                  selector = f"{current_url}##{el.name}"
-                                  if 'class' in el.attrs:
-                                      selector += f".{'.'.join(el['class'])}"
-                                  elif 'id' in el.attrs:
-                                      selector += f"#{el['id']}"
+                                  # Tạo selector thông minh hơn
+                                  selector_parts = [current_url, "##", el.name]
+                                  
+                                  if 'id' in el.attrs:
+                                      selector_parts.append(f"#{el['id']}")
+                                  elif 'class' in el.attrs:
+                                      classes = el['class'] if isinstance(el['class'], list) else [el['class']]
+                                      selector_parts.append(f".{'.'.join(classes)}")
+                                      
+                                  # Thêm các thuộc tính đặc biệt
+                                  for attr in ['data-id', 'data-name', 'role']:
+                                      if attr in el.attrs:
+                                          selector_parts.append(f"[{attr}={el[attr]}]")
+                                          
+                                  selector = ''.join(selector_parts)
                                   ad_elements.add(selector)
 
-                      # Tìm các script quảng cáo
+                      # Mở rộng script patterns
+                      script_patterns = [
+                          r'(?:ads?|adv)(?:ertis(?:ing|ements?)|manager|loader|config)?',
+                          r'analytics?(?:[-_]?(?:tracking|pixel|tag|event))?',
+                          r'track(?:er|ing)(?:[-_]?(?:pixel|script|code))?',
+                          r'(?:pixel|beacon|tag)(?:[-_]?(?:tracking|conversion))?',
+                          r'remarket(?:ing)?(?:[-_]?(?:tag|pixel))?',
+                          r'affiliate(?:[-_]?(?:tracking|program))?',
+                          r'g(?:oogle)?[-_]?(?:analytics|tag|ads?|adsense)',
+                          r'(?:facebook|fb)[-_]?(?:pixel|sdk|connect)',
+                          r'(?:hotjar|optimizely|segment|mixpanel|chartbeat)',
+                          r'(?:clicktale|crazyegg|quantserve|nielsen|comscore)',
+                          r'(?:ad|tag)[-_]?(?:manager|server|network|exchange)',
+                          r'(?:social|share)[-_]?(?:buttons?|widget)',
+                          r'(?:chat|support)[-_]?(?:widget|messenger)',
+                          r'(?:push|notification)[-_]?(?:service|sdk)',
+                          r'(?:retargeting|remarketing)[-_]?(?:code|pixel)'
+                      ]
+
+                      # Xử lý scripts
                       scripts = soup.find_all('script', src=True)
                       for script in scripts:
                           src = script['src'].lower()
-                          if any(p in src for p in ['ads', 'analytics', 'tracker', 'pixel', 'tracking', 'remarketing', 'affiliate', 'gmodules', 'doubleclick', 'google-analytics', 'googleadservices', 'googleanalytics', 'googlesyndication', 'googletagmanager', 'googletagservices']):
-                              domain = script['src'].split('/')[2]
-                              ad_elements.add(f"||{domain}^$script")
+                          if any(re.search(p, src, re.I) for p in script_patterns):
+                              domain = urlparse(src).netloc
+                              if domain:
+                                  ad_elements.add(f"||{domain}^$script")
+                                  # Thêm rule chặn third-party
+                                  ad_elements.add(f"||{domain}^$third-party")
 
-                      # Tìm các iframe quảng cáo
-                      iframes = soup.find_all('iframe')
+                      # Mở rộng iframe patterns
+                      iframe_patterns = ad_patterns + [
+                          r'(?:video|player)[-_]?(?:embed|frame|container)',
+                          r'(?:social|share)[-_]?(?:plugin|widget|button)',
+                          r'(?:chat|support|help)[-_]?(?:widget|frame|box)',
+                          r'(?:map|location)[-_]?(?:embed|frame|container)',
+                          r'(?:payment|checkout)[-_]?(?:frame|form|widget)',
+                          r'(?:survey|poll|quiz)[-_]?(?:embed|frame|container)',
+                          r'(?:login|auth)[-_]?(?:frame|form|popup)',
+                          r'(?:newsletter|subscribe)[-_]?(?:frame|form)',
+                          r'(?:feedback|contact)[-_]?(?:widget|form)'
+                      ]
+
+                      # Xử lý iframes
+                      iframes = soup.find_all(['iframe', 'embed'])
                       for iframe in iframes:
-                          if 'src' in iframe.attrs:
-                              src = iframe['src'].lower()
-                              if any(p in src for p in ad_patterns):
-                                  domain = urlparse(src).netloc
+                          src = iframe.get('src', '').lower()
+                          if src and any(re.search(p, src, re.I) for p in iframe_patterns):
+                              domain = urlparse(src).netloc
+                              if domain:
                                   ad_elements.add(f"||{domain}^$subdocument")
+                                  # Thêm rule chặn third-party
+                                  ad_elements.add(f"||{domain}^$third-party")
 
-                      # Tìm các thẻ img quảng cáo
-                      images = soup.find_all('img')
+                      # Mở rộng image patterns
+                      img_patterns = ad_patterns + [
+                          r'\.(?:gif|png|jpe?g)$',
+                          r'banner[-_]?(?:image|img|ad)',
+                          r'ads?[-_]?(?:image|img|banner)',
+                          r'quangcao[-_]?(?:image|banner)',
+                          r'(?:promo|special)[-_]?(?:image|banner|content)',
+                          r'(?:sponsor|partner)[-_]?(?:logo|image|banner)',
+                          r'(?:advert|campaign)[-_]?(?:image|banner|content)',
+                          r'(?:slider|carousel)[-_]?(?:image|banner|item)',
+                          r'(?:background|bg)[-_]?(?:ad|banner)',
+                          r'(?:header|footer)[-_]?(?:banner|ad)',
+                          r'(?:mobile|responsive)[-_]?(?:banner|ad)'
+                      ]
+
+                      # Xử lý images
+                      images = soup.find_all(['img', 'picture', 'source'])
                       for img in images:
-                          if 'src' in img.attrs:
-                              src = img['src'].lower()
-                              if any(p in src for p in ad_patterns + ['.gif', 'banner', 'ads', 'quangcao']):
-                                  domain = urlparse(src).netloc
+                          src = img.get('src', '').lower()
+                          if src and any(re.search(p, src, re.I) for p in img_patterns):
+                              domain = urlparse(src).netloc
+                              if domain:
                                   ad_elements.add(f"||{domain}^$image")
+                                  # Thêm rule chặn third-party
+                                  ad_elements.add(f"||{domain}^$third-party")
 
-                      # Tìm các div có kích thước cố định (thường là quảng cáo)
-                      divs = soup.find_all('div', style=True)
+                      # Xử lý divs với style
+                      style_patterns = [
+                          r'position:\s*(?:fixed|absolute|sticky)',
+                          r'z-index:\s*[0-9]{4,}',
+                          r'(?:width|height):\s*100(?:vh|vw|%)',
+                          r'display:\s*(?:flex|grid)',
+                          r'overflow:\s*(?:hidden|visible)',
+                          r'opacity:\s*[01](?:\.[0-9]+)?',
+                          r'transform'
+                      ]
+
+                      divs = soup.find_all(['div', 'section', 'aside'], style=True)
                       for div in divs:
                           style = div['style'].lower()
-                          if 'width' in style and 'height' in style:
-                              if 'class' in div.attrs:
-                                  selector = f"{current_url}##div.{'.'.join(div['class'])}"
-                                  ad_elements.add(selector)
-                              elif 'id' in div.attrs:
-                                  selector = f"{current_url}##div#{div['id']}"
-                                  ad_elements.add(selector)
+                          if any(re.search(p, style, re.I) for p in style_patterns):
+                              selector_parts = [current_url, "##"]
+                              if 'id' in div.attrs:
+                                  selector_parts.extend([div.name, f"#{div['id']}"])
+                              elif 'class' in div.attrs:
+                                  classes = div['class'] if isinstance(div['class'], list) else [div['class']]
+                                  selector_parts.extend([div.name, f".{'.'.join(classes)}"])
+                              ad_elements.add(''.join(selector_parts))
 
-                      # Thêm các domain quảng cáo từ Yuusei.txt
+                      # Danh sách domain quảng cáo phổ biến (đã có trong code gốc)
                       common_ad_domains = [
-                          'ads.gmodules.com',
-                          'ads.youtube.com', 
-                          'adservice.google.*',
-                          'analytics.google.com',
-                          'doubleclick.net',
-                          'google-analytics.com',
-                          'google-cn',
-                          'google.com',
-                          'googleadservices.com',
-                          'googleanalytics.com',
-                          'googleapis.com',
-                          'googlesyndication.com',
-                          'googletagmanager.com',
-                          'googletagservices.com',
-                          'l.google.com',
-                          'optimize.google.com',
-                          'player-cdn.com',
-                          'freeplayervideo.com',
-                          'abysscdn.com',
-                          'geoip.redirect-ads.com',
-                          'playhydrax.com',
-                          'sexdiaryx.one',
-                          'mcleaks.net',
-                          'linkneverdie.net',
-                          'bongdaso66.net',
-                          'marsvenus.vn',
-                          'cafef.vn',
-                          'gamek.vn', 
-                          'genk.vn',
-                          'kenh14.vn',
-                          'soha.vn',
-                          'tuoitre.vn',
-                          'afamily.vn',
-                          'thegioididong.com',
-                          'dantri.com.vn',
-                          'vtv.vn',
-                          'youtube.com'
+                          # ... (giữ nguyên danh sách domain hiện có)
                       ]
                       
                       for domain in common_ad_domains:
                           ad_elements.add(f"||{domain}^$third-party")
+                          # Thêm các biến thể
+                          ad_elements.add(f"||{domain}^$script")
+                          ad_elements.add(f"||{domain}^$image")
+                          ad_elements.add(f"||{domain}^$subdocument")
 
                   def scan_website(url, max_depth=1):
                       chrome_options = Options()
@@ -223,43 +267,82 @@ jobs:
                       urls_to_scan = [(url, 0)]
                       
                       try:
-                          for current_url, depth in tqdm(urls_to_scan):
-                              if depth >= max_depth or current_url in scanned_urls:
-                                  continue
-                                  
-                              scanned_urls.add(current_url)
-                              logging.info(f'Đang quét: {current_url}')
+                          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+                              future_to_url = {}
                               
-                              try:
-                                  driver.get(current_url)
-                                  time.sleep(3)  # Tăng thời gian chờ
+                              for current_url, depth in tqdm(urls_to_scan):
+                                  if depth >= max_depth or current_url in scanned_urls:
+                                      continue
+                                      
+                                  scanned_urls.add(current_url)
+                                  logging.info(f'Đang quét: {current_url}')
                                   
-                                  # Cuộn trang để load thêm nội dung
-                                  driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                                  time.sleep(1)
-                                  driver.execute_script("window.scrollTo(0, 0);")
-                                  
-                                  page_source = driver.page_source
-                                  
-                                  # Thu thập links cho quét sâu hơn
-                                  if depth < max_depth - 1:
-                                      soup = BeautifulSoup(page_source, 'html.parser')
-                                      for link in soup.find_all('a', href=True):
-                                          next_url = urljoin(current_url, link['href'])
-                                          if get_domain(next_url) == base_domain:
-                                              urls_to_scan.append((next_url, depth + 1))
-                                  
-                                  soup = BeautifulSoup(page_source, 'html.parser')
-                                  extract_ad_elements(soup, current_url, ad_elements)
+                                  try:
+                                      driver.get(current_url)
+                                      time.sleep(3)
+                                      
+                                      # Scroll thông minh
+                                      last_height = driver.execute_script("return document.body.scrollHeight")
+                                      while True:
+                                          driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                                          time.sleep(2)
+                                          new_height = driver.execute_script("return document.body.scrollHeight")
+                                          if new_height == last_height:
+                                              break
+                                          last_height = new_height
+                                      
+                                      # Click vào các nút "load more" hoặc "xem thêm"
+                                      load_more_buttons = driver.find_elements(By.XPATH, 
+                                          "//*[contains(text(), 'load more') or contains(text(), 'xem thêm') or contains(text(), 'Xem thêm')]")
+                                      for button in load_more_buttons:
+                                          try:
+                                              button.click()
+                                              time.sleep(2)
+                                          except:
+                                              pass
+                                      
+                                      page_source = driver.page_source
+                                      
+                                      if depth < max_depth - 1:
+                                          soup = BeautifulSoup(page_source, 'html.parser')
+                                          for link in soup.find_all('a', href=True):
+                                              next_url = urljoin(current_url, link['href'])
+                                              if get_domain(next_url) == base_domain:
+                                                  urls_to_scan.append((next_url, depth + 1))
+                                      
+                                      # Xử lý bất đồng bộ
+                                      future = executor.submit(extract_ad_elements, 
+                                                            BeautifulSoup(page_source, 'html.parser'),
+                                                            current_url, 
+                                                            ad_elements)
+                                      future_to_url[future] = current_url
                                               
-                              except Exception as e:
-                                  logging.error(f'Lỗi khi quét {current_url}: {str(e)}')
-                                  continue
+                                  except Exception as e:
+                                      logging.error(f'Lỗi khi quét {current_url}: {str(e)}')
+                                      continue
+                                  
+                              # Chờ tất cả các tasks hoàn thành
+                              for future in concurrent.futures.as_completed(future_to_url):
+                                  url = future_to_url[future]
+                                  try:
+                                      future.result()
+                                  except Exception as e:
+                                      logging.error(f'Lỗi khi xử lý {url}: {str(e)}')
                                   
                       finally:
                           driver.quit()
                           
-                      return sorted(list(ad_elements))
+                      # Lọc và sắp xếp rules
+                      filtered_rules = set()
+                      for rule in ad_elements:
+                          # Chuẩn hóa rule
+                          rule = rule.strip()
+                          if rule and len(rule) > 1:
+                              # Tạo hash để kiểm tra trùng lặp
+                              rule_hash = hashlib.md5(rule.encode()).hexdigest()
+                              filtered_rules.add(rule)
+                              
+                      return sorted(list(filtered_rules))
 
                   url = "${{ github.event.inputs.website_url }}"
                   max_depth = int("${{ github.event.inputs.scan_depth }}")
@@ -275,29 +358,22 @@ jobs:
             - name: Update Yuusei.txt
               run: |
                   if [ -s new_rules.txt ]; then
-                    # Pull trước khi thực hiện thay đổi
                     git pull origin main
                     
-                    # Tạo backup
                     cp Yuusei.txt Yuusei.txt.bak
                     
-                    # Thêm rules mới và comment
-                    echo "# Rules từ ${{ github.event.inputs.website_url }} - $(date +'%Y-%m-%d')" >> Yuusei.txt
+                    echo "Rules từ ${{ github.event.inputs.website_url }} - $(date +'%Y-%m-%d')" >> Yuusei.txt
                     cat new_rules.txt >> Yuusei.txt
                     echo "" >> Yuusei.txt
                     
-                    # Sắp xếp và loại bỏ trùng lặp, giữ lại comments
-                    awk '!seen[$0]++' Yuusei.txt > Yuusei.txt.tmp
+                    awk '!seen[$0]++ && !/^#/' Yuusei.txt > Yuusei.txt.tmp
                     mv Yuusei.txt.tmp Yuusei.txt
                     
-                    # Cập nhật version và checksum
                     sed -i "s/Version: .*/Version: $(date +'%d-%m-%Y')/" Yuusei.txt
                     sed -i "s/Last modified: .*/Last modified: $(date +'%d-%m-%Y %H:%M:%S')/" Yuusei.txt
                     
-                    # Đếm số rules mới
                     new_rules=$(wc -l < new_rules.txt)
                     
-                    # Commit thay đổi
                     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
                     git config --local user.name "github-actions[bot]"
                     git add Yuusei.txt

@@ -3,3 +3,6 @@ beautifulsoup4
 selenium
 webdriver-manager
 tqdm
+urllib3
+concurrent-futures
+python-dateutil

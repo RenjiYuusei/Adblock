@@ -5,7 +5,7 @@ on:
         paths:
             - 'Yuusei.txt'
     schedule:
-        - cron: '0 0 * * *' # Chạy hàng ngày lúc 00:00 UTC
+        - cron: '0 0,12 * * *' # Chạy 2 lần mỗi ngày lúc 00:00 và 12:00 UTC
     workflow_dispatch:
         inputs:
             force_update:
@@ -42,6 +42,7 @@ jobs:
                     echo "YEAR=$(date +'%Y')"
                     echo "REPO_NAME=${GITHUB_REPOSITORY#*/}"
                     echo "AUTHOR_NAME=${GITHUB_REPOSITORY%/*}"
+                    echo "FULL_VERSION=$(date +'%Y.%m.%d')"
                   } >> $GITHUB_ENV
 
             - name: Remove duplicate rules
@@ -84,7 +85,7 @@ jobs:
                   [ "$FILE_SIZE" -ge 100 ] || log_error "File filter quá nhỏ!"
 
                   # Xác thực các header bắt buộc
-                  required_headers=("! Title:" "! Version:" "! Last modified:")
+                  required_headers=("! Title:" "! Version:" "! Last modified:" "! Homepage:" "! License:")
                   for header in "${required_headers[@]}"; do
                     grep -q "^$header" "${{ env.FILTER_FILE }}" || log_error "Thiếu header bắt buộc: $header"
                   done
@@ -109,7 +110,7 @@ jobs:
                   cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
 
                   # Cập nhật metadata
-                  sed -E "s/^! Version:.*/! Version: ${{ env.DATE }}/;\
+                  sed -E "s/^! Version:.*/! Version: ${{ env.FULL_VERSION }}/;\
                          s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/;\
                          s/^! Updated by:.*/! Updated by: GitHub Actions/" \
                   "${{ env.FILTER_FILE }}" > "$temp_file"
@@ -123,6 +124,8 @@ jobs:
                     echo "NETWORK_RULES=$(grep -c "^||" "${{ env.FILTER_FILE }}" || true)"
                     echo "COSMETIC_RULES=$(grep -c "##" "${{ env.FILTER_FILE }}" || true)"
                     echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)"
+                    echo "IMPORTANT_RULES=$(grep -c "important" "${{ env.FILTER_FILE }}" || true)"
+                    echo "REDIRECT_RULES=$(grep -c "redirect=" "${{ env.FILTER_FILE }}" || true)"
                   } >> $GITHUB_ENV
 
                   # Kiểm tra thay đổi
@@ -147,12 +150,14 @@ jobs:
                   }
 
                   # Tạo tất cả badges
-                  generate_badge "version" "${{ env.DATE }}" "blue"
+                  generate_badge "version" "${{ env.FULL_VERSION }}" "blue"
                   generate_badge "rules" "${{ env.RULE_COUNT }}" "brightgreen"
                   generate_badge "updated" "${{ env.DATE }}" "success"
                   generate_badge "network rules" "${{ env.NETWORK_RULES }}" "informational"
                   generate_badge "cosmetic rules" "${{ env.COSMETIC_RULES }}" "yellow"
                   generate_badge "whitelist rules" "${{ env.WHITELIST_RULES }}" "orange"
+                  generate_badge "important rules" "${{ env.IMPORTANT_RULES }}" "red"
+                  generate_badge "redirect rules" "${{ env.REDIRECT_RULES }}" "purple"
                   generate_badge "removed duplicates" "${{ env.REMOVED_DUPLICATES }}" "red"
                   generate_badge "ublock" "Cài đặt cho uBlock Origin" "1a73e8" "for-the-badge"
                   generate_badge "adguard" "Cài đặt cho AdGuard" "67b279" "for-the-badge"
@@ -163,7 +168,7 @@ jobs:
 
                   # 🛡️ Yuusei Filter List
 
-                  _Bộ lọc quảng cáo nâng cao với cập nhật tự động hàng ngày_
+                  _Bộ lọc quảng cáo nâng cao với cập nhật tự động hai lần mỗi ngày_
 
                   [![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/version.json)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
                   [![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/rules.json)](https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
@@ -188,7 +193,7 @@ jobs:
                   https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt
                   ```
 
-                  ## 📊 Thống kê
+                  ## 📊 Thống kê chi tiết
 
                   <div align="center">
 
@@ -198,37 +203,43 @@ jobs:
                   | Rules mạng | ${{ env.NETWORK_RULES }} | ![Network](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/network_rules.json) |
                   | Rules giao diện | ${{ env.COSMETIC_RULES }} | ![Cosmetic](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/cosmetic_rules.json) |
                   | Rules whitelist | ${{ env.WHITELIST_RULES }} | ![Whitelist](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/whitelist_rules.json) |
+                  | Rules important | ${{ env.IMPORTANT_RULES }} | ![Important](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/important_rules.json) |
+                  | Rules redirect | ${{ env.REDIRECT_RULES }} | ![Redirect](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/redirect_rules.json) |
                   | Rules trùng đã xóa | ${{ env.REMOVED_DUPLICATES }} | ![Removed Duplicates](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/removed_duplicates.json) |
 
                   </div>
 
-                  ## 🛡️ Tính năng
+                  ## 🛡️ Tính năng chính
 
-                  ### 🚫 Chặn quảng cáo
+                  ### 🚫 Chặn quảng cáo toàn diện
                   - Chặn hoàn toàn quảng cáo trên các trang web
                   - Loại bỏ nội dung được tài trợ và quảng cáo
                   - Bảo vệ khỏi pop-up và overlay
                   - Vượt qua chống chặn quảng cáo
+                  - Chặn quảng cáo trên YouTube và các nền tảng video
 
-                  ### 🔒 Bảo vệ quyền riêng tư
+                  ### 🔒 Bảo vệ quyền riêng tư tối đa
                   - Chặn script và pixel theo dõi
                   - Ngăn chặn browser fingerprinting
                   - Bảo vệ khỏi theo dõi analytics
-                  - Trải nghiệm duyệt web an toàn
+                  - Chặn các trình theo dõi của bên thứ 3
+                  - Bảo vệ khỏi malware và phishing
 
-                  ### ⚡ Tối ưu hiệu suất
-                  - Tăng tốc độ tải trang
-                  - Giảm sử dụng băng thông
-                  - Trải nghiệm duyệt web sạch sẽ
-                  - Tối ưu sử dụng bộ nhớ
+                  ### ⚡ Tối ưu hiệu suất cao
+                  - Tăng tốc độ tải trang đáng kể
+                  - Giảm sử dụng băng thông và bộ nhớ
+                  - Trải nghiệm duyệt web mượt mà
+                  - Tối ưu sử dụng tài nguyên
+                  - Giảm thời gian tải trang
 
-                  ### 🔄 Bảo trì
-                  - Cập nhật tự động hàng ngày
+                  ### 🔄 Bảo trì chuyên nghiệp
+                  - Cập nhật tự động 2 lần mỗi ngày
                   - Kiểm soát chất lượng nghiêm ngặt
                   - Giải quyết vấn đề nhanh chóng
                   - Tối ưu hóa thường xuyên
+                  - Hỗ trợ kỹ thuật 24/7
 
-                  ## 🤝 Đóng góp
+                  ## 🤝 Đóng góp và phát triển
 
                   <div align="center">
 
@@ -241,13 +252,14 @@ jobs:
 
                   Dự án này được cấp phép theo [GNU GPL v3.0](LICENSE)
 
-                  ## ⭐ Hỗ trợ
+                  ## ⭐ Hỗ trợ dự án
 
                   Nếu bạn thấy dự án này hữu ích:
                   - Star repository ⭐
                   - Chia sẻ với mọi người 🔄
-                  - Báo cáo lỗi 🐛
-                  - Đóng góp cải tiến 🛠️
+                  - Báo cáo lỗi và góp ý 🐛
+                  - Đóng góp cải tiến mã nguồn 🛠️
+                  - Tham gia phát triển dự án 👥
 
                   ---
 
@@ -268,5 +280,5 @@ jobs:
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
                   git add "${{ env.FILTER_FILE }}" README.md .github/badges || true
-                  git commit -m "🔄 Cập nhật tự động (Phiên bản: ${{ env.DATE }}, Đã xóa ${{ env.REMOVED_DUPLICATES }} rules trùng lặp)"
+                  git commit -m "🔄 Cập nhật tự động (Phiên bản: ${{ env.FULL_VERSION }}, Đã xóa ${{ env.REMOVED_DUPLICATES }} rules trùng lặp)"
                   git push
