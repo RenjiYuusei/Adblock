@@ -732,6 +732,8 @@ wibuz.net###top_ads
 wibuz.net##.Ads
 wibuz.net##.bellow_ads_player
 wibuz.net##.closecf
+phimmoichilltv.net##[href="javascript:an_catfish()"]
+static.truyenfull.io/min/g/mainjs-05122024_3.js^
 www.anitoku.net###HTML22 > .widget-content
 www.anitoku.net###container-ads
 www.buomtv.vip##._9xtpcl.c4je67d.c1qs0lzc.c1hrlkpu.cc2icwl.c1i0iccj.cfd18df
@@ -1071,19 +1073,8 @@ youtubeporn.pro,hls.playerfb.xyz###video_player ~ div[id]
 ||youtube.com/pagead/
 ||yr.fopbandido.com^
 ||zaloads.com^$third-party 
-||zaloweb.
 ||zunsoach.com^
 ||zz.bdstatic.com^
-# Rules từ https://checkip.com.vn/ - 2024-12-06
-https://checkip.com.vn/##div#aswift_0_host
-https://checkip.com.vn/##div#aswift_1_host
-https://checkip.com.vn/##div#aswift_2_host
-https://checkip.com.vn/##div#aswift_3_host
-https://checkip.com.vn/##div.google-auto-placed
-https://checkip.com.vn/##div.google-auto-placed.ap_container
-https://checkip.com.vn/##div.leaflet-pane.leaflet-overlay-pane
-https://checkip.com.vn/##div.leaflet-pane.leaflet-popup-pane
-||^
 ||abysscdn.com^-party
 ||ads.gmodules.com^-party
 ||ads.youtube.com^-party
