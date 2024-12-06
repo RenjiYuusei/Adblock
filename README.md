@@ -2,17 +2,18 @@
 
 # 🛡️ Yuusei Filter List
 
-_An advanced filter list for ad blockers with automatic daily updates_
+_Bộ lọc quảng cáo nâng cao với cập nhật tự động hàng ngày_
 
 [![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/version.json)](https://github.com/RenjiYuusei/Adblock/main/Yuusei.txt)
 [![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.json)](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
 [![Updated](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/updated.json)](https://github.com/RenjiYuusei/Adblock/commits/main)
+[![Removed Duplicates](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/removed_duplicates.json)](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
 [![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/RenjiYuusei/Adblock?style=flat-square&color=yellow)](https://github.com/RenjiYuusei/Adblock/stargazers)
 
 </div>
 
-## 📦 Quick Installation
+## 📦 Cài đặt nhanh
 
 <div align="center">
 
@@ -21,79 +22,80 @@ _An advanced filter list for ad blockers with automatic daily updates_
 
 </div>
 
-### 🔗 Filter URL
+### 🔗 URL bộ lọc
 ```
 https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 ```
 
-## 📊 Statistics
+## 📊 Thống kê
 
 <div align="center">
 
-| Category | Count | Status |
+| Danh mục | Số lượng | Trạng thái |
 |----------|--------|---------|
-| Total Rules | 1083 | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.json) |
-| Network Rules | 310 | ![Network](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/network_rules.json) |
-| Cosmetic Rules | 499 | ![Cosmetic](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/cosmetic_rules.json) |
-| Whitelist Rules | 37 | ![Whitelist](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/whitelist_rules.json) |
+| Tổng số Rules | 1066 | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/rules.json) |
+| Rules mạng | 301 | ![Network](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/network_rules.json) |
+| Rules giao diện | 492 | ![Cosmetic](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/cosmetic_rules.json) |
+| Rules whitelist | 37 | ![Whitelist](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/whitelist_rules.json) |
+| Rules trùng đã xóa | 17 | ![Removed Duplicates](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/.github/badges/removed_duplicates.json) |
 
 </div>
 
-## 🛡️ Features
+## 🛡️ Tính năng
 
-### 🚫 Advertisement Blocking
-- Complete blocking of ads across websites
-- Removal of sponsored content and promotions
-- Protection against pop-ups and overlays
-- Anti-adblock circumvention
+### 🚫 Chặn quảng cáo
+- Chặn hoàn toàn quảng cáo trên các trang web
+- Loại bỏ nội dung được tài trợ và quảng cáo
+- Bảo vệ khỏi pop-up và overlay
+- Vượt qua chống chặn quảng cáo
 
-### 🔒 Privacy Protection
-- Blocking of tracking scripts and pixels
-- Prevention of browser fingerprinting
-- Protection from analytics tracking
-- Secure browsing experience
+### 🔒 Bảo vệ quyền riêng tư
+- Chặn script và pixel theo dõi
+- Ngăn chặn browser fingerprinting
+- Bảo vệ khỏi theo dõi analytics
+- Trải nghiệm duyệt web an toàn
 
-### ⚡ Performance Optimization
-- Faster page loading times
-- Reduced bandwidth usage
-- Cleaner browsing experience
-- Memory usage optimization
+### ⚡ Tối ưu hiệu suất
+- Tăng tốc độ tải trang
+- Giảm sử dụng băng thông
+- Trải nghiệm duyệt web sạch sẽ
+- Tối ưu sử dụng bộ nhớ
 
-### 🔄 Maintenance
-- Automatic daily updates
-- Strict quality control
-- Quick issue resolution
-- Regular optimizations
+### 🔄 Bảo trì
+- Cập nhật tự động hàng ngày
+- Kiểm soát chất lượng nghiêm ngặt
+- Giải quyết vấn đề nhanh chóng
+- Tối ưu hóa thường xuyên
 
-## 🤝 Contributing
+## 🤝 Đóng góp
 
 <div align="center">
 
-[![Report Bug](https://img.shields.io/badge/Report%20Bug-Submit%20Issue-red?style=for-the-badge)](https://github.com/RenjiYuusei/Adblock/issues/new?assignees=&labels=bug&template=bug_report.md)
-[![Request Feature](https://img.shields.io/badge/Request%20Feature-Submit%20Idea-blue?style=for-the-badge)](https://github.com/RenjiYuusei/Adblock/issues/new?assignees=&labels=enhancement&template=feature_request.md)
+[![Report Bug](https://img.shields.io/badge/Báo%20lỗi-Gửi%20Issue-red?style=for-the-badge)](https://github.com/RenjiYuusei/Adblock/issues/new?assignees=&labels=bug&template=bug_report.md)
+[![Request Feature](https://img.shields.io/badge/Yêu%20cầu%20tính%20năng-Gửi%20ý%20tưởng-blue?style=for-the-badge)](https://github.com/RenjiYuusei/Adblock/issues/new?assignees=&labels=enhancement&template=feature_request.md)
 
 </div>
 
-## 📜 License
+## 📜 Giấy phép
 
-This project is licensed under the [GNU GPL v3.0](LICENSE)
+Dự án này được cấp phép theo [GNU GPL v3.0](LICENSE)
 
-## ⭐ Support
+## ⭐ Hỗ trợ
 
-If you find this project helpful:
-- Star the repository ⭐
-- Share with others 🔄
-- Report issues 🐛
-- Contribute improvements 🛠️
+Nếu bạn thấy dự án này hữu ích:
+- Star repository ⭐
+- Chia sẻ với mọi người 🔄
+- Báo cáo lỗi 🐛
+- Đóng góp cải tiến 🛠️
 
 ---
 
 <div align="center">
 
-Made with ❤️ by [Yuusei](https://github.com/RenjiYuusei/Adblock) | © 2024
+Được tạo với ❤️ bởi [Yuusei](https://github.com/RenjiYuusei/Adblock) | © 2024
 
-<sub>Updated automatically by GitHub Actions</sub>
+<sub>Cập nhật tự động bởi GitHub Actions</sub>
 
-_Last updated: 06-12-2024 14:37:59 (Asia/Ho_Chi_Minh)_
+_Cập nhật lần cuối: 06-12-2024 14:52:31 (Asia/Ho_Chi_Minh)_
 
 </div>
