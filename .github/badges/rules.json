@@ -1,10 +1,1 @@
-{
-    "schemaVersion": 1,
-    "label": "rules",
-    "message": "1031",
-    "color": "brightgreen",
-    "style": "flat-square",
-    "cacheSeconds": 300,
-    "isError": false,
-    "timestamp": "1733473243"
-  }
+{ "schemaVersion": 1, "label": "rules", "message": "1066", "color": "brightgreen", "style": "flat-square" }

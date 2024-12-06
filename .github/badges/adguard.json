@@ -1,10 +1,1 @@
-{
-    "schemaVersion": 1,
-    "label": "adguard",
-    "message": "Cài đặt cho AdGuard",
-    "color": "67b279",
-    "style": "for-the-badge",
-    "cacheSeconds": 300,
-    "isError": false,
-    "timestamp": "1733473243"
-  }
+{ "schemaVersion": 1, "label": "adguard", "message": "Cài đặt cho AdGuard", "color": "67b279", "style": "for-the-badge" }
