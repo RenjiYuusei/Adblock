@@ -1,246 +1,272 @@
 name: Update Yuusei Filter
 
 on:
-  push:
-    paths:
-      - 'Yuusei.txt'
-  schedule:
-    - cron: '0 0 * * *'  # Run daily at 00:00 UTC
-  workflow_dispatch:
-    inputs:
-      force_update:
-        description: 'Force update even if no changes'
-        required: false
-        type: boolean
-        default: false
+    push:
+        paths:
+            - 'Yuusei.txt'
+    schedule:
+        - cron: '0 0 * * *' # Chạy hàng ngày lúc 00:00 UTC
+    workflow_dispatch:
+        inputs:
+            force_update:
+                description: 'Cập nhật bắt buộc ngay cả khi không có thay đổi'
+                required: false
+                type: boolean
+                default: false
 
 env:
-  FILTER_FILE: Yuusei.txt
-  MIN_RULES: 10
-  TIMEZONE: "Asia/Ho_Chi_Minh"
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    FILTER_FILE: Yuusei.txt
+    MIN_RULES: 10
+    TIMEZONE: 'Asia/Ho_Chi_Minh'
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  update-filter:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    update-filter:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Setup environment
-        id: setup
-        run: |
-          sudo ln -sf /usr/share/zoneinfo/${{ env.TIMEZONE }} /etc/localtime
-          {
-            echo "DATE=$(date +'%d-%m-%Y')"
-            echo "TIME=$(date +'%H:%M:%S')"
-            echo "YEAR=$(date +'%Y')"
-            echo "REPO_NAME=${GITHUB_REPOSITORY#*/}"
-            echo "AUTHOR_NAME=${GITHUB_REPOSITORY%/*}"
-          } >> $GITHUB_ENV
+            - name: Setup environment
+              id: setup
+              run: |
+                  sudo ln -sf /usr/share/zoneinfo/${{ env.TIMEZONE }} /etc/localtime
+                  {
+                    echo "DATE=$(date +'%d-%m-%Y')"
+                    echo "TIME=$(date +'%H:%M:%S')"
+                    echo "YEAR=$(date +'%Y')"
+                    echo "REPO_NAME=${GITHUB_REPOSITORY#*/}"
+                    echo "AUTHOR_NAME=${GITHUB_REPOSITORY%/*}"
+                  } >> $GITHUB_ENV
 
-      - name: Validate filter file
-        id: validate
-        run: |
-          # Function to log errors
-          log_error() {
-            echo "::error::$1"
-            exit 1
-          }
+            - name: Remove duplicate rules
+              id: deduplicate
+              run: |
+                  # Tạo file tạm để lưu rules không trùng lặp
+                  temp_file=$(mktemp)
 
-          # Check if file exists
-          [ -f "${{ env.FILTER_FILE }}" ] || log_error "Filter file not found!"
-          
-          # Check file size
-          FILE_SIZE=$(stat -f%z "${{ env.FILTER_FILE }}" 2>/dev/null || stat -c%s "${{ env.FILTER_FILE }}")
-          [ "$FILE_SIZE" -ge 100 ] || log_error "Filter file is too small!"
-          
-          # Validate required headers
-          required_headers=("! Title:" "! Version:" "! Last modified:")
-          for header in "${required_headers[@]}"; do
-            grep -q "^$header" "${{ env.FILTER_FILE }}" || log_error "Missing required header: $header"
-          done
-          
-          # Count and validate rules
-          RULE_COUNT=$(grep -c "^[^!]" "${{ env.FILTER_FILE }}" || true)
-          [ "$RULE_COUNT" -ge "${{ env.MIN_RULES }}" ] || log_error "Insufficient rules (minimum: ${{ env.MIN_RULES }})!"
-          echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
-          
-          # Check for syntax issues
-          SYNTAX_ERRORS=$(grep -n "^[^!#@|]*[^a-zA-Z0-9.*?^$@#|=/,&_-]" "${{ env.FILTER_FILE }}" || true)
-          if [ -n "$SYNTAX_ERRORS" ]; then
-            echo "::warning::Potential syntax issues found:"
-            echo "$SYNTAX_ERRORS"
-          fi
+                  # Giữ lại header (các dòng bắt đầu bằng !)
+                  grep "^!" "${{ env.FILTER_FILE }}" > "$temp_file"
 
-      - name: Update filter metadata
-        id: update
-        run: |
-          # Create temporary file
-          temp_file=$(mktemp)
-          cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
-          
-          # Update metadata
-          sed -E "s/^! Version:.*/! Version: ${{ env.DATE }}/;\
-                 s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/;\
-                 s/^! Updated by:.*/! Updated by: GitHub Actions/" \
-          "${{ env.FILTER_FILE }}" > "$temp_file"
-          
-          # Calculate and update checksum
-          CHECKSUM=$(sha256sum "$temp_file" | cut -d' ' -f1)
-          sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/" "$temp_file" > "${{ env.FILTER_FILE }}"
-          
-          # Count rule types
-          {
-            echo "NETWORK_RULES=$(grep -c "^||" "${{ env.FILTER_FILE }}" || true)"
-            echo "COSMETIC_RULES=$(grep -c "##" "${{ env.FILTER_FILE }}" || true)"
-            echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)"
-          } >> $GITHUB_ENV
-          
-          # Check for changes
-          if [[ "${{ github.event.inputs.force_update }}" == "true" ]] || ! git diff --quiet "${{ env.FILTER_FILE }}"; then
-            echo "CHANGED=true" >> $GITHUB_ENV
-          else
-            echo "CHANGED=false" >> $GITHUB_ENV
-          fi
-          
-          rm "$temp_file"
+                  # Lọc và sắp xếp các rules không trùng lặp
+                  grep -v "^!" "${{ env.FILTER_FILE }}" | sort -u >> "$temp_file"
 
-      - name: Generate badges and README
-        if: env.CHANGED == 'true'
-        run: |
-          mkdir -p .github/badges
-          
-          # Function to generate badges
-          generate_badge() {
-            local label=$1 message=$2 color=$3 style=${4:-flat-square}
-            local filename=".github/badges/${label// /_}.json"
-            echo "{ \"schemaVersion\": 1, \"label\": \"$label\", \"message\": \"$message\", \"color\": \"$color\", \"style\": \"$style\" }" > "$filename"
-          }
-          
-          # Generate all badges
-          generate_badge "version" "${{ env.DATE }}" "blue"
-          generate_badge "rules" "${{ env.RULE_COUNT }}" "brightgreen"
-          generate_badge "updated" "${{ env.DATE }}" "success"
-          generate_badge "network rules" "${{ env.NETWORK_RULES }}" "informational"
-          generate_badge "cosmetic rules" "${{ env.COSMETIC_RULES }}" "yellow"
-          generate_badge "whitelist rules" "${{ env.WHITELIST_RULES }}" "orange"
-          generate_badge "ublock" "Install for uBlock Origin" "1a73e8" "for-the-badge"
-          generate_badge "adguard" "Install for AdGuard" "67b279" "for-the-badge"
-          
-          # Generate README
-          cat > README.md << 'EOF'
-          <div align="center">
+                  # Đếm số rules trùng lặp đã xóa
+                  original_count=$(grep -cv "^!" "${{ env.FILTER_FILE }}")
+                  new_count=$(grep -cv "^!" "$temp_file")
+                  removed_count=$((original_count - new_count))
 
-          # 🛡️ Yuusei Filter List
-          
-          _An advanced filter list for ad blockers with automatic daily updates_
-          
-          [![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/version.json)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
-          [![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/rules.json)](https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
-          [![Updated](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/updated.json)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/commits/main)
-          [![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](LICENSE)
-          [![Stars](https://img.shields.io/github/stars/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}?style=flat-square&color=yellow)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/stargazers)
-          
-          </div>
+                  echo "Đã xóa $removed_count rules trùng lặp"
+                  echo "REMOVED_DUPLICATES=$removed_count" >> $GITHUB_ENV
 
-          ## 📦 Quick Installation
+                  # Thay thế file gốc bằng file đã lọc
+                  mv "$temp_file" "${{ env.FILTER_FILE }}"
 
-          <div align="center">
+            - name: Validate filter file
+              id: validate
+              run: |
+                  # Hàm ghi log lỗi
+                  log_error() {
+                    echo "::error::$1"
+                    exit 1
+                  }
 
-          [![Install for uBlock Origin](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/ublock.json)](https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
-          [![Install for AdGuard](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/adguard.json)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
+                  # Kiểm tra file tồn tại
+                  [ -f "${{ env.FILTER_FILE }}" ] || log_error "Không tìm thấy file filter!"
 
-          </div>
+                  # Kiểm tra kích thước file
+                  FILE_SIZE=$(stat -f%z "${{ env.FILTER_FILE }}" 2>/dev/null || stat -c%s "${{ env.FILTER_FILE }}")
+                  [ "$FILE_SIZE" -ge 100 ] || log_error "File filter quá nhỏ!"
 
-          ### 🔗 Filter URL
-          ```
-          https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt
-          ```
+                  # Xác thực các header bắt buộc
+                  required_headers=("! Title:" "! Version:" "! Last modified:")
+                  for header in "${required_headers[@]}"; do
+                    grep -q "^$header" "${{ env.FILTER_FILE }}" || log_error "Thiếu header bắt buộc: $header"
+                  done
 
-          ## 📊 Statistics
+                  # Đếm và xác thực số lượng rules
+                  RULE_COUNT=$(grep -c "^[^!]" "${{ env.FILTER_FILE }}" || true)
+                  [ "$RULE_COUNT" -ge "${{ env.MIN_RULES }}" ] || log_error "Không đủ rules (tối thiểu: ${{ env.MIN_RULES }})!"
+                  echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
 
-          <div align="center">
+                  # Kiểm tra lỗi cú pháp
+                  SYNTAX_ERRORS=$(grep -n "^[^!#@|]*[^a-zA-Z0-9.*?^$@#|=/,&_-]" "${{ env.FILTER_FILE }}" || true)
+                  if [ -n "$SYNTAX_ERRORS" ]; then
+                    echo "::warning::Phát hiện lỗi cú pháp tiềm ẩn:"
+                    echo "$SYNTAX_ERRORS"
+                  fi
 
-          | Category | Count | Status |
-          |----------|--------|---------|
-          | Total Rules | ${{ env.RULE_COUNT }} | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/rules.json) |
-          | Network Rules | ${{ env.NETWORK_RULES }} | ![Network](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/network_rules.json) |
-          | Cosmetic Rules | ${{ env.COSMETIC_RULES }} | ![Cosmetic](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/cosmetic_rules.json) |
-          | Whitelist Rules | ${{ env.WHITELIST_RULES }} | ![Whitelist](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/whitelist_rules.json) |
+            - name: Update filter metadata
+              id: update
+              run: |
+                  # Tạo file tạm
+                  temp_file=$(mktemp)
+                  cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
 
-          </div>
+                  # Cập nhật metadata
+                  sed -E "s/^! Version:.*/! Version: ${{ env.DATE }}/;\
+                         s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/;\
+                         s/^! Updated by:.*/! Updated by: GitHub Actions/" \
+                  "${{ env.FILTER_FILE }}" > "$temp_file"
 
-          ## 🛡️ Features
+                  # Tính toán và cập nhật checksum
+                  CHECKSUM=$(sha256sum "$temp_file" | cut -d' ' -f1)
+                  sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/" "$temp_file" > "${{ env.FILTER_FILE }}"
 
-          ### 🚫 Advertisement Blocking
-          - Complete blocking of ads across websites
-          - Removal of sponsored content and promotions
-          - Protection against pop-ups and overlays
-          - Anti-adblock circumvention
+                  # Đếm các loại rules
+                  {
+                    echo "NETWORK_RULES=$(grep -c "^||" "${{ env.FILTER_FILE }}" || true)"
+                    echo "COSMETIC_RULES=$(grep -c "##" "${{ env.FILTER_FILE }}" || true)"
+                    echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)"
+                  } >> $GITHUB_ENV
 
-          ### 🔒 Privacy Protection
-          - Blocking of tracking scripts and pixels
-          - Prevention of browser fingerprinting
-          - Protection from analytics tracking
-          - Secure browsing experience
+                  # Kiểm tra thay đổi
+                  if [[ "${{ github.event.inputs.force_update }}" == "true" ]] || ! git diff --quiet "${{ env.FILTER_FILE }}"; then
+                    echo "CHANGED=true" >> $GITHUB_ENV
+                  else
+                    echo "CHANGED=false" >> $GITHUB_ENV
+                  fi
 
-          ### ⚡ Performance Optimization
-          - Faster page loading times
-          - Reduced bandwidth usage
-          - Cleaner browsing experience
-          - Memory usage optimization
+                  rm "$temp_file"
 
-          ### 🔄 Maintenance
-          - Automatic daily updates
-          - Strict quality control
-          - Quick issue resolution
-          - Regular optimizations
+            - name: Generate badges and README
+              if: env.CHANGED == 'true'
+              run: |
+                  mkdir -p .github/badges
 
-          ## 🤝 Contributing
+                  # Hàm tạo badges
+                  generate_badge() {
+                    local label=$1 message=$2 color=$3 style=${4:-flat-square}
+                    local filename=".github/badges/${label// /_}.json"
+                    echo "{ \"schemaVersion\": 1, \"label\": \"$label\", \"message\": \"$message\", \"color\": \"$color\", \"style\": \"$style\" }" > "$filename"
+                  }
 
-          <div align="center">
+                  # Tạo tất cả badges
+                  generate_badge "version" "${{ env.DATE }}" "blue"
+                  generate_badge "rules" "${{ env.RULE_COUNT }}" "brightgreen"
+                  generate_badge "updated" "${{ env.DATE }}" "success"
+                  generate_badge "network rules" "${{ env.NETWORK_RULES }}" "informational"
+                  generate_badge "cosmetic rules" "${{ env.COSMETIC_RULES }}" "yellow"
+                  generate_badge "whitelist rules" "${{ env.WHITELIST_RULES }}" "orange"
+                  generate_badge "removed duplicates" "${{ env.REMOVED_DUPLICATES }}" "red"
+                  generate_badge "ublock" "Cài đặt cho uBlock Origin" "1a73e8" "for-the-badge"
+                  generate_badge "adguard" "Cài đặt cho AdGuard" "67b279" "for-the-badge"
 
-          [![Report Bug](https://img.shields.io/badge/Report%20Bug-Submit%20Issue-red?style=for-the-badge)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/issues/new?assignees=&labels=bug&template=bug_report.md)
-          [![Request Feature](https://img.shields.io/badge/Request%20Feature-Submit%20Idea-blue?style=for-the-badge)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/issues/new?assignees=&labels=enhancement&template=feature_request.md)
+                  # Tạo README
+                  cat > README.md << 'EOF'
+                  <div align="center">
 
-          </div>
+                  # 🛡️ Yuusei Filter List
 
-          ## 📜 License
+                  _Bộ lọc quảng cáo nâng cao với cập nhật tự động hàng ngày_
 
-          This project is licensed under the [GNU GPL v3.0](LICENSE)
+                  [![Version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/version.json)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
+                  [![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/rules.json)](https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
+                  [![Updated](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/updated.json)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/commits/main)
+                  [![Removed Duplicates](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/removed_duplicates.json)](https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
+                  [![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](LICENSE)
+                  [![Stars](https://img.shields.io/github/stars/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}?style=flat-square&color=yellow)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/stargazers)
 
-          ## ⭐ Support
+                  </div>
 
-          If you find this project helpful:
-          - Star the repository ⭐
-          - Share with others 🔄
-          - Report issues 🐛
-          - Contribute improvements 🛠️
+                  ## 📦 Cài đặt nhanh
 
-          ---
+                  <div align="center">
 
-          <div align="center">
+                  [![Install for uBlock Origin](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/ublock.json)](https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
+                  [![Install for AdGuard](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/adguard.json)](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
 
-          Made with ❤️ by [Yuusei](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}) | © ${{ env.YEAR }}
+                  </div>
 
-          <sub>Updated automatically by GitHub Actions</sub>
+                  ### 🔗 URL bộ lọc
+                  ```
+                  https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt
+                  ```
 
-          _Last updated: ${{ env.DATE }} ${{ env.TIME }} (${{ env.TIMEZONE }})_
+                  ## 📊 Thống kê
 
-          </div>
-          EOF
+                  <div align="center">
 
-      - name: Commit changes
-        if: env.CHANGED == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "${{ env.FILTER_FILE }}" README.md .github/badges || true
-          git commit -m "🔄 Auto update (Version: ${{ env.DATE }})"
-          git push
+                  | Danh mục | Số lượng | Trạng thái |
+                  |----------|--------|---------|
+                  | Tổng số Rules | ${{ env.RULE_COUNT }} | ![Rules](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/rules.json) |
+                  | Rules mạng | ${{ env.NETWORK_RULES }} | ![Network](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/network_rules.json) |
+                  | Rules giao diện | ${{ env.COSMETIC_RULES }} | ![Cosmetic](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/cosmetic_rules.json) |
+                  | Rules whitelist | ${{ env.WHITELIST_RULES }} | ![Whitelist](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/whitelist_rules.json) |
+                  | Rules trùng đã xóa | ${{ env.REMOVED_DUPLICATES }} | ![Removed Duplicates](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/badges/removed_duplicates.json) |
+
+                  </div>
+
+                  ## 🛡️ Tính năng
+
+                  ### 🚫 Chặn quảng cáo
+                  - Chặn hoàn toàn quảng cáo trên các trang web
+                  - Loại bỏ nội dung được tài trợ và quảng cáo
+                  - Bảo vệ khỏi pop-up và overlay
+                  - Vượt qua chống chặn quảng cáo
+
+                  ### 🔒 Bảo vệ quyền riêng tư
+                  - Chặn script và pixel theo dõi
+                  - Ngăn chặn browser fingerprinting
+                  - Bảo vệ khỏi theo dõi analytics
+                  - Trải nghiệm duyệt web an toàn
+
+                  ### ⚡ Tối ưu hiệu suất
+                  - Tăng tốc độ tải trang
+                  - Giảm sử dụng băng thông
+                  - Trải nghiệm duyệt web sạch sẽ
+                  - Tối ưu sử dụng bộ nhớ
+
+                  ### 🔄 Bảo trì
+                  - Cập nhật tự động hàng ngày
+                  - Kiểm soát chất lượng nghiêm ngặt
+                  - Giải quyết vấn đề nhanh chóng
+                  - Tối ưu hóa thường xuyên
+
+                  ## 🤝 Đóng góp
+
+                  <div align="center">
+
+                  [![Report Bug](https://img.shields.io/badge/Báo%20lỗi-Gửi%20Issue-red?style=for-the-badge)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/issues/new?assignees=&labels=bug&template=bug_report.md)
+                  [![Request Feature](https://img.shields.io/badge/Yêu%20cầu%20tính%20năng-Gửi%20ý%20tưởng-blue?style=for-the-badge)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/issues/new?assignees=&labels=enhancement&template=feature_request.md)
+
+                  </div>
+
+                  ## 📜 Giấy phép
+
+                  Dự án này được cấp phép theo [GNU GPL v3.0](LICENSE)
+
+                  ## ⭐ Hỗ trợ
+
+                  Nếu bạn thấy dự án này hữu ích:
+                  - Star repository ⭐
+                  - Chia sẻ với mọi người 🔄
+                  - Báo cáo lỗi 🐛
+                  - Đóng góp cải tiến 🛠️
+
+                  ---
+
+                  <div align="center">
+
+                  Được tạo với ❤️ bởi [Yuusei](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}) | © ${{ env.YEAR }}
+
+                  <sub>Cập nhật tự động bởi GitHub Actions</sub>
+
+                  _Cập nhật lần cuối: ${{ env.DATE }} ${{ env.TIME }} (${{ env.TIMEZONE }})_
+
+                  </div>
+                  EOF
+
+            - name: Commit changes
+              if: env.CHANGED == 'true'
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git add "${{ env.FILTER_FILE }}" README.md .github/badges || true
+                  git commit -m "🔄 Cập nhật tự động (Phiên bản: ${{ env.DATE }}, Đã xóa ${{ env.REMOVED_DUPLICATES }} rules trùng lặp)"
+                  git push
