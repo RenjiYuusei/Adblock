@@ -9,6 +9,7 @@
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
 !--------Element Hiding Exception--------------
+||static.truyenfull.io/min/g/mainjs-05122024_3.js^
 ###ads-preload
 ###banner-top
 ###mobileCatfish
