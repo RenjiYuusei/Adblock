@@ -1,16 +1,15 @@
 ! ----------  About ----------
 ! Version: 2024.12.07
 ! Title: Yuusei
-! Last modified: 07-12-2024 19:21:00
+! Last modified: 07-12-2024 20:39:37
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 3053d4d8a6158cfaf79252a5d663a0115e90eb9d515a51e38bc90459caac9f4d
+! Checksum: 425eb26f61056ca33770ea99a727c4352b9ec33b7afbf2639915e070c43fa280
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
 !--------Element Hiding Exception--------------
 ###ads-preload
-fakeiban.org##.items-center.mt-8.p-5.bg-\[red\].flex
 ###banner-top
 ###mobileCatfish
 ###pmadv
@@ -343,6 +342,7 @@ damconuong.pro##a[rel="nofollow"]
 damconuongz.com###catfish-ad
 damconuongz.com###close-all-ads
 dualeotruyenceo.com##[id$="bnr"]
+fakeiban.org##.items-center.mt-8.p-5.bg-\[red\].flex
 filemoon.sx##body>[style*="position: fixed;"]
 free.pylexnodes.net###stickyfooterad
 free.pylexnodes.net##.byOWBE.SettingsContainer___StyledTitledGreyBox-sc-1e5ycmz-2.hFAUZw.TitledGreyBox___StyledDiv-sc-gvsoy-0
