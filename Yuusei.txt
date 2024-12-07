@@ -10,6 +10,7 @@
 ! ----------  Rules  ----------
 !--------Element Hiding Exception--------------
 ###ads-preload
+fakeiban.org##.items-center.mt-8.p-5.bg-\[red\].flex
 ###banner-top
 ###mobileCatfish
 ###pmadv
