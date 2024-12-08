@@ -9,6 +9,8 @@
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Rules  ----------
 !--------Element Hiding Exception--------------
+truyenqqto.com##.dark > .div_middle > .right
+||www.facebook.com/plugins/page.php?href=https://www.facebook.com/truyenqqq&tabs=timeline&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1385880154835661$subdocument
 ###ads-preload
 ###banner-top
 ###mobileCatfish
