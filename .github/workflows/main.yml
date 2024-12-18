@@ -48,12 +48,35 @@ jobs:
       - name: Get contributors info
         id: contributors
         run: |
-          contributors=$(gh api repos/${{ github.repository }}/contributors --jq '[.[] | {login: .login, avatar_url: .avatar_url, contributions: .contributions, html_url: .html_url}]')
-          echo "CONTRIBUTORS=$contributors" >> $GITHUB_OUTPUT
+          # Get all contributors
+          contributors=$(gh api graphql -f query='
+            query($owner:String!, $name:String!) {
+              repository(owner:$owner, name:$name) {
+                collaborators(first:100) {
+                  nodes {
+                    login
+                    name
+                    avatarUrl
+                    url
+                    contributionsCollection {
+                      totalCommitContributions
+                      totalIssueContributions
+                      totalPullRequestContributions
+                      totalPullRequestReviewContributions
+                    }
+                  }
+                }
+              }
+            }' -f owner="${GITHUB_REPOSITORY%/*}" -f name="${GITHUB_REPOSITORY#*/}" --jq '.data.repository.collaborators.nodes')
+          
+          # Format contributors for README
+          echo "CONTRIBUTORS<<EOF" >> $GITHUB_ENV
+          echo "$contributors" | jq -r '.[] | "- [![\(.login)](\(.avatarUrl)) **[\(.login)](\(.url))** - \(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions) đóng góp"' >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Validate filter file
+      - name: Validate and optimize filter file
         id: validate
         run: |
           log_error() {
@@ -61,34 +84,39 @@ jobs:
             exit 1
           }
           
+          # Kiểm tra file tồn tại và kích thước
           [ -f "${{ env.FILTER_FILE }}" ] || log_error "Không tìm thấy file filter!"
           FILE_SIZE=$(stat -f%z "${{ env.FILTER_FILE }}" 2>/dev/null || stat -c%s "${{ env.FILTER_FILE }}")
           [ "$FILE_SIZE" -ge 100 ] || log_error "File filter quá nhỏ!"
           
+          # Kiểm tra headers bắt buộc
           required_headers=("! Title:" "! Version:" "! Last modified:" "! Homepage:" "! License:")
           for header in "${required_headers[@]}"; do
             grep -q "^$header" "${{ env.FILTER_FILE }}" || log_error "Thiếu header bắt buộc: $header"
           done
           
-          # Extract headers and rules separately
-          headers=$(grep "^!" "${{ env.FILTER_FILE }}")
-          rules=$(grep -v "^!" "${{ env.FILTER_FILE }}" | sort -f | uniq)
-          
-          # Combine headers and sorted rules
-          {
-            echo "$headers"
-            echo "$rules"
-          } > "${{ env.FILTER_FILE }}"
-          
-          RULE_COUNT=$(echo "$rules" | wc -l)
+          # Đếm số rules
+          RULE_COUNT=$(grep -v '^!' "${FILTER_FILE}.tmp" | wc -l)
           [ "$RULE_COUNT" -ge "${{ env.MIN_RULES }}" ] || log_error "Không đủ rules (tối thiểu: ${{ env.MIN_RULES }})!"
-          echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
           
-          SYNTAX_ERRORS=$(echo "$rules" | grep -n "[^a-zA-Z0-9.*?^$@#|=/,&_-]" || true)
+          # Đếm loại rules
+          {
+            echo "RULE_COUNT=$RULE_COUNT"
+            echo "NETWORK_RULES=$(grep -c "^||" "${FILTER_FILE}.tmp" || true)"
+            echo "COSMETIC_RULES=$(grep -c "##" "${FILTER_FILE}.tmp" || true)"
+            echo "WHITELIST_RULES=$(grep -c "^@@" "${FILTER_FILE}.tmp" || true)"
+            echo "COMMENT_COUNT=$(grep -c "^!" "${FILTER_FILE}.tmp" || true)"
+          } >> $GITHUB_ENV
+          
+          # Kiểm tra cú pháp
+          SYNTAX_ERRORS=$(grep -v "^!" "${FILTER_FILE}.tmp" | grep -n "[^a-zA-Z0-9.*?^$@#|=/,&_-]" || true)
           if [ -n "$SYNTAX_ERRORS" ]; then
             echo "::warning::Phát hiện lỗi cú pháp tiềm ẩn:"
             echo "$SYNTAX_ERRORS"
           fi
+          
+          # Thay thế file gốc
+          mv "${FILTER_FILE}.tmp" "${{ env.FILTER_FILE }}"
           
       - name: Update filter metadata
         id: update
@@ -96,20 +124,17 @@ jobs:
           temp_file=$(mktemp)
           cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
           
+          # Cập nhật metadata
           sed -E "s/^! Version:.*/! Version: ${{ env.FULL_VERSION }}/;\
                  s/^! Last modified:.*/! Last modified: ${{ env.DATE }} ${{ env.TIME }}/;\
                  s/^! Updated by:.*/! Updated by: GitHub Actions/" \
           "${{ env.FILTER_FILE }}" > "$temp_file"
           
+          # Tính toán và cập nhật checksum
           CHECKSUM=$(sha256sum "$temp_file" | cut -d' ' -f1)
           sed "s/^! Checksum:.*/! Checksum: $CHECKSUM/" "$temp_file" > "${{ env.FILTER_FILE }}"
           
-          {
-            echo "NETWORK_RULES=$(grep -c "^||" "${{ env.FILTER_FILE }}" || true)"
-            echo "COSMETIC_RULES=$(grep -c "##" "${{ env.FILTER_FILE }}" || true)"
-            echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)"
-          } >> $GITHUB_ENV
-          
+          # Kiểm tra thay đổi
           if [[ "${{ github.event.inputs.force_update }}" == "true" ]] || ! git diff --quiet "${{ env.FILTER_FILE }}"; then
             echo "CHANGED=true" >> $GITHUB_ENV
           else
@@ -121,64 +146,104 @@ jobs:
       - name: Generate README
         if: env.CHANGED == 'true'
         run: |
-          cat > README.md << 'EOF'
+          cat > README.md << EOF
           <div align="center">
             <img src=".github/assets/logo.png" width="120" height="120" alt="Yuusei Filter Logo">
-            <h1>Yuusei Filter List</h1>
-            <p>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</p>
+            <h1>🛡️ Yuusei Filter List</h1>
+            <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
             <p>
-              <img src="https://img.shields.io/badge/version-${{ env.FULL_VERSION }}-blue?style=flat-square" alt="Version">
-              <img src="https://img.shields.io/badge/rules-${{ env.RULE_COUNT }}-brightgreen?style=flat-square" alt="Rules">
-              <img src="https://img.shields.io/badge/updated-${{ env.DATE }}-success?style=flat-square" alt="Updated">
+              <a href="https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/releases">
+                <img src="https://img.shields.io/badge/version-${{ env.FULL_VERSION }}-blue?style=for-the-badge" alt="Version">
+              </a>
+              <a href="https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/blob/main/Yuusei.txt">
+                <img src="https://img.shields.io/badge/rules-${{ env.RULE_COUNT }}-brightgreen?style=for-the-badge" alt="Rules">
+              </a>
+              <a href="https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/commits/main">
+                <img src="https://img.shields.io/badge/updated-${{ env.DATE }}-success?style=for-the-badge" alt="Updated">
+              </a>
             </p>
           </div>
 
           ## 📊 Thống kê
 
-          - **Tổng số Rules**: ${{ env.RULE_COUNT }}
-          - **Rules Mạng**: ${{ env.NETWORK_RULES }}
-          - **Rules Giao Diện**: ${{ env.COSMETIC_RULES }}
-          - **Rules Whitelist**: ${{ env.WHITELIST_RULES }}
+          | Loại | Số lượng |
+          |------|-----------|
+          | Tổng số Rules | ${{ env.RULE_COUNT }} |
+          | Rules Mạng | ${{ env.NETWORK_RULES }} |
+          | Rules Giao Diện | ${{ env.COSMETIC_RULES }} |
+          | Rules Whitelist | ${{ env.WHITELIST_RULES }} |
+          | Ghi chú & Comments | ${{ env.COMMENT_COUNT }} |
 
           ## 🚀 Cài đặt
 
-          ### uBlock Origin
-          Nhấp vào liên kết sau để thêm Yuusei Filter vào uBlock Origin:
-          [Cài đặt cho uBlock Origin](https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
+          <details>
+          <summary>🔍 Dành cho uBlock Origin</summary>
 
-          ### AdGuard
-          Nhấp vào liên kết sau để thêm Yuusei Filter vào AdGuard:
-          [Cài đặt cho AdGuard](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
+          ### Cách 1: Cài đặt nhanh
+          1. Click vào link: [Cài đặt cho uBlock Origin](https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
+          2. Click "Proceed" hoặc "Tiếp tục" trong hộp thoại xác nhận
 
-          ### Link Filter List
-          ```
+          ### Cách 2: Cài đặt thủ công
+          1. Mở Dashboard uBlock Origin
+          2. Chuyển đến tab "Filter lists"
+          3. Cuộn xuống cuối trang
+          4. Mở rộng phần "Custom"
+          5. Dán link sau vào ô trống và click "Apply changes":
+          \`\`\`
           https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt
-          ```
+          \`\`\`
+          </details>
+
+          <details>
+          <summary>🛡️ Dành cho AdGuard</summary>
+
+          ### Cách 1: Cài đặt nhanh
+          1. Click vào link: [Cài đặt cho AdGuard](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
+          2. Chọn "Subscribe" trong hộp thoại xác nhận
+
+          ### Cách 2: Cài đặt thủ công
+          1. Mở cài đặt AdGuard
+          2. Chọn "Filters" > "Custom"
+          3. Click "Add custom filter"
+          4. Dán link sau và click "Next":
+          \`\`\`
+          https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt
+          \`\`\`
+          </details>
 
           ## 👥 Người đóng góp
 
-          <div align="center">
-            <table>
-              <tr>
-                <td align="center">
-                  <a href="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}">
-                    <img src="https://github.com/${GITHUB_REPOSITORY%/*}.png" width="100px;" alt=""/>
-                    <br />
-                    <sub><b>${GITHUB_REPOSITORY%/*}</b></sub>
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </div>
+          ### Những người đóng góp chính
+
+          ${{ env.CONTRIBUTORS }}
 
           ## 📝 Cập nhật
 
-          - Cập nhật lần cuối: ${{ env.DATE }} ${{ env.TIME }}
-          - Phiên bản hiện tại: ${{ env.FULL_VERSION }}
+          - **Cập nhật lần cuối**: ${{ env.DATE }} ${{ env.TIME }}
+          - **Phiên bản hiện tại**: ${{ env.FULL_VERSION }}
+          - **Tổng số rules**: ${{ env.RULE_COUNT }}
+
+          ### Changelog gần đây
+          \`\`\`
+          $(git log -3 --pretty=format:"- %h %s (%cr)" --abbrev-commit)
+          \`\`\`
+
+          ## ⭐ Tính năng
+
+          - ✨ **Tối ưu cho người Việt**: Rules được thiết kế đặc biệt cho các website Việt Nam
+          - 🚀 **Hiệu suất cao**: Rules được tối ưu hóa để giảm thiểu tác động đến tốc độ duyệt web
+          - 🔄 **Cập nhật thường xuyên**: Bộ lọc được cập nhật 2 lần/ngày
+          - 🛡️ **An toàn**: Không chứa mã độc hại
+          - 📱 **Đa nền tảng**: Hoạt động trên mọi trình duyệt và thiết bị
 
           ## 📜 Giấy phép
 
-          Dự án này được phân phối dưới Giấy phép GPL - xem tệp [LICENSE](LICENSE) để biết thêm chi tiết.
+          Dự án này được phân phối dưới [Giấy phép MIT](LICENSE)
+
+          ---
+          <div align="center">
+            <sub>Made with ❤️ by <a href="https://github.com/${{ env.AUTHOR_NAME }}">${{ env.AUTHOR_NAME }}</a></sub>
+          </div>
           EOF
 
       - name: Commit changes
