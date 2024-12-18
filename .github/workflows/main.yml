@@ -53,7 +53,7 @@ jobs:
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Validate and sort filter file
+            - name: Validate filter file
               id: validate
               run: |
                   log_error() {
@@ -70,21 +70,18 @@ jobs:
                     grep -q "^$header" "${{ env.FILTER_FILE }}" || log_error "Thiếu header bắt buộc: $header"
                   done
 
-                  # Extract headers and rules separately
-                  headers=$(grep "^!" "${{ env.FILTER_FILE }}")
-                  rules=$(grep -v "^!" "${{ env.FILTER_FILE }}" | sort -f | uniq)
-
-                  # Combine headers and sorted rules
-                  {
-                    echo "$headers"
-                    echo "$rules"
-                  } > "${{ env.FILTER_FILE }}"
-
-                  RULE_COUNT=$(echo "$rules" | wc -l)
+                  RULE_COUNT=$(grep -v "^!" "${{ env.FILTER_FILE }}" | wc -l)
                   [ "$RULE_COUNT" -ge "${{ env.MIN_RULES }}" ] || log_error "Không đủ rules (tối thiểu: ${{ env.MIN_RULES }})!"
                   echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
-
-                  SYNTAX_ERRORS=$(echo "$rules" | grep -n "[^a-zA-Z0-9.*?^$@#|=/,&_-]" || true)
+                  
+                  # Basic syntax checks (feel free to add more)
+                  SYNTAX_ERRORS=$(grep -n "^[ \t]*[^!#@|]" "${{ env.FILTER_FILE }}" || true)
+                  if [ -n "$SYNTAX_ERRORS" ]; then
+                      echo "::warning::Phát hiện các dòng không hợp lệ (không bắt đầu bằng !, #, @ hoặc | ):"
+                      echo "$SYNTAX_ERRORS"
+                  fi
+                  
+                  SYNTAX_ERRORS=$(grep -n "[^a-zA-Z0-9.*?^$@#|=/,&_-]" "${{ env.FILTER_FILE }}" || true)
                   if [ -n "$SYNTAX_ERRORS" ]; then
                     echo "::warning::Phát hiện lỗi cú pháp tiềm ẩn:"
                     echo "$SYNTAX_ERRORS"
@@ -110,382 +107,121 @@ jobs:
                     echo "WHITELIST_RULES=$(grep -c "^@@" "${{ env.FILTER_FILE }}" || true)"
                   } >> $GITHUB_ENV
 
+            - name: Check if filter changed
+              id: check-changed
+              run: |
                   if [[ "${{ github.event.inputs.force_update }}" == "true" ]] || ! git diff --quiet "${{ env.FILTER_FILE }}"; then
-                    echo "CHANGED=true" >> $GITHUB_ENV
+                      echo "CHANGED=true" >> $GITHUB_ENV
                   else
-                    echo "CHANGED=false" >> $GITHUB_ENV
+                      echo "CHANGED=false" >> $GITHUB_ENV
                   fi
 
-                  rm "$temp_file"
-
-            - name: Generate badges and HTML
+            - name: Generate README.md
               if: env.CHANGED == 'true'
               run: |
-                  mkdir -p .github/badges
-
                   generate_badge() {
                     local label=$1 message=$2 color=$3
-                    local filename=".github/badges/${label// /_}.json"
-                    echo "{ \"schemaVersion\": 1, \"label\": \"$label\", \"message\": \"$message\", \"color\": \"$color\", \"style\": \"flat-square\" }" > "$filename"
+                    echo "https://img.shields.io/badge/$label-$message-$color?style=flat-square"
                   }
 
-                  generate_badge "version" "${{ env.FULL_VERSION }}" "blue"
-                  generate_badge "rules" "${{ env.RULE_COUNT }}" "brightgreen"
-                  generate_badge "updated" "${{ env.DATE }}" "success"
+                  VERSION_BADGE=$(generate_badge "Version" "${{ env.FULL_VERSION }}" "blue")
+                  RULES_BADGE=$(generate_badge "Rules" "${{ env.RULE_COUNT }}" "brightgreen")
+                  UPDATED_BADGE=$(generate_badge "Updated" "${{ env.DATE }}" "success")
+                  
+                  contributors_html=""
+                  if [[ "${{ steps.contributors.outputs.CONTRIBUTORS }}" != "null" ]]; then
+                     
+                     contributors_data=$(echo "${{ steps.contributors.outputs.CONTRIBUTORS }}" | jq -c '.[]')
+                     while IFS= read -r contributor_json; do
+                       contributor_data=$(echo "$contributor_json" | jq -r '
+                            "<div style=\"display: flex; align-items: center; margin-bottom: 10px;\">" +
+                                "<img src=\"" + .avatar_url + "\" alt=\"" + .login + "\" style=\"width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;\">" +
+                                "<div>" +
+                                    "<a href=\"" + .html_url + "\" style=\"font-weight: bold; text-decoration: none;\">" + .login + "</a><br>" +
+                                    "<span> đóng góp: " + .contributions + "</span>" +
+                                "</div>" +
+                            "</div>"
+                        ')
+                       contributors_html+="$contributor_data"
+                     done <<< "$contributors_data"
+                   else
+                     contributors_html="Không có thông tin người đóng góp."
+                   fi
 
-                  cat > index.html << 'EOF'
-                  <!DOCTYPE html>
-                  <html lang="vi">
-                  <head>
-                      <meta charset="UTF-8">
-                      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                      <meta name="description" content="Yuusei Filter List - Bộ lọc quảng cáo hiệu quả cho người Việt">
-                      <meta name="keywords" content="adblock, filter list, ublock origin, adguard, quảng cáo, việt nam">
-                      <meta name="author" content="RenjiYuusei">
-                      <meta property="og:title" content="Yuusei Filter List - Bộ lọc quảng cáo Việt Nam">
-                      <meta property="og:description" content="Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn">
-                      <meta property="og:image" content="https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/.github/assets/logo.png">
-                      <meta property="og:url" content="https://${{ env.AUTHOR_NAME }}.github.io/${{ env.REPO_NAME }}">
-                      <title>Yuusei Filter List - Bộ lọc quảng cáo Việt Nam</title>
-                      <link rel="icon" type="image/png" href=".github/assets/favicon.png">
-                      <script src="https://cdn.tailwindcss.com"></script>
-                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-                      <link rel="preconnect" href="https://fonts.googleapis.com">
-                      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                      <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-                      <style>
-                          :root {
-                              --primary-color: #1a73e8;
-                              --hover-color: #1557b0;
-                              --gradient-start: #4f46e5;
-                              --gradient-end: #06b6d4;
-                          }
-                          body {
-                              font-family: 'Be Vietnam Pro', sans-serif;
-                              scroll-behavior: smooth;
-                          }
-                          .theme-toggle {
-                              position: fixed;
-                              top: 1rem;
-                              right: 1rem;
-                              padding: 0.75rem;
-                              border-radius: 50%;
-                              background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-                              color: white;
-                              cursor: pointer;
-                              z-index: 1000;
-                              transition: all 0.3s ease;
-                              box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                          }
-                          .theme-toggle:hover {
-                              transform: scale(1.1) rotate(10deg);
-                          }
-                          .card {
-                              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                              border: 1px solid rgba(255,255,255,0.1);
-                              backdrop-filter: blur(12px);
-                              background: rgba(255,255,255,0.05);
-                          }
-                          .card:hover {
-                              transform: translateY(-8px);
-                              box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-                              border-color: rgba(255,255,255,0.2);
-                          }
-                          .copy-link {
-                              cursor: pointer;
-                              padding: 1rem 2rem;
-                              background: linear-gradient(135deg, rgba(79,70,229,0.1), rgba(6,182,212,0.1));
-                              border-radius: 1rem;
-                              display: inline-flex;
-                              align-items: center;
-                              gap: 1rem;
-                              transition: all 0.4s ease;
-                              font-weight: 600;
-                              border: 1px solid rgba(255,255,255,0.1);
-                          }
-                          .dark .copy-link {
-                              background: linear-gradient(135deg, rgba(79,70,229,0.2), rgba(6,182,212,0.2));
-                          }
-                          .copy-link:hover {
-                              transform: translateY(-3px) scale(1.02);
-                              box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-                              border-color: rgba(255,255,255,0.2);
-                          }
-                          .contributor-card {
-                              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                              backdrop-filter: blur(12px);
-                              background: rgba(255,255,255,0.05);
-                              border: 1px solid rgba(255,255,255,0.1);
-                          }
-                          .contributor-card:hover {
-                              transform: translateY(-5px) scale(1.03);
-                              box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-                              border-color: rgba(255,255,255,0.2);
-                          }
-                          .btn-primary {
-                              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                              background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-                              position: relative;
-                              overflow: hidden;
-                          }
-                          .btn-primary:hover {
-                              transform: translateY(-3px) scale(1.02);
-                              box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-                          }
-                          .btn-primary::after {
-                              content: '';
-                              position: absolute;
-                              top: 50%;
-                              left: 50%;
-                              width: 0;
-                              height: 0;
-                              background: rgba(255,255,255,0.2);
-                              border-radius: 50%;
-                              transform: translate(-50%, -50%);
-                              transition: width 0.6s ease-out, height 0.6s ease-out;
-                          }
-                          .btn-primary:active::after {
-                              width: 300px;
-                              height: 300px;
-                          }
-                          @keyframes fadeInUp {
-                              from {
-                                  opacity: 0;
-                                  transform: translateY(30px);
-                              }
-                              to {
-                                  opacity: 1;
-                                  transform: translateY(0);
-                              }
-                          }
-                          .animate-fade-in {
-                              animation: fadeInUp 1.2s ease-out;
-                          }
-                          .glass-effect {
-                              background: rgba(255,255,255,0.08);
-                              backdrop-filter: blur(12px);
-                              border: 1px solid rgba(255,255,255,0.1);
-                              box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-                          }
-                          .dark .glass-effect {
-                              background: rgba(0,0,0,0.3);
-                              border: 1px solid rgba(255,255,255,0.05);
-                          }
-                          .stats-number {
-                              background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-                              -webkit-background-clip: text;
-                              color: transparent;
-                              font-weight: 700;
-                          }
-                          .scroll-indicator {
-                              position: fixed;
-                              top: 0;
-                              left: 0;
-                              height: 3px;
-                              background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-                              z-index: 1000;
-                              transition: width 0.3s ease;
-                          }
-                      </style>
-                  </head>
-                  <body class="bg-gradient-to-br from-slate-100 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/30 dark:to-purple-900/30 min-h-screen transition-colors duration-500">
-                      <div class="scroll-indicator" id="scroll-indicator"></div>
-                      <div class="fixed inset-0 bg-gradient-to-br from-blue-100/30 to-purple-100/30 dark:from-blue-900/20 dark:to-purple-900/20 pointer-events-none"></div>
-                      
-                      <button id="theme-toggle" class="theme-toggle" aria-label="Chuyển đổi giao diện sáng/tối">
-                          <i class="fas fa-sun dark:hidden text-xl"></i>
-                          <i class="fas fa-moon hidden dark:block text-xl"></i>
-                      </button>
 
-                      <div class="container mx-auto px-4 py-16 relative">
-                          <header class="text-center mb-24 animate-fade-in">
-                              <div class="mb-8">
-                                  <img src=".github/assets/logo.png" alt="Yuusei Filter Logo" class="w-32 h-32 mx-auto mb-6 rounded-2xl shadow-xl hover:transform hover:scale-110 transition-transform duration-300">
-                              </div>
-                              <h1 class="text-7xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-8">
-                                  Yuusei Filter List
-                              </h1>
-                              <p class="text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
-                                  Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn với bộ lọc được tối ưu cho người dùng Việt Nam
-                              </p>
-                              
-                              <div class="flex flex-col sm:flex-row justify-center gap-6 mb-12">
-                                  <a href="https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt" 
-                                     class="btn-primary px-8 py-4 rounded-xl flex items-center justify-center gap-3 shadow-lg group">
-                                     <i class="fas fa-shield-alt text-xl group-hover:rotate-12 transition-transform"></i>
-                                     <span class="font-semibold">Cài đặt cho uBlock Origin</span>
-                                  </a>
-                                  <a href="https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt"
-                                     class="btn-primary px-8 py-4 rounded-xl flex items-center justify-center gap-3 shadow-lg group">
-                                     <i class="fas fa-check-circle text-xl group-hover:rotate-12 transition-transform"></i>
-                                     <span class="font-semibold">Cài đặt cho AdGuard</span>
-                                  </a>
-                              </div>
+                  cat > README.md << 'EOF'
+                  # Yuusei Filter List - Bộ lọc quảng cáo Việt Nam
 
-                              <div class="copy-link glass-effect" onclick="copyFilterLink()" role="button" tabindex="0">
-                                  <i class="fas fa-copy"></i>
-                                  <span>Sao chép Link Filter List</span>
-                              </div>
-                          </header>
+                  <div align="center">
+                    <img src=".github/assets/logo.png" alt="Yuusei Filter Logo" width="150" />
+                  </div>
 
-                          <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-                              <div class="card glass-effect rounded-2xl p-8 shadow-lg">
-                                  <div class="flex items-center justify-between mb-6">
-                                      <h3 class="text-xl font-semibold flex items-center gap-3">
-                                          <i class="fas fa-shield-alt text-2xl text-blue-500"></i>
-                                          <span>Tổng số Rules</span>
-                                      </h3>
-                                      <span class="text-sm text-gray-500 dark:text-gray-400">Cập nhật mới nhất</span>
-                                  </div>
-                                  <p class="stats-number text-5xl">
-                                      ${{ env.RULE_COUNT }}
-                                  </p>
-                              </div>
-                              <div class="card glass-effect rounded-2xl p-8 shadow-lg">
-                                  <div class="flex items-center justify-between mb-6">
-                                      <h3 class="text-xl font-semibold flex items-center gap-3">
-                                          <i class="fas fa-globe text-2xl text-green-500"></i>
-                                          <span>Rules Mạng</span>
-                                      </h3>
-                                      <span class="text-sm text-gray-500 dark:text-gray-400">Network Filters</span>
-                                  </div>
-                                  <p class="stats-number text-5xl">
-                                      ${{ env.NETWORK_RULES }}
-                                  </p>
-                              </div>
-                              <div class="card glass-effect rounded-2xl p-8 shadow-lg">
-                                  <div class="flex items-center justify-between mb-6">
-                                      <h3 class="text-xl font-semibold flex items-center gap-3">
-                                          <i class="fas fa-paint-brush text-2xl text-yellow-500"></i>
-                                          <span>Rules Giao Diện</span>
-                                      </h3>
-                                      <span class="text-sm text-gray-500 dark:text-gray-400">Cosmetic Filters</span>
-                                  </div>
-                                  <p class="stats-number text-5xl">
-                                      ${{ env.COSMETIC_RULES }}
-                                  </p>
-                              </div>
-                          </section>
+                  <p align="center">
+                      [![Version]($VERSION_BADGE)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }})
+                      [![Rules]($RULES_BADGE)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }})
+                      [![Updated]($UPDATED_BADGE)](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }})
+                  </p>
 
-                          <section id="contributors" class="glass-effect rounded-2xl p-12 shadow-lg mb-20">
-                              <h2 class="text-4xl font-bold mb-12 flex items-center gap-4">
-                                  <i class="fas fa-users text-purple-500"></i>
-                                  <span>Người Đóng Góp</span>
-                              </h2>
-                              <div class="grid grid-cols-2 md:grid-cols-4 gap-8" id="contributors-container"></div>
-                          </section>
+                  **Yuusei Filter List** là một bộ lọc quảng cáo được thiết kế riêng cho người dùng Việt Nam, giúp bạn chặn các quảng cáo phiền phức và cải thiện trải nghiệm duyệt web. Với các rule được cập nhật thường xuyên, bạn có thể yên tâm tận hưởng một môi trường trực tuyến sạch sẽ và an toàn.
 
-                          <footer class="text-center text-gray-600 dark:text-gray-400 py-8">
-                              <p class="mb-6 text-lg">
-                                  <i class="far fa-clock mr-2"></i>
-                                  Cập nhật lần cuối: ${{ env.DATE }} ${{ env.TIME }}
-                              </p>
-                              <div class="flex justify-center gap-6">
-                                  <a href="https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}" 
-                                     class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors transform hover:scale-110"
-                                     aria-label="GitHub Repository">
-                                      <i class="fab fa-github text-3xl"></i>
-                                  </a>
-                              </div>
-                          </footer>
-                      </div>
+                  ## 🚀 Cài đặt nhanh
+                  
+                  ### uBlock Origin
+                  
+                  [<img src="https://img.shields.io/badge/Install%20uBlock%20Origin-008000?style=for-the-badge&logo=ublockorigin" height="24" />](https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
 
-                      <script>
-                          // Enhanced theme toggle with smooth transition and local storage
-                          const themeToggle = document.getElementById('theme-toggle');
-                          const html = document.documentElement;
-                          
-                          function setTheme(isDark) {
-                              if (isDark) {
-                                  html.classList.add('dark');
-                              } else {
-                                  html.classList.remove('dark');
-                              }
-                              localStorage.theme = isDark ? 'dark' : 'light';
-                          }
+                  ### AdGuard
+                  
+                  [<img src="https://img.shields.io/badge/Install%20AdGuard-34B0EB?style=for-the-badge&logo=adguard" height="24" />](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt)
 
-                          // Initial theme with system preference detection
-                          setTheme(
-                              localStorage.theme === 'dark' || 
-                              (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-                          );
+                  
+                  Hoặc bạn có thể thêm thủ công bằng link sau:
+                  
+                  \`\`\`
+                  https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt
+                  \`\`\`
+                  
+                  ## 📊 Thống kê bộ lọc
+                  
+                  |   |    |
+                  | --------|--------|
+                  | Tổng số rules | <span style="font-weight: bold;">${{ env.RULE_COUNT }}</span> |
+                  | Rules mạng | <span style="font-weight: bold;">${{ env.NETWORK_RULES }}</span> |
+                  | Rules giao diện | <span style="font-weight: bold;">${{ env.COSMETIC_RULES }}</span> |
+                  | Whitelist rules | <span style="font-weight: bold;">${{ env.WHITELIST_RULES }}</span> |
 
-                          themeToggle.addEventListener('click', () => {
-                              setTheme(!html.classList.contains('dark'));
-                          });
+                  ## ✨ Người đóng góp
+                  
+                  $contributors_html
 
-                          // Scroll progress indicator
-                          window.addEventListener('scroll', () => {
-                              const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                              const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                              const scrolled = (winScroll / height) * 100;
-                              document.getElementById('scroll-indicator').style.width = scrolled + '%';
-                          });
+                  ## ❓ Câu hỏi thường gặp (FAQ)
 
-                          // Enhanced copy link function with better feedback
-                          function copyFilterLink() {
-                              const filterLink = 'https://raw.githubusercontent.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }}/main/Yuusei.txt';
-                              navigator.clipboard.writeText(filterLink).then(() => {
-                                  const copyBtn = document.querySelector('.copy-link');
-                                  const originalHTML = copyBtn.innerHTML;
-                                  copyBtn.innerHTML = '<i class="fas fa-check text-green-500"></i><span>Đã sao chép thành công!</span>';
-                                  copyBtn.classList.add('bg-green-100/20', 'dark:bg-green-900/20', 'scale-105');
-                                  
-                                  setTimeout(() => {
-                                      copyBtn.innerHTML = originalHTML;
-                                      copyBtn.classList.remove('bg-green-100/20', 'dark:bg-green-900/20', 'scale-105');
-                                  }, 2000);
-                              }).catch(err => {
-                                  console.error('Lỗi khi sao chép:', err);
-                                  alert('Không thể sao chép link. Vui lòng thử lại.');
-                              });
-                          }
+                  **Bộ lọc này chặn những loại quảng cáo nào?**
 
-                          // Enhanced contributors loading with animation and hover effects
-                          try {
-                              const contributors = ${{ steps.contributors.outputs.CONTRIBUTORS }};
-                              const container = document.getElementById('contributors-container');
-                              
-                              contributors.forEach((contributor, index) => {
-                                  const card = document.createElement('div');
-                                  card.className = 'contributor-card rounded-xl p-6 text-center transform hover:scale-105 transition-all duration-300';
-                                  card.style.animation = `fadeInUp 0.6s ease-out ${index * 0.1}s both`;
-                                  card.innerHTML = `
-                                      <div class="relative group">
-                                          <img src="${contributor.avatar_url}" alt="${contributor.login}" 
-                                               class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white/10 dark:border-gray-700/50 transition-all duration-300 group-hover:border-blue-500/50"
-                                               loading="lazy">
-                                          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                      </div>
-                                      <a href="${contributor.html_url}" 
-                                         class="font-bold text-lg text-blue-600 dark:text-blue-400 hover:underline block mb-2 transition-colors"
-                                         target="_blank" rel="noopener noreferrer">
-                                          ${contributor.login}
-                                      </a>
-                                      <p class="text-sm text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2">
-                                          <i class="fas fa-code-branch"></i>
-                                          <span>${contributor.contributions} đóng góp</span>
-                                      </p>
-                                  `;
-                                  container.appendChild(card);
-                              });
-                          } catch (error) {
-                              console.error('Lỗi khi tải thông tin người đóng góp:', error);
-                              document.getElementById('contributors').style.display = 'none';
-                          }
+                  Bộ lọc này chặn hầu hết các quảng cáo phổ biến trên các trang web Việt Nam, bao gồm quảng cáo banner, pop-up, video và các quảng cáo theo dõi.
 
-                          // Add smooth scroll behavior
-                          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                              anchor.addEventListener('click', function (e) {
-                                  e.preventDefault();
-                                  document.querySelector(this.getAttribute('href')).scrollIntoView({
-                                      behavior: 'smooth'
-                                  });
-                              });
-                          });
-                      </script>
-                  </body>
-                  </html>
+                  **Tôi nên sử dụng bộ lọc này với trình chặn quảng cáo nào?**
+
+                  Bộ lọc này được thiết kế để hoạt động tốt với uBlock Origin và AdGuard, nhưng cũng có thể hoạt động tốt với các trình chặn quảng cáo khác hỗ trợ định dạng bộ lọc tương tự.
+
+                  **Làm thế nào để báo cáo một lỗi hoặc một quảng cáo không bị chặn?**
+
+                  Bạn có thể tạo một issue trên GitHub repository này hoặc liên hệ trực tiếp với người phát triển.
+
+                  ## 🕒 Cập nhật mới nhất
+
+                  \`\`\`
+                  Cập nhật lần cuối: ${{ env.DATE }} ${{ env.TIME }}
+                  \`\`\`
+
+                  ## 🔗 Liên kết
+
+                  [<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" height="24" />](https://github.com/${{ env.AUTHOR_NAME }}/${{ env.REPO_NAME }})
+                  
+                  ## License
+                  
+                  This project is licensed under the [GPL License](LICENSE).
+
                   EOF
 
             - name: Commit changes
@@ -493,7 +229,7 @@ jobs:
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                  git add "${{ env.FILTER_FILE }}" index.html .github/badges || true
+                  git add "${{ env.FILTER_FILE }}" README.md || true
                   git commit -m "🔄 Cập nhật tự động (Phiên bản: ${{ env.FULL_VERSION }})"
                   git pull origin main --rebase
                   git push
