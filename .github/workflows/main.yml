@@ -96,28 +96,24 @@ jobs:
           done
           
           # Đếm số rules
-          RULE_COUNT=$(grep -v '^!' "${FILTER_FILE}.tmp" | wc -l)
+          RULE_COUNT=$(grep -v '^!' "${FILTER_FILE}" | wc -l)
           [ "$RULE_COUNT" -ge "${{ env.MIN_RULES }}" ] || log_error "Không đủ rules (tối thiểu: ${{ env.MIN_RULES }})!"
           
           # Đếm loại rules
           {
             echo "RULE_COUNT=$RULE_COUNT"
-            echo "NETWORK_RULES=$(grep -c "^||" "${FILTER_FILE}.tmp" || true)"
-            echo "COSMETIC_RULES=$(grep -c "##" "${FILTER_FILE}.tmp" || true)"
-            echo "WHITELIST_RULES=$(grep -c "^@@" "${FILTER_FILE}.tmp" || true)"
-            echo "COMMENT_COUNT=$(grep -c "^!" "${FILTER_FILE}.tmp" || true)"
+            echo "NETWORK_RULES=$(grep -c "^||" "${FILTER_FILE}" || true)"
+            echo "COSMETIC_RULES=$(grep -c "##" "${FILTER_FILE}" || true)"
+            echo "WHITELIST_RULES=$(grep -c "^@@" "${FILTER_FILE}" || true)"
+            echo "COMMENT_COUNT=$(grep -c "^!" "${FILTER_FILE}" || true)"
           } >> $GITHUB_ENV
           
           # Kiểm tra cú pháp
-          SYNTAX_ERRORS=$(grep -v "^!" "${FILTER_FILE}.tmp" | grep -n "[^a-zA-Z0-9.*?^$@#|=/,&_-]" || true)
+          SYNTAX_ERRORS=$(grep -v "^!" "${FILTER_FILE}" | grep -n "[^a-zA-Z0-9.*?^$@#|=/,&_-]" || true)
           if [ -n "$SYNTAX_ERRORS" ]; then
             echo "::warning::Phát hiện lỗi cú pháp tiềm ẩn:"
             echo "$SYNTAX_ERRORS"
           fi
-          
-          # Thay thế file gốc
-          mv "${FILTER_FILE}.tmp" "${{ env.FILTER_FILE }}"
-          
       - name: Update filter metadata
         id: update
         run: |
