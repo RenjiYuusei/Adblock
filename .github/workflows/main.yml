@@ -17,6 +17,7 @@ on:
 env:
   FILTER_FILE: Yuusei.txt
   MIN_RULES: 10
+  MIN_CONTRIBUTIONS: 10 # Số đóng góp tối thiểu để hiển thị
   TIMEZONE: 'Asia/Ho_Chi_Minh'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -69,9 +70,9 @@ jobs:
               }
             }' -f owner="${GITHUB_REPOSITORY%/*}" -f name="${GITHUB_REPOSITORY#*/}" --jq '.data.repository.collaborators.nodes')
 
-          # Format contributors for README
+          # Filter contributors based on total contributions and format for README
           echo "CONTRIBUTORS<<EOF" >> $GITHUB_ENV
-          echo "$contributors" | jq -r '.[] | "- <img src=\"\(.avatarUrl)&s=30\" width=\"30\" height=\"30\" style=\"border-radius: 50%; vertical-align: middle; margin-right: 5px;\" alt=\"Avatar\"> **[\(.login)](\(.url))** - \(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions) đóng góp"' >> $GITHUB_ENV
+          echo "$contributors" | jq -r --arg min_contributions "${{ env.MIN_CONTRIBUTIONS }}" '.[] | select(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions >= ($min_contributions | tonumber)) | "- <img src=\"\(.avatarUrl)&s=50\" width=\"50\" height=\"50\" style=\"border-radius: 50%; vertical-align: middle; margin-right: 5px;\" alt=\"Avatar\"> **[\(.login)](\(.url))** - \(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions) đóng góp"' >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
