@@ -68,10 +68,10 @@ jobs:
                 }
               }
             }' -f owner="${GITHUB_REPOSITORY%/*}" -f name="${GITHUB_REPOSITORY#*/}" --jq '.data.repository.collaborators.nodes')
-          
+
           # Format contributors for README
           echo "CONTRIBUTORS<<EOF" >> $GITHUB_ENV
-          echo "$contributors" | jq -r '.[] | "- [![\(.login)](\(.avatarUrl)&s=50) **[\(.login)](\(.url))** - \(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions) đóng góp"' >> $GITHUB_ENV
+          echo "$contributors" | jq -r '.[] | "- <img src=\"\(.avatarUrl)&s=30\" width=\"30\" height=\"30\" style=\"border-radius: 50%; vertical-align: middle; margin-right: 5px;\" alt=\"Avatar\"> **[\(.login)](\(.url))** - \(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions) đóng góp"' >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
