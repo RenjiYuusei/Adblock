@@ -7,7 +7,7 @@
       <img src="https://img.shields.io/badge/version-2024.12.19-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
-      <img src="https://img.shields.io/badge/rules-1589-brightgreen?style=for-the-badge" alt="Rules">
+      <img src="https://img.shields.io/badge/rules-1592-brightgreen?style=for-the-badge" alt="Rules">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/commits/main">
       <img src="https://img.shields.io/badge/updated-19-12-2024-success?style=for-the-badge" alt="Updated">
@@ -19,9 +19,9 @@
 
 | Loại | Số lượng |
 |------|-----------|
-| Tổng số Rules | 1589 |
+| Tổng số Rules | 1592 |
 | Rules Mạng | 390 |
-| Rules Giao Diện | 845 |
+| Rules Giao Diện | 848 |
 | Rules Whitelist | 60 |
 | Ghi chú & Comments | 14 |
 
@@ -66,19 +66,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ### Những người đóng góp chính
 
-- [![RenjiYuusei](https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4) **[RenjiYuusei](https://github.com/RenjiYuusei)** - 169 đóng góp
+- [![RenjiYuusei](https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4) **[RenjiYuusei](https://github.com/RenjiYuusei)** - 170 đóng góp
 
 ## 📝 Cập nhật
 
-- **Cập nhật lần cuối**: 19-12-2024 11:35:53
+- **Cập nhật lần cuối**: 19-12-2024 11:42:32
 - **Phiên bản hiện tại**: 2024.12.19
-- **Tổng số rules**: 1589
+- **Tổng số rules**: 1592
 
 ### Changelog gần đây
 ```
-- ff2e95e Update Yuusei.txt (12 seconds ago)
-- d518989 🔄 Cập nhật tự động (Phiên bản: 2024.12.19) (3 minutes ago)
-- 3b96342 Update Yuusei.txt (3 minutes ago)
+- 88328f7 Update Yuusei.txt (11 seconds ago)
+- 086fae6 🔄 Cập nhật tự động (Phiên bản: 2024.12.19) (7 minutes ago)
+- ff2e95e Update Yuusei.txt (7 minutes ago)
 ```
 
 ## ⭐ Tính năng
