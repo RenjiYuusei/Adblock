@@ -10,8 +10,11 @@
 ! ----------  Yuusei  ----------
 hentaivn.love##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
 hentaivn.love##div.container > p
-||hentaivn.*/wp-content/plugins/wp-popups-lite/src/assets/js/wppopups.js^
-||hentaivn.*/wp-content/plugins/wp-popups-lite/src/assets/css/wppopups-base.css^
+hentaivn.tube###catfish
+||*.*/wp-content/plugins/wp-popups-lite/src/assets/js/wppopups.js^
+||*.*/wp-content/plugins/wp-popups-lite/src/assets/css/wppopups-base.css^
+truyenhentai18vn.com##.visible.catfish-banner-container
+hentaiz.autos###catfish
 vailonxx.vip##.adx1
 #[doubleclick.net]
 0.0.0.0 doubleclick.net
