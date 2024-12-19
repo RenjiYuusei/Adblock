@@ -71,7 +71,7 @@ jobs:
           
           # Format contributors for README
           echo "CONTRIBUTORS<<EOF" >> $GITHUB_ENV
-          echo "$contributors" | jq -r '.[] | "- [![\(.login)](\(.avatarUrl)&s=30) **[\(.login)](\(.url))** - \(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions) đóng góp"' >> $GITHUB_ENV
+          echo "$contributors" | jq -r '.[] | "- [![\(.login)](\(.avatarUrl)&s=50) **[\(.login)](\(.url))** - \(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions) đóng góp"' >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
