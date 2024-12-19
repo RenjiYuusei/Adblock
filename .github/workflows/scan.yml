@@ -33,15 +33,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 selenium webdriver-manager tqdm
 
-      - name: Load rules from JSON
-        id: load_rules
-        run: |
-            python -c "
-                import json
-                with open('rules.json', 'r') as f:
-                    print(json.dumps(json.load(f)))
-            " > rules.txt
-      
       - name: Scan website for ads
         id: scan
         run: |
@@ -73,11 +64,42 @@ jobs:
           def get_domain(url):
               return urlparse(url).netloc
 
-          def extract_ad_elements(soup, current_url, ad_elements, rules):
-            ad_patterns = rules.get('ad_patterns', [])
-            script_patterns = rules.get('script_patterns', [])
-            media_patterns = rules.get('media_patterns', [])
-            style_patterns = rules.get('style_patterns', [])
+          def extract_ad_elements(soup, current_url, ad_elements):
+            ad_patterns = [
+                "(?:ads?|advert(?:isement)?|quangcao)[-_]?(?:preload|box|slot|unit|banner|container|wrapper|frame|block|space|zone|spot|content|display|holder)",
+                "banner[-_]?(?:preload|top|bottom|left|right|side|float|sticky|fixed|mobile|main|center|ads?)",
+                "(?:catfish|float|sticky|overlay|modal|popup|lightbox)[-_]?(?:ads?|banner|box|container|bottom|top|left|right|mobile)",
+                "(?:google|gg|fb|facebook|twitter|tiktok)[-_]?(?:ads?|adsense|pixel|tracking)",
+                "(?:tracking|analytics|pixel|remarketing|affiliate|conversion)[-_]?(?:box|container|unit|pixel|tag)",
+                "(?:promo|marketing|campaign|special|sponsor|partner)[-_]?(?:box|banner|container|content|section)",
+                "(?:notification|alert|message|cookie|gdpr|privacy)[-_]?(?:banner|popup|modal|box|consent)",
+                "(?:video|player|media|jw)[-_]?(?:ads?|overlay|banner|container|cue)",
+                "(?:social|share|follow|community)[-_]?(?:buttons?|container|widget|plugin|feed)",
+                "(?:newsletter|subscribe|chat|messenger|support)[-_]?(?:popup|modal|form|box|widget)",
+                "(?:mobile|responsive)[-_]?(?:menu|nav|header|ads?|banner)",
+                "(?:sidebar|widget|toolbar)[-_]?(?:container|wrapper|fixed|ads?)",
+                "(?:aswift|adsbygoogle|adskeeper|adnow|admicro|adtima)[-_]?\\d*"
+              ]
+            script_patterns = [
+                "(?:ads?|adv|analytics|track)(?:ertis(?:ing|ements?)|manager|loader|config|pixel|tag|event)?",
+                "(?:google|facebook|fb|tiktok)[-_]?(?:analytics|tag|ads?|adsense|pixel|sdk)",
+                "(?:hotjar|optimizely|segment|mixpanel|chartbeat|crazyegg|comscore)",
+                "(?:retargeting|remarketing|affiliate)[-_]?(?:code|pixel|tracking)",
+                "(?:social|share|chat|push|notification)[-_]?(?:buttons?|widget|sdk)"
+              ]
+            media_patterns = [
+                "(?:video|player)[-_]?(?:embed|frame|container)",
+                "(?:map|location|payment|survey)[-_]?(?:embed|frame|container)",
+                "banner[-_]?(?:image|img|ad)",
+                 "(?:background|bg|header|footer)[-_]?(?:ad|banner)"
+              ]
+            style_patterns = [
+                "position:\\s*(?:fixed|sticky)",
+                "z-index:\\s*[0-9]{4,}",
+                "(?:width|height):\\s*100(?:vh|vw|%)",
+                "display:\\s*(?:flex|grid)",
+                "opacity:\\s*[01](?:\\.[0-9]+)?"
+              ]
             
             def process_element(el, selector_type=''):
                   if not el.name:
@@ -138,7 +160,7 @@ jobs:
                           ad_elements.add(selector)
 
 
-          def scan_website(url, max_depth, rules):
+          def scan_website(url, max_depth):
               chrome_options = Options()
               chrome_options.add_argument('--headless=new')
               chrome_options.add_argument('--no-sandbox')
@@ -213,8 +235,7 @@ jobs:
                               future = executor.submit(extract_ad_elements, 
                                                           BeautifulSoup(page_source, 'html.parser'),
                                                           current_url, 
-                                                          ad_elements,
-                                                          rules)
+                                                          ad_elements)
                               future_to_url[future] = current_url
                                       
                           except Exception as e:
@@ -249,10 +270,8 @@ jobs:
 
           url = "${{ github.event.inputs.website_url }}"
           max_depth = int("${{ github.event.inputs.scan_depth }}")
-          rules_str = open("rules.txt", "r").read()
-          rules_dict = ast.literal_eval(rules_str)
           logging.info(f'Bắt đầu quét {url} với độ sâu {max_depth}')
-          ad_rules = scan_website(url, max_depth, rules_dict)
+          ad_rules = scan_website(url, max_depth)
           logging.info(f'Đã tìm thấy {len(ad_rules)} rules')
 
           with open('new_rules.txt', 'w', encoding='utf-8') as f:
