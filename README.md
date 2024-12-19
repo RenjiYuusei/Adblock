@@ -6,7 +6,7 @@
       <img src="https://img.shields.io/badge/version-2024.12.19-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
-      <img src="https://img.shields.io/badge/rules-1592-brightgreen?style=for-the-badge" alt="Rules">
+      <img src="https://img.shields.io/badge/rules-1595-brightgreen?style=for-the-badge" alt="Rules">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/commits/main">
       <img src="https://img.shields.io/badge/updated-19-12-2024-success?style=for-the-badge" alt="Updated">
@@ -18,11 +18,11 @@
 
 | Loại | Số lượng |
 |------|-----------|
-| Tổng số Rules | 1592 |
+| Tổng số Rules | 1595 |
 | Rules Mạng | 390 |
-| Rules Giao Diện | 848 |
+| Rules Giao Diện | 850 |
 | Rules Whitelist | 60 |
-| Ghi chú & Comments | 14 |
+| Ghi chú & Comments | 15 |
 
 ## 🚀 Cài đặt
 
@@ -65,19 +65,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ### Những người đóng góp chính
 
-- <img src="https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="Avatar"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 178 đóng góp
+- <img src="https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="Avatar"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 181 đóng góp
 
 ## 📝 Cập nhật
 
-- **Cập nhật lần cuối**: 19-12-2024 12:16:21
+- **Cập nhật lần cuối**: 19-12-2024 12:42:32
 - **Phiên bản hiện tại**: 2024.12.19
-- **Tổng số rules**: 1592
+- **Tổng số rules**: 1595
 
 ### Changelog gần đây
 ```
-- d97849f Update scan.yml (31 seconds ago)
-- d34ba07 Update scan.yml (4 minutes ago)
-- 1658de8 Create rule.json (5 minutes ago)
+- 44c93bd Update Yuusei.txt (13 seconds ago)
+- ed40fca Update scan.yml (10 minutes ago)
+- 2c0faec Update scan.yml (24 minutes ago)
 ```
 
 ## ⭐ Tính năng
