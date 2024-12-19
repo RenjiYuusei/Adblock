@@ -66,19 +66,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ### Những người đóng góp chính
 
-- [![RenjiYuusei](https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4) **[RenjiYuusei](https://github.com/RenjiYuusei)** - 168 đóng góp
+- [![RenjiYuusei](https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4) **[RenjiYuusei](https://github.com/RenjiYuusei)** - 169 đóng góp
 
 ## 📝 Cập nhật
 
-- **Cập nhật lần cuối**: 19-12-2024 11:32:40
+- **Cập nhật lần cuối**: 19-12-2024 11:35:53
 - **Phiên bản hiện tại**: 2024.12.19
 - **Tổng số rules**: 1589
 
 ### Changelog gần đây
 ```
-- 3b96342 Update Yuusei.txt (11 seconds ago)
-- a8906db Delete index.html (55 seconds ago)
-- bd412a0 🔄 Cập nhật tự động (Phiên bản: 2024.12.19) (4 hours ago)
+- ff2e95e Update Yuusei.txt (12 seconds ago)
+- d518989 🔄 Cập nhật tự động (Phiên bản: 2024.12.19) (3 minutes ago)
+- 3b96342 Update Yuusei.txt (3 minutes ago)
 ```
 
 ## ⭐ Tính năng
