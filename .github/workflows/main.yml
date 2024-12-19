@@ -71,7 +71,7 @@ jobs:
           
           # Format contributors for README
           echo "CONTRIBUTORS<<EOF" >> $GITHUB_ENV
-          echo "$contributors" | jq -r '.[] | "- [![\(.login)](\(.avatarUrl)) **[\(.login)](\(.url))** - \(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions) đóng góp"' >> $GITHUB_ENV
+          echo "$contributors" | jq -r '.[] | "- [![\(.login)](\(.avatarUrl)&s=30) **[\(.login)](\(.url))** - \(.contributionsCollection.totalCommitContributions + .contributionsCollection.totalIssueContributions + .contributionsCollection.totalPullRequestContributions) đóng góp"' >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -148,7 +148,6 @@ jobs:
         run: |
           cat > README.md << EOF
           <div align="center">
-            <img src=".github/assets/logo.png" width="120" height="120" alt="Yuusei Filter Logo">
             <h1>🛡️ Yuusei Filter List</h1>
             <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
             <p>
@@ -251,7 +250,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "${{ env.FILTER_FILE }}" README.md .github/assets/logo.png
+          git add "${{ env.FILTER_FILE }}" README.md
           git commit -m "🔄 Cập nhật tự động (Phiên bản: ${{ env.FULL_VERSION }})"
           git pull origin main --rebase
           git push
