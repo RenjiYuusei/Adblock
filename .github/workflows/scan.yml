@@ -325,10 +325,12 @@ jobs:
               - Số rules mới: $new_rules
               - Thời gian: $(date +'%Y-%m-%d %H:%M:%S')"
           
-              BRANCH_NAME="scan-ads-${{ github.event.inputs.website_url }}-${{ github.run_id }}"
-              git checkout -b $BRANCH_NAME
+              # Sanitize the website_url to create a valid branch name
+              SANITIZED_URL=$(echo "${{ github.event.inputs.website_url }}" | sed 's/[^a-zA-Z0-9_-]/_/g')
+              BRANCH_NAME="scan-ads-${SANITIZED_URL}-${{ github.run_id }}"
+              git checkout -b "$BRANCH_NAME"
 
-              git push origin $BRANCH_NAME
+              git push origin "$BRANCH_NAME"
               
               PR_URL=$(gh pr create --base main --title "✨ Thêm rules mới từ ${{ github.event.inputs.website_url }}" --body "
               - Website: ${{ github.event.inputs.website_url }}
