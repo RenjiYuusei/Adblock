@@ -8,6 +8,10 @@
 ! Checksum: 48632ffca076f5c3b5290972e52bd3bd69e709b02caef20c1e423b45d8f21d33
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
+hentaivn.love##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
+hentaivn.love##div.container > p
+||hentaivn.love/wp-content/plugins/wp-popups-lite/src/assets/js/wppopups.js^
+||hentaivn.love/wp-content/plugins/wp-popups-lite/src/assets/css/wppopups-base.css^
 vailonxx.vip##.adx1
 #[doubleclick.net]
 0.0.0.0 doubleclick.net
