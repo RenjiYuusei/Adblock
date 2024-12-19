@@ -65,19 +65,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ### Những người đóng góp chính
 
-- <img src="https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="Avatar"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 182 đóng góp
+- <img src="https://private-avatars.githubusercontent.com/u/166010224?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MzQ2MTIwMDAsIm5iZiI6MTczNDYxMDgwMCwicGF0aCI6Ii91LzE2NjAxMDIyNCJ9.ldKm13bbNl0qSO1Ol3YD5-WLCGLraMROOfxr0BUyQfc&u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="Avatar"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 183 đóng góp
 
 ## 📝 Cập nhật
 
-- **Cập nhật lần cuối**: 19-12-2024 12:44:19
+- **Cập nhật lần cuối**: 19-12-2024 19:21:44
 - **Phiên bản hiện tại**: 2024.12.19
 - **Tổng số rules**: 1594
 
 ### Changelog gần đây
 ```
-- f105723 Update Yuusei.txt (13 seconds ago)
-- 593a8fb 🔄 Cập nhật tự động (Phiên bản: 2024.12.19) (2 minutes ago)
-- 44c93bd Update Yuusei.txt (2 minutes ago)
+- 8a509d4 🔄 Cập nhật tự động (Phiên bản: 2024.12.19) (7 hours ago)
+- f105723 Update Yuusei.txt (7 hours ago)
+- 593a8fb 🔄 Cập nhật tự động (Phiên bản: 2024.12.19) (7 hours ago)
 ```
 
 ## ⭐ Tính năng
