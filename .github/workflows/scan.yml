@@ -36,7 +36,11 @@ jobs:
       - name: Load rules from JSON
         id: load_rules
         run: |
-          python -c 'import json; with open("rules.json", "r") as f: print(json.load(f))' > rules.txt
+            python -c "
+                import json
+                with open('rules.json', 'r') as f:
+                    print(json.dumps(json.load(f)))
+            " > rules.txt
       
       - name: Scan website for ads
         id: scan
