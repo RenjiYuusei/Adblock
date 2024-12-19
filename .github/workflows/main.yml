@@ -108,12 +108,16 @@ jobs:
             echo "COMMENT_COUNT=$(grep -c "^!" "${FILTER_FILE}" || true)"
           } >> $GITHUB_ENV
           
-          # Kiểm tra cú pháp
+          # Kiểm tra cú pháp và khoảng trắng thừa trong rules
           SYNTAX_ERRORS=$(grep -v "^!" "${FILTER_FILE}" | grep -n "[^a-zA-Z0-9.*?^$@#|=/,&_-]" || true)
           if [ -n "$SYNTAX_ERRORS" ]; then
             echo "::warning::Phát hiện lỗi cú pháp tiềm ẩn:"
             echo "$SYNTAX_ERRORS"
           fi
+          
+          # Loại bỏ khoảng trắng thừa trong rule
+          sed -i  '/^[^!]/s/[[:space:]]\+/ /g'  "${{ env.FILTER_FILE }}"
+
       - name: Update filter metadata
         id: update
         run: |
@@ -247,7 +251,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "${{ env.FILTER_FILE }}" README.md .github/badges || true
+          git add "${{ env.FILTER_FILE }}" README.md .github/assets/logo.png
           git commit -m "🔄 Cập nhật tự động (Phiên bản: ${{ env.FULL_VERSION }})"
           git pull origin main --rebase
           git push
