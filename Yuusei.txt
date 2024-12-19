@@ -8,6 +8,10 @@
 ! Checksum: e9ac0e563796619e485d23868ae22a56c30e155c5db834e84fb1b578ba282969
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
+! 19 thg 12, 2024 https://phimmoi.ink
+phimmoi.ink###footer_fixed_ads
+phimmoi.ink##div.text-center > [href^="https://vb88.com/"] > .ads
+
 hentaivn.love##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
 hentaivn.love##div.container > p
 hentaivn.tube###catfish
