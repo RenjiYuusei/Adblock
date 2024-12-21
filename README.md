@@ -69,15 +69,15 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Cập nhật
 
-- **Cập nhật lần cuối**: 21-12-2024 07:51:53
+- **Cập nhật lần cuối**: 21-12-2024 19:18:36
 - **Phiên bản hiện tại**: 2024.12.21
 - **Tổng số rules**: 1594
 
 ### Changelog gần đây
 ```
-- 466e192 🔄 Cập nhật tự động (Phiên bản: 2024.12.20) (13 hours ago)
-- 265ee11 🔄 Cập nhật tự động (Phiên bản: 2024.12.20) (24 hours ago)
-- 5986a5c 🔄 Cập nhật tự động (Phiên bản: 2024.12.19) (2 days ago)
+- 49ead79 🔄 Cập nhật tự động (Phiên bản: 2024.12.21) (11 hours ago)
+- 466e192 🔄 Cập nhật tự động (Phiên bản: 2024.12.20) (24 hours ago)
+- 265ee11 🔄 Cập nhật tự động (Phiên bản: 2024.12.20) (35 hours ago)
 ```
 
 ## ⭐ Tính năng
