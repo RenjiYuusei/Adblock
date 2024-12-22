@@ -3,13 +3,13 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2024.12.21-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2024.12.22-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1594-brightgreen?style=for-the-badge" alt="Rules">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/commits/main">
-      <img src="https://img.shields.io/badge/updated-21-12-2024-success?style=for-the-badge" alt="Updated">
+      <img src="https://img.shields.io/badge/updated-22-12-2024-success?style=for-the-badge" alt="Updated">
     </a>
   </p>
 </div>
@@ -69,15 +69,15 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Cập nhật
 
-- **Cập nhật lần cuối**: 21-12-2024 19:18:36
-- **Phiên bản hiện tại**: 2024.12.21
+- **Cập nhật lần cuối**: 22-12-2024 07:57:12
+- **Phiên bản hiện tại**: 2024.12.22
 - **Tổng số rules**: 1594
 
 ### Changelog gần đây
 ```
-- 49ead79 🔄 Cập nhật tự động (Phiên bản: 2024.12.21) (11 hours ago)
-- 466e192 🔄 Cập nhật tự động (Phiên bản: 2024.12.20) (24 hours ago)
-- 265ee11 🔄 Cập nhật tự động (Phiên bản: 2024.12.20) (35 hours ago)
+- 4801ae8 🔄 Cập nhật tự động (Phiên bản: 2024.12.21) (13 hours ago)
+- 49ead79 🔄 Cập nhật tự động (Phiên bản: 2024.12.21) (24 hours ago)
+- 466e192 🔄 Cập nhật tự động (Phiên bản: 2024.12.20) (2 days ago)
 ```
 
 ## ⭐ Tính năng
