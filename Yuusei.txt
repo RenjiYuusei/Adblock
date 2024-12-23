@@ -8,6 +8,8 @@
 ! Checksum: 17d4ab7bb1f1f9240cb4e2c141647439a33802b2477be26001a3d5cccf1160e4
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
+hentaivn.news##div.container > p
+hentaivn.news##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
 phimmoi.ink###catfish
 vietsub.biz##.code-block-1.code-block
 m.ani4u.org##.box > center > .quang_cao_play_mobile
