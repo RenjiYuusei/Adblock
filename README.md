@@ -6,7 +6,7 @@
       <img src="https://img.shields.io/badge/version-2024.12.23-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
-      <img src="https://img.shields.io/badge/rules-1597-brightgreen?style=for-the-badge" alt="Rules">
+      <img src="https://img.shields.io/badge/rules-1592-brightgreen?style=for-the-badge" alt="Rules">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/commits/main">
       <img src="https://img.shields.io/badge/updated-23-12-2024-success?style=for-the-badge" alt="Updated">
@@ -18,9 +18,9 @@
 
 | Loại | Số lượng |
 |------|-----------|
-| Tổng số Rules | 1597 |
+| Tổng số Rules | 1592 |
 | Rules Mạng | 390 |
-| Rules Giao Diện | 853 |
+| Rules Giao Diện | 848 |
 | Rules Whitelist | 60 |
 | Ghi chú & Comments | 12 |
 
@@ -65,19 +65,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ### Những người đóng góp chính
 
-- <img src="https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="Avatar"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 185 đóng góp
+- <img src="https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="Avatar"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 186 đóng góp
 
 ## 📝 Cập nhật
 
-- **Cập nhật lần cuối**: 23-12-2024 19:20:53
+- **Cập nhật lần cuối**: 23-12-2024 21:43:13
 - **Phiên bản hiện tại**: 2024.12.23
-- **Tổng số rules**: 1597
+- **Tổng số rules**: 1592
 
 ### Changelog gần đây
 ```
-- 47bbace 🔄 Cập nhật tự động (Phiên bản: 2024.12.23) (9 hours ago)
-- 644369f Update Yuusei.txt (9 hours ago)
-- 3bea77e 🔄 Cập nhật tự động (Phiên bản: 2024.12.23) (11 hours ago)
+- 614dbd8 Update Yuusei.txt (11 seconds ago)
+- a1d15f1 🔄 Cập nhật tự động (Phiên bản: 2024.12.23) (2 hours ago)
+- 47bbace 🔄 Cập nhật tự động (Phiên bản: 2024.12.23) (11 hours ago)
 ```
 
 ## ⭐ Tính năng
