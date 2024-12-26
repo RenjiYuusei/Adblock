@@ -99,7 +99,7 @@ jobs:
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Validate and optimize filter file
+            - name: Validate and analyze filter file
               id: validate
               run: |
                   log_error() {
@@ -114,14 +114,14 @@ jobs:
                   FILE_SIZE=$(stat -f%z "${{ env.FILTER_FILE }}" 2>/dev/null || stat -c%s "${{ env.FILTER_FILE }}")
                   [ "$FILE_SIZE" -ge 100 ] || log_error "File filter quá nhỏ!"
 
-                  # Kiểm tra và sắp xếp headers
+                  # Kiểm tra headers
                   required_headers=("! Title:" "! Version:" "! Last modified:" "! Homepage:" "! License:")
                   for header in "${required_headers[@]}"; do
                     grep -q "^$header" "${{ env.FILTER_FILE }}" || log_error "Thiếu header bắt buộc: $header"
                   done
 
-                  # Phân tích và tối ưu rules
-                  RULE_COUNT=$(grep -v '^!' "${FILTER_FILE}" | sort -u | wc -l)
+                  # Phân tích rules
+                  RULE_COUNT=$(grep -v '^!' "${FILTER_FILE}" | wc -l)
                   [ "$RULE_COUNT" -ge "${{ env.MIN_RULES }}" ] || log_error "Không đủ rules (tối thiểu: ${{ env.MIN_RULES }})!"
 
                   # Thống kê chi tiết
@@ -135,15 +135,15 @@ jobs:
                     echo "UNIQUE_DOMAINS=$(grep -E "^\|\||^0\.0\.0\.0" "${FILTER_FILE}" | cut -d'|' -f3 | cut -d'^' -f1 | sort -u | wc -l || true)"
                   } >> $GITHUB_ENV
 
-                  # Kiểm tra cú pháp và tối ưu
+                  # Kiểm tra cú pháp
                   echo "::group::Kiểm tra cú pháp"
                   grep -v "^!" "${FILTER_FILE}" | grep -n "[^a-zA-Z0-9.*?^$@#|=/,&_-]" || true
                   echo "::endgroup::"
 
-                  # Tối ưu file
-                  sed -i '/^$/d' "${FILTER_FILE}" # Xóa dòng trống
-                  sed -i '/^[^!]/s/[[:space:]]\+/ /g' "${FILTER_FILE}" # Chuẩn hóa khoảng trắng
-                  sort -u -o "${FILTER_FILE}" "${FILTER_FILE}" # Sắp xếp và loại bỏ trùng lặp
+                  # Xóa dòng trống
+                  sed -i '/^$/d' "${FILTER_FILE}"
+                  # Chuẩn hóa khoảng trắng
+                  sed -i '/^[^!]/s/[[:space:]]\+/ /g' "${FILTER_FILE}"
 
             - name: Update filter metadata
               id: update
