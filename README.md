@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2024.12.27.1921-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2024.12.28.0756-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1597-brightgreen?style=for-the-badge" alt="Rules">
@@ -68,23 +68,23 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 ## 👥 Người đóng góp
 
 ### Những người đóng góp chính
-- <img src="https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 202 đóng góp
+- <img src="https://avatars.githubusercontent.com/u/166010224?u=9f71dd05a7b56ea8ec1444ada77ede7414e2fca5&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 206 đóng góp
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 27-12-2024 19:21:53 (GMT+7)
-- **Phiên bản**: 2024.12.27.1921
-- **Checksum**: 7b049e554bc23d3dc86d39144c6218276f8661a1ffc9d85859792ba43ba9a75d
+- **Cập nhật lần cuối**: 28-12-2024 07:56:00 (GMT+7)
+- **Phiên bản**: 2024.12.28.0756
+- **Checksum**: b836e9a30c9f0534430bb3edb8050729cfadee0b4636a1626fdd188e1c221dbc
 - **Tổng số rules**: 1597
 - **Tên miền độc nhất**: 590
 
 ### Changelog gần đây
 ```
-- c1bd8de 🔄 Cập nhật tự động (v2024.12.27.0757) (11 hours ago)
-- 8d5ecc8 🔄 Cập nhật tự động (v2024.12.26.1922) (24 hours ago)
-- dce3f5e 🔄 Cập nhật tự động (v2024.12.26.0934) (34 hours ago)
-- ba02435 🔄 Cập nhật tự động (v2024.12.26.0932) (34 hours ago)
-- 5ad1167 Merge branch 'main' of https://github.com/RenjiYuusei/Adblock (34 hours ago)
+- 8ab96de 🔄 Cập nhật tự động (v2024.12.27.1921) (13 hours ago)
+- c1bd8de 🔄 Cập nhật tự động (v2024.12.27.0757) (24 hours ago)
+- 8d5ecc8 🔄 Cập nhật tự động (v2024.12.26.1922) (2 days ago)
+- dce3f5e 🔄 Cập nhật tự động (v2024.12.26.0934) (2 days ago)
+- ba02435 🔄 Cập nhật tự động (v2024.12.26.0932) (2 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 27-12-2024 19:21:53 (GMT+7)</sub>
+  <sub>Last updated: 28-12-2024 07:56:00 (GMT+7)</sub>
 </div>
