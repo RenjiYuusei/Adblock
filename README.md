@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2024.12.28.1920-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2024.12.29.0802-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1597-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 28-12-2024 19:20:28 (GMT+7)
-- **Phiên bản**: 2024.12.28.1920
-- **Checksum**: 9191ff704918db5327c2418fd72882b04f03650f11fefcc70b7c9a31e799eae4
+- **Cập nhật lần cuối**: 29-12-2024 08:02:28 (GMT+7)
+- **Phiên bản**: 2024.12.29.0802
+- **Checksum**: 034a0c0ac33355ff452f17a1578e0395c9cf9f501c5cf68be7628888bf7a51c2
 - **Tổng số rules**: 1597
 - **Tên miền độc nhất**: 590
 
 ### Changelog gần đây
 ```
-- 69ea3c9 🔄 Cập nhật tự động (v2024.12.28.0756) (11 hours ago)
-- 8ab96de 🔄 Cập nhật tự động (v2024.12.27.1921) (24 hours ago)
-- c1bd8de 🔄 Cập nhật tự động (v2024.12.27.0757) (35 hours ago)
-- 8d5ecc8 🔄 Cập nhật tự động (v2024.12.26.1922) (2 days ago)
-- dce3f5e 🔄 Cập nhật tự động (v2024.12.26.0934) (2 days ago)
+- b57ab38 🔄 Cập nhật tự động (v2024.12.28.1920) (13 hours ago)
+- 69ea3c9 🔄 Cập nhật tự động (v2024.12.28.0756) (24 hours ago)
+- 8ab96de 🔄 Cập nhật tự động (v2024.12.27.1921) (2 days ago)
+- c1bd8de 🔄 Cập nhật tự động (v2024.12.27.0757) (2 days ago)
+- 8d5ecc8 🔄 Cập nhật tự động (v2024.12.26.1922) (3 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 28-12-2024 19:20:28 (GMT+7)</sub>
+  <sub>Last updated: 29-12-2024 08:02:28 (GMT+7)</sub>
 </div>
