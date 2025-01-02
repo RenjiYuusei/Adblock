@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2025.01.01.1921
+! Version: 2025.01.02.0756
 ! Title: Yuusei
-! Last modified: 01-01-2025 19:21:56 (GMT+7)
+! Last modified: 02-01-2025 07:56:40 (GMT+7)
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 942fcfb7b59d626b2395a913c03c580dd60abe5c3ad542a9fbfb00699f699aa5
+! Checksum: ade5d9718e12ceaa42849a0e8837baa65e3bb71fbd1e806cd59b9f426964c2bd
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 hentaivn.news##div.container > p
