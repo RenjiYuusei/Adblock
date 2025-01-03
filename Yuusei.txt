@@ -8,6 +8,10 @@
 ! Checksum: 8eb907b0724a459e6ab1aa3ddf791614c991bf3a9b85518257f04846779a708f
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
+s4paad.factsninfo.com##.promo-container
+s4paad.factsninfo.com##.nav-container
+hentaivn.ws##.sticky-pc-footer-content.sticky-footer.visible-md.visible-lg
+sayhentai.art##.float-ck-center-lt
 hentaivn.news##div.container > p
 hentaivn.news##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
 phimmoi.ink###catfish
