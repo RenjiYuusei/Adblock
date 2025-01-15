@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.01.14.1921-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.01.15.0756-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1596-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 14-01-2025 19:21:54 (GMT+7)
-- **Phiên bản**: 2025.01.14.1921
-- **Checksum**: b3ca1f24dc3b51ad2fb0d30bca9f18cfdb35f899480cbd1576dfbc7560cf86e9
+- **Cập nhật lần cuối**: 15-01-2025 07:56:18 (GMT+7)
+- **Phiên bản**: 2025.01.15.0756
+- **Checksum**: 4cace6aca02c61593128acc2add2944e127783f749c638add11016d494987dcc
 - **Tổng số rules**: 1596
 - **Tên miền độc nhất**: 586
 
 ### Changelog gần đây
 ```
-- 8a51080 🔄 Cập nhật tự động (v2025.01.14.0754) (11 hours ago)
-- ddc019b 🔄 Cập nhật tự động (v2025.01.13.1924) (24 hours ago)
-- 03bb55a 🔄 Cập nhật tự động (v2025.01.13.0800) (35 hours ago)
-- 7f813e6 🔄 Cập nhật tự động (v2025.01.12.1920) (2 days ago)
-- a75811f 🔄 Cập nhật tự động (v2025.01.12.0802) (2 days ago)
+- 8af834e 🔄 Cập nhật tự động (v2025.01.14.1921) (13 hours ago)
+- 8a51080 🔄 Cập nhật tự động (v2025.01.14.0754) (24 hours ago)
+- ddc019b 🔄 Cập nhật tự động (v2025.01.13.1924) (2 days ago)
+- 03bb55a 🔄 Cập nhật tự động (v2025.01.13.0800) (2 days ago)
+- 7f813e6 🔄 Cập nhật tự động (v2025.01.12.1920) (3 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 14-01-2025 19:21:54 (GMT+7)</sub>
+  <sub>Last updated: 15-01-2025 07:56:18 (GMT+7)</sub>
 </div>
