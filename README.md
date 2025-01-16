@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.01.16.1641-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.01.16.1921-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1593-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 16-01-2025 16:41:11 (GMT+7)
-- **Phiên bản**: 2025.01.16.1641
-- **Checksum**: 5b4be6664acbfbad207d7ef0ea12a26641036c1dd46bdc475c818c4e131c1cab
+- **Cập nhật lần cuối**: 16-01-2025 19:21:52 (GMT+7)
+- **Phiên bản**: 2025.01.16.1921
+- **Checksum**: 29d5472010f16c109a00bfda8e7afe9e757fae4962c03bc805f8bec0fd417a1b
 - **Tổng số rules**: 1593
 - **Tên miền độc nhất**: 582
 
 ### Changelog gần đây
 ```
-- fbba39f Update Yuusei.txt (13 seconds ago)
-- 8727c40 🔄 Cập nhật tự động (v2025.01.16.0755) (9 hours ago)
-- cc739c1 🔄 Cập nhật tự động (v2025.01.15.1921) (21 hours ago)
-- 71b86cb 🔄 Cập nhật tự động (v2025.01.15.0756) (33 hours ago)
-- 8af834e 🔄 Cập nhật tự động (v2025.01.14.1921) (2 days ago)
+- 9bba0bb 🔄 Cập nhật tự động (v2025.01.16.1641) (3 hours ago)
+- fbba39f Update Yuusei.txt (3 hours ago)
+- 8727c40 🔄 Cập nhật tự động (v2025.01.16.0755) (11 hours ago)
+- cc739c1 🔄 Cập nhật tự động (v2025.01.15.1921) (24 hours ago)
+- 71b86cb 🔄 Cập nhật tự động (v2025.01.15.0756) (35 hours ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 16-01-2025 16:41:11 (GMT+7)</sub>
+  <sub>Last updated: 16-01-2025 19:21:52 (GMT+7)</sub>
 </div>
