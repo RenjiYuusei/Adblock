@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.01.17.1921-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.01.18.0753-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1593-brightgreen?style=for-the-badge" alt="Rules">
@@ -68,23 +68,23 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 ## 👥 Người đóng góp
 
 ### Những người đóng góp chính
-- <img src="https://avatars.githubusercontent.com/u/166010224?u=8811bc09e3b138541600c66888a716601559d21f&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 247 đóng góp
+- <img src="https://avatars.githubusercontent.com/u/166010224?u=a64a10c88b5404e70f8f996b4939ebc71b48e19e&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 247 đóng góp
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 17-01-2025 19:21:21 (GMT+7)
-- **Phiên bản**: 2025.01.17.1921
-- **Checksum**: d2faa8aff1fe098ad94493a5f2e4903d8d57f4995274c1a3e457db503c20aa27
+- **Cập nhật lần cuối**: 18-01-2025 07:53:47 (GMT+7)
+- **Phiên bản**: 2025.01.18.0753
+- **Checksum**: c626c4d583721173e229ec132284f2b440faa6683f63e504a6eb12b7909a08d1
 - **Tổng số rules**: 1593
 - **Tên miền độc nhất**: 582
 
 ### Changelog gần đây
 ```
-- 517266f 🔄 Cập nhật tự động (v2025.01.17.0755) (11 hours ago)
-- 184cc00 🔄 Cập nhật tự động (v2025.01.16.1921) (24 hours ago)
-- 9bba0bb 🔄 Cập nhật tự động (v2025.01.16.1641) (27 hours ago)
-- fbba39f Update Yuusei.txt (27 hours ago)
-- 8727c40 🔄 Cập nhật tự động (v2025.01.16.0755) (35 hours ago)
+- 498533d 🔄 Cập nhật tự động (v2025.01.17.1921) (13 hours ago)
+- 517266f 🔄 Cập nhật tự động (v2025.01.17.0755) (24 hours ago)
+- 184cc00 🔄 Cập nhật tự động (v2025.01.16.1921) (2 days ago)
+- 9bba0bb 🔄 Cập nhật tự động (v2025.01.16.1641) (2 days ago)
+- fbba39f Update Yuusei.txt (2 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 17-01-2025 19:21:21 (GMT+7)</sub>
+  <sub>Last updated: 18-01-2025 07:53:47 (GMT+7)</sub>
 </div>
