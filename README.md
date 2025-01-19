@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.01.19.0759-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.01.19.1919-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1593-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 19-01-2025 07:59:51 (GMT+7)
-- **Phiên bản**: 2025.01.19.0759
-- **Checksum**: 79717e8d695443b91ff710159484603cf2d425515df7b5fd63074917cf4c7e5f
+- **Cập nhật lần cuối**: 19-01-2025 19:19:23 (GMT+7)
+- **Phiên bản**: 2025.01.19.1919
+- **Checksum**: f4edbb291eb415add57af53b64d23cc79883576e78ccdd85c5530dfbab6dd8dd
 - **Tổng số rules**: 1593
 - **Tên miền độc nhất**: 582
 
 ### Changelog gần đây
 ```
-- c44ad51 🔄 Cập nhật tự động (v2025.01.18.1919) (13 hours ago)
-- 9c4fe3b 🔄 Cập nhật tự động (v2025.01.18.0753) (24 hours ago)
+- 902519e 🔄 Cập nhật tự động (v2025.01.19.0759) (11 hours ago)
+- c44ad51 🔄 Cập nhật tự động (v2025.01.18.1919) (24 hours ago)
+- 9c4fe3b 🔄 Cập nhật tự động (v2025.01.18.0753) (35 hours ago)
 - 498533d 🔄 Cập nhật tự động (v2025.01.17.1921) (2 days ago)
 - 517266f 🔄 Cập nhật tự động (v2025.01.17.0755) (2 days ago)
-- 184cc00 🔄 Cập nhật tự động (v2025.01.16.1921) (3 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 19-01-2025 07:59:51 (GMT+7)</sub>
+  <sub>Last updated: 19-01-2025 19:19:23 (GMT+7)</sub>
 </div>
