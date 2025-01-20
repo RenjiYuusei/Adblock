@@ -8,6 +8,22 @@
 ! Checksum: bb1acfef59f5b6f6d9a9c5fdd307d97da9a201a7accacb65e5d0ab47368ebeea
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
+sayhentai.art##[href="javascript:hide_catfish();"]
+m.ani4u.org##.s_left > center > .quang_cao_play_mobile
+m.ani4u.org##.quang_cao_play1
+fastscans6.net##div.img-chapter.offset-0.col-12.offset-lg-1.col-lg-10.chapter-image:nth-of-type(1)
+fastscans6.net##div.img-chapter.offset-0.col-12.offset-lg-1.col-lg-10.chapter-image:nth-of-type(182)
+thempho.net##.z-\[100\].h-auto.lg\:mx-auto.px-2.max-w-\[920px\].lg\:w-\[920px\].w-full.-translate-x-1\/2.left-1\/2.lg\:bottom-0.bottom-\[calc\(var\(--slide-bar-bottom-height\)\+4px\)\].fixed
+||qph.cf2.quoracdn.net/main-qimg-8*$image
+sayhentai.art###STKABATK_1_2
+sayhentai.art###NNWXWHBF_5_3
+sayhentai.art###RMJJJMAS_8_3
+animet5.site##.Content > .gnartyx-offads
+animet5.site###watch-block > .gnartyx-offads
+animet5.site##.banner-sticky-footer-ad
+animet5.site###popup > .gnartyx-offads
+animet5.site##.jw-reset.jw-logo-top-right.jw-logo
+animet5.site###fbox-background
 s4paad.factsninfo.com##.promo-container
 s4paad.factsninfo.com##.nav-container
 hentaivn.ws##.sticky-pc-footer-content.sticky-footer.visible-md.visible-lg
