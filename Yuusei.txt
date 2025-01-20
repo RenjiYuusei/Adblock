@@ -13,6 +13,10 @@ m.ani4u.org##.s_left > center > .quang_cao_play_mobile
 m.ani4u.org##.quang_cao_play1
 fastscans6.net##div.img-chapter.offset-0.col-12.offset-lg-1.col-lg-10.chapter-image:nth-of-type(1)
 fastscans6.net##div.img-chapter.offset-0.col-12.offset-lg-1.col-lg-10.chapter-image:nth-of-type(182)
+thempho.net##.max-lg\:container.justify-center.items-center.flex.z-zDialog.bg-black\/75.inset-0.fixed.ReactModal__Overlay--after-open.ReactModal__Overlay
+thempho.net##.mx-auto.justify-center.items-center.flex-col.flex.relative > .h-auto.w-full
+thempho.net##.max-lg\:w-full.cursor-pointer.block > .rounded-\[2px\].overflow-hidden.justify-center.items-center.flex.h-auto.w-full
+thempho.net##.\!w-\[320px\].rounded-\[2px\].overflow-hidden.justify-center.items-center.flex.h-auto.w-full
 thempho.net##.z-\[100\].h-auto.lg\:mx-auto.px-2.max-w-\[920px\].lg\:w-\[920px\].w-full.-translate-x-1\/2.left-1\/2.lg\:bottom-0.bottom-\[calc\(var\(--slide-bar-bottom-height\)\+4px\)\].fixed
 ||qph.cf2.quoracdn.net/main-qimg-8*$image
 sayhentai.art###STKABATK_1_2
