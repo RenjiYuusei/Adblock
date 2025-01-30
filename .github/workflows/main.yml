@@ -5,7 +5,7 @@ on:
         paths:
             - 'Yuusei.txt'
     schedule:
-        - cron: '0 */12 * * *' # Chạy 2 lần mỗi ngày
+    - cron: '0 0 * * *' # Chạy vào 0h hàng ngày (12h đêm theo GMT+7)
     workflow_dispatch:
         inputs:
             force_update:
