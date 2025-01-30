@@ -3,10 +3,10 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.01.30.0755-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.01.30.0927-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
-      <img src="https://img.shields.io/badge/rules-1613-brightgreen?style=for-the-badge" alt="Rules">
+      <img src="https://img.shields.io/badge/rules-1564-brightgreen?style=for-the-badge" alt="Rules">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/stargazers">
       <img src="https://img.shields.io/github/stars/RenjiYuusei/Adblock?style=for-the-badge" alt="Stars">
@@ -18,13 +18,13 @@
 
 | Loại | Số lượng | Tỷ lệ |
 |------|-----------|-------|
-| Tổng số Rules | 1613 | 100% |
-| Rules Mạng | 589 | 36% |
-| Rules Giao Diện | 886 | 54% |
+| Tổng số Rules | 1564 | 100% |
+| Rules Mạng | 536 | 34% |
+| Rules Giao Diện | 893 | 57% |
 | Rules Whitelist | 59 | 3% |
-| Rules Host File | 204 | 12% |
+| Rules Host File | 152 | 9% |
 | Ghi chú & Comments | 11 | 0% |
-| Tên miền độc nhất | 583 | - |
+| Tên miền độc nhất | 530 | - |
 
 ## 🚀 Hướng dẫn cài đặt
 
@@ -68,23 +68,23 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 ## 👥 Người đóng góp
 
 ### Những người đóng góp chính
-- <img src="https://avatars.githubusercontent.com/u/166010224?u=036f48bf5e6f58edbc148aa7730ece4be9b083e8&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 250 đóng góp
+- <img src="https://avatars.githubusercontent.com/u/166010224?u=036f48bf5e6f58edbc148aa7730ece4be9b083e8&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 252 đóng góp
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 30-01-2025 07:55:04 (GMT+7)
-- **Phiên bản**: 2025.01.30.0755
-- **Checksum**: 122a0b79008b5634349b4f6de728efdc9c3197cf2f4764e2f21909ae107d9577
-- **Tổng số rules**: 1613
-- **Tên miền độc nhất**: 583
+- **Cập nhật lần cuối**: 30-01-2025 09:27:11 (GMT+7)
+- **Phiên bản**: 2025.01.30.0927
+- **Checksum**: 2b9004ad021b4388da0b3252a6abfa385eae5a0926252783603f92f7a9ec127f
+- **Tổng số rules**: 1564
+- **Tên miền độc nhất**: 530
 
 ### Changelog gần đây
 ```
-- dd928a0 🔄 Cập nhật tự động (v2025.01.29.1922) (13 hours ago)
-- cefc821 🔄 Cập nhật tự động (v2025.01.29.0755) (24 hours ago)
-- e3723f1 🔄 Cập nhật tự động (v2025.01.28.1921) (2 days ago)
-- 743abc3 🔄 Cập nhật tự động (v2025.01.28.0755) (2 days ago)
-- 48a3adf 🔄 Cập nhật tự động (v2025.01.27.1922) (3 days ago)
+- 9efd564 Update Yuusei.txt (12 seconds ago)
+- 274d726 Update main.yml (3 minutes ago)
+- 26b153e 🔄 Cập nhật tự động (v2025.01.30.0755) (2 hours ago)
+- dd928a0 🔄 Cập nhật tự động (v2025.01.29.1922) (14 hours ago)
+- cefc821 🔄 Cập nhật tự động (v2025.01.29.0755) (26 hours ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 30-01-2025 07:55:04 (GMT+7)</sub>
+  <sub>Last updated: 30-01-2025 09:27:11 (GMT+7)</sub>
 </div>
