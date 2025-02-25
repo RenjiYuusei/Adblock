@@ -5,7 +5,7 @@ on:
         paths:
             - 'Yuusei.txt'
     schedule:
-    - cron: '0 0 * * *' # Chạy vào 0h hàng ngày (GMT+7)
+        - cron: '0 0 * * *' # Chạy vào 0h hàng ngày (GMT+7)
     workflow_dispatch:
         inputs:
             force_update:
@@ -33,28 +33,41 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Tải bộ lọc ABPVN
+            - name: Tải bộ lọc ABPVN và loại bỏ dòng không mong muốn
               run: |
                   curl -s -o abpvn.txt ${{ env.ABPVN_URL }}
-                  # Loại bỏ GMT+7 và header không cần thiết
-                  sed -i '/^!/d;/modified:/d' abpvn.txt
+                  # Loại bỏ hai dòng cụ thể
+                  sed -i '/^! Last modified:/d' abpvn.txt
+                  sed -i '/^\[Adblock Plus 2.0\]/d' abpvn.txt
 
-            - name: Cập nhật Yuusei.txt
+            - name: Cập nhật Yuusei.txt với nội dung ABPVN đã xử lý
               run: |
-                  current_date=$(date +'%d-%m-%Y %H:%M:%S')
-                  awk -v date="$current_date" -v abpvn="$(cat abpvn.txt)" '
+                  awk -v abpvn="$(cat abpvn.txt)" '
                   /! ----------  AbpVN  ----------/ { 
-                      print; getline; print; print "! Last modified: " date; printf "%s\n", abpvn; skip=1; next 
+                      print; getline; print; printf "%s\n", abpvn; skip=1; next 
                   }
                   /! ----------  About ----------/ { skip=0 }
                   !skip' Yuusei.txt > temp.txt
                   mv temp.txt Yuusei.txt
 
+            - name: Cập nhật Last modified và Checksum trong phần About
+              run: |
+                  current_date=$(TZ=${{ env.TIMEZONE }} date +'%d-%m-%Y %H:%M:%S')
+                  # Cập nhật Last modified
+                  sed -i "s/! Last modified:.*/! Last modified: $current_date (GMT+7)/" Yuusei.txt
+                  # Tính toán checksum (loại bỏ dòng checksum cũ để tránh ảnh hưởng)
+                  checksum=$(sed '/^! Checksum:/d' Yuusei.txt | md5sum | cut -d' ' -f1)
+                  # Cập nhật hoặc thêm dòng Checksum
+                  if grep -q "^! Checksum:" Yuusei.txt; then
+                      sed -i "s/! Checksum:.*/! Checksum: $checksum/" Yuusei.txt
+                  else
+                      sed -i "/! Last modified:.*/a ! Checksum: $checksum" Yuusei.txt
+                  fi
+
             - name: Validate and analyze filter file
               run: |
                   [ -f "${{ env.FILTER_FILE }}" ] || exit 1
                   cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
-                  
                   # Kiểm tra số lượng rule
                   RULE_COUNT=$(grep -v '^!' "${FILTER_FILE}" | wc -l)
                   if [ "$RULE_COUNT" -lt "${{ env.MIN_RULES }}" ]; then
