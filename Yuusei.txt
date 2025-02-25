@@ -1,11 +1,11 @@
 ! ----------  About ----------
 ! Version: 2025.02.25.0747
 ! Title: Yuusei
-! Last modified: 25-02-2025 07:47:09 (GMT+7)
+! Last modified: 25-02-2025 23:09:42 (GMT+7)
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: f31148deafcbdf0331b028148594705ddbcb4bb758a3bc866c8f65f7349db0c8
+! Checksum: 804d792cb2db841b54d3651f5b2a5cfd
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 sayhentai.art###JWKMDIAF_1_2
@@ -226,8 +226,25 @@ vailonxx.vip##.adx1
 0.0.0.0 pubads.g.doubleclick.uk.net
 ! ----------  AbpVN  ----------
 $popup,domain=player-cdn.com|freeplayervideo.com|abysscdn.com|geoip.redirect-ads.com|playhydrax.com
-! Last modified: 25-02-2025 15:52:34
-[Adblock Plus 2.0]
+! Checksum: 804d792cb2db841b54d3651f5b2a5cfd
+! Version: 20250225120516065
+! id: D4028CDD-3D39-4624-ACC7-8140F4EC3888
+! Title: ABPVN List
+! Diff-Path: patches/20250225120516065.patch#abpvn
+! Diff-Expires: 60 minutes
+! Expires: 1 days (update frequency)
+!
+! ABPVN List filter
+! Copyright: ABPVN
+! Homepage: https://abpvn.com/
+! License: GPLv3 (https://github.com/abpvn/abpvn/blob/master/LICENSE)
+! Please report any unblocked ads or problems by email or in our fanpage
+! Mọi thắc mắc xin gửi về email hoặc fanpage
+! Email: support@abpvn.com
+! Facebook Fanpage: https://www.facebook.com/abpvn.org
+! Forum: https://voz.vn/t/official-abpvn-bo-loc-quang-cao-cho-nguoi-viet-bao-cao-quang-cao-giai-dap-thac-mac.867616/
+! Report new issue on github: https://github.com/abpvn/abpvn/issues/new
+! ---------- Generic Blocking Rules ----------
 $popup,domain=player-cdn.com|freeplayervideo.com|abysscdn.com|geoip.redirect-ads.com|playhydrax.com
 $popup,domain=truyenfull.vision
 .com/cpc/$script
@@ -483,6 +500,7 @@ $popup,domain=truyenfull.vision
 ||xxoilac.com^*.gif$image
 ||zcine.net^*.gif$image
 ||zunia.vn/ads.html$subdocument,domain=tracnghiem.net
+! ---------- Ad domain ----------
 ||ad.vidverto.io^
 ||adflex.vn^$third-party
 ||adpia.vn^$third-party
@@ -562,6 +580,7 @@ $popup,domain=truyenfull.vision
 ||v9banners.com^
 ||vads.net.vn^
 ||zaloweb.
+!---------------Element Hiding--------------
 ###_AM_POPUP_FRAME
 ###ads-preload
 ###banner-top
@@ -1251,6 +1270,7 @@ znews.vn##.znews-banner
 ~cafef.vn##[id^="adm-slot"]
 ~livescore.com,~msn.com,~dm.de,~medium.com##.qc
 ~vnexpress.net##.banner-bottom
+!---------------ABPVN White List--------------------
 @@/favicon.ico
 @@/images/ad-300x250.jpg$~third-party,image,domain=lehait.net
 @@/wp-content/plugins/advanced-ads/admin/assets/js/advertisement.js$script,~third-party
@@ -1278,6 +1298,7 @@ znews.vn##.znews-banner
 @@||voz.vn/u/adx.$xmlhttprequest
 @@||www3.doubleclick.net^$xmlhttprequest,domain=the.tube
 @@||xahoingaynay.com.vn/upload/20989/20200817/Asset_2_8x_9596af5d4e.png$~third-party
+!--------Element Hiding Exception--------------
 @@||blog.yopo.vn$generichide
 @@||cotuong.top$generichide
 @@||covua.top$generichide
@@ -1323,6 +1344,7 @@ tratu.soha.vn#@#.adheader
 truyenaudiocv.org#@#.ads-large
 vn2.vn#@#.advertiser
 vndoc.com#@#.showads
+!------ ABPVN Adult block -------
 $third-party,script,domain=sexdiaryx.live
 /^https://[a-z]{8,12}.com/en/(?:[a-z]{2,5}/){0,2}[a-z]{2,}?(?:[a-z]+=(?:d+|[a-z]+)&)*?id=[12]d{6}/$script,third-party
 /assets/js/vast.js$script,domain=~phevkl.im|~viet69.ong
@@ -1386,6 +1408,7 @@ $third-party,script,domain=sexdiaryx.live
 ||uimg.buomtv.io/palivn/ad/$image,domain=www.buomtv.io
 ||xnhau.blog^$media,domain=xnhau.one
 ||yr.fopbandido.com^
+!---------- ABPVN Adult Element Hide ---------------
 ##[href^="https://www.i9017.com/"]
 anhgaixinh.online##.footer-banner
 cliphot69.bar###custom_html-42
