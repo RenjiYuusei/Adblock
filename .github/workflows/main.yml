@@ -7,7 +7,7 @@ on:
         inputs:
             force_update:
                 description: 'Force update'
-                required: false 
+                required: false
                 type: boolean
                 default: false
 
@@ -26,60 +26,68 @@ jobs:
         steps:
             - name: Checkout repo
               uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
 
             - name: Setup timezone
               run: sudo ln -sf /usr/share/zoneinfo/${{ env.TIMEZONE }} /etc/localtime
 
             - name: Get ABPVN data
               run: |
+                  # Tải và làm sạch dữ liệu ABPVN
                   curl -s -o abpvn.txt "$ABPVN_URL"
-                  # Remove unwanted lines
-                  sed -i '/^! Last modified:/d;/^\[Adblock Plus 2\.0\]/d' abpvn.txt
+                  sed -i '/^! Last modified:/d;/^\[Adblock Plus 2\.0\]/d;/^$/d' abpvn.txt
 
-            - name: Update metadata
+            - name: Prepare metadata
               id: metadata
               run: |
-                  CURRENT_DATE=$(TZ=GMT-7 date +'%d-%m-%Y %H:%M:%S')
-                  echo "NEW_DATE=$CURRENT_DATE" >> $GITHUB_ENV
-                  
-                  # Calculate new checksum
-                  OLD_CHECKSUM=$(grep '! Checksum:' Yuusei.txt | cut -d' ' -f3)
-                  NEW_CHECKSUM=$(sha256sum Yuusei.txt | cut -d' ' -f1)
-                  echo "NEW_CHECKSUM=$NEW_CHECKSUM" >> $GITHUB_ENV
+                  # Tạo metadata mới
+                  CURRENT_DATE=$(date +'%d-%m-%Y %H:%M:%S')' (GMT+7)'
+                  VERSION=$(date +'%Y.%m.%d.%H%M')
+                  echo "CURRENT_DATE=$CURRENT_DATE" >> $GITHUB_ENV
+                  echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-            - name: Merge filters
+            - name: Merge and update
               run: |
-                  awk -v date="$NEW_DATE" -v checksum="$NEW_CHECKSUM" -v abpvn="$(cat abpvn.txt)" '
-                  BEGIN {in_abpvn=0; in_about=0}
-                  /! ----------  AbpVN  ----------/ {in_abpvn=1; print; next}
-                  /! ----------  About ----------/ {
-                      in_abpvn=0;
-                      in_about=1;
-                      print "! ----------  About ----------";
-                      print "! Version: " strftime("%Y.%m.%d.%H%M");
-                      print "! Title: Yuusei";
-                      print "! Last modified: " date " (GMT+7)";
-                      print "! RenjiYuusei Adblock filter";
-                      print "! Copyright: Yuusei";
-                      print "! Homepage: https://github.com/RenjiYuusei/Adblock";
-                      print "! Checksum: " checksum;
-                      print "! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)";
-                      next;
+                  # Merge dữ liệu và cập nhật metadata
+                  awk -v version="$VERSION" -v date="$CURRENT_DATE" -v abpvn="$(cat abpvn.txt)" '
+                  BEGIN {in_abpvn = 0; abpvn_printed = 0}
+                  /! ----------  AbpVN  ----------/ {
+                      in_abpvn = 1
+                      print
+                      next
                   }
-                  in_abpvn && /^! Last modified:/ {next}
-                  in_abpvn && /^https:\/\// {print; print abpvn; in_abpvn=0; next}
-                  !in_about {print}
+                  /! ----------  About ----------/ {
+                      in_abpvn = 0
+                      print "! ----------  About ----------"
+                      print "! Version: " version
+                      print "! Title: Yuusei"
+                      print "! Last modified: " date
+                      print "! RenjiYuusei Adblock filter"
+                      print "! Copyright: Yuusei"
+                      print "! Homepage: https://github.com/RenjiYuusei/Adblock"
+                      print "! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)"
+                      next
+                  }
+                  in_abpvn && /^https:\/\// {
+                      print
+                      print abpvn
+                      abpvn_printed = 1
+                      in_abpvn = 0
+                      next
+                  }
+                  !in_abpvn {print}
                   ' Yuusei.txt > temp.txt
-                  
+
+                  # Tính checksum sau khi merge
+                  CHECKSUM=$(sha256sum temp.txt | cut -d' ' -f1)
+                  sed -i "s/! Checksum:.*/! Checksum: $CHECKSUM/" temp.txt
                   mv temp.txt Yuusei.txt
 
             - name: Validate rules
               run: |
-                  RULES=$(grep -v '^!' Yuusei.txt | wc -l)
+                  # Kiểm tra số lượng rules
+                  RULES=$(grep -vc '^!' Yuusei.txt)
                   if [ "$RULES" -lt "$MIN_RULES" ]; then
-                      echo "::error::Not enough rules ($RULES < $MIN_RULES)"
+                      echo "::error::Không đủ rules ($RULES < $MIN_RULES)"
                       exit 1
                   fi
 
@@ -89,5 +97,5 @@ jobs:
                   git config user.email "auto@yuusei.filter"
                   git add Yuusei.txt
                   git diff --cached --quiet || \
-                  git commit -m "🔄 Auto-update: $NEW_DATE [Checksum: ${NEW_CHECKSUM:0:8}]" && \
+                  git commit -m "🔄 Cập nhật tự động - $CURRENT_DATE" && \
                   git push
