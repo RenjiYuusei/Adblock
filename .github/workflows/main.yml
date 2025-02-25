@@ -1,83 +1,93 @@
 name: Update Yuusei Filter
 
 on:
-  push:
-    paths:
-      - 'Yuusei.txt'
-  schedule:
-    - cron: '0 0 * * *' # Chạy hàng ngày lúc 0:00 (GMT+7)
-  workflow_dispatch:
-    inputs:
-      force_update:
-        description: 'Buộc cập nhật ngay cả khi không có thay đổi'
-        required: false
-        type: boolean
-        default: false
+    schedule:
+    - cron: '0 17 * * *' # 0h GMT+7 (17h UTC)
+    workflow_dispatch:
+        inputs:
+            force_update:
+                description: 'Force update'
+                required: false 
+                type: boolean
+                default: false
 
 env:
-  FILTER_FILE: Yuusei.txt
-  ABPVN_URL: https://abpvn.com/filter/abpvn-oLEiGq.txt
-  MIN_RULES: 10
-  TIMEZONE: 'Asia/Ho_Chi_Minh'
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    FILTER_FILE: Yuusei.txt
+    ABPVN_URL: https://abpvn.com/filter/abpvn-oLEiGq.txt
+    MIN_RULES: 10
+    TIMEZONE: 'Asia/Ho_Chi_Minh'
 
 jobs:
-  update-filter:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    update-filter:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Tải và xử lý tệp ABPVN
-        run: |
-          curl -s -o abpvn.txt ${{ env.ABPVN_URL }}
-          # Loại bỏ các dòng không mong muốn
-          sed -i '/^! Checksum:/d' abpvn.txt
-          sed -i '/^! Version:/d' abpvn.txt
-          sed -i '/^! id:/d' abpvn.txt
-          sed -i '/^! Title:/d' abpvn.txt
+            - name: Setup timezone
+              run: sudo ln -sf /usr/share/zoneinfo/${{ env.TIMEZONE }} /etc/localtime
 
-      - name: Cập nhật tệp Yuusei.txt với cấu trúc mới
-        run: |
-          current_date=$(TZ=${{ env.TIMEZONE }} date +'%d-%m-%Y %H:%M:%S')
-          # Tạo tệp Yuusei.txt mới với các phần theo thứ tự: About, Yuusei, AbpVN
-          echo "! ----------  About ----------" > Yuusei.txt
-          echo "! Version: 2025.02.25.0747" >> Yuusei.txt
-          echo "! Title: Yuusei" >> Yuusei.txt
-          echo "! Last modified: $current_date (GMT+7)" >> Yuusei.txt
-          echo "! RenjiYuusei Adblock filter" >> Yuusei.txt
-          echo "! Copyright: Yuusei" >> Yuusei.txt
-          echo "! Homepage: https://github.com/RenjiYuusei/Adblock" >> Yuusei.txt
-          echo "! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)" >> Yuusei.txt
-          echo "! ----------  Yuusei  ----------" >> Yuusei.txt
-          # Thêm nội dung Yuusei (ví dụ: bạn có thể trích xuất từ tệp cũ hoặc thêm thủ công)
-          echo "[Nội dung Yuusei]" >> Yuusei.txt
-          echo "! ----------  AbpVN  ----------" >> Yuusei.txt
-          cat abpvn.txt >> Yuusei.txt
+            - name: Get ABPVN data
+              run: |
+                  curl -s -o abpvn.txt "$ABPVN_URL"
+                  # Remove unwanted lines
+                  sed -i '/^! Last modified:/d;/^\[Adblock Plus 2\.0\]/d' abpvn.txt
 
-      - name: Tính toán và cập nhật checksum (nếu cần)
-        run: |
-          checksum=$(sed '/^! Checksum:/d' Yuusei.txt | md5sum | cut -d' ' -f1)
-          sed -i "/! Last modified:.*/a ! Checksum: $checksum" Yuusei.txt
+            - name: Update metadata
+              id: metadata
+              run: |
+                  CURRENT_DATE=$(TZ=GMT-7 date +'%d-%m-%Y %H:%M:%S')
+                  echo "NEW_DATE=$CURRENT_DATE" >> $GITHUB_ENV
+                  
+                  # Calculate new checksum
+                  OLD_CHECKSUM=$(grep '! Checksum:' Yuusei.txt | cut -d' ' -f3)
+                  NEW_CHECKSUM=$(sha256sum Yuusei.txt | cut -d' ' -f1)
+                  echo "NEW_CHECKSUM=$NEW_CHECKSUM" >> $GITHUB_ENV
 
-      - name: Kiểm tra và phân tích tệp bộ lọc
-        run: |
-          [ -f "${{ env.FILTER_FILE }}" ] || exit 1
-          cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
-          # Kiểm tra số lượng quy tắc
-          RULE_COUNT=$(grep -v '^!' "${FILTER_FILE}" | wc -l)
-          if [ "$RULE_COUNT" -lt "${{ env.MIN_RULES }}" ]; then
-            echo "::error::Không đủ quy tắc (tối thiểu: ${{ env.MIN_RULES }})!"
-            exit 1
-          fi
+            - name: Merge filters
+              run: |
+                  awk -v date="$NEW_DATE" -v checksum="$NEW_CHECKSUM" -v abpvn="$(cat abpvn.txt)" '
+                  BEGIN {in_abpvn=0; in_about=0}
+                  /! ----------  AbpVN  ----------/ {in_abpvn=1; print; next}
+                  /! ----------  About ----------/ {
+                      in_abpvn=0;
+                      in_about=1;
+                      print "! ----------  About ----------";
+                      print "! Version: " strftime("%Y.%m.%d.%H%M");
+                      print "! Title: Yuusei";
+                      print "! Last modified: " date " (GMT+7)";
+                      print "! RenjiYuusei Adblock filter";
+                      print "! Copyright: Yuusei";
+                      print "! Homepage: https://github.com/RenjiYuusei/Adblock";
+                      print "! Checksum: " checksum;
+                      print "! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)";
+                      next;
+                  }
+                  in_abpvn && /^! Last modified:/ {next}
+                  in_abpvn && /^https:\/\// {print; print abpvn; in_abpvn=0; next}
+                  !in_about {print}
+                  ' Yuusei.txt > temp.txt
+                  
+                  mv temp.txt Yuusei.txt
 
-      - name: Commit thay đổi
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git diff --quiet || (git add Yuusei.txt && git commit -m "🔄 Cập nhật tự động ABPVN" && git push)
+            - name: Validate rules
+              run: |
+                  RULES=$(grep -v '^!' Yuusei.txt | wc -l)
+                  if [ "$RULES" -lt "$MIN_RULES" ]; then
+                      echo "::error::Not enough rules ($RULES < $MIN_RULES)"
+                      exit 1
+                  fi
+
+            - name: Commit changes
+              run: |
+                  git config user.name "Auto Updater"
+                  git config user.email "auto@yuusei.filter"
+                  git add Yuusei.txt
+                  git diff --cached --quiet || \
+                  git commit -m "🔄 Auto-update: $NEW_DATE [Checksum: ${NEW_CHECKSUM:0:8}]" && \
+                  git push
