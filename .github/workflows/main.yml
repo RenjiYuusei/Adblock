@@ -1,82 +1,83 @@
 name: Update Yuusei Filter
 
 on:
-    push:
-        paths:
-            - 'Yuusei.txt'
-    schedule:
-        - cron: '0 0 * * *' # Chạy vào 0h hàng ngày (GMT+7)
-    workflow_dispatch:
-        inputs:
-            force_update:
-                description: 'Cập nhật bắt buộc ngay cả khi không có thay đổi'
-                required: false
-                type: boolean
-                default: false
+  push:
+    paths:
+      - 'Yuusei.txt'
+  schedule:
+    - cron: '0 0 * * *' # Chạy hàng ngày lúc 0:00 (GMT+7)
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Buộc cập nhật ngay cả khi không có thay đổi'
+        required: false
+        type: boolean
+        default: false
 
 env:
-    FILTER_FILE: Yuusei.txt
-    ABPVN_URL: https://abpvn.com/filter/abpvn-oLEiGq.txt
-    MIN_RULES: 10
-    TIMEZONE: 'Asia/Ho_Chi_Minh'
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  FILTER_FILE: Yuusei.txt
+  ABPVN_URL: https://abpvn.com/filter/abpvn-oLEiGq.txt
+  MIN_RULES: 10
+  TIMEZONE: 'Asia/Ho_Chi_Minh'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-    update-filter:
-        runs-on: ubuntu-latest
-        permissions:
-            contents: write
+  update-filter:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-            - name: Tải bộ lọc ABPVN và loại bỏ dòng không mong muốn
-              run: |
-                  curl -s -o abpvn.txt ${{ env.ABPVN_URL }}
-                  # Loại bỏ hai dòng cụ thể
-                  sed -i '/^! Last modified:/d' abpvn.txt
-                  sed -i '/^\[Adblock Plus 2.0\]/d' abpvn.txt
+      - name: Tải và xử lý tệp ABPVN
+        run: |
+          curl -s -o abpvn.txt ${{ env.ABPVN_URL }}
+          # Loại bỏ các dòng không mong muốn
+          sed -i '/^! Checksum:/d' abpvn.txt
+          sed -i '/^! Version:/d' abpvn.txt
+          sed -i '/^! id:/d' abpvn.txt
+          sed -i '/^! Title:/d' abpvn.txt
 
-            - name: Cập nhật Yuusei.txt với nội dung ABPVN đã xử lý
-              run: |
-                  awk -v abpvn="$(cat abpvn.txt)" '
-                  /! ----------  AbpVN  ----------/ { 
-                      print; getline; print; printf "%s\n", abpvn; skip=1; next 
-                  }
-                  /! ----------  About ----------/ { skip=0 }
-                  !skip' Yuusei.txt > temp.txt
-                  mv temp.txt Yuusei.txt
+      - name: Cập nhật tệp Yuusei.txt với cấu trúc mới
+        run: |
+          current_date=$(TZ=${{ env.TIMEZONE }} date +'%d-%m-%Y %H:%M:%S')
+          # Tạo tệp Yuusei.txt mới với các phần theo thứ tự: About, Yuusei, AbpVN
+          echo "! ----------  About ----------" > Yuusei.txt
+          echo "! Version: 2025.02.25.0747" >> Yuusei.txt
+          echo "! Title: Yuusei" >> Yuusei.txt
+          echo "! Last modified: $current_date (GMT+7)" >> Yuusei.txt
+          echo "! RenjiYuusei Adblock filter" >> Yuusei.txt
+          echo "! Copyright: Yuusei" >> Yuusei.txt
+          echo "! Homepage: https://github.com/RenjiYuusei/Adblock" >> Yuusei.txt
+          echo "! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)" >> Yuusei.txt
+          echo "! ----------  Yuusei  ----------" >> Yuusei.txt
+          # Thêm nội dung Yuusei (ví dụ: bạn có thể trích xuất từ tệp cũ hoặc thêm thủ công)
+          echo "[Nội dung Yuusei]" >> Yuusei.txt
+          echo "! ----------  AbpVN  ----------" >> Yuusei.txt
+          cat abpvn.txt >> Yuusei.txt
 
-            - name: Cập nhật Last modified và Checksum trong phần About
-              run: |
-                  current_date=$(TZ=${{ env.TIMEZONE }} date +'%d-%m-%Y %H:%M:%S')
-                  # Cập nhật Last modified
-                  sed -i "s/! Last modified:.*/! Last modified: $current_date (GMT+7)/" Yuusei.txt
-                  # Tính toán checksum (loại bỏ dòng checksum cũ để tránh ảnh hưởng)
-                  checksum=$(sed '/^! Checksum:/d' Yuusei.txt | md5sum | cut -d' ' -f1)
-                  # Cập nhật hoặc thêm dòng Checksum
-                  if grep -q "^! Checksum:" Yuusei.txt; then
-                      sed -i "s/! Checksum:.*/! Checksum: $checksum/" Yuusei.txt
-                  else
-                      sed -i "/! Last modified:.*/a ! Checksum: $checksum" Yuusei.txt
-                  fi
+      - name: Tính toán và cập nhật checksum (nếu cần)
+        run: |
+          checksum=$(sed '/^! Checksum:/d' Yuusei.txt | md5sum | cut -d' ' -f1)
+          sed -i "/! Last modified:.*/a ! Checksum: $checksum" Yuusei.txt
 
-            - name: Validate and analyze filter file
-              run: |
-                  [ -f "${{ env.FILTER_FILE }}" ] || exit 1
-                  cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
-                  # Kiểm tra số lượng rule
-                  RULE_COUNT=$(grep -v '^!' "${FILTER_FILE}" | wc -l)
-                  if [ "$RULE_COUNT" -lt "${{ env.MIN_RULES }}" ]; then
-                      echo "::error::Không đủ rules (tối thiểu: ${{ env.MIN_RULES }})!"
-                      exit 1
-                  fi
+      - name: Kiểm tra và phân tích tệp bộ lọc
+        run: |
+          [ -f "${{ env.FILTER_FILE }}" ] || exit 1
+          cp "${{ env.FILTER_FILE }}" "${FILTER_FILE}.bak"
+          # Kiểm tra số lượng quy tắc
+          RULE_COUNT=$(grep -v '^!' "${FILTER_FILE}" | wc -l)
+          if [ "$RULE_COUNT" -lt "${{ env.MIN_RULES }}" ]; then
+            echo "::error::Không đủ quy tắc (tối thiểu: ${{ env.MIN_RULES }})!"
+            exit 1
+          fi
 
-            - name: Commit changes
-              run: |
-                  git config user.name "github-actions[bot]"
-                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                  git diff --quiet || (git add Yuusei.txt && git commit -m "🔄 Cập nhật dữ liệu ABPVN tự động" && git push)
+      - name: Commit thay đổi
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --quiet || (git add Yuusei.txt && git commit -m "🔄 Cập nhật tự động ABPVN" && git push)
