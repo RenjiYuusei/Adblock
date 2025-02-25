@@ -1,235 +1,18 @@
 ! ----------  About ----------
 ! Version: 2025.02.25.0747
 ! Title: Yuusei
-! Last modified: 25-02-2025 23:09:42 (GMT+7)
+! Last modified: 25-02-2025 23:21:08 (GMT+7)
+! Checksum: c97f3362955f0799b5a30019aa675f61
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 804d792cb2db841b54d3651f5b2a5cfd
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
-sayhentai.art###JWKMDIAF_1_2
-sayhentai.art###FIJJFMAKCL
-||qph.cf2.quoracdn.net/main-qimg-*$image
-||s1.nettruyen3q.com/images/posters/728-x-90.gif$image
-||vlxx.ph/wp-content/uploads/2024/11/cropped-1111.png$image
-sayhentai.art##[href="javascript:hide_catfish();"]
-m.ani4u.org##.s_left > center > .quang_cao_play_mobile
-m.ani4u.org##.quang_cao_play1
-fastscans6.net##div.img-chapter.offset-0.col-12.offset-lg-1.col-lg-10.chapter-image:nth-of-type(1)
-fastscans6.net##div.img-chapter.offset-0.col-12.offset-lg-1.col-lg-10.chapter-image:nth-of-type(182)
-thempho.net##.max-lg\:container.justify-center.items-center.flex.z-zDialog.bg-black\/75.inset-0.fixed.ReactModal__Overlay--after-open.ReactModal__Overlay
-thempho.net##.mx-auto.justify-center.items-center.flex-col.flex.relative > .h-auto.w-full
-thempho.net##.max-lg\:w-full.cursor-pointer.block > .rounded-\[2px\].overflow-hidden.justify-center.items-center.flex.h-auto.w-full
-thempho.net##.\!w-\[320px\].rounded-\[2px\].overflow-hidden.justify-center.items-center.flex.h-auto.w-full
-thempho.net##.z-\[100\].h-auto.lg\:mx-auto.px-2.max-w-\[920px\].lg\:w-\[920px\].w-full.-translate-x-1\/2.left-1\/2.lg\:bottom-0.bottom-\[calc\(var\(--slide-bar-bottom-height\)\+4px\)\].fixed
-||qph.cf2.quoracdn.net/main-qimg-8*$image
-sayhentai.art###STKABATK_1_2
-sayhentai.art###NNWXWHBF_5_3
-sayhentai.art###RMJJJMAS_8_3
-animet5.site##.Content > .gnartyx-offads
-animet5.site###watch-block > .gnartyx-offads
-animet5.site##.banner-sticky-footer-ad
-animet5.site###popup > .gnartyx-offads
-animet5.site##.jw-reset.jw-logo-top-right.jw-logo
-animet5.site###fbox-background
-s4paad.factsninfo.com##.promo-container
-s4paad.factsninfo.com##.nav-container
-hentaivn.ws##.sticky-pc-footer-content.sticky-footer.visible-md.visible-lg
-sayhentai.art##.float-ck-center-lt
-hentaivn.news##div.container > p
-hentaivn.news##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
-phimmoi.ink###catfish
-vietsub.biz##.code-block-1.code-block
-m.ani4u.org##.box > center > .quang_cao_play_mobile
-animevietsub.video##.mobile-catfish-top
-animevietsub.video##.ad-center-980.Adv
-animevietsub.video##.ad-center-header.Adv
-animevietsub.video##[src="https://lh3.googleusercontent.com/TnndGtoGC2NXWq4dPAaj7oYO06LYLY_LmETkhjhVKPRt-3l7-iPsiz4k3PkKKZUr3rs9LgbxyaJ_2fbr6M2oj_744xuCjpefuUv9d-yEhCFEzLn5LZJZW-vjpDU=s0"]
-phimmoi.ink###footer_fixed_ads
-phimmoi.ink##div.text-center > [href^="https://vb88.com/"] > .ads
-hentaivn.love##.sticky-footer-mb.sticky-footer.visible-sm.visible-xs
-hentaivn.love##div.container > p
-hentaivn.tube###catfish
-||*.*/wp-content/plugins/wp-popups-lite/src/assets/js/wppopups.js^
-||*.*/wp-content/plugins/wp-popups-lite/src/assets/css/wppopups-base.css^
-truyenhentai18vn.com##.visible.catfish-banner-container
-hentaiz.autos###catfish
-vailonxx.vip##.adx1
-#[doubleclick.net]
-0.0.0.0 doubleclick.net
-0.0.0.0 accounts.doubleclick.net
-0.0.0.0 ad.au.doubleclick.net
-0.0.0.0 ad.bg.doubleclick.net
-0.0.0.0 ad.br.doubleclick.net
-0.0.0.0 ad.cl.doubleclick.net
-0.0.0.0 ad.cn.doubleclick.net
-0.0.0.0 ad.doubleclick.net
-0.0.0.0 ad.eg.doubleclick.net
-0.0.0.0 ad.es.doubleclick.net
-0.0.0.0 ad.fr.doubleclick.net
-0.0.0.0 ad.il.doubleclick.net
-0.0.0.0 ad.mo.doubleclick.net
-0.0.0.0 ad.nl.doubleclick.net
-0.0.0.0 ad.pl.doubleclick.net
-0.0.0.0 ad.sg.doubleclick.net
-0.0.0.0 ad.uk.doubleclick.net
-0.0.0.0 ad2.doubleclick.net
-0.0.0.0 ad-apac.doubleclick.net
-0.0.0.0 adclick.g.doubleclick.net
-0.0.0.0 ad-emea.doubleclick.net
-0.0.0.0 ad-g.doubleclick.net
-0.0.0.0 ads-bid.l.doubleclick.net
-0.0.0.0 adx.g.doubleclick.net
-0.0.0.0 apac.doubleclick.net
-0.0.0.0 bid.g.doubleclick.net
-0.0.0.0 cm.g.doubleclick.net
-0.0.0.0 dart.l.doubleclick.net
-0.0.0.0 dart-apac.l.doubleclick.net
-0.0.0.0 dfp.doubleclick.net
-0.0.0.0 dmp.doubleclick.net
-0.0.0.0 dp.g.doubleclick.net
-0.0.0.0 dsengine.doubleclick.net
-0.0.0.0 emea.doubleclick.net
-0.0.0.0 feedads.g.doubleclick.net
-0.0.0.0 fls.uk.doubleclick.net
-0.0.0.0 g.doubleclick.net
-0.0.0.0 gan.doubleclick.net
-0.0.0.0 googleads.g.doubleclick.net
-0.0.0.0 googleads2.g.doubleclick.net
-0.0.0.0 googleads4.g.doubleclick.net
-0.0.0.0 ir.doubleclick.net
-0.0.0.0 iv.doubleclick.net
-0.0.0.0 l.doubleclick.net
-0.0.0.0 m.doubleclick.net
-0.0.0.0 mediavisor.doubleclick.net
-0.0.0.0 mobile-displayads.l.doubleclick.net
-0.0.0.0 n4052ad.doubleclick.net
-0.0.0.0 n4403ad.doubleclick.net
-0.0.0.0 pagead.l.doubleclick.net
-0.0.0.0 pagead46.l.doubleclick.net
-0.0.0.0 partnerad.l.doubleclick.net
-0.0.0.0 paypalssl.doubleclick.net
-0.0.0.0 pubads.g.doubleclick.net
-0.0.0.0 publisherportal.doubleclick.net
-0.0.0.0 reportcentral.doubleclick.net
-0.0.0.0 s0.doubleclick.net
-0.0.0.0 s1.doubleclick.net
-0.0.0.0 secureframe.doubleclick.net
-0.0.0.0 securepubads.g.doubleclick.net
-0.0.0.0 static.doubleclick.net
-0.0.0.0 stats.g.doubleclick.net
-0.0.0.0 stats.l.doubleclick.net
-0.0.0.0 survey.g.doubleclick.net
-0.0.0.0 www.doubleclick.net
-0.0.0.0 www3.doubleclick.net
-0.0.0.0 fls.doubleclick.net
-0.0.0.0 undefined.fls.doubleclick.net
-#[adservice.google.*]
-0.0.0.0 adservice.google.ca
-0.0.0.0 adservice.google.co.jp
-0.0.0.0 adservice.google.com
-0.0.0.0 adservice.google.com.hk
-0.0.0.0 adservice.google.com.sg
-0.0.0.0 adservice.google.com.tr
-0.0.0.0 adservice.google.com.vn
-0.0.0.0 adservice.google.de
-#[googlesyndication.com]
-0.0.0.0 googlesyndication.com
-0.0.0.0 ade.googlesyndication.com
-0.0.0.0 afs.googlesyndication.com
-0.0.0.0 buttons.googlesyndication.com
-0.0.0.0 pagead2.googlesyndication.com
-0.0.0.0 pagead46.googlesyndication.com
-0.0.0.0 tpc.googlesyndication.com
-0.0.0.0 tpcnc.googlesyndication.com
-0.0.0.0 video-ad-stats.googlesyndication.com
-#[googletagmanager.com]
-0.0.0.0 googletagmanager.com
-0.0.0.0 www.googletagmanager.com
-#[googletagservices.com]
-0.0.0.0 googletagservices.com
-0.0.0.0 www.googletagservices.com
-#[googleadservices.com]
-0.0.0.0 10.afs.googleadservices.com
-0.0.0.0 18.afs.googleadservices.com
-0.0.0.0 2.afs.googleadservices.com
-0.0.0.0 4.afs.googleadservices.com
-0.0.0.0 googleadservices.com
-0.0.0.0 pagead2.googleadservices.com
-0.0.0.0 partner.googleadservices.com
-0.0.0.0 partnerssl.googleadservices.com
-0.0.0.0 www.googleadservices.com
-#[analytics.google.com]
-0.0.0.0 analytics.google.com
-0.0.0.0 region1.analytics.google.com
-#[google-analytics.com]
-0.0.0.0 click.google-analytics.com
-0.0.0.0 google-analytics.com
-0.0.0.0 region1.google-analytics.com
-0.0.0.0 sandbox.google-analytics.com
-0.0.0.0 ssl.google-analytics.com
-0.0.0.0 www-alv.google-analytics.com
-0.0.0.0 www.google-analytics.com
-#[googleanalytics.com]
-0.0.0.0 alt2.googleanalytics.com
-0.0.0.0 alt4.googleanalytics.com
-0.0.0.0 click.googleanalytics.com
-0.0.0.0 googleanalytics.com
-0.0.0.0 sandbox.googleanalytics.com
-0.0.0.0 ssl.googleanalytics.com
-0.0.0.0 www.googleanalytics.com
-#[optimize.google.com]
-0.0.0.0 optimize.google.com
-0.0.0.0 googleoptimize.com
-0.0.0.0 www.googleoptimize.com
-#[googleapis.com]
-0.0.0.0 androidtvchannels-pa.googleapis.com
-0.0.0.0 androidtvwatsonfe-pa.googleapis.com
-0.0.0.0 clientmetrics-pa.googleapis.com
-0.0.0.0 clouderrorreporting.googleapis.com
-0.0.0.0 crashlyticsreports-pa.googleapis.com
-0.0.0.0 firebaselogging.googleapis.com
-0.0.0.0 ogads-pa.googleapis.com
-#[l.google.com]
-0.0.0.0 pagead-googlehosted.l.google.com
-0.0.0.0 pagead-tpc.l.google.com
-0.0.0.0 pagead.l.google.com
-0.0.0.0 partnerad.l.google.com
-0.0.0.0 ssl-google-analytics.l.google.com
-0.0.0.0 static-doubleclick-net.l.google.com
-0.0.0.0 www-google-analytics.l.google.com
-0.0.0.0 www-googletagmanager.l.google.com
-#[ads.gmodules.com]
-0.0.0.0 ads.gmodules.com
-#[ads.youtube.com]
-0.0.0.0 ads.youtube.com
-#[google.com]
-0.0.0.0 ads.google.com
-0.0.0.0 analytics-alv.google.com
-0.0.0.0 mail-ads.google.com
-#[google-cn]
-0.0.0.0 2mdn-cn.net
-0.0.0.0 admob-cn.com
-0.0.0.0 doubleclick-cn.net
-0.0.0.0 google-analytics-cn.com
-0.0.0.0 googleads-cn.com
-0.0.0.0 googleadservices-cn.com
-0.0.0.0 googleadsserving.cn
-0.0.0.0 googleoptimize-cn.com
-0.0.0.0 googletagmanager-cn.com
-0.0.0.0 googletagservices-cn.com
-0.0.0.0 googlevads-cn.com
-0.0.0.0 doubleclick.com
-0.0.0.0 doubleclick.de
-0.0.0.0 doubleclickbygoogle.com
-0.0.0.0 pubads.g.doubleclick.uk.net
+[Nội dung Yuusei]
 ! ----------  AbpVN  ----------
-$popup,domain=player-cdn.com|freeplayervideo.com|abysscdn.com|geoip.redirect-ads.com|playhydrax.com
-! Checksum: 804d792cb2db841b54d3651f5b2a5cfd
-! Version: 20250225120516065
-! id: D4028CDD-3D39-4624-ACC7-8140F4EC3888
-! Title: ABPVN List
+[Adblock Plus 2.0]
+! Last modified: 25 Feb 2025 12:05:16 UTC+7
+! Checksum: c97f3362955f0799b5a30019aa675f61
 ! Diff-Path: patches/20250225120516065.patch#abpvn
 ! Diff-Expires: 60 minutes
 ! Expires: 1 days (update frequency)
@@ -256,7 +39,7 @@ $popup,domain=truyenfull.vision
 .vn/c3s-ad/$xmlhttprequest
 .vn/qc/
 /Content/JS/jwplayer/vast.js$script
-/^https://[a-z]{3,}.com/$/$xmlhttprequest,third-party
+/^https:\/\/[a-z]{3,}\.com\/$/$xmlhttprequest,third-party
 /_BannerSlot.aspx$subdocument,domain=bongdaso66.net
 /aas/r45d/vki/*$script
 /ads/*.gif
@@ -631,7 +414,7 @@ animevietsub.bio##.Ads
 animevietsub.bio##.mobile-catfish-top
 animevietsub.bio##.mobile-catfixx
 animevietsub.bio##.pc-catfixx
-animew.net##div.py-2.md:py-6.mx-auto.w-full.max-w-screen-3xl>div.relative
+animew.net##div.py-2.md\:py-6.mx-auto.w-full.max-w-screen-3xl>div.relative
 apkmoddone.com###sn-Notif
 apkmoddone.com##.pAd
 apkmoddone.com##.relatedPostsAd
@@ -696,10 +479,10 @@ dantri.com.vn###mobile-home-top-page
 dantri.com.vn##.ads-masthead
 danviet.vn##.bg-gray
 danviet.vn##.sidebar>div[style]
-daotruyen.me##.z-[999].fixed
+daotruyen.me##.z-\[999\].fixed
 diadiem.com##.div_box_adv
 doctruyenchu.info##.topbanner
-doctruyenln.com##.chapter-content .min-h-[275px]
+doctruyenln.com##.chapter-content .min-h-\[275px\]
 docviewer.yandex.com##.js-doc-html>div>div[id]
 doisongphapluat.com.vn,vtcnews.vn##.sys-ads
 domdomcomicsxyz.com##iframe[src*="ads"]
@@ -837,7 +620,7 @@ maclife.io##[href*="macbookgiasi.vn"]
 maclife.io##[href*="macone.vn"]
 maclife.io##[href*="minhtuanmobile.com"]
 maclife.io##[href*="vender.vn"]
-maclife.io##div. fb1ed6025b0b.widget:nth-of-type(3)
+maclife.io##div.\35 fb1ed6025b0b.widget:nth-of-type(3)
 mannhan92.xyz##.bet-btn-8423
 mannhan92.xyz##.btn_betnow_632132
 mannhan92.xyz##.highlight
@@ -1172,7 +955,7 @@ www.mp.com,motphimtvv.com,movies.vkoolz.com,subnhanh1.org,motchilltvzz.biz,hayha
 www.o-study.net###IMAGE635>.ladi-transition.ladi-image
 www.o-study.net###IMAGE639>.ladi-transition.ladi-image
 www.o-study.net###POPUP648
-www.phim.world##.block.translate-x-[-50%].left-2/4.z-[1].bottom-[-6px].fixed.mx-auto.md:container.md:px-0.px-4.w-screen
+www.phim.world##.block.translate-x-\[-50\%\].left-2\/4.z-\[1\].bottom-\[-6px\].fixed.mx-auto.md\:container.md\:px-0.px-4.w-screen
 www.phimdinhcao.online,motchillfa.com##.BanerTop100
 www.phimdinhcao.online,motchillfa.com##.adv-300-right
 www.saostar.vn###mobi-sapo
@@ -1346,7 +1129,7 @@ vn2.vn#@#.advertiser
 vndoc.com#@#.showads
 !------ ABPVN Adult block -------
 $third-party,script,domain=sexdiaryx.live
-/^https://[a-z]{8,12}.com/en/(?:[a-z]{2,5}/){0,2}[a-z]{2,}?(?:[a-z]+=(?:d+|[a-z]+)&)*?id=[12]d{6}/$script,third-party
+/^https:\/\/[a-z]{8,12}\.com\/en\/(?:[a-z]{2,5}\/){0,2}[a-z]{2,}\?(?:[a-z]+=(?:\d+|[a-z]+)&)*?id=[12]\d{6}/$script,third-party
 /assets/js/vast.js$script,domain=~phevkl.im|~viet69.ong
 /player/vast.js$script
 /theme/custom.int.js$script,domain=top1sex.me|sex.tuoi69.store|hd.javhay.site|coiphimsex.net|phimsexviet.io|phimsexvietnam.app|gm.phimsexnhanh.tv|clipsex.cam|ww1.ditnhau.cc
