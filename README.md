@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.03.03.0854-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.03.04.0853-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1564-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 03-03-2025 08:54:19 (GMT+7)
-- **Phiên bản**: 2025.03.03.0854
-- **Checksum**: bbb5a55f98b4f2da62f7823f0b3aa173dc4a1a85190e4d6ffa25d6f4c17fe271
+- **Cập nhật lần cuối**: 04-03-2025 08:53:03 (GMT+7)
+- **Phiên bản**: 2025.03.04.0853
+- **Checksum**: 80dc0f5b6cc85f6c639a701f757db39c69c336d13d347498eb8784a6d20bf219
 - **Tổng số rules**: 1564
 - **Tên miền độc nhất**: 530
 
 ### Changelog gần đây
 ```
-- 88b2d7f 🔄 Cập nhật tự động (v2025.03.02.0856) (24 hours ago)
-- 8ddc821 🔄 Cập nhật tự động (v2025.03.01.0857) (2 days ago)
-- 60cd1a2 🔄 Cập nhật tự động (v2025.02.28.0851) (3 days ago)
-- 281f210 🔄 Cập nhật tự động (v2025.02.27.0851) (4 days ago)
-- 96bac45 🔄 Cập nhật tự động (v2025.02.26.0850) (5 days ago)
+- 10b1a72 🔄 Cập nhật tự động (v2025.03.03.0854) (24 hours ago)
+- 88b2d7f 🔄 Cập nhật tự động (v2025.03.02.0856) (2 days ago)
+- 8ddc821 🔄 Cập nhật tự động (v2025.03.01.0857) (3 days ago)
+- 60cd1a2 🔄 Cập nhật tự động (v2025.02.28.0851) (4 days ago)
+- 281f210 🔄 Cập nhật tự động (v2025.02.27.0851) (5 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 03-03-2025 08:54:19 (GMT+7)</sub>
+  <sub>Last updated: 04-03-2025 08:53:03 (GMT+7)</sub>
 </div>
