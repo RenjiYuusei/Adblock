@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.03.15.0851-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.03.16.0900-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1454-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 15-03-2025 08:51:37 (GMT+7)
-- **Phiên bản**: 2025.03.15.0851
-- **Checksum**: ada85f9b5370935739ab18fdb437ce4b76e562eef1e1643f834567e9b9fa6de9
+- **Cập nhật lần cuối**: 16-03-2025 09:00:26 (GMT+7)
+- **Phiên bản**: 2025.03.16.0900
+- **Checksum**: 91d2dbb970c36e9df2402d44d5c82da34a541f0d7e68d6802f8f1035355fff53
 - **Tổng số rules**: 1454
 - **Tên miền độc nhất**: 493
 
 ### Changelog gần đây
 ```
-- 09e870f 🔄 Cập nhật tự động (v2025.03.14.0852) (24 hours ago)
-- 6d5f5ae 🔄 Cập nhật tự động (v2025.03.14.0225) (30 hours ago)
-- 34ba26a Update Yuusei.txt (30 hours ago)
-- a8bf326 🔄 Cập nhật tự động (v2025.03.13.0854) (2 days ago)
-- e3f47e6 🔄 Cập nhật tự động (v2025.03.12.0852) (3 days ago)
+- 6c3e3f6 🔄 Cập nhật tự động (v2025.03.15.0851) (24 hours ago)
+- 09e870f 🔄 Cập nhật tự động (v2025.03.14.0852) (2 days ago)
+- 6d5f5ae 🔄 Cập nhật tự động (v2025.03.14.0225) (2 days ago)
+- 34ba26a Update Yuusei.txt (2 days ago)
+- a8bf326 🔄 Cập nhật tự động (v2025.03.13.0854) (3 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 15-03-2025 08:51:37 (GMT+7)</sub>
+  <sub>Last updated: 16-03-2025 09:00:26 (GMT+7)</sub>
 </div>
