@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.03.17.0857-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.03.18.0855-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1454-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 17-03-2025 08:57:05 (GMT+7)
-- **Phiên bản**: 2025.03.17.0857
-- **Checksum**: 2977e68f15ce03bcac0db6bd46132c453e137c97f4ba6135244d41778f891c97
+- **Cập nhật lần cuối**: 18-03-2025 08:55:05 (GMT+7)
+- **Phiên bản**: 2025.03.18.0855
+- **Checksum**: ef49dd26b047392a931013c0d772cce69b5e76acb6a6497aaa38eb858628518a
 - **Tổng số rules**: 1454
 - **Tên miền độc nhất**: 493
 
 ### Changelog gần đây
 ```
-- 638fd98 🔄 Cập nhật tự động (v2025.03.16.0900) (24 hours ago)
-- 6c3e3f6 🔄 Cập nhật tự động (v2025.03.15.0851) (2 days ago)
-- 09e870f 🔄 Cập nhật tự động (v2025.03.14.0852) (3 days ago)
-- 6d5f5ae 🔄 Cập nhật tự động (v2025.03.14.0225) (3 days ago)
-- 34ba26a Update Yuusei.txt (3 days ago)
+- 3575ce4 🔄 Cập nhật tự động (v2025.03.17.0857) (24 hours ago)
+- 638fd98 🔄 Cập nhật tự động (v2025.03.16.0900) (2 days ago)
+- 6c3e3f6 🔄 Cập nhật tự động (v2025.03.15.0851) (3 days ago)
+- 09e870f 🔄 Cập nhật tự động (v2025.03.14.0852) (4 days ago)
+- 6d5f5ae 🔄 Cập nhật tự động (v2025.03.14.0225) (4 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 17-03-2025 08:57:05 (GMT+7)</sub>
+  <sub>Last updated: 18-03-2025 08:55:05 (GMT+7)</sub>
 </div>
