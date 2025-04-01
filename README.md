@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.03.31.1943-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.04.01.0908-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1419-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 31-03-2025 19:43:52 (GMT+7)
-- **Phiên bản**: 2025.03.31.1943
-- **Checksum**: 405f6c8577241fe8528e0ab2a1474fed740f09df55b0e42c98e8400d13871e87
+- **Cập nhật lần cuối**: 01-04-2025 09:08:53 (GMT+7)
+- **Phiên bản**: 2025.04.01.0908
+- **Checksum**: 3592c3e172612d96b50f688c0d622202b4932465e9dd47e68df471696d4f65cb
 - **Tổng số rules**: 1419
 - **Tên miền độc nhất**: 479
 
 ### Changelog gần đây
 ```
-- 0fb0e61 Update Yuusei.txt (11 seconds ago)
-- abb2626 🔄 Cập nhật tự động (v2025.03.31.0902) (11 hours ago)
-- 67170ce 🔄 Cập nhật tự động (v2025.03.30.0904) (35 hours ago)
-- 24dd8db 🔄 Cập nhật tự động (v2025.03.29.0854) (2 days ago)
-- 3c04f18 🔄 Cập nhật tự động (v2025.03.28.0855) (3 days ago)
+- 957d62c 🔄 Cập nhật tự động (v2025.03.31.1943) (13 hours ago)
+- 0fb0e61 Update Yuusei.txt (13 hours ago)
+- abb2626 🔄 Cập nhật tự động (v2025.03.31.0902) (24 hours ago)
+- 67170ce 🔄 Cập nhật tự động (v2025.03.30.0904) (2 days ago)
+- 24dd8db 🔄 Cập nhật tự động (v2025.03.29.0854) (3 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 31-03-2025 19:43:52 (GMT+7)</sub>
+  <sub>Last updated: 01-04-2025 09:08:53 (GMT+7)</sub>
 </div>
