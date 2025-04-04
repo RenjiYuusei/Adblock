@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.04.03.0856-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.04.04.0856-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1419-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 03-04-2025 08:56:24 (GMT+7)
-- **Phiên bản**: 2025.04.03.0856
-- **Checksum**: 6eb33e547c9365f3bc51a3b100cc574b33baf44a32eb84c738fc56b2f9ca1b50
+- **Cập nhật lần cuối**: 04-04-2025 08:56:19 (GMT+7)
+- **Phiên bản**: 2025.04.04.0856
+- **Checksum**: c07e25aa28cf8dfdce82beb0526eebfad6c81518d1be90d14184842b218cd2f1
 - **Tổng số rules**: 1419
 - **Tên miền độc nhất**: 479
 
 ### Changelog gần đây
 ```
-- 4e4fd42 🔄 Cập nhật tự động (v2025.04.02.0858) (24 hours ago)
-- e5d0c9f 🔄 Cập nhật tự động (v2025.04.01.0908) (2 days ago)
-- 957d62c 🔄 Cập nhật tự động (v2025.03.31.1943) (3 days ago)
-- 0fb0e61 Update Yuusei.txt (3 days ago)
-- abb2626 🔄 Cập nhật tự động (v2025.03.31.0902) (3 days ago)
+- 7145c53 🔄 Cập nhật tự động (v2025.04.03.0856) (24 hours ago)
+- 4e4fd42 🔄 Cập nhật tự động (v2025.04.02.0858) (2 days ago)
+- e5d0c9f 🔄 Cập nhật tự động (v2025.04.01.0908) (3 days ago)
+- 957d62c 🔄 Cập nhật tự động (v2025.03.31.1943) (4 days ago)
+- 0fb0e61 Update Yuusei.txt (4 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 03-04-2025 08:56:24 (GMT+7)</sub>
+  <sub>Last updated: 04-04-2025 08:56:19 (GMT+7)</sub>
 </div>
