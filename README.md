@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.04.27.0906-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.04.28.0904-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1393-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 27-04-2025 09:06:35 (GMT+7)
-- **Phiên bản**: 2025.04.27.0906
-- **Checksum**: 89289e70602d5874ac0e93fa7d5ee9a330ceb1fe5871c0cbad84d8fdac510124
+- **Cập nhật lần cuối**: 28-04-2025 09:04:27 (GMT+7)
+- **Phiên bản**: 2025.04.28.0904
+- **Checksum**: 96b006ecc098e02614d191a719e43763f05c5a479344d97f161e3b05a06a86b0
 - **Tổng số rules**: 1393
 - **Tên miền độc nhất**: 462
 
 ### Changelog gần đây
 ```
-- efa08e6 🔄 Cập nhật tự động (v2025.04.27.0146) (7 hours ago)
-- a0e1ad7 Add files via upload (7 hours ago)
-- 6a77f34 🔄 Cập nhật tự động (v2025.04.26.0856) (24 hours ago)
-- 9ff9266 🔄 Cập nhật tự động (v2025.04.25.0901) (2 days ago)
-- da3abcf 🔄 Cập nhật tự động (v2025.04.24.0900) (3 days ago)
+- 470f413 🔄 Cập nhật tự động (v2025.04.27.0906) (24 hours ago)
+- efa08e6 🔄 Cập nhật tự động (v2025.04.27.0146) (31 hours ago)
+- a0e1ad7 Add files via upload (31 hours ago)
+- 6a77f34 🔄 Cập nhật tự động (v2025.04.26.0856) (2 days ago)
+- 9ff9266 🔄 Cập nhật tự động (v2025.04.25.0901) (3 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 27-04-2025 09:06:35 (GMT+7)</sub>
+  <sub>Last updated: 28-04-2025 09:04:27 (GMT+7)</sub>
 </div>
