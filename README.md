@@ -3,7 +3,7 @@
   <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
   <p>
     <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.06.01.0931-blue?style=for-the-badge" alt="Version">
+      <img src="https://img.shields.io/badge/version-2025.06.02.0911-blue?style=for-the-badge" alt="Version">
     </a>
     <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
       <img src="https://img.shields.io/badge/rules-1437-brightgreen?style=for-the-badge" alt="Rules">
@@ -72,19 +72,19 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📝 Thông tin cập nhật
 
-- **Cập nhật lần cuối**: 01-06-2025 09:31:08 (GMT+7)
-- **Phiên bản**: 2025.06.01.0931
-- **Checksum**: 4c9698de3ad70a418146d24e312e30f33945dcd85cdc10495329d26506b2ec8a
+- **Cập nhật lần cuối**: 02-06-2025 09:11:20 (GMT+7)
+- **Phiên bản**: 2025.06.02.0911
+- **Checksum**: de6c00645869090f576454cdeb17ec4d7293576fd8f6e31ba508f32f16aadccb
 - **Tổng số rules**: 1437
 - **Tên miền độc nhất**: 475
 
 ### Changelog gần đây
 ```
-- 370fecf 🔄 Cập nhật tự động (v2025.05.31.0903) (24 hours ago)
-- a7c9f25 🔄 Cập nhật tự động (v2025.05.30.0903) (2 days ago)
-- 4f8f5da 🔄 Cập nhật tự động (v2025.05.29.1721) (3 days ago)
-- 66c5c0b Add files via upload (3 days ago)
-- 83c0053 🔄 Cập nhật tự động (v2025.05.29.0905) (3 days ago)
+- 17522ba 🔄 Cập nhật tự động (v2025.06.01.0931) (24 hours ago)
+- 370fecf 🔄 Cập nhật tự động (v2025.05.31.0903) (2 days ago)
+- a7c9f25 🔄 Cập nhật tự động (v2025.05.30.0903) (3 days ago)
+- 4f8f5da 🔄 Cập nhật tự động (v2025.05.29.1721) (4 days ago)
+- 66c5c0b Add files via upload (4 days ago)
 ```
 
 ## ⭐ Tính năng nổi bật
@@ -104,5 +104,5 @@ Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
 <div align="center">
   <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
   <br>
-  <sub>Last updated: 01-06-2025 09:31:08 (GMT+7)</sub>
+  <sub>Last updated: 02-06-2025 09:11:20 (GMT+7)</sub>
 </div>
