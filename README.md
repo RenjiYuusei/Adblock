@@ -1,108 +1,88 @@
 <div align="center">
-  <h1>🛡️ Yuusei Filter List</h1>
-  <p><em>Bảo vệ trải nghiệm web của bạn khỏi quảng cáo không mong muốn</em></p>
-  <p>
-    <a href="https://github.com/RenjiYuusei/Adblock/releases">
-      <img src="https://img.shields.io/badge/version-2025.06.09.0919-blue?style=for-the-badge" alt="Version">
-    </a>
-    <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt">
-      <img src="https://img.shields.io/badge/rules-1437-brightgreen?style=for-the-badge" alt="Rules">
-    </a>
-    <a href="https://github.com/RenjiYuusei/Adblock/stargazers">
-      <img src="https://img.shields.io/github/stars/RenjiYuusei/Adblock?style=for-the-badge" alt="Stars">
-    </a>
-  </p>
+  
+# 🛡️ Yuusei Filter List
+
+**Một bộ lọc quảng cáo hiệu suất cao, được tối ưu hóa cho người dùng Việt Nam.**
+
+<p>
+  <a href="https://github.com/RenjiYuusei/Adblock/releases/latest"><img src="https://img.shields.io/github/v/release/RenjiYuusei/Adblock?style=for-the-badge&label=Version&color=007bff" alt="Version"></a>
+  <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt"><img src="https://img.shields.io/badge/rules-1453-brightgreen?style=for-the-badge" alt="Rules"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/RenjiYuusei/Adblock?style=for-the-badge&color=blueviolet" alt="License"></a>
+  <a href="https://github.com/RenjiYuusei/Adblock/commits/main"><img src="https://img.shields.io/github/last-commit/RenjiYuusei/Adblock?style=for-the-badge&label=Updated" alt="Last commit"></a>
+</p>
+
 </div>
 
-## 📊 Thống kê chi tiết
+## ✨ Tính Năng Nổi Bật
+
+- 🇻🇳 **Tối ưu cho người Việt**: Tập trung vào các trang web phổ biến tại Việt Nam.
+- 🚀 **Hiệu suất cao**: Các quy tắc được viết để giảm thiểu ảnh hưởng đến tốc độ duyệt web.
+- 🛡️ **An toàn & Minh bạch**: Mã nguồn mở 100%, không thu thập dữ liệu người dùng.
+- 🔄 **Luôn cập nhật**: Tự động cập nhật khi có thay đổi mới trong bộ lọc.
+- 📱 **Đa nền tảng**: Hoạt động tốt trên mọi trình duyệt và thiết bị hỗ trợ uBlock Origin, AdGuard.
+
+## 🚀 Cài Đặt
+
+Chỉ cần một cú nhấp chuột để thêm bộ lọc vào trình chặn quảng cáo của bạn.
+
+| Trình chặn quảng cáo | Nút cài đặt nhanh |
+| :--- | :--- |
+| **uBlock Origin** | <a href="https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt&title=Yuusei%20Filter"><img src="https://img.shields.io/badge/Thêm%20vào%20uBlock-blue?style=flat-square&logo=ublockorigin&logoColor=white" alt="Add to uBlock Origin"></a> |
+| **AdGuard** | <a href="https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt&title=Yuusei%20Filter"><img src="https://img.shields.io/badge/Thêm%20vào%20AdGuard-green?style=flat-square&logo=adguard&logoColor=white" alt="Add to AdGuard"></a> |
+
+<details>
+<summary>Hướng dẫn cài đặt thủ công</summary>
+
+1. Mở cài đặt của trình chặn quảng cáo.
+2. Tìm đến mục "Filter lists", "Custom filters" hoặc "Bộ lọc của tôi".
+3. Chọn "Add custom filter" hoặc "Thêm bộ lọc từ URL".
+4. Dán URL sau vào ô nhập liệu và nhấn "Subscribe" hoặc "Đăng ký":
+
+```
+https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
+```
+
+</details>
+
+## 📊 Thống Kê Bộ Lọc
+
+- **Tổng số quy tắc**: `1453`
+- **Tên miền độc nhất**: `474`
+- **Cập nhật lần cuối**: `03-07-2025`
+- **Checksum (SHA256)**: `2e5aaf491c03a31f1a7924505286d437b35863ac0916e652b52c2be676d90a32`
+
+<details>
+<summary>Xem thống kê chi tiết về quy tắc</summary>
 
 | Loại | Số lượng | Tỷ lệ |
-|------|-----------|-------|
-| Tổng số Rules | 1437 | 100% |
-| Rules Mạng | 481 | 33% |
-| Rules Giao Diện | 830 | 57% |
-| Rules Whitelist | 54 | 3% |
-| Rules Host File | 152 | 10% |
-| Ghi chú & Comments | 11 | 0% |
-| Tên miền độc nhất | 475 | - |
+|:---|:---:|:---:|
+| Rules Mạng | 487 | `$(printf "%.0f" $(echo "487 * 100 / 1453" | bc -l))`% |
+| Rules Giao Diện | 841 | `$(printf "%.0f" $(echo "841 * 100 / 1453" | bc -l))`% |
+| Rules Whitelist | 53 | `$(printf "%.0f" $(echo "53 * 100 / 1453" | bc -l))`% |
+| Rules Host File | 152 | `$(printf "%.0f" $(echo "152 * 100 / 1453" | bc -l))`% |
 
-## 🚀 Hướng dẫn cài đặt
-
-<details>
-<summary>🔍 Dành cho uBlock Origin</summary>
-
-### Cách 1: Cài đặt nhanh (Khuyến nghị)
-1. Click vào link: [Cài đặt cho uBlock Origin](https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
-2. Click "Proceed" hoặc "Tiếp tục" trong hộp thoại xác nhận
-
-### Cách 2: Cài đặt thủ công
-1. Mở Dashboard uBlock Origin (click vào biểu tượng uBlock > Mở bảng điều khiển)
-2. Chuyển đến tab "Filter lists"
-3. Cuộn xuống cuối trang
-4. Mở rộng phần "Custom"
-5. Dán link sau vào ô trống:
-```
-https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
-```
-6. Click "Apply changes"
 </details>
 
-<details>
-<summary>🛡️ Dành cho AdGuard</summary>
+## 👥 Người Đóng Góp
 
-### Cách 1: Cài đặt nhanh (Khuyến nghị)
-1. Click vào link: [Cài đặt cho AdGuard](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt)
-2. Chọn "Subscribe" trong hộp thoại xác nhận
+Cảm ơn tất cả những người tuyệt vời đã đóng góp cho dự án này!
 
-### Cách 2: Cài đặt thủ công
-1. Mở cài đặt AdGuard
-2. Chọn "Filters" > "Custom"
-3. Click "Add custom filter"
-4. Dán link sau:
+- <img src="https://avatars.githubusercontent.com/u/166010224?u=32d8169f343e1e5e5f1818deb0190c453cebe24e&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 255 đóng góp
+
+Bạn cũng muốn đóng góp? Hãy tạo một [Pull Request](https://github.com/RenjiYuusei/Adblock/pulls) hoặc [Issue](https://github.com/RenjiYuusei/Adblock/issues) nhé!
+
+## 📝 Changelog Gần Đây
+
 ```
-https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
-```
-5. Click "Next" và "Subscribe"
-</details>
-
-## 👥 Người đóng góp
-
-### Những người đóng góp chính
-- <img src="https://avatars.githubusercontent.com/u/166010224?u=cda1fbfc902f51857ad7a58be1d4ec0e0710feed&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 266 đóng góp
-
-## 📝 Thông tin cập nhật
-
-- **Cập nhật lần cuối**: 09-06-2025 09:19:22 (GMT+7)
-- **Phiên bản**: 2025.06.09.0919
-- **Checksum**: 605275c541a7774111969acfd4739649b25e900359fdbabe96b4d4e2142ab2db
-- **Tổng số rules**: 1437
-- **Tên miền độc nhất**: 475
-
-### Changelog gần đây
-```
-- 4c4a217 🔄 Cập nhật tự động (v2025.06.08.0922) (24 hours ago)
-- 4fa2065 🔄 Cập nhật tự động (v2025.06.07.0905) (2 days ago)
-- e740016 🔄 Cập nhật tự động (v2025.06.06.0905) (3 days ago)
-- e7458ff 🔄 Cập nhật tự động (v2025.06.05.0906) (4 days ago)
-- 6557672 🔄 Cập nhật tự động (v2025.06.04.0907) (5 days ago)
+$(git log -10 --pretty=format:"%h  %ad  %s" --date=short)
 ```
 
-## ⭐ Tính năng nổi bật
+## 📜 Giấy Phép
 
-- ✨ **Tối ưu cho người Việt**: Rules được thiết kế đặc biệt cho các website Việt Nam
-- 🚀 **Hiệu suất cao**: Rules được tối ưu hóa để giảm thiểu tác động đến tốc độ duyệt web
-- 🔄 **Cập nhật thường xuyên**: Bộ lọc được cập nhật tự động 2 lần/ngày
-- 🛡️ **An toàn & Bảo mật**: Mã nguồn mở, minh bạch và không chứa mã độc
-- 📱 **Đa nền tảng**: Hoạt động trên mọi trình duyệt và thiết bị
-- 🌐 **Hỗ trợ đa dạng**: Chặn quảng cáo, theo dõi và các thành phần không mong muốn
-
-## 📜 Giấy phép
-
-Dự án này được phân phối dưới [Giấy phép GPL-3.0](LICENSE)
+Dự án này được cấp phép theo [Giấy phép GPL-3.0](LICENSE).
 
 ---
-<div align="center">
-  <sub>Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a></sub>
-  <br>
-  <sub>Last updated: 09-06-2025 09:19:22 (GMT+7)</sub>
-</div>
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/RenjiYuusei">RenjiYuusei</a>
+</p>
