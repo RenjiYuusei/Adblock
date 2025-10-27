@@ -6,7 +6,7 @@
 
 <p>
   <a href="https://github.com/RenjiYuusei/Adblock/releases/latest"><img src="https://img.shields.io/github/v/release/RenjiYuusei/Adblock?style=for-the-badge&label=Version&color=007bff" alt="Version"></a>
-  <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt"><img src="https://img.shields.io/badge/rules-1535-brightgreen?style=for-the-badge" alt="Rules"></a>
+  <a href="https://github.com/RenjiYuusei/Adblock/blob/main/Yuusei.txt"><img src="https://img.shields.io/badge/rules-1536-brightgreen?style=for-the-badge" alt="Rules"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/RenjiYuusei/Adblock?style=for-the-badge&color=blueviolet" alt="License"></a>
   <a href="https://github.com/RenjiYuusei/Adblock/commits/main"><img src="https://img.shields.io/github/last-commit/RenjiYuusei/Adblock?style=for-the-badge&label=Updated" alt="Last commit"></a>
 </p>
@@ -46,20 +46,20 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 ## 📊 Thống Kê Bộ Lọc
 
-- **Tổng số quy tắc**: `1535`
+- **Tổng số quy tắc**: `1536`
 - **Tên miền độc nhất**: `475`
 - **Cập nhật lần cuối**: `27-10-2025`
-- **Checksum (SHA256)**: `b1b8fcec986ee245fa294698d79524ad5b060ba74c858a9609d72d63b48dacd8`
+- **Checksum (SHA256)**: `bf9a7f26e2a7fa95262613b6706557bf42ed26de0e1f351591722d5dad681c2c`
 
 <details>
 <summary>Xem thống kê chi tiết về quy tắc</summary>
 
 | Loại | Số lượng | Tỷ lệ |
 |:---|:---:|:---:|
-| Rules Mạng | 488 | `$(printf "%.0f" $(echo "488 * 100 / 1535" | bc -l))`% |
-| Rules Giao Diện | 915 | `$(printf "%.0f" $(echo "915 * 100 / 1535" | bc -l))`% |
-| Rules Whitelist | 57 | `$(printf "%.0f" $(echo "57 * 100 / 1535" | bc -l))`% |
-| Rules Host File | 152 | `$(printf "%.0f" $(echo "152 * 100 / 1535" | bc -l))`% |
+| Rules Mạng | 488 | `$(printf "%.0f" $(echo "488 * 100 / 1536" | bc -l))`% |
+| Rules Giao Diện | 916 | `$(printf "%.0f" $(echo "916 * 100 / 1536" | bc -l))`% |
+| Rules Whitelist | 57 | `$(printf "%.0f" $(echo "57 * 100 / 1536" | bc -l))`% |
+| Rules Host File | 152 | `$(printf "%.0f" $(echo "152 * 100 / 1536" | bc -l))`% |
 
 </details>
 
@@ -67,7 +67,7 @@ https://raw.githubusercontent.com/RenjiYuusei/Adblock/main/Yuusei.txt
 
 Cảm ơn tất cả những người tuyệt vời đã đóng góp cho dự án này!
 
-- <img src="https://avatars.githubusercontent.com/u/166010224?u=647653f506bab9f271f352c91b1bcdab6f803f2c&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 353 đóng góp
+- <img src="https://avatars.githubusercontent.com/u/166010224?u=647653f506bab9f271f352c91b1bcdab6f803f2c&v=4&s=50" width="50" height="50" style="border-radius: 50%; vertical-align: middle; margin-right: 5px;" alt="RenjiYuusei"> **[RenjiYuusei](https://github.com/RenjiYuusei)** - 354 đóng góp
 
 Bạn cũng muốn đóng góp? Hãy tạo một [Pull Request](https://github.com/RenjiYuusei/Adblock/pulls) hoặc [Issue](https://github.com/RenjiYuusei/Adblock/issues) nhé!
 
