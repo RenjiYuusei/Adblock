@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2025.07.03.1724
+! Version: 2025.10.27.1504
 ! Title: Yuusei
-! Last modified: 03-07-2025
+! Last modified: 27-10-2025
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 2e5aaf491c03a31f1a7924505286d437b35863ac0916e652b52c2be676d90a32
+! Checksum: b1b8fcec986ee245fa294698d79524ad5b060ba74c858a9609d72d63b48dacd8
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 s2.chinav.sex###wap_bottombanner_content
@@ -1551,4 +1551,3 @@ xnxx-sex-videos.com##+js(acs, setTimeout, window.location)
 xnxx-sex-videos.com##+js(ra, target|onclick, a[href^="/video/"])
 znews.vn##+js(aopr, adtimaConfig)
 ||on-web-cdn.gviet.vn/public/js/player/ads/ima3.js$script,domain=vtvcab.vn,redirect=google-ima.js
-
