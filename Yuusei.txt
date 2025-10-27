@@ -8,6 +8,7 @@
 ! Checksum: b1b8fcec986ee245fa294698d79524ad5b060ba74c858a9609d72d63b48dacd8
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
+hentaicb.help###cb-header-adx-pc
 s2.chinav.sex###wap_bottombanner_content
 s2.chinav.sex##.cashfit-banner
 s2.chinav.sex###banner1
