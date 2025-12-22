@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuusei Filter Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        textarea { font-family: 'Consolas', 'Monaco', monospace; white-space: pre; overflow-wrap: normal; overflow-x: scroll; }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-indigo-600 text-white p-4 shadow-lg flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-shield-alt text-2xl"></i>
+            <h1 class="text-xl font-bold">Yuusei Editor</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span id="status" class="text-sm font-light italic">Ready</span>
+            <button onclick="saveFile()" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded font-bold shadow transition flex items-center">
+                <i class="fas fa-save mr-2"></i> Save
+            </button>
+            <button onclick="toggleSettings()" class="bg-indigo-700 hover:bg-indigo-800 p-2 rounded-full w-10 h-10 flex items-center justify-center transition">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Editor -->
+    <div class="flex-grow p-4 overflow-hidden flex flex-col">
+        <div class="bg-white rounded-lg shadow-xl h-full flex flex-col border border-gray-200">
+            <div class="bg-gray-50 border-b p-2 text-xs text-gray-500 font-mono flex justify-between">
+                <span>File: Yuusei.txt</span>
+                <span id="line-count">0 lines</span>
+            </div>
+            <textarea id="editor" class="flex-grow p-4 w-full h-full resize-none focus:outline-none text-sm leading-relaxed" spellcheck="false" oninput="updateStats()"></textarea>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-2xl p-6 w-96 max-w-full">
+            <h2 class="text-xl font-bold mb-4 text-gray-800">Settings</h2>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">GitHub Personal Access Token</label>
+                <input type="password" id="github-token" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="ghp_...">
+                <p class="text-xs text-gray-500 mt-1">Required to save changes. Token is stored locally.</p>
+            </div>
+
+            <div class="flex justify-end space-x-2">
+                <button onclick="toggleSettings()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Cancel</button>
+                <button onclick="saveSettings()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Save Token</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Placeholder replaced by GitHub Action
+        const REPO_NAME = '{{REPO_NAME}}'; // e.g., "username/repo"
+        const FILE_PATH = 'Yuusei.txt';
+        const API_URL = `https://api.github.com/repos/${REPO_NAME}/contents/${FILE_PATH}`;
+
+        let currentSha = '';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('github_token');
+            if (token) {
+                document.getElementById('github-token').value = token;
+            }
+            loadFile();
+        });
+
+        function toggleSettings() {
+            const modal = document.getElementById('settings-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function saveSettings() {
+            const token = document.getElementById('github-token').value.trim();
+            if (token) {
+                localStorage.setItem('github_token', token);
+                showStatus('Token saved', 'success');
+                toggleSettings();
+                loadFile(); // Reload with new token if needed
+            } else {
+                alert('Please enter a token');
+            }
+        }
+
+        function updateStats() {
+            const text = document.getElementById('editor').value;
+            const lines = text.split('\n').length;
+            document.getElementById('line-count').textContent = `${lines} lines`;
+        }
+
+        function showStatus(msg, type = 'info') {
+            const el = document.getElementById('status');
+            el.textContent = msg;
+            el.className = 'text-sm font-bold transition duration-300 ' +
+                (type === 'error' ? 'text-red-500' : type === 'success' ? 'text-green-400' : 'text-gray-200');
+
+            if(type !== 'error') {
+                setTimeout(() => {
+                    el.textContent = 'Ready';
+                    el.className = 'text-sm font-light italic text-white';
+                }, 3000);
+            }
+        }
+
+        async function loadFile() {
+            showStatus('Loading...', 'info');
+            try {
+                // Try fetching raw first for speed if public
+                // But for SHA we need the API
+                const token = localStorage.getItem('github_token');
+                const headers = token ? { 'Authorization': `token ${token}` } : {};
+
+                const response = await fetch(API_URL, { headers });
+
+                if (!response.ok) {
+                    if (response.status === 404) throw new Error('File not found');
+                    if (response.status === 401) throw new Error('Unauthorized (Check Token)');
+                    throw new Error('Network error');
+                }
+
+                const data = await response.json();
+                currentSha = data.sha;
+
+                // Decode content (GitHub API returns base64)
+                // Using decodeURIComponent(escape(window.atob(str))) to handle UTF-8 correctly
+                const content = decodeURIComponent(escape(window.atob(data.content.replace(/\n/g, ''))));
+
+                document.getElementById('editor').value = content;
+                updateStats();
+                showStatus('Loaded successfully', 'success');
+
+            } catch (error) {
+                console.error(error);
+                showStatus(`Error: ${error.message}`, 'error');
+                if(error.message.includes('Unauthorized')) toggleSettings();
+            }
+        }
+
+        async function saveFile() {
+            const token = localStorage.getItem('github_token');
+            if (!token) {
+                alert('Please configure your GitHub Token in settings first!');
+                toggleSettings();
+                return;
+            }
+
+            showStatus('Saving...', 'info');
+            const content = document.getElementById('editor').value;
+
+            // Encode to base64 UTF-8 safe
+            const encodedContent = window.btoa(unescape(encodeURIComponent(content)));
+
+            const body = {
+                message: `Update ${FILE_PATH} via Web Editor`,
+                content: encodedContent,
+                sha: currentSha
+            };
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                if (!response.ok) {
+                    const errData = await response.json();
+                    throw new Error(errData.message || 'Failed to save');
+                }
+
+                const data = await response.json();
+                currentSha = data.content.sha; // Update SHA for next save
+                showStatus('Saved successfully!', 'success');
+
+            } catch (error) {
+                console.error(error);
+                showStatus(`Save Error: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>
