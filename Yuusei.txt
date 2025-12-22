@@ -8,6 +8,21 @@
 ! Checksum: 48828ea9874b7dc8143b3b410c172337a09b441cf7ecc84f38860e6030488420
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
+||api.vsphone.com/vsphone/api/vpopDialog/getUserActiveBanner^
+||api.vsphone.com/vsphone/api/vpopDialog/getUserVpopDialog?allPopups^
+||api.vmoscloud.com/vcpcloud/api/getUserActiveBanner^
+||api.vmoscloud.com/vcpcloud/api/getUserVpopDalog?allPopups^
+||api.vmoscloud.com/vcpcloud/api/vpopDialog/getUserVpopDialog^
+cloud.vmoscloud.com##.alert
+cloud.vmoscloud.com##.is-animating.is-active.el-carousel__item > .top-banner
+cloud.vmoscloud.com##.el-carousel__container
+cloud.vsphone.com##.alert
+cloud.vmoscloud.com##.banner-imgs
+truyenqqno.com###_pop-qqgo-11
+||t4.qy0.ru/data/*.gif$image
+||www.wnacg.com/game/*.gif$image
+||18comic.vip/static/resources/images/*.gif$image
+18comic.vip##.ae65e2-f_1 > .group-notice
 hentaicb.help###cb-header-adx-pc
 s2.chinav.sex###wap_bottombanner_content
 s2.chinav.sex##.cashfit-banner
