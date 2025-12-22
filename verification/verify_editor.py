@@ -3,7 +3,8 @@ from playwright.sync_api import sync_playwright
 def verify_yuusei_editor():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
+        # Use a mobile viewport to test responsiveness
+        page = browser.new_page(viewport={"width": 375, "height": 667})
 
         # Load the index.html file directly from the file system
         import os
@@ -13,33 +14,34 @@ def verify_yuusei_editor():
         # Verify title (Updated to Vietnamese)
         assert page.title() == "Trình Chỉnh Sửa Bộ Lọc Yuusei"
 
-        # Verify navbar components
-        assert page.locator("h1:text('Yuusei Editor')").is_visible()
+        # 1. Verify Mobile Navbar
+        # Title should be visible (compact version)
+        # Using a broader selector and checking if ANY is visible, since CSS media queries hide/show different ones
+        # The mobile view should show <div class="sm:hidden"><h1 ...>Yuusei</h1></div>
+        assert page.locator(".sm\\:hidden h1:text('Yuusei')").is_visible()
 
-        # Button text changed to "Lưu Thay Đổi"
-        # Since it might have icon, use loose match or role
-        assert page.get_by_role("button", name="Lưu Thay Đổi").first.is_visible()
+        # Search toggle button should be visible
+        page.click("button[title='Tìm kiếm']")
+        assert page.locator("#search-bar").is_visible()
 
-        # Verify text editor exists
+        # Test search input typing
+        page.fill("#search-input", "test")
+
+        # Close search
+        page.locator("#search-bar button:has(.fa-times)").click()
+
+        # 2. Verify Text Editor
         assert page.locator("#editor").is_visible()
 
-        # Verify settings modal logic
-        # Click settings button (icon cog)
-        page.click(".fa-cog")
-
-        # Check if modal is visible (Text: Cài Đặt)
-        # Note: The modal might have a transition, so we might need to wait or check visibility carefully
-        # But playwright auto-waits.
+        # 3. Verify Settings Modal
+        page.click("button[title='Cài đặt']")
         assert page.locator("h2:text('Cài Đặt')").is_visible()
 
-        # Take screenshot of the settings modal
-        page.screenshot(path="verification/editor_settings.png")
+        # Take screenshot of mobile view
+        page.screenshot(path="verification/editor_mobile.png")
 
-        # Close modal by clicking "Hủy" button
-        page.get_by_role("button", name="Hủy").click()
-
-        # Take screenshot of main editor
-        page.screenshot(path="verification/editor_main.png")
+        # Close modal
+        page.click("button:text('Đóng')")
 
         browser.close()
 

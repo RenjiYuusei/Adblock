@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Trình Chỉnh Sửa Bộ Lọc Yuusei</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -16,20 +16,15 @@
             overflow-x: scroll;
             tab-size: 4;
         }
-        /* Custom Scrollbar for dark theme */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1f2937;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #4b5563;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6b7280;
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+
+        /* Mobile Tweaks */
+        @media (max-width: 640px) {
+            .mobile-hide-text span { display: none; }
+            .mobile-compact { padding: 0.5rem; }
         }
     </style>
     <script>
@@ -38,11 +33,7 @@
             theme: {
                 extend: {
                     colors: {
-                        gray: {
-                            900: '#111827',
-                            800: '#1f2937',
-                            700: '#374151',
-                        }
+                        gray: { 900: '#111827', 800: '#1f2937', 700: '#374151' }
                     }
                 }
             }
@@ -52,120 +43,195 @@
 <body class="bg-gray-900 text-gray-100 h-screen flex flex-col overflow-hidden">
 
     <!-- Navbar -->
-    <nav class="bg-gray-800 border-b border-gray-700 p-4 shadow-lg flex justify-between items-center z-10">
-        <div class="flex items-center space-x-3">
-            <div class="bg-indigo-600 p-2 rounded-lg shadow-lg shadow-indigo-500/50">
-                <i class="fas fa-shield-alt text-xl text-white"></i>
+    <nav class="bg-gray-800 border-b border-gray-700 p-2 sm:p-4 shadow-lg flex justify-between items-center z-10 shrink-0">
+        <div class="flex items-center space-x-2 sm:space-x-3">
+            <div class="bg-indigo-600 p-1.5 sm:p-2 rounded-lg shadow-lg shadow-indigo-500/50">
+                <i class="fas fa-shield-alt text-lg sm:text-xl text-white"></i>
             </div>
-            <div>
-                <h1 class="text-xl font-bold tracking-tight text-white">Yuusei Editor</h1>
-                <p class="text-xs text-gray-400">Quản lý bộ lọc quảng cáo</p>
+            <div class="hidden sm:block">
+                <h1 class="text-lg font-bold tracking-tight text-white leading-tight">Yuusei Editor</h1>
+                <p class="text-[10px] text-gray-400">Quản lý bộ lọc</p>
+            </div>
+            <div class="sm:hidden">
+                <h1 class="text-base font-bold text-white">Yuusei</h1>
             </div>
         </div>
-        <div class="flex items-center space-x-3">
-            <span id="status" class="text-xs font-medium text-gray-400 mr-2 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-gray-500 block"></span>
-                Sẵn sàng
-            </span>
 
-            <button onclick="loadFile()" class="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2">
-                <i class="fas fa-sync-alt"></i> Tải lại
+        <div class="flex items-center space-x-2">
+            <!-- Search Toggle -->
+            <button onclick="toggleSearch()" class="bg-gray-700 hover:bg-gray-600 text-gray-200 p-2 rounded-lg transition" title="Tìm kiếm">
+                <i class="fas fa-search"></i>
             </button>
 
-            <button onclick="saveFile()" class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg shadow-indigo-500/30 transition transform hover:scale-105 flex items-center gap-2">
-                <i class="fas fa-save"></i> Lưu Thay Đổi
+            <!-- Reload -->
+            <button onclick="loadFile()" class="bg-gray-700 hover:bg-gray-600 text-gray-200 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 mobile-hide-text" title="Tải lại">
+                <i class="fas fa-sync-alt"></i> <span>Tải lại</span>
             </button>
 
-            <button onclick="toggleSettings()" class="bg-gray-700 hover:bg-gray-600 text-gray-300 p-2 rounded-lg w-10 h-10 flex items-center justify-center transition ml-2">
-                <i class="fas fa-cog text-lg"></i>
+            <!-- Save -->
+            <button onclick="saveFile()" class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-3 py-2 rounded-lg text-sm font-bold shadow-lg shadow-indigo-500/30 transition transform active:scale-95 flex items-center gap-2 mobile-hide-text" title="Lưu">
+                <i class="fas fa-save"></i> <span>Lưu</span>
+            </button>
+
+            <!-- Settings -->
+            <button onclick="toggleSettings()" class="bg-gray-700 hover:bg-gray-600 text-gray-300 p-2 rounded-lg w-9 h-9 flex items-center justify-center transition" title="Cài đặt">
+                <i class="fas fa-cog"></i>
             </button>
         </div>
     </nav>
 
+    <!-- Search Toolbar (Hidden by default) -->
+    <div id="search-bar" class="hidden bg-gray-800 border-b border-gray-700 p-2 flex items-center gap-2 animate-fade-in-down shrink-0">
+        <input type="text" id="search-input" placeholder="Tìm kiếm..." class="bg-gray-900 border border-gray-600 text-white text-sm rounded px-2 py-1 flex-grow focus:ring-1 focus:ring-indigo-500 outline-none" onkeydown="if(event.key === 'Enter') findNext()">
+        <button onclick="findPrev()" class="bg-gray-700 hover:bg-gray-600 text-white p-1.5 rounded" title="Trước"><i class="fas fa-chevron-up"></i></button>
+        <button onclick="findNext()" class="bg-gray-700 hover:bg-gray-600 text-white p-1.5 rounded" title="Sau"><i class="fas fa-chevron-down"></i></button>
+        <button onclick="toggleSearch()" class="text-gray-400 hover:text-white p-1.5 ml-1"><i class="fas fa-times"></i></button>
+    </div>
+
     <!-- Main Content -->
-    <div class="flex-grow flex overflow-hidden relative">
-        <!-- Sidebar (Optional, maybe for stats later) -->
-
-        <!-- Editor Area -->
-        <div class="flex-grow flex flex-col h-full bg-gray-900 relative">
-            <!-- Toolbar / Info bar -->
-            <div class="bg-gray-800 border-b border-gray-700 px-4 py-2 text-xs font-mono text-gray-400 flex justify-between items-center select-none">
-                <div class="flex items-center gap-4">
-                    <span class="flex items-center gap-2"><i class="far fa-file-alt"></i> Yuusei.txt</span>
-                    <span id="file-sha" class="text-gray-600" title="Commit SHA">SHA: ---</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <span id="line-count">0 dòng</span>
-                    <span id="char-count">0 ký tự</span>
-                </div>
+    <div class="flex-grow flex flex-col overflow-hidden relative bg-gray-900">
+        <!-- Status Bar -->
+        <div class="bg-gray-800 border-b border-gray-700 px-3 py-1 text-[10px] sm:text-xs font-mono text-gray-400 flex justify-between items-center select-none shrink-0 overflow-x-auto whitespace-nowrap">
+            <div class="flex items-center gap-3">
+                <span id="status" class="flex items-center gap-1.5 font-medium text-gray-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gray-500 block"></span> Sẵn sàng
+                </span>
+                <span id="file-sha" class="text-gray-500 hidden sm:inline">SHA: ---</span>
             </div>
-
-            <!-- Textarea -->
-            <div class="relative flex-grow">
-                <textarea id="editor"
-                    class="w-full h-full bg-gray-900 text-gray-300 p-4 resize-none focus:outline-none focus:ring-0 leading-6"
-                    placeholder="Đang tải dữ liệu..."
-                    spellcheck="false"
-                    oninput="updateStats()"></textarea>
+            <div class="flex items-center gap-3">
+                <span id="line-count">0 dòng</span>
             </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="relative flex-grow h-full">
+            <textarea id="editor"
+                class="w-full h-full bg-gray-900 text-gray-300 p-2 sm:p-4 resize-none focus:outline-none focus:ring-0 leading-relaxed text-xs sm:text-sm"
+                placeholder="Đang tải dữ liệu..."
+                spellcheck="false"
+                oninput="updateStats()"></textarea>
         </div>
     </div>
 
     <!-- Settings Modal -->
-    <div id="settings-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center z-50 transition-opacity opacity-0 pointer-events-none">
-        <div class="bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-6 w-96 max-w-[90vw] transform scale-95 transition-transform duration-200" id="settings-content">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+    <div id="settings-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4 transition-opacity opacity-0 pointer-events-none">
+        <div class="bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-5 w-full max-w-sm transform scale-95 transition-transform duration-200" id="settings-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
                     <i class="fas fa-cog text-indigo-400"></i> Cài Đặt
                 </h2>
-                <button onclick="toggleSettings()" class="text-gray-400 hover:text-white transition">
-                    <i class="fas fa-times"></i>
-                </button>
+                <button onclick="toggleSettings()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
             </div>
 
-            <div class="mb-6">
-                <label class="block text-gray-300 text-sm font-semibold mb-2" for="github-token">
-                    GitHub Personal Access Token (PAT)
-                </label>
-                <div class="relative">
-                    <i class="fas fa-key absolute left-3 top-3 text-gray-500"></i>
-                    <input type="password" id="github-token"
-                        class="bg-gray-900 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-2.5 transition"
-                        placeholder="ghp_...">
-                </div>
-                <p class="text-xs text-gray-500 mt-2">
-                    Cần thiết để lưu thay đổi. Token được lưu cục bộ trên trình duyệt của bạn.
-                    <a href="https://github.com/settings/tokens" target="_blank" class="text-indigo-400 hover:text-indigo-300 underline">Tạo token tại đây</a> (chọn scope `repo`).
-                </p>
+            <div class="mb-4">
+                <label class="block text-gray-300 text-xs font-semibold mb-2">GitHub Token (PAT)</label>
+                <input type="password" id="github-token" class="bg-gray-900 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5 focus:ring-1 focus:ring-indigo-500 outline-none" placeholder="ghp_...">
+                <p class="text-[10px] text-gray-500 mt-1">Token cần quyền `repo`. Lưu cục bộ.</p>
             </div>
 
-            <div class="flex justify-end space-x-3">
-                <button onclick="toggleSettings()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium rounded-lg transition">
-                    Hủy
-                </button>
-                <button onclick="saveSettings()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-lg shadow-lg shadow-indigo-500/30 transition">
-                    Lưu Token
-                </button>
+            <div class="flex justify-end gap-2">
+                <button onclick="toggleSettings()" class="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white text-xs font-medium rounded-lg">Đóng</button>
+                <button onclick="saveSettings()" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg shadow-lg shadow-indigo-500/30">Lưu</button>
             </div>
         </div>
     </div>
 
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-gray-800 border border-gray-700 text-white px-6 py-4 rounded-xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 z-50 max-w-sm">
-        <div id="toast-icon" class="text-2xl"></div>
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 left-5 sm:left-auto bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3 z-50 sm:max-w-sm">
+        <div id="toast-icon" class="text-xl"></div>
         <div>
             <h4 id="toast-title" class="font-bold text-sm">Thông báo</h4>
-            <p id="toast-message" class="text-xs text-gray-300">Nội dung thông báo</p>
+            <p id="toast-message" class="text-xs text-gray-300">Nội dung</p>
         </div>
     </div>
 
     <script>
         // Configuration
-        const REPO_NAME = '{{REPO_NAME}}'; // Will be replaced by CI
+        const INJECTED_REPO_NAME = '{{REPO_NAME}}';
         const FILE_PATH = 'Yuusei.txt';
-        const API_URL = `https://api.github.com/repos/${REPO_NAME}/contents/${FILE_PATH}`;
 
         let currentSha = '';
+        let repoName = '';
+
+        function getRepoName() {
+            // 1. Use injected if valid
+            if (INJECTED_REPO_NAME && INJECTED_REPO_NAME !== '{{REPO_NAME}}') {
+                return INJECTED_REPO_NAME;
+            }
+            // 2. Try to parse from URL (GitHub Pages format: user.github.io/repo)
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+            if (window.location.hostname.includes('github.io') && pathParts.length > 0) {
+                const user = window.location.hostname.split('.')[0];
+                const repo = pathParts[0];
+                return `${user}/${repo}`;
+            }
+            return null;
+        }
+
+        function getApiUrl() {
+            repoName = getRepoName();
+            if (!repoName) {
+                console.error('Could not determine Repo Name');
+                return null;
+            }
+            return `https://api.github.com/repos/${repoName}/contents/${FILE_PATH}`;
+        }
+
+        // Search Logic
+        function toggleSearch() {
+            const bar = document.getElementById('search-bar');
+            bar.classList.toggle('hidden');
+            if (!bar.classList.contains('hidden')) {
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function findNext() {
+            const query = document.getElementById('search-input').value;
+            if (!query) return;
+            const editor = document.getElementById('editor');
+            const text = editor.value;
+            const start = editor.selectionEnd; // Start search from end of current selection
+
+            let index = text.toLowerCase().indexOf(query.toLowerCase(), start);
+
+            // Wrap around
+            if (index === -1) {
+                index = text.toLowerCase().indexOf(query.toLowerCase(), 0);
+                if (index === -1) {
+                    showToast('Tìm kiếm', 'Không tìm thấy kết quả', 'info');
+                    return;
+                }
+            }
+
+            editor.focus();
+            editor.setSelectionRange(index, index + query.length);
+            // Scroll into view logic (basic)
+            const lineHeight = 20; // Approx
+            const lines = text.substr(0, index).split('\n').length;
+            editor.scrollTop = (lines - 5) * lineHeight;
+        }
+
+        function findPrev() {
+            const query = document.getElementById('search-input').value;
+            if (!query) return;
+            const editor = document.getElementById('editor');
+            const text = editor.value;
+            const start = editor.selectionStart;
+
+            let index = text.toLowerCase().lastIndexOf(query.toLowerCase(), start - 1);
+
+            // Wrap around
+            if (index === -1) {
+                index = text.toLowerCase().lastIndexOf(query.toLowerCase());
+                if (index === -1) return;
+            }
+
+            editor.focus();
+            editor.setSelectionRange(index, index + query.length);
+            const lines = text.substr(0, index).split('\n').length;
+            editor.scrollTop = (lines - 5) * 20;
+        }
 
         // UI Helpers
         function showToast(title, message, type = 'success') {
@@ -187,11 +253,8 @@
                 icon.innerHTML = '<i class="fas fa-info-circle text-blue-400"></i>';
             }
 
-            toast.classList.remove('translate-y-20', 'opacity-0');
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-24', 'opacity-0'), 3000);
         }
 
         function setStatus(msg, type = 'ready') {
@@ -200,38 +263,28 @@
             if (type === 'loading') color = 'bg-yellow-500 animate-pulse';
             if (type === 'success') color = 'bg-green-500';
             if (type === 'error') color = 'bg-red-500';
-
-            el.innerHTML = `<span class="w-2 h-2 rounded-full ${color} block"></span> ${msg}`;
+            el.innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${color} block"></span> ${msg}`;
         }
 
         function updateStats() {
             const text = document.getElementById('editor').value;
-            const lines = text.split('\n').length;
-            const chars = text.length;
-            document.getElementById('line-count').textContent = `${lines.toLocaleString()} dòng`;
-            document.getElementById('char-count').textContent = `${chars.toLocaleString()} ký tự`;
+            document.getElementById('line-count').textContent = `${text.split('\n').length.toLocaleString()} dòng`;
         }
 
         // Modal Logic
         function toggleSettings() {
             const modal = document.getElementById('settings-modal');
             const content = document.getElementById('settings-content');
-
             if (modal.classList.contains('hidden')) {
                 modal.classList.remove('hidden');
-                // Small delay to allow display:block to apply before opacity transition
                 setTimeout(() => {
                     modal.classList.remove('opacity-0', 'pointer-events-none');
-                    content.classList.remove('scale-95');
-                    content.classList.add('scale-100');
+                    content.classList.remove('scale-95'); content.classList.add('scale-100');
                 }, 10);
             } else {
                 modal.classList.add('opacity-0', 'pointer-events-none');
-                content.classList.remove('scale-100');
-                content.classList.add('scale-95');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                }, 200);
+                content.classList.remove('scale-100'); content.classList.add('scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 200);
             }
         }
 
@@ -239,7 +292,7 @@
             const token = document.getElementById('github-token').value.trim();
             if (token) {
                 localStorage.setItem('github_token', token);
-                showToast('Thành công', 'Đã lưu Token GitHub!');
+                showToast('Thành công', 'Đã lưu Token!');
                 toggleSettings();
                 loadFile();
             } else {
@@ -249,88 +302,76 @@
 
         // GitHub API Logic
         async function loadFile() {
+            const url = getApiUrl();
+            if (!url) {
+                setStatus('Lỗi cấu hình', 'error');
+                // Don't show toast immediately on load to avoid spamming
+                return;
+            }
+
             setStatus('Đang tải...', 'loading');
-            document.getElementById('editor').classList.add('opacity-50', 'cursor-wait');
+            const editor = document.getElementById('editor');
+            editor.classList.add('opacity-50');
 
             try {
                 const token = localStorage.getItem('github_token');
                 const headers = token ? { 'Authorization': `token ${token}` } : {};
-
-                // Add cache buster
-                const response = await fetch(`${API_URL}?t=${new Date().getTime()}`, { headers });
+                const response = await fetch(`${url}?t=${new Date().getTime()}`, { headers });
 
                 if (!response.ok) {
                     if (response.status === 404) throw new Error('Không tìm thấy tệp');
-                    if (response.status === 401) throw new Error('Chưa xác thực (Kiểm tra Token)');
-                    throw new Error(`Lỗi mạng: ${response.status}`);
+                    if (response.status === 401) throw new Error('Chưa xác thực');
+                    throw new Error(`Lỗi: ${response.status}`);
                 }
 
                 const data = await response.json();
                 currentSha = data.sha;
                 document.getElementById('file-sha').textContent = `SHA: ${currentSha.substring(0, 7)}`;
-
-                // Decode content (Handling UTF-8 properly with base64)
                 const content = new TextDecoder().decode(Uint8Array.from(atob(data.content), c => c.charCodeAt(0)));
 
-                document.getElementById('editor').value = content;
+                editor.value = content;
                 updateStats();
                 setStatus('Sẵn sàng', 'success');
-                showToast('Hoàn tất', 'Đã tải nội dung mới nhất.');
-
             } catch (error) {
                 console.error(error);
                 setStatus('Lỗi tải', 'error');
-                showToast('Lỗi tải', error.message, 'error');
-                if(error.message.includes('xác thực')) toggleSettings();
+                if (error.message.includes('xác thực')) {
+                    // Only prompt setting if token is missing or invalid
+                   // toggleSettings();
+                }
             } finally {
-                document.getElementById('editor').classList.remove('opacity-50', 'cursor-wait');
+                editor.classList.remove('opacity-50');
             }
         }
 
         async function saveFile() {
             const token = localStorage.getItem('github_token');
             if (!token) {
-                showToast('Yêu cầu Token', 'Vui lòng nhập GitHub Token trong cài đặt!', 'error');
+                showToast('Yêu cầu', 'Cần nhập Token trước!', 'error');
                 toggleSettings();
                 return;
             }
+            if (!confirm('Lưu thay đổi?')) return;
 
-            if (!confirm('Bạn có chắc chắn muốn lưu các thay đổi này vào GitHub không?')) return;
-
+            const url = getApiUrl();
             setStatus('Đang lưu...', 'loading');
             const content = document.getElementById('editor').value;
-
-            // Encode content to base64 (UTF-8 safe)
             const encodedContent = btoa(String.fromCharCode(...new TextEncoder().encode(content)));
 
-            const body = {
-                message: `Update ${FILE_PATH} via Yuusei Web Editor`,
-                content: encodedContent,
-                sha: currentSha
-            };
-
             try {
-                const response = await fetch(API_URL, {
+                const response = await fetch(url, {
                     method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(body)
+                    headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: `Update ${FILE_PATH}`, content: encodedContent, sha: currentSha })
                 });
 
-                if (!response.ok) {
-                    const errData = await response.json();
-                    throw new Error(errData.message || 'Lỗi khi lưu');
-                }
+                if (!response.ok) throw new Error((await response.json()).message || 'Lỗi lưu');
 
                 const data = await response.json();
                 currentSha = data.content.sha;
                 document.getElementById('file-sha').textContent = `SHA: ${currentSha.substring(0, 7)}`;
-
                 setStatus('Đã lưu', 'success');
-                showToast('Thành công', 'Đã lưu thay đổi lên GitHub!');
-
+                showToast('Thành công', 'Đã lưu thay đổi!');
             } catch (error) {
                 console.error(error);
                 setStatus('Lỗi lưu', 'error');
@@ -341,16 +382,10 @@
         // Init
         document.addEventListener('DOMContentLoaded', () => {
             const token = localStorage.getItem('github_token');
-            if (token) {
-                document.getElementById('github-token').value = token;
-            }
-            // Auto load if we have a guess at the repo name (or if injected)
-            if (REPO_NAME !== '{{REPO_NAME}}') {
-                loadFile();
-            } else {
-                // If local dev or not injected yet
-                console.warn('REPO_NAME not injected');
-            }
+            if (token) document.getElementById('github-token').value = token;
+
+            // Try to load immediately
+            loadFile();
         });
     </script>
 </body>
