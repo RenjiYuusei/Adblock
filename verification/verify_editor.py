@@ -11,37 +11,31 @@ def verify_yuusei_editor():
         cwd = os.getcwd()
         page.goto(f"file://{cwd}/index.html")
 
-        # Verify title (Updated to Vietnamese)
+        # Verify title
         assert page.title() == "Trình Chỉnh Sửa Bộ Lọc Yuusei"
 
-        # 1. Verify Mobile Navbar
-        # Title should be visible (compact version)
-        # Using a broader selector and checking if ANY is visible, since CSS media queries hide/show different ones
-        # The mobile view should show <div class="sm:hidden"><h1 ...>Yuusei</h1></div>
-        assert page.locator(".sm\\:hidden h1:text('Yuusei')").is_visible()
+        # 1. Verify Ace Editor Loaded
+        # Ace creates a div with class "ace_editor"
+        page.wait_for_selector(".ace_editor")
+        assert page.locator(".ace_editor").is_visible()
 
-        # Search toggle button should be visible
-        page.click("button[title='Tìm kiếm']")
-        assert page.locator("#search-bar").is_visible()
+        # 2. Interact with Editor via JS
+        # Set value
+        page.evaluate("ace.edit('editor').setValue('! Test Content');")
+        # Get value
+        content = page.evaluate("ace.edit('editor').getValue();")
+        assert content == "! Test Content"
 
-        # Test search input typing
-        page.fill("#search-input", "test")
+        # 3. Verify Navbar Buttons
+        assert page.locator("#btn-reload").is_visible()
+        assert page.locator("#btn-save").is_visible()
 
-        # Close search
-        page.locator("#search-bar button:has(.fa-times)").click()
-
-        # 2. Verify Text Editor
-        assert page.locator("#editor").is_visible()
-
-        # 3. Verify Settings Modal
+        # 4. Settings Modal
         page.click("button[title='Cài đặt']")
         assert page.locator("h2:text('Cài Đặt')").is_visible()
 
-        # Take screenshot of mobile view
-        page.screenshot(path="verification/editor_mobile.png")
-
-        # Close modal
-        page.click("button:text('Đóng')")
+        # Take screenshot
+        page.screenshot(path="verification/editor_ace_mobile.png")
 
         browser.close()
 

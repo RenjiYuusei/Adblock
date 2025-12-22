@@ -58,7 +58,7 @@ jobs:
                   # Đếm số quy tắc
                   RULE_COUNT=$(grep -cvE '^!|^$' "${FILTER_FILE}")
                   echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
-
+                  
                   # Tính checksum
                   CHECKSUM=$(sha256sum "${FILTER_FILE}" | cut -d' ' -f1)
                   echo "CHECKSUM=$CHECKSUM" >> $GITHUB_ENV
@@ -88,7 +88,7 @@ jobs:
                   | :--- | :--- |
                   | **uBlock / AdGuard** | [Nhấn để Cài đặt](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt&title=Yuusei%20Filter) |
                   | **Liên kết trực tiếp** | [Yuusei.txt](https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt) |
-
+                  
                   ## 🌐 Trình Chỉnh Sửa Web
                   
                   Bạn có thể xem và chỉnh sửa bộ lọc trực tiếp thông qua [Trang Web Editor](https://${{ github.repository_owner }}.github.io/${{ env.REPO_NAME }}/).
@@ -97,9 +97,9 @@ jobs:
                   - ✏️ Chỉnh sửa trực tuyến.
                   - 🔄 Tự động cập nhật từ nguồn AbpVN.
                   - 🇻🇳 Giao diện Tiếng Việt thân thiện.
-
+                  
                   ## ℹ️ Thông tin
-
+                  
                   Bộ lọc này tự động tổng hợp các quy tắc từ **AbpVN** và các quy tắc tùy chỉnh của **Yuusei**.
                   
                   ---
