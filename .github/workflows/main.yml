@@ -1,26 +1,26 @@
-name: Update Yuusei Filter & Deploy Site
+name: Cập nhật Bộ lọc & Triển khai Web
 
 on:
+    schedule:
+        - cron: '0 0 * * *' # Chạy hàng ngày vào lúc 00:00 UTC
     push:
         paths:
             - 'Yuusei.txt'
             - 'index.html'
+            - 'update_filters.py'
             - '.github/workflows/main.yml'
     workflow_dispatch:
         inputs:
             force_update:
-                description: 'Force Update'
+                description: 'Cập nhật bắt buộc'
                 required: false
                 type: boolean
                 default: false
 
 env:
     FILTER_FILE: Yuusei.txt
-    MIN_RULES: 10
     TIMEZONE: 'Asia/Ho_Chi_Minh'
-    CACHE_VERSION: 'v1'
 
-# Permissions required for Pages deployment and modifying repo
 permissions:
     contents: write
     pages: write
@@ -36,7 +36,7 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Setup environment
+            - name: Thiết lập môi trường
               run: |
                   sudo ln -sf /usr/share/zoneinfo/${{ env.TIMEZONE }} /etc/localtime
                   echo "DATE=$(date +'%d-%m-%Y')" >> $GITHUB_ENV
@@ -44,82 +44,88 @@ jobs:
                   echo "REPO_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
                   echo "AUTHOR_NAME=${GITHUB_REPOSITORY%/*}" >> $GITHUB_ENV
 
-            - name: Validate and analyze filter file
-              id: validate
+            - name: Cài đặt Python Dependencies
               run: |
-                  if [ ! -f "${{ env.FILTER_FILE }}" ]; then
-                    echo "::error::File not found: ${{ env.FILTER_FILE }}"
-                    exit 1
-                  fi
+                  pip install requests
 
-                  # Basic cleanup
-                  sed -i '/^$/d' "${FILTER_FILE}"
-                  
+            - name: Chạy script cập nhật bộ lọc
+              run: |
+                  python update_filters.py
+
+            - name: Kiểm tra thay đổi và thống kê
+              id: stats
+              run: |
+                  # Đếm số quy tắc
                   RULE_COUNT=$(grep -cvE '^!|^$' "${FILTER_FILE}")
                   echo "RULE_COUNT=$RULE_COUNT" >> $GITHUB_ENV
 
-                  # Calculate checksum
+                  # Tính checksum
                   CHECKSUM=$(sha256sum "${FILTER_FILE}" | cut -d' ' -f1)
                   echo "CHECKSUM=$CHECKSUM" >> $GITHUB_ENV
-
-            - name: Update filter metadata
-              run: |
-                  sed -i "s/^! Version:.*/! Version: ${{ env.FULL_VERSION }}/" "${{ env.FILTER_FILE }}"
-                  sed -i "s/^! Last modified:.*/! Last modified: ${{ env.DATE }}/" "${{ env.FILTER_FILE }}"
-                  sed -i "s/^! Checksum:.*/! Checksum: ${{ env.CHECKSUM }}/" "${{ env.FILTER_FILE }}"
                   
-                  # Check for changes
+                  # Kiểm tra git status
                   if git diff --quiet "${{ env.FILTER_FILE }}"; then
                     echo "CHANGED=false" >> $GITHUB_ENV
                   else
                     echo "CHANGED=true" >> $GITHUB_ENV
                   fi
 
-            - name: Generate Simple README
+            - name: Tạo README.md (Tiếng Việt)
               run: |
                   cat > README.md <<EOF
                   # 🛡️ Yuusei Filter List
                   
-                  **Simple. Fast. Optimized for Vietnam.**
+                  **Bộ lọc quảng cáo đơn giản, hiệu quả, tối ưu cho người Việt.**
                   
-                  - **Version**: ${{ env.FULL_VERSION }}
-                  - **Rules**: ${{ env.RULE_COUNT }}
-                  - **Last Update**: ${{ env.DATE }}
+                  - **Phiên bản**: ${{ env.FULL_VERSION }}
+                  - **Số lượng quy tắc**: ${{ env.RULE_COUNT }}
+                  - **Cập nhật lần cuối**: ${{ env.DATE }}
+                  - **Checksum**: \`${{ env.CHECKSUM }}\`
                   
-                  ## 🚀 Installation
+                  ## 🚀 Cài Đặt
                   
-                  | Filter | Link |
+                  | Trình chặn | Liên kết cài đặt nhanh |
                   | :--- | :--- |
-                  | **uBlock / AdGuard** | [Subscribe](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt&title=Yuusei%20Filter) |
-                  | **Raw URL** | [Yuusei.txt](https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt) |
+                  | **uBlock / AdGuard** | [Nhấn để Cài đặt](https://subscribe.adblockplus.org/?location=https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt&title=Yuusei%20Filter) |
+                  | **Liên kết trực tiếp** | [Yuusei.txt](https://raw.githubusercontent.com/${{ github.repository }}/main/Yuusei.txt) |
+
+                  ## 🌐 Trình Chỉnh Sửa Web
                   
-                  ## 🌐 Web Editor
+                  Bạn có thể xem và chỉnh sửa bộ lọc trực tiếp thông qua [Trang Web Editor](https://${{ github.repository_owner }}.github.io/${{ env.REPO_NAME }}/).
                   
-                  Manage the filter list easily via our [Web Editor](https://${{ github.repository_owner }}.github.io/${{ env.REPO_NAME }}/).
+                  Tính năng:
+                  - ✏️ Chỉnh sửa trực tuyến.
+                  - 🔄 Tự động cập nhật từ nguồn AbpVN.
+                  - 🇻🇳 Giao diện Tiếng Việt thân thiện.
+
+                  ## ℹ️ Thông tin
+
+                  Bộ lọc này tự động tổng hợp các quy tắc từ **AbpVN** và các quy tắc tùy chỉnh của **Yuusei**.
                   
                   ---
-                  *Made with ❤️ by ${{ env.AUTHOR_NAME }}*
+                  *Được phát triển bởi ${{ env.AUTHOR_NAME }}*
                   EOF
 
-            - name: Prepare Website
+            - name: Chuẩn bị trang Web
               run: |
-                  # Inject Repository Name into index.html
+                  # Chèn tên repository vào index.html để API hoạt động
                   sed -i "s|{{REPO_NAME}}|${{ github.repository }}|g" index.html
 
-            - name: Commit changes
-              if: env.CHANGED == 'true' || github.event_name == 'workflow_dispatch'
+            - name: Commit và Push thay đổi
+              if: env.CHANGED == 'true' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
                   git add "${{ env.FILTER_FILE }}" README.md
-                  # Only commit if there are changes
-                  git diff-index --quiet HEAD || git commit -m "chore: update filter and readme [skip ci]"
+
+                  # Commit nếu có thay đổi
+                  git diff-index --quiet HEAD || git commit -m "chore: cập nhật bộ lọc v${{ env.FULL_VERSION }}"
                   git push
 
-            - name: Upload Pages Artifact
+            - name: Upload Artifact cho Pages
               uses: actions/upload-pages-artifact@v3
               with:
                   path: .
 
-            - name: Deploy to GitHub Pages
+            - name: Deploy lên GitHub Pages
               uses: actions/deploy-pages@v4

@@ -1,168 +1,310 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuusei Filter Editor</title>
+    <title>Trình Chỉnh Sửa Bộ Lọc Yuusei</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        textarea { font-family: 'Consolas', 'Monaco', monospace; white-space: pre; overflow-wrap: normal; overflow-x: scroll; }
+        body { font-family: 'Inter', sans-serif; }
+        textarea {
+            font-family: 'JetBrains Mono', monospace;
+            white-space: pre;
+            overflow-wrap: normal;
+            overflow-x: scroll;
+            tab-size: 4;
+        }
+        /* Custom Scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
     </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gray: {
+                            900: '#111827',
+                            800: '#1f2937',
+                            700: '#374151',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-100 h-screen flex flex-col">
+<body class="bg-gray-900 text-gray-100 h-screen flex flex-col overflow-hidden">
 
     <!-- Navbar -->
-    <nav class="bg-indigo-600 text-white p-4 shadow-lg flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-            <i class="fas fa-shield-alt text-2xl"></i>
-            <h1 class="text-xl font-bold">Yuusei Editor</h1>
+    <nav class="bg-gray-800 border-b border-gray-700 p-4 shadow-lg flex justify-between items-center z-10">
+        <div class="flex items-center space-x-3">
+            <div class="bg-indigo-600 p-2 rounded-lg shadow-lg shadow-indigo-500/50">
+                <i class="fas fa-shield-alt text-xl text-white"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-tight text-white">Yuusei Editor</h1>
+                <p class="text-xs text-gray-400">Quản lý bộ lọc quảng cáo</p>
+            </div>
         </div>
-        <div class="flex items-center space-x-4">
-            <span id="status" class="text-sm font-light italic">Ready</span>
-            <button onclick="saveFile()" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded font-bold shadow transition flex items-center">
-                <i class="fas fa-save mr-2"></i> Save
+        <div class="flex items-center space-x-3">
+            <span id="status" class="text-xs font-medium text-gray-400 mr-2 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-gray-500 block"></span>
+                Sẵn sàng
+            </span>
+
+            <button onclick="loadFile()" class="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2">
+                <i class="fas fa-sync-alt"></i> Tải lại
             </button>
-            <button onclick="toggleSettings()" class="bg-indigo-700 hover:bg-indigo-800 p-2 rounded-full w-10 h-10 flex items-center justify-center transition">
-                <i class="fas fa-cog"></i>
+
+            <button onclick="saveFile()" class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg shadow-indigo-500/30 transition transform hover:scale-105 flex items-center gap-2">
+                <i class="fas fa-save"></i> Lưu Thay Đổi
+            </button>
+
+            <button onclick="toggleSettings()" class="bg-gray-700 hover:bg-gray-600 text-gray-300 p-2 rounded-lg w-10 h-10 flex items-center justify-center transition ml-2">
+                <i class="fas fa-cog text-lg"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Editor -->
-    <div class="flex-grow p-4 overflow-hidden flex flex-col">
-        <div class="bg-white rounded-lg shadow-xl h-full flex flex-col border border-gray-200">
-            <div class="bg-gray-50 border-b p-2 text-xs text-gray-500 font-mono flex justify-between">
-                <span>File: Yuusei.txt</span>
-                <span id="line-count">0 lines</span>
+    <!-- Main Content -->
+    <div class="flex-grow flex overflow-hidden relative">
+        <!-- Sidebar (Optional, maybe for stats later) -->
+
+        <!-- Editor Area -->
+        <div class="flex-grow flex flex-col h-full bg-gray-900 relative">
+            <!-- Toolbar / Info bar -->
+            <div class="bg-gray-800 border-b border-gray-700 px-4 py-2 text-xs font-mono text-gray-400 flex justify-between items-center select-none">
+                <div class="flex items-center gap-4">
+                    <span class="flex items-center gap-2"><i class="far fa-file-alt"></i> Yuusei.txt</span>
+                    <span id="file-sha" class="text-gray-600" title="Commit SHA">SHA: ---</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span id="line-count">0 dòng</span>
+                    <span id="char-count">0 ký tự</span>
+                </div>
             </div>
-            <textarea id="editor" class="flex-grow p-4 w-full h-full resize-none focus:outline-none text-sm leading-relaxed" spellcheck="false" oninput="updateStats()"></textarea>
+
+            <!-- Textarea -->
+            <div class="relative flex-grow">
+                <textarea id="editor"
+                    class="w-full h-full bg-gray-900 text-gray-300 p-4 resize-none focus:outline-none focus:ring-0 leading-6"
+                    placeholder="Đang tải dữ liệu..."
+                    spellcheck="false"
+                    oninput="updateStats()"></textarea>
+            </div>
         </div>
     </div>
 
     <!-- Settings Modal -->
-    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-2xl p-6 w-96 max-w-full">
-            <h2 class="text-xl font-bold mb-4 text-gray-800">Settings</h2>
-
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2">GitHub Personal Access Token</label>
-                <input type="password" id="github-token" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="ghp_...">
-                <p class="text-xs text-gray-500 mt-1">Required to save changes. Token is stored locally.</p>
+    <div id="settings-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center z-50 transition-opacity opacity-0 pointer-events-none">
+        <div class="bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-6 w-96 max-w-[90vw] transform scale-95 transition-transform duration-200" id="settings-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-cog text-indigo-400"></i> Cài Đặt
+                </h2>
+                <button onclick="toggleSettings()" class="text-gray-400 hover:text-white transition">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
 
-            <div class="flex justify-end space-x-2">
-                <button onclick="toggleSettings()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Cancel</button>
-                <button onclick="saveSettings()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Save Token</button>
+            <div class="mb-6">
+                <label class="block text-gray-300 text-sm font-semibold mb-2" for="github-token">
+                    GitHub Personal Access Token (PAT)
+                </label>
+                <div class="relative">
+                    <i class="fas fa-key absolute left-3 top-3 text-gray-500"></i>
+                    <input type="password" id="github-token"
+                        class="bg-gray-900 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 p-2.5 transition"
+                        placeholder="ghp_...">
+                </div>
+                <p class="text-xs text-gray-500 mt-2">
+                    Cần thiết để lưu thay đổi. Token được lưu cục bộ trên trình duyệt của bạn.
+                    <a href="https://github.com/settings/tokens" target="_blank" class="text-indigo-400 hover:text-indigo-300 underline">Tạo token tại đây</a> (chọn scope `repo`).
+                </p>
+            </div>
+
+            <div class="flex justify-end space-x-3">
+                <button onclick="toggleSettings()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium rounded-lg transition">
+                    Hủy
+                </button>
+                <button onclick="saveSettings()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-lg shadow-lg shadow-indigo-500/30 transition">
+                    Lưu Token
+                </button>
             </div>
         </div>
     </div>
 
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-gray-800 border border-gray-700 text-white px-6 py-4 rounded-xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 z-50 max-w-sm">
+        <div id="toast-icon" class="text-2xl"></div>
+        <div>
+            <h4 id="toast-title" class="font-bold text-sm">Thông báo</h4>
+            <p id="toast-message" class="text-xs text-gray-300">Nội dung thông báo</p>
+        </div>
+    </div>
+
     <script>
-        // Placeholder replaced by GitHub Action
-        const REPO_NAME = '{{REPO_NAME}}'; // e.g., "username/repo"
+        // Configuration
+        const REPO_NAME = '{{REPO_NAME}}'; // Will be replaced by CI
         const FILE_PATH = 'Yuusei.txt';
         const API_URL = `https://api.github.com/repos/${REPO_NAME}/contents/${FILE_PATH}`;
 
         let currentSha = '';
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            const token = localStorage.getItem('github_token');
-            if (token) {
-                document.getElementById('github-token').value = token;
-            }
-            loadFile();
-        });
+        // UI Helpers
+        function showToast(title, message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const titleEl = document.getElementById('toast-title');
+            const msgEl = document.getElementById('toast-message');
 
+            titleEl.textContent = title;
+            msgEl.textContent = message;
+
+            if (type === 'success') {
+                icon.innerHTML = '<i class="fas fa-check-circle text-green-400"></i>';
+                toast.classList.add('border-green-900');
+            } else if (type === 'error') {
+                icon.innerHTML = '<i class="fas fa-exclamation-circle text-red-400"></i>';
+                toast.classList.add('border-red-900');
+            } else {
+                icon.innerHTML = '<i class="fas fa-info-circle text-blue-400"></i>';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function setStatus(msg, type = 'ready') {
+            const el = document.getElementById('status');
+            let color = 'bg-gray-500';
+            if (type === 'loading') color = 'bg-yellow-500 animate-pulse';
+            if (type === 'success') color = 'bg-green-500';
+            if (type === 'error') color = 'bg-red-500';
+
+            el.innerHTML = `<span class="w-2 h-2 rounded-full ${color} block"></span> ${msg}`;
+        }
+
+        function updateStats() {
+            const text = document.getElementById('editor').value;
+            const lines = text.split('\n').length;
+            const chars = text.length;
+            document.getElementById('line-count').textContent = `${lines.toLocaleString()} dòng`;
+            document.getElementById('char-count').textContent = `${chars.toLocaleString()} ký tự`;
+        }
+
+        // Modal Logic
         function toggleSettings() {
             const modal = document.getElementById('settings-modal');
-            modal.classList.toggle('hidden');
+            const content = document.getElementById('settings-content');
+
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                // Small delay to allow display:block to apply before opacity transition
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    content.classList.remove('scale-95');
+                    content.classList.add('scale-100');
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 200);
+            }
         }
 
         function saveSettings() {
             const token = document.getElementById('github-token').value.trim();
             if (token) {
                 localStorage.setItem('github_token', token);
-                showStatus('Token saved', 'success');
+                showToast('Thành công', 'Đã lưu Token GitHub!');
                 toggleSettings();
-                loadFile(); // Reload with new token if needed
+                loadFile();
             } else {
-                alert('Please enter a token');
+                showToast('Lỗi', 'Vui lòng nhập Token!', 'error');
             }
         }
 
-        function updateStats() {
-            const text = document.getElementById('editor').value;
-            const lines = text.split('\n').length;
-            document.getElementById('line-count').textContent = `${lines} lines`;
-        }
-
-        function showStatus(msg, type = 'info') {
-            const el = document.getElementById('status');
-            el.textContent = msg;
-            el.className = 'text-sm font-bold transition duration-300 ' +
-                (type === 'error' ? 'text-red-500' : type === 'success' ? 'text-green-400' : 'text-gray-200');
-
-            if(type !== 'error') {
-                setTimeout(() => {
-                    el.textContent = 'Ready';
-                    el.className = 'text-sm font-light italic text-white';
-                }, 3000);
-            }
-        }
-
+        // GitHub API Logic
         async function loadFile() {
-            showStatus('Loading...', 'info');
+            setStatus('Đang tải...', 'loading');
+            document.getElementById('editor').classList.add('opacity-50', 'cursor-wait');
+
             try {
-                // Try fetching raw first for speed if public
-                // But for SHA we need the API
                 const token = localStorage.getItem('github_token');
                 const headers = token ? { 'Authorization': `token ${token}` } : {};
 
-                const response = await fetch(API_URL, { headers });
+                // Add cache buster
+                const response = await fetch(`${API_URL}?t=${new Date().getTime()}`, { headers });
 
                 if (!response.ok) {
-                    if (response.status === 404) throw new Error('File not found');
-                    if (response.status === 401) throw new Error('Unauthorized (Check Token)');
-                    throw new Error('Network error');
+                    if (response.status === 404) throw new Error('Không tìm thấy tệp');
+                    if (response.status === 401) throw new Error('Chưa xác thực (Kiểm tra Token)');
+                    throw new Error(`Lỗi mạng: ${response.status}`);
                 }
 
                 const data = await response.json();
                 currentSha = data.sha;
+                document.getElementById('file-sha').textContent = `SHA: ${currentSha.substring(0, 7)}`;
 
-                // Decode content (GitHub API returns base64)
-                // Using decodeURIComponent(escape(window.atob(str))) to handle UTF-8 correctly
-                const content = decodeURIComponent(escape(window.atob(data.content.replace(/\n/g, ''))));
+                // Decode content (Handling UTF-8 properly with base64)
+                const content = new TextDecoder().decode(Uint8Array.from(atob(data.content), c => c.charCodeAt(0)));
 
                 document.getElementById('editor').value = content;
                 updateStats();
-                showStatus('Loaded successfully', 'success');
+                setStatus('Sẵn sàng', 'success');
+                showToast('Hoàn tất', 'Đã tải nội dung mới nhất.');
 
             } catch (error) {
                 console.error(error);
-                showStatus(`Error: ${error.message}`, 'error');
-                if(error.message.includes('Unauthorized')) toggleSettings();
+                setStatus('Lỗi tải', 'error');
+                showToast('Lỗi tải', error.message, 'error');
+                if(error.message.includes('xác thực')) toggleSettings();
+            } finally {
+                document.getElementById('editor').classList.remove('opacity-50', 'cursor-wait');
             }
         }
 
         async function saveFile() {
             const token = localStorage.getItem('github_token');
             if (!token) {
-                alert('Please configure your GitHub Token in settings first!');
+                showToast('Yêu cầu Token', 'Vui lòng nhập GitHub Token trong cài đặt!', 'error');
                 toggleSettings();
                 return;
             }
 
-            showStatus('Saving...', 'info');
+            if (!confirm('Bạn có chắc chắn muốn lưu các thay đổi này vào GitHub không?')) return;
+
+            setStatus('Đang lưu...', 'loading');
             const content = document.getElementById('editor').value;
 
-            // Encode to base64 UTF-8 safe
-            const encodedContent = window.btoa(unescape(encodeURIComponent(content)));
+            // Encode content to base64 (UTF-8 safe)
+            const encodedContent = btoa(String.fromCharCode(...new TextEncoder().encode(content)));
 
             const body = {
-                message: `Update ${FILE_PATH} via Web Editor`,
+                message: `Update ${FILE_PATH} via Yuusei Web Editor`,
                 content: encodedContent,
                 sha: currentSha
             };
@@ -179,18 +321,37 @@
 
                 if (!response.ok) {
                     const errData = await response.json();
-                    throw new Error(errData.message || 'Failed to save');
+                    throw new Error(errData.message || 'Lỗi khi lưu');
                 }
 
                 const data = await response.json();
-                currentSha = data.content.sha; // Update SHA for next save
-                showStatus('Saved successfully!', 'success');
+                currentSha = data.content.sha;
+                document.getElementById('file-sha').textContent = `SHA: ${currentSha.substring(0, 7)}`;
+
+                setStatus('Đã lưu', 'success');
+                showToast('Thành công', 'Đã lưu thay đổi lên GitHub!');
 
             } catch (error) {
                 console.error(error);
-                showStatus(`Save Error: ${error.message}`, 'error');
+                setStatus('Lỗi lưu', 'error');
+                showToast('Lỗi lưu', error.message, 'error');
             }
         }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('github_token');
+            if (token) {
+                document.getElementById('github-token').value = token;
+            }
+            // Auto load if we have a guess at the repo name (or if injected)
+            if (REPO_NAME !== '{{REPO_NAME}}') {
+                loadFile();
+            } else {
+                // If local dev or not injected yet
+                console.warn('REPO_NAME not injected');
+            }
+        });
     </script>
 </body>
 </html>
