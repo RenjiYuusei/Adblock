@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2025.12.22.1806
+! Version: 2025.12.22.1814
 ! Title: Yuusei
 ! Last modified: 22-12-2025
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: cfb06054eda8562fc3de722bc9b4d3ee0b09d684da0e24f6505b447d23bf8cbb
+! Checksum: 48828ea9874b7dc8143b3b410c172337a09b441cf7ecc84f38860e6030488420
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 hentaicb.help###cb-header-adx-pc
