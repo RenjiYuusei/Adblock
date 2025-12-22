@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trình Chỉnh Sửa Bộ Lọc Yuusei</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Ace Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ext-searchbox.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        #editor {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        /* Mobile Tweaks */
+        @media (max-width: 640px) {
+            .mobile-hide-text span { display: none; }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gray: { 900: '#111827', 800: '#1f2937', 700: '#374151' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-gray-100 h-screen flex flex-col overflow-hidden">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 border-b border-gray-700 p-2 sm:p-4 shadow-lg flex justify-between items-center z-10 shrink-0">
+        <div class="flex items-center space-x-2 sm:space-x-3">
+            <div class="bg-indigo-600 p-1.5 sm:p-2 rounded-lg shadow-lg shadow-indigo-500/50">
+                <i class="fas fa-shield-alt text-lg sm:text-xl text-white"></i>
+            </div>
+            <div class="hidden sm:block">
+                <h1 class="text-lg font-bold tracking-tight text-white leading-tight">Yuusei Editor</h1>
+                <p class="text-[10px] text-gray-400">Quản lý bộ lọc</p>
+            </div>
+            <div class="sm:hidden">
+                <h1 class="text-base font-bold text-white">Yuusei</h1>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-2">
+            <!-- Reload -->
+            <button onclick="loadFile()" id="btn-reload" class="bg-gray-700 hover:bg-gray-600 text-gray-200 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 mobile-hide-text" title="Tải lại">
+                <i class="fas fa-sync-alt"></i> <span>Tải lại</span>
+            </button>
+
+            <!-- Save -->
+            <button onclick="saveFile()" id="btn-save" class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-3 py-2 rounded-lg text-sm font-bold shadow-lg shadow-indigo-500/30 transition transform active:scale-95 flex items-center gap-2 mobile-hide-text" title="Lưu">
+                <i class="fas fa-save"></i> <span>Lưu</span>
+            </button>
+
+            <!-- Settings -->
+            <button onclick="toggleSettings()" class="bg-gray-700 hover:bg-gray-600 text-gray-300 p-2 rounded-lg w-9 h-9 flex items-center justify-center transition" title="Cài đặt">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-grow flex flex-col overflow-hidden relative bg-gray-900">
+        <!-- Status Bar -->
+        <div class="bg-gray-800 border-b border-gray-700 px-3 py-1 text-[10px] sm:text-xs font-mono text-gray-400 flex justify-between items-center select-none shrink-0 overflow-x-auto whitespace-nowrap">
+            <div class="flex items-center gap-3">
+                <span id="status" class="flex items-center gap-1.5 font-medium text-gray-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gray-500 block"></span> Sẵn sàng
+                </span>
+                <span id="file-sha" class="text-gray-500 hidden sm:inline">SHA: ---</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span id="stats-info">0 dòng</span>
+            </div>
+        </div>
+
+        <!-- Editor Container -->
+        <div class="relative flex-grow h-full">
+            <div id="editor"></div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4 transition-opacity opacity-0 pointer-events-none">
+        <div class="bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl p-5 w-full max-w-sm transform scale-95 transition-transform duration-200" id="settings-content">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-cog text-indigo-400"></i> Cài Đặt
+                </h2>
+                <button onclick="toggleSettings()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-300 text-xs font-semibold mb-2">GitHub Token (PAT)</label>
+                <input type="password" id="github-token" class="bg-gray-900 border border-gray-600 text-white text-sm rounded-lg block w-full p-2.5 focus:ring-1 focus:ring-indigo-500 outline-none" placeholder="ghp_...">
+                <p class="text-[10px] text-gray-500 mt-1">Token cần quyền `repo`. Lưu cục bộ.</p>
+            </div>
+
+            <div class="flex justify-end gap-2">
+                <button onclick="toggleSettings()" class="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white text-xs font-medium rounded-lg">Đóng</button>
+                <button onclick="saveSettings()" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg shadow-lg shadow-indigo-500/30">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 left-5 sm:left-auto bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3 z-50 sm:max-w-sm">
+        <div id="toast-icon" class="text-xl"></div>
+        <div>
+            <h4 id="toast-title" class="font-bold text-sm">Thông báo</h4>
+            <p id="toast-message" class="text-xs text-gray-300">Nội dung</p>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const INJECTED_REPO_NAME = '{{REPO_NAME}}';
+        const FILE_PATH = 'Yuusei.txt';
+
+        let currentSha = '';
+        let repoName = '';
+        let editor = null;
+
+        // Initialize Ace Editor
+        function initEditor() {
+            ace.config.set('basePath', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/');
+            editor = ace.edit("editor");
+            editor.setTheme("ace/theme/tomorrow_night"); // Dark theme with good contrast
+            editor.session.setMode("ace/mode/ini"); // INI mode highlights [sections] and !comments well
+
+            editor.setOptions({
+                fontSize: "14px",
+                fontFamily: "JetBrains Mono, Menlo, monospace",
+                showPrintMargin: false,
+                wrap: true,
+                scrollPastEnd: 0.5,
+                tabSize: 4,
+                useSoftTabs: true
+            });
+
+            // Update stats on change
+            editor.session.on('change', () => {
+                const lines = editor.session.getLength();
+                document.getElementById('stats-info').textContent = `${lines.toLocaleString()} dòng`;
+            });
+        }
+
+        function getRepoName() {
+            // 1. Use injected if valid
+            if (INJECTED_REPO_NAME && !INJECTED_REPO_NAME.includes('{{')) {
+                return INJECTED_REPO_NAME;
+            }
+            // 2. Try to parse from URL (GitHub Pages format: user.github.io/repo)
+            // Example: renjiyuusei.github.io/Adblock/
+            const hostname = window.location.hostname;
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+
+            if (hostname.includes('github.io')) {
+                const user = hostname.split('.')[0];
+                let repo = pathParts[0];
+
+                // If the path is empty (root), and it's a User Site (user.github.io), the repo is user.github.io
+                // BUT, often people deploy project sites to subfolders.
+                // If this is running at root of user.github.io, then repo name is likely "user.github.io" (the special repo)
+                if (!repo) {
+                    return `${user}/${user}.github.io`;
+                }
+                return `${user}/${repo}`;
+            }
+            return null;
+        }
+
+        function getApiUrl() {
+            repoName = getRepoName();
+            if (!repoName) {
+                console.error('Could not determine Repo Name');
+                return null;
+            }
+            return `https://api.github.com/repos/${repoName}/contents/${FILE_PATH}`;
+        }
+
+        // UI Helpers
+        function showToast(title, message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const titleEl = document.getElementById('toast-title');
+            const msgEl = document.getElementById('toast-message');
+
+            titleEl.textContent = title;
+            msgEl.textContent = message;
+
+            if (type === 'success') {
+                icon.innerHTML = '<i class="fas fa-check-circle text-green-400"></i>';
+                toast.classList.add('border-green-900');
+            } else if (type === 'error') {
+                icon.innerHTML = '<i class="fas fa-exclamation-circle text-red-400"></i>';
+                toast.classList.add('border-red-900');
+            } else {
+                icon.innerHTML = '<i class="fas fa-info-circle text-blue-400"></i>';
+            }
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-24', 'opacity-0'), 4000);
+        }
+
+        function setStatus(msg, type = 'ready') {
+            const el = document.getElementById('status');
+            let color = 'bg-gray-500';
+            if (type === 'loading') color = 'bg-yellow-500 animate-pulse';
+            if (type === 'success') color = 'bg-green-500';
+            if (type === 'error') color = 'bg-red-500';
+            el.innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${color} block"></span> ${msg}`;
+        }
+
+        // Modal Logic
+        function toggleSettings() {
+            const modal = document.getElementById('settings-modal');
+            const content = document.getElementById('settings-content');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    content.classList.remove('scale-95'); content.classList.add('scale-100');
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.remove('scale-100'); content.classList.add('scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 200);
+            }
+        }
+
+        function saveSettings() {
+            const token = document.getElementById('github-token').value.trim();
+            if (token) {
+                localStorage.setItem('github_token', token);
+                showToast('Thành công', 'Đã lưu Token!');
+                toggleSettings();
+                loadFile();
+            } else {
+                showToast('Lỗi', 'Vui lòng nhập Token!', 'error');
+            }
+        }
+
+        // GitHub API Logic
+        async function loadFile() {
+            const url = getApiUrl();
+            if (!url) {
+                setStatus('Lỗi cấu hình', 'error');
+                return;
+            }
+
+            setStatus('Đang tải...', 'loading');
+            editor.setReadOnly(true);
+
+            try {
+                const token = localStorage.getItem('github_token');
+                const headers = token ? { 'Authorization': `token ${token}` } : {};
+                const response = await fetch(`${url}?t=${new Date().getTime()}`, { headers });
+
+                if (!response.ok) {
+                    if (response.status === 404) throw new Error('Không tìm thấy tệp Yuusei.txt');
+                    if (response.status === 401) throw new Error('Token không hợp lệ');
+                    throw new Error(`Lỗi mạng: ${response.status}`);
+                }
+
+                const data = await response.json();
+                currentSha = data.sha;
+                document.getElementById('file-sha').textContent = `SHA: ${currentSha.substring(0, 7)}`;
+
+                // Decode UTF-8 correctly
+                const content = new TextDecoder().decode(Uint8Array.from(atob(data.content), c => c.charCodeAt(0)));
+
+                editor.setValue(content, -1); // -1 moves cursor to start
+                editor.setReadOnly(false);
+                setStatus('Sẵn sàng', 'success');
+            } catch (error) {
+                console.error(error);
+                setStatus('Lỗi tải', 'error');
+                showToast('Lỗi tải', error.message, 'error');
+                if (error.message.includes('Token')) {
+                   // Optional: prompt settings
+                }
+            } finally {
+                editor.setReadOnly(false);
+            }
+        }
+
+        async function saveFile() {
+            const token = localStorage.getItem('github_token');
+            if (!token) {
+                showToast('Yêu cầu', 'Cần nhập Token trong cài đặt!', 'error');
+                toggleSettings();
+                return;
+            }
+            if (!confirm('Bạn có chắc chắn muốn lưu thay đổi?')) return;
+
+            const url = getApiUrl();
+            if (!url) {
+                 showToast('Lỗi', 'Không xác định được Repository', 'error');
+                 return;
+            }
+
+            setStatus('Đang lưu...', 'loading');
+            document.getElementById('btn-save').disabled = true;
+
+            try {
+                const content = editor.getValue();
+                // Encode UTF-8 to Base64
+                const encodedContent = btoa(String.fromCharCode(...new TextEncoder().encode(content)));
+
+                const body = {
+                    message: `Update ${FILE_PATH} via Web Editor`,
+                    content: encodedContent,
+                    sha: currentSha
+                };
+
+                const response = await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.message || 'Lỗi không xác định khi lưu');
+                }
+
+                const data = await response.json();
+                currentSha = data.content.sha;
+                document.getElementById('file-sha').textContent = `SHA: ${currentSha.substring(0, 7)}`;
+                setStatus('Đã lưu', 'success');
+                showToast('Thành công', 'Đã lưu thay đổi lên GitHub!');
+            } catch (error) {
+                console.error(error);
+                setStatus('Lỗi lưu', 'error');
+                showToast('Thất bại', error.message, 'error');
+            } finally {
+                document.getElementById('btn-save').disabled = false;
+                // Force status reset after delay if still "Loading" (safety net)
+                setTimeout(() => {
+                    const statusText = document.getElementById('status').innerText;
+                    if(statusText.includes('Đang lưu')) setStatus('Sẵn sàng');
+                }, 500);
+            }
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            initEditor();
+
+            const token = localStorage.getItem('github_token');
+            if (token) document.getElementById('github-token').value = token;
+
+            // Delay load slightly to ensure editor is ready
+            setTimeout(loadFile, 100);
+        });
+    </script>
+</body>
+</html>
