@@ -79,6 +79,47 @@
         .cm-adblock-opt-op { color: #f8f8f2 !important; } /* White Op */
         .cm-adblock-opt-val { color: #f1fa8c !important; } /* Yellow Val */
 
+        /* Search Dialog Dark Theme */
+        .CodeMirror-dialog {
+            background: #282a36;
+            color: #f8f8f2;
+            border-bottom: 1px solid #6272a4;
+            padding: 10px;
+            font-family: inherit;
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            z-index: 15;
+        }
+        .CodeMirror-dialog input {
+            background: #44475a;
+            border: 1px solid #6272a4;
+            color: #f8f8f2;
+            border-radius: 4px;
+            outline: none;
+            padding: 4px 8px;
+            margin-right: 5px;
+        }
+        .CodeMirror-dialog input:focus {
+            border-color: #8be9fd;
+        }
+        .CodeMirror-dialog button {
+            background: #6272a4;
+            color: #f8f8f2;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 4px;
+            font-size: 12px;
+        }
+        .CodeMirror-dialog button:hover {
+            background: #50fa7b;
+            color: #282a36;
+        }
+        .CodeMirror-search-hint {
+            display: none; /* Hide hint text to save space on mobile */
+        }
+
         /* Mobile Tweaks */
         @media (max-width: 640px) {
             .mobile-hide-text span { display: none; }
@@ -122,6 +163,11 @@
         </div>
 
         <div class="flex items-center space-x-2">
+            <!-- Search -->
+            <button onclick="triggerSearch()" class="bg-gray-700 hover:bg-gray-600 text-gray-200 p-2 rounded-lg w-9 h-9 flex items-center justify-center transition" title="Tìm kiếm">
+                <i class="fas fa-search"></i>
+            </button>
+
             <!-- Reload -->
             <button onclick="loadFile()" id="btn-reload" class="bg-gray-700 hover:bg-gray-600 text-gray-200 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 mobile-hide-text" title="Tải lại">
                 <i class="fas fa-sync-alt"></i> <span>Tải lại</span>
@@ -320,6 +366,12 @@
                 const lines = editor.lineCount();
                 document.getElementById('stats-info').textContent = `${lines.toLocaleString()} dòng`;
             });
+        }
+
+        function triggerSearch() {
+            if (editor) {
+                editor.execCommand('find');
+            }
         }
 
         function getRepoName() {
