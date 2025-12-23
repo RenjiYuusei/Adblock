@@ -7,24 +7,51 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Ace Editor -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ace.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ext-searchbox.js"></script>
+
+    <!-- CodeMirror 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/dialog/dialog.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/matchesonscrollbar.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/mode/simple.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/search.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/searchcursor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/jump-to-line.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/dialog/dialog.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
 
     <style>
         body { font-family: 'Inter', sans-serif; }
-        #editor {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
+        .CodeMirror {
+            height: 100%;
+            font-family: 'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
+
+        /* Adblock Syntax Highlighting Colors (Dracula based adjustments) */
+        .cm-adblock-comment { color: #6272a4; font-style: italic; }
+        .cm-adblock-header { color: #ff79c6; font-weight: bold; }
+        .cm-adblock-option { color: #f1fa8c; }
+        .cm-adblock-hiding { color: #8be9fd; }
+        .cm-adblock-anchor { color: #ffb86c; font-weight: bold; }
+        .cm-adblock-separator { color: #ff5555; }
+        .cm-adblock-exception { color: #50fa7b; font-weight: bold; }
+
         /* Mobile Tweaks */
         @media (max-width: 640px) {
             .mobile-hide-text span { display: none; }
+            .CodeMirror {
+                font-size: 16px; /* Better for mobile reading/editing */
+            }
+        }
+
+        /* Fix for mobile keyboard overlay issues if any */
+        .CodeMirror-cursors {
+            visibility: visible !important;
         }
     </style>
     <script>
@@ -91,8 +118,8 @@
         </div>
 
         <!-- Editor Container -->
-        <div class="relative flex-grow h-full">
-            <div id="editor"></div>
+        <div class="relative flex-grow h-full overflow-hidden">
+            <textarea id="editor" class="hidden"></textarea>
         </div>
     </div>
 
@@ -137,26 +164,44 @@
         let repoName = '';
         let editor = null;
 
-        // Initialize Ace Editor
-        function initEditor() {
-            ace.config.set('basePath', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/');
-            editor = ace.edit("editor");
-            editor.setTheme("ace/theme/tomorrow_night"); // Dark theme with good contrast
-            editor.session.setMode("ace/mode/ini"); // INI mode highlights [sections] and !comments well
+        // Define Simple Adblock Mode
+        function defineAdblockMode() {
+            CodeMirror.defineSimpleMode("adblock", {
+                start: [
+                    {regex: /^!.*$/, token: "adblock-comment"},
+                    {regex: /^\[.*\]$/, token: "adblock-header"},
+                    {regex: /^@@/, token: "adblock-exception"},
+                    {regex: /\|\|/, token: "adblock-anchor"},
+                    {regex: /\^/, token: "adblock-separator"},
+                    {regex: /\$[^$]*$/, token: "adblock-option"},
+                    {regex: /##.*$/, token: "adblock-hiding"},
+                    {regex: /#\?#.*$/, token: "adblock-hiding"},
+                    {regex: /#@#.*$/, token: "adblock-hiding"}
+                ]
+            });
+        }
 
-            editor.setOptions({
-                fontSize: "14px",
-                fontFamily: "JetBrains Mono, Menlo, monospace",
-                showPrintMargin: false,
-                wrap: true,
-                scrollPastEnd: 0.5,
+        // Initialize CodeMirror
+        function initEditor() {
+            defineAdblockMode();
+
+            const textarea = document.getElementById("editor");
+            editor = CodeMirror.fromTextArea(textarea, {
+                mode: "adblock",
+                theme: "dracula",
+                lineNumbers: true,
+                styleActiveLine: true,
+                matchBrackets: true,
+                lineWrapping: true,
                 tabSize: 4,
-                useSoftTabs: true
+                indentWithTabs: false,
+                // Better mobile support attempts
+                inputStyle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "textarea" : "contenteditable",
             });
 
             // Update stats on change
-            editor.session.on('change', () => {
-                const lines = editor.session.getLength();
+            editor.on('change', () => {
+                const lines = editor.lineCount();
                 document.getElementById('stats-info').textContent = `${lines.toLocaleString()} dòng`;
             });
         }
@@ -175,9 +220,6 @@
                 const user = hostname.split('.')[0];
                 let repo = pathParts[0];
 
-                // If the path is empty (root), and it's a User Site (user.github.io), the repo is user.github.io
-                // BUT, often people deploy project sites to subfolders.
-                // If this is running at root of user.github.io, then repo name is likely "user.github.io" (the special repo)
                 if (!repo) {
                     return `${user}/${user}.github.io`;
                 }
@@ -266,7 +308,7 @@
             }
 
             setStatus('Đang tải...', 'loading');
-            editor.setReadOnly(true);
+            editor.setOption('readOnly', true); // CodeMirror method
 
             try {
                 const token = localStorage.getItem('github_token');
@@ -286,8 +328,9 @@
                 // Decode UTF-8 correctly
                 const content = new TextDecoder().decode(Uint8Array.from(atob(data.content), c => c.charCodeAt(0)));
 
-                editor.setValue(content, -1); // -1 moves cursor to start
-                editor.setReadOnly(false);
+                editor.setValue(content);
+                editor.clearHistory(); // Clear undo history after load
+                editor.setOption('readOnly', false);
                 setStatus('Sẵn sàng', 'success');
             } catch (error) {
                 console.error(error);
@@ -297,7 +340,7 @@
                    // Optional: prompt settings
                 }
             } finally {
-                editor.setReadOnly(false);
+                editor.setOption('readOnly', false);
             }
         }
 
