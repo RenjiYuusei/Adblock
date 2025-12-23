@@ -32,43 +32,53 @@
             line-height: 1.6;
         }
 
-        /* --- Extended Vibrant Adblock Syntax Colors --- */
+        /* --- High Contrast Distinct Adblock Colors --- */
 
-        /* Comments: Greyish Blue */
-        .cm-adblock-comment { color: #6272a4 !important; font-style: italic; }
-        .cm-adblock-header { color: #8be9fd !important; font-weight: bold; border-bottom: 1px dashed #6272a4; }
+        /* 1. Meta / Comments */
+        .cm-adblock-comment { color: #6272a4 !important; font-style: italic; } /* Muted Blue */
+        .cm-adblock-header { color: #f8f8f2 !important; font-weight: bold; background: #44475a; padding: 0 4px; border-radius: 2px; } /* White on Dark Grey */
 
-        /* Network Rules */
-        .cm-adblock-anchor { color: #ff79c6 !important; font-weight: bold; } /* ||, | */
-        .cm-adblock-separator { color: #ff5555 !important; font-weight: bold; } /* ^ */
-        .cm-adblock-wildcard { color: #f1fa8c !important; font-weight: bold; } /* * */
-        .cm-adblock-domain { color: #f8f8f2 !important; }
+        /* 2. Network Rules (Blocking) */
+        .cm-adblock-anchor { color: #ff5555 !important; font-weight: bold; } /* Red (||) */
+        .cm-adblock-separator { color: #ffb86c !important; font-weight: bold; } /* Orange (^) */
+        .cm-adblock-wildcard { color: #f1fa8c !important; text-shadow: 0 0 2px #f1fa8c; } /* Yellow (*) */
+        .cm-adblock-domain { color: #f8f8f2 !important; } /* White Text */
 
-        /* Exceptions: Bright Green */
-        .cm-adblock-exception-marker { color: #50fa7b !important; font-weight: bold; } /* @@ */
+        /* 3. Exceptions (Allowing) */
+        .cm-adblock-exception-marker { color: #50fa7b !important; font-weight: 900; } /* Bright Green (@@) */
 
-        /* Element Hiding */
-        .cm-adblock-hiding-sep { color: #bd93f9 !important; font-weight: bold; background: rgba(189, 147, 249, 0.15); border-radius: 2px; } /* ##, #@# */
-        .cm-adblock-selector-tag { color: #ff79c6 !important; } /* div, span */
-        .cm-adblock-selector-id { color: #ffb86c !important; font-weight: bold; } /* #header */
-        .cm-adblock-selector-class { color: #8be9fd !important; } /* .ad-banner */
-        .cm-adblock-selector-attr { color: #f1fa8c !important; } /* [href="..."] */
-        .cm-adblock-selector-pseudo { color: #ff5555 !important; font-style: italic; } /* :has(...) */
+        /* 4. Element Hiding (Cosmetic) */
+        /* Distinct Separator */
+        .cm-adblock-hiding-sep {
+            color: #ffffff !important;
+            font-weight: bold;
+            background-color: #bd93f9; /* Purple Background */
+            border-radius: 3px;
+            padding: 0 2px;
+        }
 
-        /* Options ($...) */
-        .cm-adblock-opt-sep { color: #f1fa8c !important; font-weight: bold; } /* $ */
-        .cm-adblock-opt-key { color: #ffb86c !important; } /* domain, image */
-        .cm-adblock-opt-val { color: #bd93f9 !important; } /* value */
-        .cm-adblock-opt-op { color: #f8f8f2 !important; } /* = , ~ */
+        /* CSS Selector tokens - mimicking standard CSS highlighting */
+        .cm-adblock-selector-tag { color: #ff79c6 !important; font-weight: bold; } /* Pink (div) */
+        .cm-adblock-selector-id { color: #ffb86c !important; font-weight: bold; font-style: italic; } /* Orange (#id) */
+        .cm-adblock-selector-class { color: #8be9fd !important; } /* Cyan (.class) */
+        .cm-adblock-selector-attr { color: #f1fa8c !important; } /* Yellow ([attr]) */
+        .cm-adblock-selector-pseudo { color: #bd93f9 !important; } /* Purple (:pseudo) */
+        .cm-adblock-combinator { color: #ff5555 !important; font-weight: bold; } /* Red (>) */
 
-        /* Scriptlets (+js) */
-        .cm-adblock-js-marker { color: #ff5555 !important; font-weight: bold; } /* +js( */
-        .cm-adblock-js-name { color: #50fa7b !important; font-weight: bold; } /* set-constant */
-        .cm-adblock-js-args { color: #f1fa8c !important; }
+        /* 5. Options ($...) */
+        .cm-adblock-opt-sep { color: #ff5555 !important; font-weight: bold; } /* Red ($) */
+        .cm-adblock-opt-key { color: #8be9fd !important; font-style: italic; } /* Cyan (domain) */
+        .cm-adblock-opt-op { color: #ff79c6 !important; font-weight: bold; } /* Pink (=) */
+        .cm-adblock-opt-val { color: #f1fa8c !important; } /* Yellow (value) */
 
-        /* Host File Syntax */
-        .cm-adblock-ip { color: #bd93f9 !important; font-weight: bold; }
-        .cm-adblock-host { color: #f8f8f2 !important; }
+        /* 6. Scriptlets (+js) */
+        .cm-adblock-js-marker { color: #bd93f9 !important; font-weight: bold; } /* Purple (+js) */
+        .cm-adblock-js-name { color: #50fa7b !important; font-weight: bold; } /* Green (func name) */
+        .cm-adblock-js-args { color: #d6acff !important; font-style: italic; } /* Light Purple (args) */
+
+        /* 7. Hosts */
+        .cm-adblock-ip { color: #bd93f9 !important; font-weight: bold; } /* Purple IP */
+        .cm-adblock-host { color: #f8f8f2 !important; } /* White Host */
 
         /* Mobile Tweaks */
         @media (max-width: 640px) {
@@ -206,23 +216,8 @@
                     // --- Exceptions ---
                     {regex: /^@@/, token: "adblock-exception-marker", push: "network_rule"},
 
-                    // --- Element Hiding / Scriptlets (Start with ##, #@#, etc? No, usually Domain##) ---
-                    // Strategy: Look ahead for ##, #@#, #?#, #%#
-                    // If found, treat the pre-part as domain, and switch to selector mode.
-                    // Note: SimpleMode doesn't support complex lookahead well for state switching in one go.
-                    // We can use a regex that captures everything up to ##
-
-                    // Case 1: Hiding Rule or Scriptlet (contains ## or #@# or #?# or #%#)
-                    // We match the separator and switch to selector mode.
-                    // But we need to handle the domain part before it.
-                    // SimpleMode processes left to right.
-
-                    // Match Domain part IF followed by separator
-                    // Note: This regex is a bit tricky in JS regex.
-                    // We can match non-separator chars.
-
-                    // Let's try matching the separator directly.
-                    // If we encounter a separator, we color it and go to selector.
+                    // --- Element Hiding / Scriptlets ---
+                    // Detect ##, #@#, #?#, #%#
                     {regex: /##|#@#|#\?#|#%#/, token: "adblock-hiding-sep", next: "selector"},
 
                     // --- Network Rules ---
@@ -238,16 +233,13 @@
                     // Wildcard
                     {regex: /\*/, token: "adblock-wildcard"},
 
-                    // Standard text (Domain part of hiding rule OR network rule)
-                    // If we hit a character that isn't special, it's text/domain.
-                    // We must be careful not to consume the ## if it's coming up.
-                    // consume 1 char at a time or run until special.
+                    // Domain part
                     {regex: /[^!|#$^*]+/, token: "adblock-domain"},
                 ],
 
                 // --- Hosts Mode ---
                 hosts: [
-                    {regex: /#.*$/, token: "adblock-comment", pop: true}, // Inline comment
+                    {regex: /#.*$/, token: "adblock-comment", pop: true},
                     {regex: /\s+/, token: "whitespace"},
                     {regex: /$/, pop: true},
                     {regex: /\S+/, token: "adblock-host"}
@@ -274,9 +266,9 @@
                     {regex: /\[[^\]]+\]/, token: "adblock-selector-attr"},
                     {regex: /:{1,2}[\w-]+(\(.*\))?/, token: "adblock-selector-pseudo"},
                     {regex: /\w+/, token: "adblock-selector-tag"},
-                    {regex: />|\+|~/, token: "adblock-separator"}, // combinators
+                    {regex: />|\+|~/, token: "adblock-combinator"}, // combinators
 
-                    {regex: /$/, pop: true}, // EOL
+                    {regex: /$/, pop: true},
                     {regex: /\s+/, token: "whitespace"}
                 ],
 
@@ -285,7 +277,7 @@
                     {regex: /\)/, token: "adblock-js-marker", pop: true},
                     {regex: /,/, token: "adblock-separator"},
                     {regex: /'[^']*'|"[^"]*"/, token: "adblock-js-args"},
-                    {regex: /[^,)]+/, token: "adblock-js-name"} // Function name or unquoted arg
+                    {regex: /[^,)]+/, token: "adblock-js-name"}
                 ],
 
                 // --- Options Mode ---
