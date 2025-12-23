@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2025.12.23.0815
+! Version: 2025.12.23.2103
 ! Title: Yuusei
 ! Last modified: 23-12-2025
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 2d684c128862a0a11ef015e75614bd7bca6fd3b04fecac34abec8601ee6bfab3
+! Checksum: b31c8f3dd3178cb95b6a10d71792b7153f3dbfbea828987f67e6da7e43edca5a
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 ||api.vsphone.com/vsphone/api/vpopDialog/getUserActiveBanner^
@@ -312,8 +312,8 @@ $popup,domain=truyenfull.vision
 /core/*$script,domain=gamek.vn|genk.vn|kenh14.vn|cafef.vn|thanhnien.vn
 /disable-devtool.min.js$script
 /giadinhonline.vn/files/qc/*
-/i.imgur.com/*.gif$domain=keonhacai55.pw|www.motchill36.com|workpop.com|vebozxy.cc|cakhiazxz.cc|listnhacai88.com|xoilaczzuu.cc|mitomza.cc|rakhoivq.cc
-/images/company/21.png$image,domain=vebozxy.cc|xoilaczzuu.cc
+/i.imgur.com/*.gif$domain=keonhacai55.pw|www.motchill36.com|workpop.com|vebozxt.cc|cakhiazxr.cc|listnhacai88.com|xoilaczzuu.cc|mitomza.cc|rakhoivq.cc
+/images/company/21.png$image,domain=vebozxt.cc|xoilaczzuu.cc
 /js/ads.js$script,~third-party,domain=~vipurl.in
 /lv/esnk/*$script
 /newchill/*gif$image
@@ -519,13 +519,13 @@ cafef.vn##[class^="ads_"]
 cafef.vn,gamek.vn,genk.vn,kenh14.vn,soha.vn,tuoitre.vn,afamily.vn,thanhnien.vn##+js(acs, Object.defineProperty, ADMStorageFileCDN)
 cafef.vn,gamek.vn,genk.vn,kenh14.vn,soha.vn,tuoitre.vn,afamily.vn,thanhnien.vn##+js(set, ADMStorageFileCDN, noopFunc)
 cafef.vn,ttvn.toquoc.vn##.bannertop
-cakhiazxz.cc##.container.mt-1.d-none.d-lg-block
-cakhiazxz.cc##.menu-item-object-custom
-cakhiazxz.cc##.sub-menu.d-none.d-lg-flex
-cakhiazxz.cc,vebozxy.cc##.align-items-center.justify-content-between.d-flex.col-12>.d-lg-none.d-block
-cakhiazxz.cc,workpop.com,vebozxy.cc###quangcaopc
-cakhiazxz.cc,workpop.com,vebozxy.cc##.marquee-container
-cakhiazxz.cc,workpop.com,vebozxy.cc,xoilaczzuu.cc,rakhoivq.cc###wap_bottombanner
+cakhiazxr.cc##.container.mt-1.d-none.d-lg-block
+cakhiazxr.cc##.menu-item-object-custom
+cakhiazxr.cc##.sub-menu.d-none.d-lg-flex
+cakhiazxr.cc,vebozxt.cc##.align-items-center.justify-content-between.d-flex.col-12>.d-lg-none.d-block
+cakhiazxr.cc,workpop.com,vebozxt.cc###quangcaopc
+cakhiazxr.cc,workpop.com,vebozxt.cc##.marquee-container
+cakhiazxr.cc,workpop.com,vebozxt.cc,xoilaczzuu.cc,rakhoivq.cc###wap_bottombanner
 cap3.sex##.header>app-banner
 chap.vn##.my_responsive_add
 chap.vn##.titleBar + *
@@ -543,7 +543,7 @@ chotlo3s.com###header:style(margin-top: 0 !important)
 chotlo3s.com##div[id^="float"]
 chotlo3s.com##div[id^="hide_float"]
 cliphot69.shop###custom_html-42
-cliphotvn69.com,mobiblogss.com,cliphot69.shop,www.gvnvh18z.com,phimsexhayvn80.com,sayhentai.live,xamvn.guru##.float-ck-center-lt
+cliphotvn69.com,mobiblogss.com,cliphot69.shop,www.gvnvh18z.com,phimsexhayvn81.com,sayhentai.live,xamvn.guru##.float-ck-center-lt
 cliphubs.com,viet69hay.life##+js(acs, document.addEventListener, pop)
 clipphot.biz##+js(acs, document.addEventListener, POP)
 coinphoton.com##.header-fix-ads
@@ -771,9 +771,6 @@ muare.vn##.admicro_top
 mv.phimmoiaz.cc,anime12.site,anh.moe,xemphimjav.us,hoctot.hocmai.vn,bluphim5.com,samtruyentranh.com,truyenfull.vision,player.phimapi.com,noitu.site,sachmoi.net,xfast.sbs,anime47.best,phimsexvn1.blog##+js(aopr, open)
 myeva.vn###adop_bfd
 myeva.vn##ins[class*="adsby"]
-nangcuc.dev##.active.bg-overlay
-nangcuc.dev##.mmo
-nangcuc.dev,quatvn.my##.popup-banner
 nettruyenindex.com##.ad_info
 nettruyenindex.com##.ads_insert_shop
 nettruyenviet1.com##+js(acs, JSON, fromCharCode)
@@ -853,12 +850,13 @@ quatvn.my##+js(acs, window.addEventListener, localStorage)
 quatvn.my##.adace-slideup-slot-wrap
 quatvn.my##.adace-slot
 quatvn.my##.g1-advertisement
+quatvn.my##.popup-banner
 quatvn.my##.popup-overlay
 quatvn.my##.preroll-content
 quatvn.my##body>div[style^="position: fixed;"]
 r.cakeo3.rocks##a.bg-yellow-1[target="_blank"]
 rakhoivq.cc##.bookmaker-selector-container
-rakhoivq.cc,xoilaczzuu.cc,vebozxy.cc##.btn-8xbet
+rakhoivq.cc,xoilaczzuu.cc,vebozxt.cc##.btn-8xbet
 reatimes.vn##div[class^="adv-"]
 rphang.online##.bbMediaWrapper-inner>.samCodeUnit
 rphang.online##.js-replyNewMessageContainer.block-body>div.samCodeUnit>.samItem
@@ -1021,13 +1019,13 @@ vanphatelectric.com###levelmaxblock
 vanphatelectric.com##+js(acs, document.addEventListener, runAllDetections)
 vebo8.fun##.for-mobile
 vebo8.fun##div.vebo-sp.container
-vebozxy.cc##.container>.mt-3
-vebozxy.cc##.d-lg-block
-vebozxy.cc##.menu-item:has(a[rel="nofollow"])
-vebozxy.cc##.topButton
-vebozxy.cc##.widget_offer
-vebozxy.cc##header>.container
-vebozxy.cc,mitomza.cc,rakhoivq.cc##.footer-banner
+vebozxt.cc##.container>.mt-3
+vebozxt.cc##.d-lg-block
+vebozxt.cc##.menu-item:has(a[rel="nofollow"])
+vebozxt.cc##.topButton
+vebozxt.cc##.widget_offer
+vebozxt.cc##header>.container
+vebozxt.cc,mitomza.cc,rakhoivq.cc##.footer-banner
 vesotantai.com##.item-qc
 videophapluat.baophapluat.vn##[class^="sticky-top"]
 videophapluat.baophapluat.vn##[href*="vietcombank.com.vn"]
@@ -1063,7 +1061,7 @@ vlxx.bz##.ff-banner
 vlxx.bz##div.banner-catfish-bottom
 vlxx.bz,cheaphotelexpert.co.uk##.banner-preload
 vlxx.bz,clipsexsub3x.net,newshound.org.uk,javhdz.hot,cheaphotelexpert.co.uk##.catfish-bottom
-vlxx.bz,dualeotruyenvx.com,yurineko.my,haysex.mobi,cliphot69.shop,doctruyen3qui19.com,ihentai.network,hentaivc.pro,buomtv.media,truyenvn.shop,javtiful.com,quatvn.my,phimsexhayvn80.com,phim18hdxx.com,vn5.sexviet88.xyz,sex.xinhmupvn.net,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.onl,truyenqqno.com,clipsexsub3x.net,sayhentai.live,motphim.pokemonviet.com,lxmanga.my,phimlongtieng.net,newtruyenhot.pro,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,sexviet88.xyz##+js(acs, WebAssembly, instantiate)
+vlxx.bz,dualeotruyenvx.com,yurineko.my,haysex.mobi,cliphot69.shop,doctruyen3qui19.com,ihentai.network,hentaivc.pro,buomtv.media,truyenvn.shop,javtiful.com,quatvn.my,phimsexhayvn81.com,phim18hdxx.com,vn5.sexviet88.xyz,sex.xinhmupvn.net,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.onl,truyenqqno.com,clipsexsub3x.net,sayhentai.live,motphim.pokemonviet.com,lxmanga.my,phimlongtieng.net,newtruyenhot.pro,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,sexviet88.xyz##+js(acs, WebAssembly, instantiate)
 vlxx.bz,sex.xinhmupvn.net,newshound.org.uk,cheaphotelexpert.co.uk##.catfish-top
 vlxx.rip,trangsexdam.net##.hd-tube-desktop
 vlxx.rip,trangsexdam.net##.hd-tube-mobile
@@ -1115,10 +1113,10 @@ workpop.com##.row.d-none
 workpop.com##.widget-offers__list
 workpop.com##div.d-lg-none.d-block:nth-of-type(3)
 workpop.com,mitomza.cc##.menu-cuoc-8xbet
-workpop.com,mitomza.cc,vebozxy.cc##.menu-top-nha-cai
+workpop.com,mitomza.cc,vebozxt.cc##.menu-top-nha-cai
 workpop.com,rakhoivq.cc##.sk_balloon
-workpop.com,vebozxy.cc,cakhiazxz.cc,mitomza.cc,xoilaczzuu.cc##div[id^="dnn_"]
-workpop.com,vebozxy.cc,cakhiazxz.cc,xoilaczzuu.cc,mitomza.cc##.company
+workpop.com,vebozxt.cc,cakhiazxr.cc,mitomza.cc,xoilaczzuu.cc##div[id^="dnn_"]
+workpop.com,vebozxt.cc,cakhiazxr.cc,xoilaczzuu.cc,mitomza.cc##.company
 workpop.com,xoilaczzuu.cc##.match-detail__offer
 www.2banh.vn##.grp-grp.header_wp
 www.2banh.vn##.lb_overlay
@@ -1231,7 +1229,7 @@ xoilaczzuu.cc##.widget
 xoilaczzuu.cc##.xlz-ads-item
 xoilaczzuu.cc##a.d-lg-none.d-block:nth-of-type(1)
 xoilaczzuu.cc,rakhoivq.cc##.btn-odds
-xoilaczzuu.cc,vebozxy.cc##.odds-comp
+xoilaczzuu.cc,vebozxt.cc##.odds-comp
 yanhh3d.vip,hhtm.net###catfish-ads
 ybox.vn###ybox-H1>div[style]
 ycongnghe.com##.td-container-wrap.td-logo-wrap-full.td-banner-wrap-full
@@ -1311,7 +1309,7 @@ zphimsex18.pro,phimsex12x.pro##.quangcaomobile
 ||cdn.adxcontent.com^
 ||cdn.giavang.org/images/ads/$image,domain=giavang.org
 ||cdn.jsdelivr.net/gh/ngylduy/blog@b844bfe/js/AdsenseAds.min.js$script,domain=vanphatelectric.com
-||cdn.lfastcdn.com^*.gif$image,domain=bongdainfox.tv|xoilaczzuu.cc|rakhoivq.cc|cakhiazxz.cc|mitomza.cc|vebozxy.cc
+||cdn.lfastcdn.com^*.gif$image,domain=bongdainfox.tv|xoilaczzuu.cc|rakhoivq.cc|cakhiazxr.cc|mitomza.cc|vebozxt.cc
 ||cdn.monkeydarchive.com/images/banner/$image,domain=monkeyd.net.vn
 ||cdn.tpmedia.online^
 ||cdn.webhoctienganh.com/asset/home/img/banner/$image,domain=webhoctienganh.com
@@ -1467,7 +1465,7 @@ zphimsex18.pro,phimsex12x.pro##.quangcaomobile
 ||phimmoichillz.top/pop$image
 ||phimmoichillz.top^*.gif$image
 ||phimmotchill.us/banner$image
-||phimsexhayvn80.com^*.gif$image
+||phimsexhayvn81.com^*.gif$image
 ||photo2.tinhte.vn/data/attachment-files/*banner
 ||photo2.tinhte.vn^*.gif$domain=live4.vebo4.net
 ||player.gliacloud.com^
