@@ -11,15 +11,10 @@
     <!-- CodeMirror 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/dialog/dialog.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/matchesonscrollbar.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/mode/simple.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/search.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/searchcursor.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/jump-to-line.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/dialog/dialog.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
 
@@ -33,98 +28,34 @@
         }
 
         /* --- Yuusei Optimized Color Scheme --- */
-
-        /* 1. Comments & Headers */
-        .cm-adblock-comment { color: #6272a4 !important; font-style: italic; } /* Muted Blue */
-        /* Revert Section Header to match Comment per user request */
-        .cm-adblock-section-header {
-            color: #6272a4 !important;
-            font-style: italic;
-        }
-
-        /* 2. Hosts (0.0.0.0) */
-        .cm-adblock-ip { color: #ff5555 !important; font-weight: bold; } /* Red IP */
-        .cm-adblock-host { color: #f8f8f2 !important; } /* White Host */
-
-        /* 3. Blocking Rules (||...) */
-        .cm-adblock-anchor { color: #ff5555 !important; font-weight: bold; } /* Red Anchors || */
-        .cm-adblock-separator { color: #ff5555 !important; font-weight: bold; } /* Red Separator ^ */
-        .cm-adblock-wildcard { color: #f1fa8c !important; } /* Yellow * */
-        .cm-adblock-domain { color: #f8f8f2 !important; } /* White text */
-
-        /* 4. Exception Rules (@@...) */
-        .cm-adblock-exception-marker { color: #50fa7b !important; font-weight: bold; } /* Green @@ */
-
-        /* 5. Element Hiding (##...) */
-        .cm-adblock-hiding-sep {
-            color: #8be9fd !important; /* Cyan */
-            font-weight: bold;
-            background: rgba(139, 233, 253, 0.1);
-        }
-        /* CSS Selectors */
-        .cm-adblock-selector-id { color: #ffb86c !important; font-weight: bold; } /* Orange #id */
-        .cm-adblock-selector-class { color: #8be9fd !important; } /* Cyan .class */
-        .cm-adblock-selector-tag { color: #ff79c6 !important; } /* Pink tag */
-        .cm-adblock-selector-attr { color: #f1fa8c !important; font-style: italic; } /* Yellow [attr] */
-        .cm-adblock-selector-pseudo { color: #bd93f9 !important; } /* Purple :pseudo */
-
-        /* 6. Scriptlets (+js) */
-        .cm-adblock-js-marker { color: #bd93f9 !important; font-weight: bold; } /* Purple +js */
-        .cm-adblock-js-name { color: #50fa7b !important; font-weight: bold; } /* Green Function */
-        .cm-adblock-js-args { color: #f1fa8c !important; } /* Yellow Args */
-
-        /* 7. Options ($...) */
-        .cm-adblock-opt-sep { color: #ffb86c !important; font-weight: bold; } /* Orange $ */
-        .cm-adblock-opt-key { color: #bd93f9 !important; font-style: italic; } /* Purple Key */
-        .cm-adblock-opt-op { color: #f8f8f2 !important; } /* White Op */
-        .cm-adblock-opt-val { color: #f1fa8c !important; } /* Yellow Val */
-
-        /* Search Dialog Dark Theme */
-        .CodeMirror-dialog {
-            background: #282a36;
-            color: #f8f8f2;
-            border-bottom: 1px solid #6272a4;
-            padding: 10px;
-            font-family: inherit;
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            z-index: 15;
-        }
-        .CodeMirror-dialog input {
-            background: #44475a;
-            border: 1px solid #6272a4;
-            color: #f8f8f2;
-            border-radius: 4px;
-            outline: none;
-            padding: 4px 8px;
-            margin-right: 5px;
-        }
-        .CodeMirror-dialog input:focus {
-            border-color: #8be9fd;
-        }
-        .CodeMirror-dialog button {
-            background: #6272a4;
-            color: #f8f8f2;
-            border: none;
-            padding: 4px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 4px;
-            font-size: 12px;
-        }
-        .CodeMirror-dialog button:hover {
-            background: #50fa7b;
-            color: #282a36;
-        }
-        .CodeMirror-search-hint {
-            display: none; /* Hide hint text to save space on mobile */
-        }
+        .cm-adblock-comment { color: #6272a4 !important; font-style: italic; }
+        .cm-adblock-section-header { color: #6272a4 !important; font-style: italic; }
+        .cm-adblock-ip { color: #ff5555 !important; font-weight: bold; }
+        .cm-adblock-host { color: #f8f8f2 !important; }
+        .cm-adblock-anchor { color: #ff5555 !important; font-weight: bold; }
+        .cm-adblock-separator { color: #ff5555 !important; font-weight: bold; }
+        .cm-adblock-wildcard { color: #f1fa8c !important; }
+        .cm-adblock-domain { color: #f8f8f2 !important; }
+        .cm-adblock-exception-marker { color: #50fa7b !important; font-weight: bold; }
+        .cm-adblock-hiding-sep { color: #8be9fd !important; font-weight: bold; background: rgba(139, 233, 253, 0.1); }
+        .cm-adblock-selector-id { color: #ffb86c !important; font-weight: bold; }
+        .cm-adblock-selector-class { color: #8be9fd !important; }
+        .cm-adblock-selector-tag { color: #ff79c6 !important; }
+        .cm-adblock-selector-attr { color: #f1fa8c !important; font-style: italic; }
+        .cm-adblock-selector-pseudo { color: #bd93f9 !important; }
+        .cm-adblock-js-marker { color: #bd93f9 !important; font-weight: bold; }
+        .cm-adblock-js-name { color: #50fa7b !important; font-weight: bold; }
+        .cm-adblock-js-args { color: #f1fa8c !important; }
+        .cm-adblock-opt-sep { color: #ffb86c !important; font-weight: bold; }
+        .cm-adblock-opt-key { color: #bd93f9 !important; font-style: italic; }
+        .cm-adblock-opt-op { color: #f8f8f2 !important; }
+        .cm-adblock-opt-val { color: #f1fa8c !important; }
 
         /* Mobile Tweaks */
         @media (max-width: 640px) {
             .mobile-hide-text span { display: none; }
             .CodeMirror {
-                font-size: 16px; /* Better for mobile reading/editing */
+                font-size: 16px;
             }
         }
 
@@ -145,10 +76,10 @@
         }
     </script>
 </head>
-<body class="bg-gray-900 text-gray-100 h-screen flex flex-col overflow-hidden">
+<body class="bg-gray-900 text-gray-100 h-screen flex flex-col overflow-hidden relative">
 
     <!-- Navbar -->
-    <nav class="bg-gray-800 border-b border-gray-700 p-2 sm:p-4 shadow-lg flex justify-between items-center z-10 shrink-0">
+    <nav class="bg-gray-800 border-b border-gray-700 p-2 sm:p-4 shadow-lg flex justify-between items-center z-20 shrink-0 relative">
         <div class="flex items-center space-x-2 sm:space-x-3">
             <div class="bg-indigo-600 p-1.5 sm:p-2 rounded-lg shadow-lg shadow-indigo-500/50">
                 <i class="fas fa-shield-alt text-lg sm:text-xl text-white"></i>
@@ -163,8 +94,8 @@
         </div>
 
         <div class="flex items-center space-x-2">
-            <!-- Search -->
-            <button onclick="triggerSearch()" class="bg-gray-700 hover:bg-gray-600 text-gray-200 p-2 rounded-lg w-9 h-9 flex items-center justify-center transition" title="Tìm kiếm">
+            <!-- Search Toggle -->
+            <button onclick="toggleSearch()" class="bg-gray-700 hover:bg-gray-600 text-gray-200 p-2 rounded-lg w-9 h-9 flex items-center justify-center transition" title="Tìm kiếm">
                 <i class="fas fa-search"></i>
             </button>
 
@@ -184,6 +115,23 @@
             </button>
         </div>
     </nav>
+
+    <!-- Custom Persistent Search Panel -->
+    <div id="search-panel" class="hidden absolute top-[60px] right-2 sm:right-4 bg-gray-800 border border-gray-600 shadow-2xl rounded-xl p-2 z-50 flex items-center gap-2 animate-fade-in-down w-[calc(100%-16px)] sm:w-auto max-w-md">
+        <input type="text" id="search-input" class="bg-gray-900 border border-gray-600 text-white text-sm rounded-lg block w-full p-2 focus:ring-1 focus:ring-indigo-500 outline-none flex-grow min-w-[120px]" placeholder="Tìm kiếm...">
+
+        <div class="flex items-center gap-1 shrink-0">
+            <button onclick="executeSearch(true)" class="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg w-8 h-8 flex items-center justify-center" title="Trước (Lên)">
+                <i class="fas fa-chevron-up text-xs"></i>
+            </button>
+            <button onclick="executeSearch(false)" class="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg w-8 h-8 flex items-center justify-center" title="Sau (Xuống)">
+                <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <button onclick="toggleSearch()" class="text-gray-400 hover:text-red-400 p-2 rounded-lg w-8 h-8 flex items-center justify-center ml-1">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="flex-grow flex flex-col overflow-hidden relative bg-gray-900">
@@ -247,57 +195,29 @@
         let repoName = '';
         let editor = null;
 
-        // Define Advanced Adblock Mode with Granular Tokens
+        // Define Advanced Adblock Mode
         function defineAdblockMode() {
             CodeMirror.defineSimpleMode("adblock", {
                 start: [
-                    // --- Header Comments (Start with ! --- or ! [Title]) ---
                     {regex: /^!\s*-{3,}.*$/, token: "adblock-section-header"},
                     {regex: /^!\s*Title:.*$/, token: "adblock-section-header"},
-
-                    // --- Normal Comments ---
                     {regex: /^!.*$/, token: "adblock-comment"},
                     {regex: /^\[.*\]$/, token: "adblock-header"},
-
-                    // --- Host File Syntax (0.0.0.0 domain) ---
                     {regex: /^(?:0\.0\.0\.0|127\.0\.0\.1|::1)(?=\s)/, token: "adblock-ip", push: "hosts"},
-
-                    // --- Exceptions ---
                     {regex: /^@@/, token: "adblock-exception-marker", push: "network_rule"},
-
-                    // --- Element Hiding / Scriptlets ---
-                    // Detect separators. Note: ###id is matched as ## + #id by the logic below if we are careful.
-                    // We must ensure we don't consume the domain if it contains special chars, but adblock domains usually don't contain # unless it's the separator.
-
-                    // Match the separator and switch to selector mode
                     {regex: /#@?#|#\?#|#%#/, token: "adblock-hiding-sep", next: "selector"},
-
-                    // --- Network Rules ---
-                    // Anchors
                     {regex: /\|\||\|/, token: "adblock-anchor"},
-
-                    // Separator
                     {regex: /\^/, token: "adblock-separator"},
-
-                    // Options start
                     {regex: /\$/, token: "adblock-opt-sep", next: "options"},
-
-                    // Wildcard
                     {regex: /\*/, token: "adblock-wildcard"},
-
-                    // Domain part
                     {regex: /[^!|#$^*]+/, token: "adblock-domain"},
                 ],
-
-                // --- Hosts Mode ---
                 hosts: [
                     {regex: /#.*$/, token: "adblock-comment", pop: true},
                     {regex: /\s+/, token: "whitespace"},
                     {regex: /$/, pop: true},
                     {regex: /\S+/, token: "adblock-host"}
                 ],
-
-                // --- Network Rule (inside Exception) ---
                 network_rule: [
                     {regex: /\$/, token: "adblock-opt-sep", next: "options"},
                     {regex: /\|\||\|/, token: "adblock-anchor"},
@@ -306,33 +226,23 @@
                     {regex: /$/, pop: true},
                     {regex: /[^$|^*]+/, token: "adblock-domain"}
                 ],
-
-                // --- Selector / Scriptlet Mode ---
                 selector: [
-                    // Scriptlet: +js(...)
                     {regex: /\+js\(/, token: "adblock-js-marker", push: "scriptlet"},
-
-                    // CSS Selectors
-                    {regex: /#[\w-]+/, token: "adblock-selector-id"}, // IDs
-                    {regex: /\.[\w-]+/, token: "adblock-selector-class"}, // Classes
-                    {regex: /\[[^\]]+\]/, token: "adblock-selector-attr"}, // Attributes
-                    {regex: /:{1,2}[\w-]+(\(.*\))?/, token: "adblock-selector-pseudo"}, // Pseudos
-                    {regex: /\w+/, token: "adblock-selector-tag"}, // Tags
-                    {regex: />|\+|~/, token: "adblock-separator"}, // Combinators
-
+                    {regex: /#[\w-]+/, token: "adblock-selector-id"},
+                    {regex: /\.[\w-]+/, token: "adblock-selector-class"},
+                    {regex: /\[[^\]]+\]/, token: "adblock-selector-attr"},
+                    {regex: /:{1,2}[\w-]+(\(.*\))?/, token: "adblock-selector-pseudo"},
+                    {regex: /\w+/, token: "adblock-selector-tag"},
+                    {regex: />|\+|~/, token: "adblock-separator"},
                     {regex: /$/, pop: true},
                     {regex: /\s+/, token: "whitespace"}
                 ],
-
-                // --- Scriptlet Args ---
                 scriptlet: [
                     {regex: /\)/, token: "adblock-js-marker", pop: true},
                     {regex: /,/, token: "adblock-separator"},
                     {regex: /'[^']*'|"[^"]*"/, token: "adblock-js-args"},
                     {regex: /[^,)]+/, token: "adblock-js-name"}
                 ],
-
-                // --- Options Mode ---
                 options: [
                     {regex: /$/, pop: true},
                     {regex: /,/, token: "adblock-opt-sep"},
@@ -357,7 +267,6 @@
                 lineWrapping: true,
                 tabSize: 4,
                 indentWithTabs: false,
-                // Better mobile support attempts
                 inputStyle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "textarea" : "contenteditable",
             });
 
@@ -366,13 +275,86 @@
                 const lines = editor.lineCount();
                 document.getElementById('stats-info').textContent = `${lines.toLocaleString()} dòng`;
             });
+
+            // Search Keybinds
+            editor.addKeyMap({
+                "Ctrl-F": toggleSearch,
+                "Cmd-F": toggleSearch
+            });
         }
 
-        function triggerSearch() {
-            if (editor) {
-                editor.execCommand('find');
+        // --- Custom Search Logic ---
+        function toggleSearch() {
+            const panel = document.getElementById('search-panel');
+            const input = document.getElementById('search-input');
+
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                input.focus();
+                // Select all text if any
+                input.select();
+            } else {
+                panel.classList.add('hidden');
+                editor.focus();
             }
         }
+
+        function executeSearch(reverse) {
+            const query = document.getElementById('search-input').value;
+            if (!query) return;
+
+            // Get the cursor to start searching from
+            // IMPORTANT: If we just found something, the selection is set.
+            // For Next: start from the END of the current selection.
+            // For Prev: start from the START of the current selection.
+            // If no selection, getCursor() is fine (it's the caret).
+
+            let start;
+            if (editor.somethingSelected()) {
+                if (reverse) {
+                    start = editor.getCursor('from');
+                } else {
+                    start = editor.getCursor('to');
+                }
+            } else {
+                start = editor.getCursor();
+            }
+
+            const cursor = editor.getSearchCursor(query, start, { caseFold: true });
+
+            let found = reverse ? cursor.findPrevious() : cursor.findNext();
+
+            if (!found) {
+                // Wrap around logic
+                let wrapStart = reverse ? {line: editor.lineCount() - 1, ch: null} : {line: 0, ch: 0};
+                const wrapCursor = editor.getSearchCursor(query, wrapStart, { caseFold: true });
+                found = reverse ? wrapCursor.findPrevious() : wrapCursor.findNext();
+
+                if (found) {
+                    showToast('Thông tin', 'Đã tìm thấy (lặp lại)', 'info');
+                    cursor.from = wrapCursor.from;
+                    cursor.to = wrapCursor.to;
+                } else {
+                    showToast('Thông báo', 'Không tìm thấy kết quả', 'error');
+                    return;
+                }
+            }
+
+            // Select found text
+            editor.setSelection(cursor.from(), cursor.to());
+            editor.scrollIntoView({from: cursor.from(), to: cursor.to()}, 20);
+        }
+
+        // Listen for Enter key in search input
+        document.getElementById('search-input')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeSearch(e.shiftKey); // Shift+Enter = Previous
+            }
+            if (e.key === 'Escape') {
+                toggleSearch();
+            }
+        });
 
         function getRepoName() {
             if (INJECTED_REPO_NAME && !INJECTED_REPO_NAME.includes('{{')) {
