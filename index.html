@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Yuusei Filter Editor</title>
+
+    <!-- CodeMirror 5 Core & Addons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+
+    <!-- Theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+
+    <!-- CodeMirror Addons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/searchcursor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/mode/overlay.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome & Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Global Reset & Layout */
+        body { font-family: 'Inter', sans-serif; overflow: hidden; background-color: #282a36; color: #f8f8f2; }
+
+        /* Editor Container */
+        #editor-wrapper {
+            position: absolute;
+            top: 56px; /* Header height */
+            bottom: 30px; /* Status bar height */
+            left: 0; right: 0;
+        }
+
+        /* CodeMirror Customization */
+        .CodeMirror {
+            height: 100%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            background-color: #282a36;
+            color: #f8f8f2;
+        }
+
+        /* Scrollbars (Webkit) */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #282a36; }
+        ::-webkit-scrollbar-thumb { background: #44475a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6272a4; }
+
+        /* Custom Adblock Syntax Highlighting */
+        .cm-ab-comment { color: #6272a4; font-style: italic; }
+        .cm-ab-header { color: #ff79c6; font-weight: bold; }
+        .cm-ab-meta { color: #bd93f9; }
+        .cm-ab-blocking { color: #ff5555; }
+        .cm-ab-hiding { color: #8be9fd; }
+        .cm-ab-exception { color: #50fa7b; }
+        .cm-ab-options { color: #f1fa8c; }
+        .cm-ab-important { color: #ffb86c; font-weight: bold; }
+
+        /* Search Highlight */
+        .cm-searching { background-color: rgba(255, 255, 0, 0.4); }
+
+        /* Mobile Tweaks */
+        @media (max-width: 640px) {
+            #editor-wrapper { top: 50px; bottom: 0; }
+            .mobile-hide { display: none; }
+            .CodeMirror { font-size: 13px; }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dracula: {
+                            bg: '#282a36',
+                            current: '#44475a',
+                            fg: '#f8f8f2',
+                            comment: '#6272a4',
+                            cyan: '#8be9fd',
+                            green: '#50fa7b',
+                            orange: '#ffb86c',
+                            pink: '#ff79c6',
+                            purple: '#bd93f9',
+                            red: '#ff5555',
+                            yellow: '#f1fa8c'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="flex flex-col h-screen">
+
+    <!-- Header / Toolbar -->
+    <header class="h-[56px] sm:h-[56px] bg-dracula-current border-b border-dracula-comment/30 flex items-center justify-between px-3 sm:px-4 shrink-0 z-20 shadow-md">
+        <!-- Left: Branding -->
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-gradient-to-br from-dracula-purple to-dracula-pink rounded-lg flex items-center justify-center shadow-lg">
+                <i class="fas fa-shield-cat text-dracula-bg text-lg"></i>
+            </div>
+            <h1 class="text-base sm:text-lg font-bold tracking-tight text-dracula-fg hidden sm:block">Yuusei Editor</h1>
+            <h1 class="text-sm font-bold tracking-tight text-dracula-fg sm:hidden">Yuusei</h1>
+        </div>
+
+        <!-- Center: Search (Desktop) / Actions -->
+        <div class="flex items-center gap-2">
+            <!-- Search Toggle -->
+            <button onclick="toggleSearchBar()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg hover:bg-dracula-comment/30 flex items-center justify-center transition text-dracula-cyan" title="Tìm kiếm">
+                <i class="fas fa-search"></i>
+            </button>
+
+            <!-- Reload -->
+            <button onclick="loadFile()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg hover:bg-dracula-comment/30 flex items-center justify-center transition text-dracula-purple" title="Tải lại">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+
+            <!-- Save -->
+            <button onclick="saveFile()" id="btn-save" class="bg-dracula-green hover:bg-green-400 text-dracula-bg font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm shadow-lg shadow-green-500/20 transition active:scale-95 flex items-center gap-2">
+                <i class="fas fa-save"></i> <span class="hidden sm:inline">Lưu</span>
+            </button>
+
+            <!-- Settings -->
+            <button onclick="toggleSettings()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg hover:bg-dracula-comment/30 flex items-center justify-center transition text-dracula-orange ml-1" title="Cài đặt">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Search Bar Overlay -->
+    <div id="search-bar" class="absolute top-[56px] left-0 right-0 bg-dracula-current p-2 flex items-center gap-2 border-b border-dracula-comment/30 transform -translate-y-full transition-transform duration-200 z-10 hidden">
+        <input type="text" id="search-input" placeholder="Tìm kiếm..." class="bg-dracula-bg text-dracula-fg text-sm rounded px-3 py-1.5 flex-grow outline-none border border-dracula-comment/50 focus:border-dracula-purple">
+        <button onclick="findNext()" class="p-1.5 hover:text-dracula-fg text-dracula-comment"><i class="fas fa-chevron-down"></i></button>
+        <button onclick="findPrev()" class="p-1.5 hover:text-dracula-fg text-dracula-comment"><i class="fas fa-chevron-up"></i></button>
+        <button onclick="toggleSearchBar()" class="p-1.5 hover:text-dracula-fg text-dracula-red"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Main Editor Area -->
+    <div id="editor-wrapper">
+        <textarea id="code-editor"></textarea>
+    </div>
+
+    <!-- Status Bar (Desktop only mostly) -->
+    <div class="h-[30px] bg-dracula-current border-t border-dracula-comment/30 flex items-center justify-between px-3 text-[10px] sm:text-xs text-dracula-comment select-none z-20 hidden sm:flex">
+        <div class="flex items-center gap-3">
+            <span id="status-indicator" class="flex items-center gap-1.5 text-dracula-fg">
+                <span class="w-2 h-2 rounded-full bg-dracula-comment" id="status-dot"></span>
+                <span id="status-text">Sẵn sàng</span>
+            </span>
+            <span id="file-sha" class="font-mono">SHA: ---</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <span id="cursor-pos">Ln 1, Col 1</span>
+            <span id="total-lines">0 lines</span>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center opacity-0 transition-opacity duration-200">
+        <div class="bg-dracula-bg border border-dracula-comment rounded-xl shadow-2xl p-5 w-full max-w-sm transform scale-95 transition-transform duration-200" id="settings-content">
+            <h2 class="text-lg font-bold text-dracula-fg mb-4 flex items-center gap-2">
+                <i class="fas fa-sliders-h text-dracula-orange"></i> Cấu hình
+            </h2>
+
+            <div class="mb-4">
+                <label class="block text-dracula-comment text-xs font-bold mb-2 uppercase">GitHub Token (PAT)</label>
+                <input type="password" id="github-token" class="bg-dracula-current border border-dracula-comment text-dracula-fg text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:border-dracula-purple placeholder-dracula-comment/50" placeholder="ghp_...">
+                <p class="text-[10px] text-dracula-comment mt-1 italic">Token được lưu trên trình duyệt của bạn.</p>
+            </div>
+
+            <div class="flex justify-end gap-2 mt-6">
+                <button onclick="toggleSettings()" class="px-4 py-2 bg-dracula-current hover:bg-dracula-comment/50 text-dracula-fg text-xs font-bold rounded-lg transition">Đóng</button>
+                <button onclick="saveSettings()" class="px-4 py-2 bg-dracula-purple hover:bg-opacity-80 text-dracula-bg text-xs font-bold rounded-lg shadow-lg shadow-dracula-purple/20 transition">Lưu Cài Đặt</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-dracula-current border border-dracula-comment text-dracula-fg px-4 py-3 rounded-lg shadow-xl flex items-center gap-3 z-50 transition-all duration-300 translate-y-20 opacity-0 max-w-xs w-full sm:w-auto">
+        <div id="toast-icon" class="text-lg"></div>
+        <div class="flex-grow">
+            <p id="toast-msg" class="text-sm font-medium"></p>
+        </div>
+    </div>
+
+    <script>
+        // --- Configuration ---
+        const INJECTED_REPO_NAME = '{{REPO_NAME}}';
+        const FILE_PATH = 'Yuusei.txt';
+
+        // --- State ---
+        window.editor = null;
+        let currentSha = null;
+        let searchCursor = null;
+
+        // --- Adblock Syntax Definition ---
+        CodeMirror.defineMode("adblock", function() {
+            return {
+                token: function(stream) {
+                    // Eat whitespace
+                    if (stream.eatSpace()) return null;
+
+                    // Comments & Metadata
+                    if (stream.match(/^!/)) {
+                        stream.skipToEnd();
+                        const text = stream.current();
+                        if (text.match(/^!\s*(Version|Title|Last modified|Checksum):/)) return "ab-header";
+                        return "ab-comment";
+                    }
+
+                    // Exception Rules (@@)
+                    if (stream.match(/^@@/)) {
+                        // Scan until $ or end
+                        while (!stream.eol() && stream.peek() !== '$') stream.next();
+                        return "ab-exception";
+                    }
+
+                    // Element Hiding (domain##selector)
+                    // We look for ## or #@#
+                    // This is a bit tricky in stream based, but we can try heuristic
+                    // If we haven't matched anything yet, let's look ahead?
+                    // Stream doesn't support regex lookahead well.
+                    // Simple heuristic: if line contains ##, treat parts differently?
+                    // CodeMirror mode is token-by-token.
+
+                    // Let's just try to match blocking anchors first
+                    if (stream.match(/^\|\|/) || stream.match(/^\|/)) {
+                         return "ab-blocking";
+                    }
+
+                    // Check for options separator $
+                    if (stream.peek() === '$') {
+                        stream.next();
+                        stream.skipToEnd();
+                        return "ab-options";
+                    }
+
+                    // Simple token advancement
+                    stream.next();
+                    return null;
+                }
+            };
+        });
+
+        // Refined Adblock Mode with Overlay for Hiding Rules
+        CodeMirror.defineMode("adblock-advanced", function(config, parserConfig) {
+            var adblockOverlay = {
+                token: function(stream) {
+                    if (stream.match("##") || stream.match("#@#")) {
+                        stream.skipToEnd();
+                        return "ab-hiding";
+                    }
+                    while (stream.next() != null && !stream.match("##", false) && !stream.match("#@#", false)) {}
+                    return null;
+                }
+            };
+            return CodeMirror.overlayMode(CodeMirror.getMode(config, "adblock"), adblockOverlay);
+        });
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initEditor();
+            loadSettings();
+
+            // Auto-load if token exists, else wait or prompt?
+            // Just try to load. If public, it might read OK. But usually we need token for Rate Limits or Private repos.
+            // Our repo is likely public, but we need token for writing.
+            setTimeout(loadFile, 100);
+        });
+
+        function initEditor() {
+            window.editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
+                mode: 'adblock-advanced',
+                theme: 'dracula',
+                lineNumbers: true,
+                lineWrapping: true,
+                tabSize: 4,
+                indentWithTabs: false,
+                viewportMargin: 10, // Moderate viewport margin
+                extraKeys: { "Ctrl-Space": "autocomplete" },
+                inputStyle: "contenteditable", // Better for mobile than textarea sometimes, but textarea is more robust.
+                // Mobile optimization:
+                autocorrect: false,
+                autocapitalize: false,
+                spellcheck: false
+            });
+
+            // Status Bar Updates
+            window.editor.on('cursorActivity', () => {
+                const pos = window.editor.getCursor();
+                const total = window.editor.lineCount();
+                document.getElementById('cursor-pos').textContent = `Ln ${pos.line + 1}, Col ${pos.ch + 1}`;
+                document.getElementById('total-lines').textContent = `${total.toLocaleString()} lines`;
+            });
+
+            // Search Keybinding override
+            window.editor.addKeyMap({
+                "Ctrl-F": function() { toggleSearchBar(); },
+                "Cmd-F": function() { toggleSearchBar(); }
+            });
+        }
+
+        // --- GitHub Logic ---
+        function getRepoName() {
+            if (INJECTED_REPO_NAME && !INJECTED_REPO_NAME.includes('{{')) return INJECTED_REPO_NAME;
+            const pathParts = window.location.pathname.split('/').filter(p => p);
+            const user = window.location.hostname.split('.')[0];
+            return (pathParts[0]) ? `${user}/${pathParts[0]}` : `${user}/${user}.github.io`;
+        }
+
+        function getApiUrl() {
+            const repo = getRepoName();
+            return `https://api.github.com/repos/${repo}/contents/${FILE_PATH}`;
+        }
+
+        async function loadFile() {
+            const url = getApiUrl();
+            updateStatus('loading', 'Đang tải...');
+
+            try {
+                const token = localStorage.getItem('github_token');
+                const headers = token ? { 'Authorization': `token ${token}` } : {};
+
+                const res = await fetch(`${url}?t=${Date.now()}`, { headers });
+                if (!res.ok) throw new Error(res.status === 404 ? 'Không tìm thấy file' : `Lỗi ${res.status}`);
+
+                const data = await res.json();
+                currentSha = data.sha;
+                document.getElementById('file-sha').textContent = `SHA: ${currentSha.substring(0,7)}`;
+
+                const content = new TextDecoder().decode(Uint8Array.from(atob(data.content), c => c.charCodeAt(0)));
+                window.editor.setValue(content);
+                window.editor.clearHistory();
+                updateStatus('ready', 'Sẵn sàng');
+            } catch (e) {
+                console.error(e);
+                updateStatus('error', 'Lỗi tải');
+                showToast('Lỗi', e.message, 'error');
+            }
+        }
+
+        async function saveFile() {
+            const token = localStorage.getItem('github_token');
+            if (!token) {
+                showToast('Lỗi', 'Chưa nhập GitHub Token', 'error');
+                toggleSettings();
+                return;
+            }
+
+            if (!confirm('Lưu các thay đổi vào Yuusei.txt?')) return;
+
+            const url = getApiUrl();
+            updateStatus('loading', 'Đang lưu...');
+            document.getElementById('btn-save').disabled = true;
+
+            try {
+                const content = window.editor.getValue();
+                const encoded = btoa(String.fromCharCode(...new TextEncoder().encode(content)));
+
+                const res = await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Update Yuusei.txt via Web Editor',
+                        content: encoded,
+                        sha: currentSha
+                    })
+                });
+
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.message || 'Lỗi lưu file');
+                }
+
+                const data = await res.json();
+                currentSha = data.content.sha;
+                document.getElementById('file-sha').textContent = `SHA: ${currentSha.substring(0,7)}`;
+                showToast('Thành công', 'Đã lưu file thành công', 'success');
+                updateStatus('ready', 'Đã lưu');
+            } catch (e) {
+                console.error(e);
+                updateStatus('error', 'Lỗi lưu');
+                showToast('Thất bại', e.message, 'error');
+            } finally {
+                document.getElementById('btn-save').disabled = false;
+            }
+        }
+
+        // --- UI & Helpers ---
+        function updateStatus(state, text) {
+            const dot = document.getElementById('status-dot');
+            const txt = document.getElementById('status-text');
+            txt.textContent = text;
+
+            dot.className = 'w-2 h-2 rounded-full ' + (
+                state === 'loading' ? 'bg-dracula-yellow animate-pulse' :
+                state === 'error' ? 'bg-dracula-red' :
+                'bg-dracula-green'
+            );
+        }
+
+        function showToast(title, msg, type='info') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+
+            document.getElementById('toast-msg').textContent = `${title}: ${msg}`;
+
+            if (type === 'success') {
+                icon.innerHTML = '<i class="fas fa-check-circle text-dracula-green"></i>';
+            } else if (type === 'error') {
+                icon.innerHTML = '<i class="fas fa-exclamation-triangle text-dracula-red"></i>';
+            } else {
+                icon.innerHTML = '<i class="fas fa-info-circle text-dracula-cyan"></i>';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // --- Settings Modal ---
+        function toggleSettings() {
+            const modal = document.getElementById('settings-modal');
+            const content = document.getElementById('settings-content');
+
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                // Trigger reflow
+                void modal.offsetWidth;
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            } else {
+                modal.classList.add('opacity-0');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 200);
+            }
+        }
+
+        function loadSettings() {
+            const t = localStorage.getItem('github_token');
+            if (t) document.getElementById('github-token').value = t;
+        }
+
+        function saveSettings() {
+            const t = document.getElementById('github-token').value.trim();
+            if (t) {
+                localStorage.setItem('github_token', t);
+                showToast('Đã lưu', 'Token đã được cập nhật', 'success');
+                toggleSettings();
+                loadFile();
+            }
+        }
+
+        // --- Search ---
+        function toggleSearchBar() {
+            const bar = document.getElementById('search-bar');
+            const input = document.getElementById('search-input');
+
+            if (bar.classList.contains('hidden')) {
+                bar.classList.remove('hidden');
+                setTimeout(() => bar.classList.remove('-translate-y-full'), 10);
+                input.focus();
+            } else {
+                bar.classList.add('-translate-y-full');
+                setTimeout(() => bar.classList.add('hidden'), 200);
+                // Clear search highlights
+                if(searchCursor) { /* clear highlight logic if using overlay */ }
+            }
+        }
+
+        // Basic Find Next/Prev using searchcursor
+        function findNext() {
+            const query = document.getElementById('search-input').value;
+            if (!query) return;
+
+            // We use built-in search extension logic roughly
+            if (!searchCursor || searchCursor.query !== query) {
+                searchCursor = window.editor.getSearchCursor(query);
+            }
+
+            if (searchCursor.findNext()) {
+                window.editor.setSelection(searchCursor.from(), searchCursor.to());
+                window.editor.scrollIntoView(searchCursor.from(), 20);
+            } else {
+                // Wrap around
+                searchCursor = window.editor.getSearchCursor(query);
+                if (searchCursor.findNext()) {
+                    window.editor.setSelection(searchCursor.from(), searchCursor.to());
+                    window.editor.scrollIntoView(searchCursor.from(), 20);
+                } else {
+                    showToast('Tìm kiếm', 'Không tìm thấy kết quả', 'info');
+                }
+            }
+        }
+
+        function findPrev() {
+            const query = document.getElementById('search-input').value;
+            if (!query) return;
+
+            if (!searchCursor || searchCursor.query !== query) {
+                searchCursor = window.editor.getSearchCursor(query);
+                // Move to end to search backwards initially? No, current pos is fine.
+            }
+
+            if (searchCursor.findPrevious()) {
+                window.editor.setSelection(searchCursor.from(), searchCursor.to());
+                window.editor.scrollIntoView(searchCursor.from(), 20);
+            } else {
+                 // Wrap around
+                 searchCursor = window.editor.getSearchCursor(query, {line: window.editor.lineCount()-1, ch: 0});
+                 if (searchCursor.findPrevious()) {
+                     window.editor.setSelection(searchCursor.from(), searchCursor.to());
+                     window.editor.scrollIntoView(searchCursor.from(), 20);
+                 }
+            }
+        }
+
+        document.getElementById('search-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                if (e.shiftKey) findPrev();
+                else findNext();
+            }
+        });
+
+    </script>
+</body>
+</html>
