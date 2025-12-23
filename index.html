@@ -7,24 +7,60 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Ace Editor -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ace.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ext-searchbox.js"></script>
+
+    <!-- CodeMirror 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/mode/simple.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/search/searchcursor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
 
     <style>
         body { font-family: 'Inter', sans-serif; }
-        #editor {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
+        .CodeMirror {
+            height: 100%;
+            font-family: 'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
+
+        /* --- Yuusei Optimized Color Scheme --- */
+        .cm-adblock-comment { color: #6272a4 !important; font-style: italic; }
+        .cm-adblock-section-header { color: #6272a4 !important; font-style: italic; }
+        .cm-adblock-ip { color: #ff5555 !important; font-weight: bold; }
+        .cm-adblock-host { color: #f8f8f2 !important; }
+        .cm-adblock-anchor { color: #ff5555 !important; font-weight: bold; }
+        .cm-adblock-separator { color: #ff5555 !important; font-weight: bold; }
+        .cm-adblock-wildcard { color: #f1fa8c !important; }
+        .cm-adblock-domain { color: #f8f8f2 !important; }
+        .cm-adblock-exception-marker { color: #50fa7b !important; font-weight: bold; }
+        .cm-adblock-hiding-sep { color: #8be9fd !important; font-weight: bold; background: rgba(139, 233, 253, 0.1); }
+        .cm-adblock-selector-id { color: #ffb86c !important; font-weight: bold; }
+        .cm-adblock-selector-class { color: #8be9fd !important; }
+        .cm-adblock-selector-tag { color: #ff79c6 !important; }
+        .cm-adblock-selector-attr { color: #f1fa8c !important; font-style: italic; }
+        .cm-adblock-selector-pseudo { color: #bd93f9 !important; }
+        .cm-adblock-js-marker { color: #bd93f9 !important; font-weight: bold; }
+        .cm-adblock-js-name { color: #50fa7b !important; font-weight: bold; }
+        .cm-adblock-js-args { color: #f1fa8c !important; }
+        .cm-adblock-opt-sep { color: #ffb86c !important; font-weight: bold; }
+        .cm-adblock-opt-key { color: #bd93f9 !important; font-style: italic; }
+        .cm-adblock-opt-op { color: #f8f8f2 !important; }
+        .cm-adblock-opt-val { color: #f1fa8c !important; }
+
         /* Mobile Tweaks */
         @media (max-width: 640px) {
             .mobile-hide-text span { display: none; }
+            .CodeMirror {
+                font-size: 16px;
+            }
+        }
+
+        .CodeMirror-cursors {
+            visibility: visible !important;
         }
     </style>
     <script>
@@ -40,10 +76,10 @@
         }
     </script>
 </head>
-<body class="bg-gray-900 text-gray-100 h-screen flex flex-col overflow-hidden">
+<body class="bg-gray-900 text-gray-100 h-screen flex flex-col overflow-hidden relative">
 
     <!-- Navbar -->
-    <nav class="bg-gray-800 border-b border-gray-700 p-2 sm:p-4 shadow-lg flex justify-between items-center z-10 shrink-0">
+    <nav class="bg-gray-800 border-b border-gray-700 p-2 sm:p-4 shadow-lg flex justify-between items-center z-20 shrink-0 relative">
         <div class="flex items-center space-x-2 sm:space-x-3">
             <div class="bg-indigo-600 p-1.5 sm:p-2 rounded-lg shadow-lg shadow-indigo-500/50">
                 <i class="fas fa-shield-alt text-lg sm:text-xl text-white"></i>
@@ -58,6 +94,11 @@
         </div>
 
         <div class="flex items-center space-x-2">
+            <!-- Search Toggle -->
+            <button onclick="toggleSearch()" class="bg-gray-700 hover:bg-gray-600 text-gray-200 p-2 rounded-lg w-9 h-9 flex items-center justify-center transition" title="Tìm kiếm">
+                <i class="fas fa-search"></i>
+            </button>
+
             <!-- Reload -->
             <button onclick="loadFile()" id="btn-reload" class="bg-gray-700 hover:bg-gray-600 text-gray-200 px-3 py-2 rounded-lg text-sm font-semibold transition flex items-center gap-2 mobile-hide-text" title="Tải lại">
                 <i class="fas fa-sync-alt"></i> <span>Tải lại</span>
@@ -75,6 +116,23 @@
         </div>
     </nav>
 
+    <!-- Custom Persistent Search Panel -->
+    <div id="search-panel" class="hidden absolute top-[60px] right-2 sm:right-4 bg-gray-800 border border-gray-600 shadow-2xl rounded-xl p-2 z-50 flex items-center gap-2 animate-fade-in-down w-[calc(100%-16px)] sm:w-auto max-w-md">
+        <input type="text" id="search-input" class="bg-gray-900 border border-gray-600 text-white text-sm rounded-lg block w-full p-2 focus:ring-1 focus:ring-indigo-500 outline-none flex-grow min-w-[120px]" placeholder="Tìm kiếm...">
+
+        <div class="flex items-center gap-1 shrink-0">
+            <button onclick="executeSearch(true)" class="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg w-8 h-8 flex items-center justify-center" title="Trước (Lên)">
+                <i class="fas fa-chevron-up text-xs"></i>
+            </button>
+            <button onclick="executeSearch(false)" class="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg w-8 h-8 flex items-center justify-center" title="Sau (Xuống)">
+                <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <button onclick="toggleSearch()" class="text-gray-400 hover:text-red-400 p-2 rounded-lg w-8 h-8 flex items-center justify-center ml-1">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <div class="flex-grow flex flex-col overflow-hidden relative bg-gray-900">
         <!-- Status Bar -->
@@ -91,8 +149,8 @@
         </div>
 
         <!-- Editor Container -->
-        <div class="relative flex-grow h-full">
-            <div id="editor"></div>
+        <div class="relative flex-grow h-full overflow-hidden">
+            <textarea id="editor" class="hidden"></textarea>
         </div>
     </div>
 
@@ -137,37 +195,171 @@
         let repoName = '';
         let editor = null;
 
-        // Initialize Ace Editor
-        function initEditor() {
-            ace.config.set('basePath', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/');
-            editor = ace.edit("editor");
-            editor.setTheme("ace/theme/tomorrow_night"); // Dark theme with good contrast
-            editor.session.setMode("ace/mode/ini"); // INI mode highlights [sections] and !comments well
-
-            editor.setOptions({
-                fontSize: "14px",
-                fontFamily: "JetBrains Mono, Menlo, monospace",
-                showPrintMargin: false,
-                wrap: true,
-                scrollPastEnd: 0.5,
-                tabSize: 4,
-                useSoftTabs: true
-            });
-
-            // Update stats on change
-            editor.session.on('change', () => {
-                const lines = editor.session.getLength();
-                document.getElementById('stats-info').textContent = `${lines.toLocaleString()} dòng`;
+        // Define Advanced Adblock Mode
+        function defineAdblockMode() {
+            CodeMirror.defineSimpleMode("adblock", {
+                start: [
+                    {regex: /^!\s*-{3,}.*$/, token: "adblock-section-header"},
+                    {regex: /^!\s*Title:.*$/, token: "adblock-section-header"},
+                    {regex: /^!.*$/, token: "adblock-comment"},
+                    {regex: /^\[.*\]$/, token: "adblock-header"},
+                    {regex: /^(?:0\.0\.0\.0|127\.0\.0\.1|::1)(?=\s)/, token: "adblock-ip", push: "hosts"},
+                    {regex: /^@@/, token: "adblock-exception-marker", push: "network_rule"},
+                    {regex: /#@?#|#\?#|#%#/, token: "adblock-hiding-sep", next: "selector"},
+                    {regex: /\|\||\|/, token: "adblock-anchor"},
+                    {regex: /\^/, token: "adblock-separator"},
+                    {regex: /\$/, token: "adblock-opt-sep", next: "options"},
+                    {regex: /\*/, token: "adblock-wildcard"},
+                    {regex: /[^!|#$^*]+/, token: "adblock-domain"},
+                ],
+                hosts: [
+                    {regex: /#.*$/, token: "adblock-comment", pop: true},
+                    {regex: /\s+/, token: "whitespace"},
+                    {regex: /$/, pop: true},
+                    {regex: /\S+/, token: "adblock-host"}
+                ],
+                network_rule: [
+                    {regex: /\$/, token: "adblock-opt-sep", next: "options"},
+                    {regex: /\|\||\|/, token: "adblock-anchor"},
+                    {regex: /\^/, token: "adblock-separator"},
+                    {regex: /\*/, token: "adblock-wildcard"},
+                    {regex: /$/, pop: true},
+                    {regex: /[^$|^*]+/, token: "adblock-domain"}
+                ],
+                selector: [
+                    {regex: /\+js\(/, token: "adblock-js-marker", push: "scriptlet"},
+                    {regex: /#[\w-]+/, token: "adblock-selector-id"},
+                    {regex: /\.[\w-]+/, token: "adblock-selector-class"},
+                    {regex: /\[[^\]]+\]/, token: "adblock-selector-attr"},
+                    {regex: /:{1,2}[\w-]+(\(.*\))?/, token: "adblock-selector-pseudo"},
+                    {regex: /\w+/, token: "adblock-selector-tag"},
+                    {regex: />|\+|~/, token: "adblock-separator"},
+                    {regex: /$/, pop: true},
+                    {regex: /\s+/, token: "whitespace"}
+                ],
+                scriptlet: [
+                    {regex: /\)/, token: "adblock-js-marker", pop: true},
+                    {regex: /,/, token: "adblock-separator"},
+                    {regex: /'[^']*'|"[^"]*"/, token: "adblock-js-args"},
+                    {regex: /[^,)]+/, token: "adblock-js-name"}
+                ],
+                options: [
+                    {regex: /$/, pop: true},
+                    {regex: /,/, token: "adblock-opt-sep"},
+                    {regex: /(?:domain|image|script|third-party|xmlhttprequest|stylesheet|object|subdocument|media|font|popup|network|generichide|genericblock|document|elemhide|webrtc|other|csp|badfilter|ping|websocket|rewrite|replace|sitekey)\b/, token: "adblock-opt-key"},
+                    {regex: /[=~]/, token: "adblock-opt-op"},
+                    {regex: /[^,=~]+/, token: "adblock-opt-val"}
+                ]
             });
         }
 
+        // Initialize CodeMirror
+        function initEditor() {
+            defineAdblockMode();
+
+            const textarea = document.getElementById("editor");
+            editor = CodeMirror.fromTextArea(textarea, {
+                mode: "adblock",
+                theme: "dracula",
+                lineNumbers: true,
+                styleActiveLine: true,
+                matchBrackets: true,
+                lineWrapping: true,
+                tabSize: 4,
+                indentWithTabs: false,
+                inputStyle: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "textarea" : "contenteditable",
+            });
+
+            // Update stats on change
+            editor.on('change', () => {
+                const lines = editor.lineCount();
+                document.getElementById('stats-info').textContent = `${lines.toLocaleString()} dòng`;
+            });
+
+            // Search Keybinds
+            editor.addKeyMap({
+                "Ctrl-F": toggleSearch,
+                "Cmd-F": toggleSearch
+            });
+        }
+
+        // --- Custom Search Logic ---
+        function toggleSearch() {
+            const panel = document.getElementById('search-panel');
+            const input = document.getElementById('search-input');
+
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                input.focus();
+                // Select all text if any
+                input.select();
+            } else {
+                panel.classList.add('hidden');
+                editor.focus();
+            }
+        }
+
+        function executeSearch(reverse) {
+            const query = document.getElementById('search-input').value;
+            if (!query) return;
+
+            // Get the cursor to start searching from
+            // IMPORTANT: If we just found something, the selection is set.
+            // For Next: start from the END of the current selection.
+            // For Prev: start from the START of the current selection.
+            // If no selection, getCursor() is fine (it's the caret).
+
+            let start;
+            if (editor.somethingSelected()) {
+                if (reverse) {
+                    start = editor.getCursor('from');
+                } else {
+                    start = editor.getCursor('to');
+                }
+            } else {
+                start = editor.getCursor();
+            }
+
+            const cursor = editor.getSearchCursor(query, start, { caseFold: true });
+
+            let found = reverse ? cursor.findPrevious() : cursor.findNext();
+
+            if (!found) {
+                // Wrap around logic
+                let wrapStart = reverse ? {line: editor.lineCount() - 1, ch: null} : {line: 0, ch: 0};
+                const wrapCursor = editor.getSearchCursor(query, wrapStart, { caseFold: true });
+                found = reverse ? wrapCursor.findPrevious() : wrapCursor.findNext();
+
+                if (found) {
+                    showToast('Thông tin', 'Đã tìm thấy (lặp lại)', 'info');
+                    cursor.from = wrapCursor.from;
+                    cursor.to = wrapCursor.to;
+                } else {
+                    showToast('Thông báo', 'Không tìm thấy kết quả', 'error');
+                    return;
+                }
+            }
+
+            // Select found text
+            editor.setSelection(cursor.from(), cursor.to());
+            editor.scrollIntoView({from: cursor.from(), to: cursor.to()}, 20);
+        }
+
+        // Listen for Enter key in search input
+        document.getElementById('search-input')?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeSearch(e.shiftKey); // Shift+Enter = Previous
+            }
+            if (e.key === 'Escape') {
+                toggleSearch();
+            }
+        });
+
         function getRepoName() {
-            // 1. Use injected if valid
             if (INJECTED_REPO_NAME && !INJECTED_REPO_NAME.includes('{{')) {
                 return INJECTED_REPO_NAME;
             }
-            // 2. Try to parse from URL (GitHub Pages format: user.github.io/repo)
-            // Example: renjiyuusei.github.io/Adblock/
             const hostname = window.location.hostname;
             const pathParts = window.location.pathname.split('/').filter(p => p);
 
@@ -175,9 +367,6 @@
                 const user = hostname.split('.')[0];
                 let repo = pathParts[0];
 
-                // If the path is empty (root), and it's a User Site (user.github.io), the repo is user.github.io
-                // BUT, often people deploy project sites to subfolders.
-                // If this is running at root of user.github.io, then repo name is likely "user.github.io" (the special repo)
                 if (!repo) {
                     return `${user}/${user}.github.io`;
                 }
@@ -266,7 +455,7 @@
             }
 
             setStatus('Đang tải...', 'loading');
-            editor.setReadOnly(true);
+            editor.setOption('readOnly', true);
 
             try {
                 const token = localStorage.getItem('github_token');
@@ -286,18 +475,16 @@
                 // Decode UTF-8 correctly
                 const content = new TextDecoder().decode(Uint8Array.from(atob(data.content), c => c.charCodeAt(0)));
 
-                editor.setValue(content, -1); // -1 moves cursor to start
-                editor.setReadOnly(false);
+                editor.setValue(content);
+                editor.clearHistory(); // Clear undo history after load
+                editor.setOption('readOnly', false);
                 setStatus('Sẵn sàng', 'success');
             } catch (error) {
                 console.error(error);
                 setStatus('Lỗi tải', 'error');
                 showToast('Lỗi tải', error.message, 'error');
-                if (error.message.includes('Token')) {
-                   // Optional: prompt settings
-                }
             } finally {
-                editor.setReadOnly(false);
+                editor.setOption('readOnly', false);
             }
         }
 
@@ -321,7 +508,6 @@
 
             try {
                 const content = editor.getValue();
-                // Encode UTF-8 to Base64
                 const encodedContent = btoa(String.fromCharCode(...new TextEncoder().encode(content)));
 
                 const body = {
@@ -355,7 +541,6 @@
                 showToast('Thất bại', error.message, 'error');
             } finally {
                 document.getElementById('btn-save').disabled = false;
-                // Force status reset after delay if still "Loading" (safety net)
                 setTimeout(() => {
                     const statusText = document.getElementById('status').innerText;
                     if(statusText.includes('Đang lưu')) setStatus('Sẵn sàng');
@@ -363,14 +548,10 @@
             }
         }
 
-        // Init
         document.addEventListener('DOMContentLoaded', () => {
             initEditor();
-
             const token = localStorage.getItem('github_token');
             if (token) document.getElementById('github-token').value = token;
-
-            // Delay load slightly to ensure editor is ready
             setTimeout(loadFile, 100);
         });
     </script>
