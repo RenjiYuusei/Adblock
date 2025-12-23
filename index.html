@@ -32,43 +32,43 @@
             line-height: 1.6;
         }
 
-        /* Adblock Syntax Highlighting Colors (Dracula Theme Extended) */
+        /* --- Extended Vibrant Adblock Syntax Colors --- */
 
-        /* Comments (! ...) */
-        .cm-adblock-comment { color: #6272a4; font-style: italic; }
+        /* Comments: Greyish Blue */
+        .cm-adblock-comment { color: #6272a4 !important; font-style: italic; }
+        .cm-adblock-header { color: #8be9fd !important; font-weight: bold; border-bottom: 1px dashed #6272a4; }
 
-        /* Exceptions (@@...) */
-        .cm-adblock-exception { color: #50fa7b; font-weight: bold; }
+        /* Network Rules */
+        .cm-adblock-anchor { color: #ff79c6 !important; font-weight: bold; } /* ||, | */
+        .cm-adblock-separator { color: #ff5555 !important; font-weight: bold; } /* ^ */
+        .cm-adblock-wildcard { color: #f1fa8c !important; font-weight: bold; } /* * */
+        .cm-adblock-domain { color: #f8f8f2 !important; }
 
-        /* Anchors (||, |) */
-        .cm-adblock-anchor { color: #ff79c6; font-weight: bold; }
+        /* Exceptions: Bright Green */
+        .cm-adblock-exception-marker { color: #50fa7b !important; font-weight: bold; } /* @@ */
 
-        /* Separators (^) */
-        .cm-adblock-separator { color: #ff5555; font-weight: bold; }
+        /* Element Hiding */
+        .cm-adblock-hiding-sep { color: #bd93f9 !important; font-weight: bold; background: rgba(189, 147, 249, 0.15); border-radius: 2px; } /* ##, #@# */
+        .cm-adblock-selector-tag { color: #ff79c6 !important; } /* div, span */
+        .cm-adblock-selector-id { color: #ffb86c !important; font-weight: bold; } /* #header */
+        .cm-adblock-selector-class { color: #8be9fd !important; } /* .ad-banner */
+        .cm-adblock-selector-attr { color: #f1fa8c !important; } /* [href="..."] */
+        .cm-adblock-selector-pseudo { color: #ff5555 !important; font-style: italic; } /* :has(...) */
 
-        /* Wildcards (*) */
-        .cm-adblock-wildcard { color: #f1fa8c; font-weight: bold; }
+        /* Options ($...) */
+        .cm-adblock-opt-sep { color: #f1fa8c !important; font-weight: bold; } /* $ */
+        .cm-adblock-opt-key { color: #ffb86c !important; } /* domain, image */
+        .cm-adblock-opt-val { color: #bd93f9 !important; } /* value */
+        .cm-adblock-opt-op { color: #f8f8f2 !important; } /* = , ~ */
 
-        /* Hiding Separators (##, #@#, #?#, #%#) */
-        .cm-adblock-hiding-separator { color: #8be9fd; font-weight: bold; background: rgba(139, 233, 253, 0.1); }
+        /* Scriptlets (+js) */
+        .cm-adblock-js-marker { color: #ff5555 !important; font-weight: bold; } /* +js( */
+        .cm-adblock-js-name { color: #50fa7b !important; font-weight: bold; } /* set-constant */
+        .cm-adblock-js-args { color: #f1fa8c !important; }
 
-        /* Selector Text (after ##) */
-        .cm-adblock-selector-text { color: #f8f8f2; }
-
-        /* Scriptlets (+js(...)) */
-        .cm-adblock-scriptlet { color: #ffb86c; font-weight: bold; }
-
-        /* Option Separator ($) */
-        .cm-adblock-option-separator { color: #f1fa8c; font-weight: bold; }
-
-        /* Option Keywords (domain, script, etc.) */
-        .cm-adblock-option-keyword { color: #bd93f9; font-style: italic; }
-
-        /* Option Operator (=, ~) */
-        .cm-adblock-option-operator { color: #ff79c6; }
-
-        /* Option Values */
-        .cm-adblock-option-value { color: #f8f8f2; }
+        /* Host File Syntax */
+        .cm-adblock-ip { color: #bd93f9 !important; font-weight: bold; }
+        .cm-adblock-host { color: #f8f8f2 !important; }
 
         /* Mobile Tweaks */
         @media (max-width: 640px) {
@@ -78,7 +78,6 @@
             }
         }
 
-        /* Fix for mobile keyboard overlay issues if any */
         .CodeMirror-cursors {
             visibility: visible !important;
         }
@@ -193,76 +192,110 @@
         let repoName = '';
         let editor = null;
 
-        // Define Advanced Adblock Mode
+        // Define Advanced Adblock Mode with Granular Tokens
         function defineAdblockMode() {
             CodeMirror.defineSimpleMode("adblock", {
                 start: [
-                    // Comments: start with !
+                    // --- Comments ---
                     {regex: /^!.*$/, token: "adblock-comment"},
+                    {regex: /^\[.*\]$/, token: "adblock-header"},
 
-                    // Exceptions: start with @@
-                    {regex: /^@@/, token: "adblock-exception", push: "rule"},
+                    // --- Host File Syntax (0.0.0.0 domain) ---
+                    {regex: /^(0\.0\.0\.0|127\.0\.0\.1)(?=\s)/, token: "adblock-ip", push: "hosts"},
 
-                    // Element Hiding Separators (trigger 'selector' state)
-                    // We look for them anywhere in the line? No, regex in start matches from BOL usually?
-                    // SimpleMode matches sequentially.
-                    // If we encounter a hiding separator, we switch mode.
-                    // But we first need to match the domain part.
+                    // --- Exceptions ---
+                    {regex: /^@@/, token: "adblock-exception-marker", push: "network_rule"},
 
-                    // Complex Hiding Rule Strategy:
-                    // Match domain part (chars until # or $)
-                    // But wait, "domain.com##.ad" -> "domain.com" is text, "##" is sep.
-                    // "||example.com^" -> "||" anchor, "example.com" text, "^" sep.
+                    // --- Element Hiding / Scriptlets (Start with ##, #@#, etc? No, usually Domain##) ---
+                    // Strategy: Look ahead for ##, #@#, #?#, #%#
+                    // If found, treat the pre-part as domain, and switch to selector mode.
+                    // Note: SimpleMode doesn't support complex lookahead well for state switching in one go.
+                    // We can use a regex that captures everything up to ##
 
-                    // Anchors at start
-                    {regex: /^\|\|/, token: "adblock-anchor"},
-                    {regex: /^\|/, token: "adblock-anchor"},
+                    // Case 1: Hiding Rule or Scriptlet (contains ## or #@# or #?# or #%#)
+                    // We match the separator and switch to selector mode.
+                    // But we need to handle the domain part before it.
+                    // SimpleMode processes left to right.
 
-                    // Hiding Separators: ##, #@#, #?#, #%#
-                    {regex: /##|#@#|#\?#|#%#/, token: "adblock-hiding-separator", next: "selector"},
+                    // Match Domain part IF followed by separator
+                    // Note: This regex is a bit tricky in JS regex.
+                    // We can match non-separator chars.
+
+                    // Let's try matching the separator directly.
+                    // If we encounter a separator, we color it and go to selector.
+                    {regex: /##|#@#|#\?#|#%#/, token: "adblock-hiding-sep", next: "selector"},
+
+                    // --- Network Rules ---
+                    // Anchors
+                    {regex: /\|\||\|/, token: "adblock-anchor"},
+
+                    // Separator
+                    {regex: /\^/, token: "adblock-separator"},
 
                     // Options start
-                    {regex: /\$/, token: "adblock-option-separator", next: "options"},
+                    {regex: /\$/, token: "adblock-opt-sep", next: "options"},
 
-                    // Separators and Wildcards in the rule part
-                    {regex: /\^/, token: "adblock-separator"},
+                    // Wildcard
                     {regex: /\*/, token: "adblock-wildcard"},
 
-                    // Standard text (domains, paths)
-                    {regex: /[^!|#$^*]+/, token: "text"},
+                    // Standard text (Domain part of hiding rule OR network rule)
+                    // If we hit a character that isn't special, it's text/domain.
+                    // We must be careful not to consume the ## if it's coming up.
+                    // consume 1 char at a time or run until special.
+                    {regex: /[^!|#$^*]+/, token: "adblock-domain"},
                 ],
 
-                rule: [
-                     // Similar to start but inside an exception (no hiding separators allowed usually?)
-                     // Actually exceptions can be complex too.
-                     // For simplicity, reuse the same tokens but we are in "rule" state which pops on EOL.
-                     {regex: /\$/, token: "adblock-option-separator", next: "options"},
-                     {regex: /\|\|/, token: "adblock-anchor"},
-                     {regex: /\^/, token: "adblock-separator"},
-                     {regex: /\*/, token: "adblock-wildcard"},
-                     {regex: /$/, pop: true}, // EOL
-                     {regex: /[^$|^*]+/, token: "text"}
+                // --- Hosts Mode ---
+                hosts: [
+                    {regex: /#.*$/, token: "adblock-comment", pop: true}, // Inline comment
+                    {regex: /\s+/, token: "whitespace"},
+                    {regex: /$/, pop: true},
+                    {regex: /\S+/, token: "adblock-host"}
                 ],
 
+                // --- Network Rule (inside Exception) ---
+                network_rule: [
+                    {regex: /\$/, token: "adblock-opt-sep", next: "options"},
+                    {regex: /\|\||\|/, token: "adblock-anchor"},
+                    {regex: /\^/, token: "adblock-separator"},
+                    {regex: /\*/, token: "adblock-wildcard"},
+                    {regex: /$/, pop: true},
+                    {regex: /[^$|^*]+/, token: "adblock-domain"}
+                ],
+
+                // --- Selector / Scriptlet Mode ---
                 selector: [
-                    // Scriptlets: +js(...)
-                    {regex: /\+js\(/, token: "adblock-scriptlet", push: "scriptlet_args"},
-                    {regex: /$/, next: "start"}, // End of line resets
-                    {regex: /./, token: "adblock-selector-text"}
+                    // Scriptlet: +js(...)
+                    {regex: /\+js\(/, token: "adblock-js-marker", push: "scriptlet"},
+
+                    // CSS Selectors
+                    {regex: /#[\w-]+/, token: "adblock-selector-id"},
+                    {regex: /\.[\w-]+/, token: "adblock-selector-class"},
+                    {regex: /\[[^\]]+\]/, token: "adblock-selector-attr"},
+                    {regex: /:{1,2}[\w-]+(\(.*\))?/, token: "adblock-selector-pseudo"},
+                    {regex: /\w+/, token: "adblock-selector-tag"},
+                    {regex: />|\+|~/, token: "adblock-separator"}, // combinators
+
+                    {regex: /$/, pop: true}, // EOL
+                    {regex: /\s+/, token: "whitespace"}
                 ],
 
-                scriptlet_args: [
-                    {regex: /\)/, token: "adblock-scriptlet", pop: true},
-                    {regex: /[^)]+/, token: "adblock-selector-text"}
+                // --- Scriptlet Args ---
+                scriptlet: [
+                    {regex: /\)/, token: "adblock-js-marker", pop: true},
+                    {regex: /,/, token: "adblock-separator"},
+                    {regex: /'[^']*'|"[^"]*"/, token: "adblock-js-args"},
+                    {regex: /[^,)]+/, token: "adblock-js-name"} // Function name or unquoted arg
                 ],
 
+                // --- Options Mode ---
                 options: [
-                    {regex: /$/, next: "start"},
-                    {regex: /,/, token: "adblock-option-operator"}, // Comma is like an operator here
-                    {regex: /(?:domain|image|script|third-party|xmlhttprequest|stylesheet|object|subdocument|media|font|popup|network|generichide|genericblock|document|elemhide|webrtc|other|csp|badfilter|ping|websocket)\b/, token: "adblock-option-keyword"},
-                    {regex: /=/, token: "adblock-option-operator"},
-                    {regex: /~/, token: "adblock-option-operator"}, // Negation
-                    {regex: /[^,=~]+/, token: "adblock-option-value"}
+                    {regex: /$/, pop: true},
+                    {regex: /,/, token: "adblock-opt-op"},
+                    {regex: /(?:domain|image|script|third-party|xmlhttprequest|stylesheet|object|subdocument|media|font|popup|network|generichide|genericblock|document|elemhide|webrtc|other|csp|badfilter|ping|websocket)\b/, token: "adblock-opt-key"},
+                    {regex: /=/, token: "adblock-opt-op"},
+                    {regex: /~/, token: "adblock-opt-op"},
+                    {regex: /[^,=~]+/, token: "adblock-opt-val"}
                 ]
             });
         }
@@ -293,12 +326,9 @@
         }
 
         function getRepoName() {
-            // 1. Use injected if valid
             if (INJECTED_REPO_NAME && !INJECTED_REPO_NAME.includes('{{')) {
                 return INJECTED_REPO_NAME;
             }
-            // 2. Try to parse from URL (GitHub Pages format: user.github.io/repo)
-            // Example: renjiyuusei.github.io/Adblock/
             const hostname = window.location.hostname;
             const pathParts = window.location.pathname.split('/').filter(p => p);
 
@@ -394,7 +424,7 @@
             }
 
             setStatus('Đang tải...', 'loading');
-            editor.setOption('readOnly', true); // CodeMirror method
+            editor.setOption('readOnly', true);
 
             try {
                 const token = localStorage.getItem('github_token');
@@ -422,9 +452,6 @@
                 console.error(error);
                 setStatus('Lỗi tải', 'error');
                 showToast('Lỗi tải', error.message, 'error');
-                if (error.message.includes('Token')) {
-                   // Optional: prompt settings
-                }
             } finally {
                 editor.setOption('readOnly', false);
             }
@@ -450,7 +477,6 @@
 
             try {
                 const content = editor.getValue();
-                // Encode UTF-8 to Base64
                 const encodedContent = btoa(String.fromCharCode(...new TextEncoder().encode(content)));
 
                 const body = {
@@ -484,7 +510,6 @@
                 showToast('Thất bại', error.message, 'error');
             } finally {
                 document.getElementById('btn-save').disabled = false;
-                // Force status reset after delay if still "Loading" (safety net)
                 setTimeout(() => {
                     const statusText = document.getElementById('status').innerText;
                     if(statusText.includes('Đang lưu')) setStatus('Sẵn sàng');
@@ -492,14 +517,10 @@
             }
         }
 
-        // Init
         document.addEventListener('DOMContentLoaded', () => {
             initEditor();
-
             const token = localStorage.getItem('github_token');
             if (token) document.getElementById('github-token').value = token;
-
-            // Delay load slightly to ensure editor is ready
             setTimeout(loadFile, 100);
         });
     </script>
