@@ -32,14 +32,43 @@
             line-height: 1.6;
         }
 
-        /* Adblock Syntax Highlighting Colors (Dracula based adjustments) */
+        /* Adblock Syntax Highlighting Colors (Dracula Theme Extended) */
+
+        /* Comments (! ...) */
         .cm-adblock-comment { color: #6272a4; font-style: italic; }
-        .cm-adblock-header { color: #ff79c6; font-weight: bold; }
-        .cm-adblock-option { color: #f1fa8c; }
-        .cm-adblock-hiding { color: #8be9fd; }
-        .cm-adblock-anchor { color: #ffb86c; font-weight: bold; }
-        .cm-adblock-separator { color: #ff5555; }
+
+        /* Exceptions (@@...) */
         .cm-adblock-exception { color: #50fa7b; font-weight: bold; }
+
+        /* Anchors (||, |) */
+        .cm-adblock-anchor { color: #ff79c6; font-weight: bold; }
+
+        /* Separators (^) */
+        .cm-adblock-separator { color: #ff5555; font-weight: bold; }
+
+        /* Wildcards (*) */
+        .cm-adblock-wildcard { color: #f1fa8c; font-weight: bold; }
+
+        /* Hiding Separators (##, #@#, #?#, #%#) */
+        .cm-adblock-hiding-separator { color: #8be9fd; font-weight: bold; background: rgba(139, 233, 253, 0.1); }
+
+        /* Selector Text (after ##) */
+        .cm-adblock-selector-text { color: #f8f8f2; }
+
+        /* Scriptlets (+js(...)) */
+        .cm-adblock-scriptlet { color: #ffb86c; font-weight: bold; }
+
+        /* Option Separator ($) */
+        .cm-adblock-option-separator { color: #f1fa8c; font-weight: bold; }
+
+        /* Option Keywords (domain, script, etc.) */
+        .cm-adblock-option-keyword { color: #bd93f9; font-style: italic; }
+
+        /* Option Operator (=, ~) */
+        .cm-adblock-option-operator { color: #ff79c6; }
+
+        /* Option Values */
+        .cm-adblock-option-value { color: #f8f8f2; }
 
         /* Mobile Tweaks */
         @media (max-width: 640px) {
@@ -164,19 +193,76 @@
         let repoName = '';
         let editor = null;
 
-        // Define Simple Adblock Mode
+        // Define Advanced Adblock Mode
         function defineAdblockMode() {
             CodeMirror.defineSimpleMode("adblock", {
                 start: [
+                    // Comments: start with !
                     {regex: /^!.*$/, token: "adblock-comment"},
-                    {regex: /^\[.*\]$/, token: "adblock-header"},
-                    {regex: /^@@/, token: "adblock-exception"},
-                    {regex: /\|\|/, token: "adblock-anchor"},
+
+                    // Exceptions: start with @@
+                    {regex: /^@@/, token: "adblock-exception", push: "rule"},
+
+                    // Element Hiding Separators (trigger 'selector' state)
+                    // We look for them anywhere in the line? No, regex in start matches from BOL usually?
+                    // SimpleMode matches sequentially.
+                    // If we encounter a hiding separator, we switch mode.
+                    // But we first need to match the domain part.
+
+                    // Complex Hiding Rule Strategy:
+                    // Match domain part (chars until # or $)
+                    // But wait, "domain.com##.ad" -> "domain.com" is text, "##" is sep.
+                    // "||example.com^" -> "||" anchor, "example.com" text, "^" sep.
+
+                    // Anchors at start
+                    {regex: /^\|\|/, token: "adblock-anchor"},
+                    {regex: /^\|/, token: "adblock-anchor"},
+
+                    // Hiding Separators: ##, #@#, #?#, #%#
+                    {regex: /##|#@#|#\?#|#%#/, token: "adblock-hiding-separator", next: "selector"},
+
+                    // Options start
+                    {regex: /\$/, token: "adblock-option-separator", next: "options"},
+
+                    // Separators and Wildcards in the rule part
                     {regex: /\^/, token: "adblock-separator"},
-                    {regex: /\$[^$]*$/, token: "adblock-option"},
-                    {regex: /##.*$/, token: "adblock-hiding"},
-                    {regex: /#\?#.*$/, token: "adblock-hiding"},
-                    {regex: /#@#.*$/, token: "adblock-hiding"}
+                    {regex: /\*/, token: "adblock-wildcard"},
+
+                    // Standard text (domains, paths)
+                    {regex: /[^!|#$^*]+/, token: "text"},
+                ],
+
+                rule: [
+                     // Similar to start but inside an exception (no hiding separators allowed usually?)
+                     // Actually exceptions can be complex too.
+                     // For simplicity, reuse the same tokens but we are in "rule" state which pops on EOL.
+                     {regex: /\$/, token: "adblock-option-separator", next: "options"},
+                     {regex: /\|\|/, token: "adblock-anchor"},
+                     {regex: /\^/, token: "adblock-separator"},
+                     {regex: /\*/, token: "adblock-wildcard"},
+                     {regex: /$/, pop: true}, // EOL
+                     {regex: /[^$|^*]+/, token: "text"}
+                ],
+
+                selector: [
+                    // Scriptlets: +js(...)
+                    {regex: /\+js\(/, token: "adblock-scriptlet", push: "scriptlet_args"},
+                    {regex: /$/, next: "start"}, // End of line resets
+                    {regex: /./, token: "adblock-selector-text"}
+                ],
+
+                scriptlet_args: [
+                    {regex: /\)/, token: "adblock-scriptlet", pop: true},
+                    {regex: /[^)]+/, token: "adblock-selector-text"}
+                ],
+
+                options: [
+                    {regex: /$/, next: "start"},
+                    {regex: /,/, token: "adblock-option-operator"}, // Comma is like an operator here
+                    {regex: /(?:domain|image|script|third-party|xmlhttprequest|stylesheet|object|subdocument|media|font|popup|network|generichide|genericblock|document|elemhide|webrtc|other|csp|badfilter|ping|websocket)\b/, token: "adblock-option-keyword"},
+                    {regex: /=/, token: "adblock-option-operator"},
+                    {regex: /~/, token: "adblock-option-operator"}, // Negation
+                    {regex: /[^,=~]+/, token: "adblock-option-value"}
                 ]
             });
         }
