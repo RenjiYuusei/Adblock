@@ -2,12 +2,14 @@ name: Cập nhật Bộ lọc & Triển khai Web
 
 on:
     schedule:
-        - cron: '0 0 * * *' # Chạy hàng ngày vào lúc 00:00 UTC
+        - cron: '0 0 * * *' # Chạy hàng ngày vào lúc 00:00 UTC (07:00 VN)
     push:
         paths:
             - 'Yuusei.txt'
             - 'index.html'
             - 'update_filters.py'
+            - 'maintenance.py'
+            - 'requirements.txt'
             - '.github/workflows/main.yml'
     workflow_dispatch:
         inputs:
@@ -25,6 +27,7 @@ permissions:
     contents: write
     pages: write
     id-token: write
+    pull-requests: write
 
 jobs:
     update-and-deploy:
@@ -46,9 +49,9 @@ jobs:
 
             - name: Cài đặt Python Dependencies
               run: |
-                  pip install requests
+                  if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests; fi
 
-            - name: Chạy script cập nhật bộ lọc
+            - name: Chạy script cập nhật bộ lọc (AbpVN)
               run: |
                   python update_filters.py
 
@@ -111,7 +114,7 @@ jobs:
                   # Chèn tên repository vào index.html để API hoạt động
                   sed -i "s|{{REPO_NAME}}|${{ github.repository }}|g" index.html
 
-            - name: Commit và Push thay đổi
+            - name: Commit và Push thay đổi (Update & Deploy)
               if: env.CHANGED == 'true' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
               run: |
                   git config user.name "github-actions[bot]"
@@ -129,3 +132,51 @@ jobs:
 
             - name: Deploy lên GitHub Pages
               uses: actions/deploy-pages@v4
+
+    domain-maintenance:
+        needs: update-and-deploy
+        runs-on: ubuntu-latest
+        # Always run if the previous job succeeded (it handles the scheduling/dispatch trigger logic)
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                ref: 'main' # Ensure we get the latest commit from the previous job
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: '3.x'
+
+            - name: Install dependencies
+              run: |
+                  pip install -r requirements.txt
+
+            - name: Run maintenance script
+              run: |
+                  python maintenance.py
+
+            - name: Check for changes
+              id: check_changes
+              run: |
+                  if git diff --quiet Yuusei.txt; then
+                    echo "changed=false" >> $GITHUB_OUTPUT
+                  else
+                    echo "changed=true" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Create Pull Request
+              if: steps.check_changes.outputs.changed == 'true'
+              uses: peter-evans/create-pull-request@v6
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  commit-message: "fix: update dead domains in Yuusei.txt"
+                  title: "Automated Domain Maintenance"
+                  body: |
+                    This PR updates dead domains found in Yuusei.txt based on the automated maintenance check.
+
+                    Please review the changes to ensure the new domains are correct.
+                  branch: "maintenance/domain-updates"
+                  base: "main"
+                  delete-branch: true
