@@ -3,7 +3,6 @@ name: Cập nhật Bộ lọc & Triển khai Web
 on:
     schedule:
         - cron: '0 0 * * *' # Chạy hàng ngày vào lúc 00:00 UTC (07:00 VN)
-        - cron: '0 17 * * *' # Chạy hàng ngày vào lúc 17:00 UTC (00:00 VN)
     push:
         paths:
             - 'Yuusei.txt'
@@ -33,8 +32,6 @@ permissions:
 jobs:
     update-and-deploy:
         runs-on: ubuntu-latest
-        # Run normally on push/dispatch, or on the 00:00 schedule
-        if: github.event_name != 'schedule' || github.event.schedule == '0 0 * * *'
 
         steps:
             - name: Checkout repository
@@ -54,7 +51,7 @@ jobs:
               run: |
                   if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests; fi
 
-            - name: Chạy script cập nhật bộ lọc
+            - name: Chạy script cập nhật bộ lọc (AbpVN)
               run: |
                   python update_filters.py
 
@@ -117,7 +114,7 @@ jobs:
                   # Chèn tên repository vào index.html để API hoạt động
                   sed -i "s|{{REPO_NAME}}|${{ github.repository }}|g" index.html
 
-            - name: Commit và Push thay đổi
+            - name: Commit và Push thay đổi (Update & Deploy)
               if: env.CHANGED == 'true' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
               run: |
                   git config user.name "github-actions[bot]"
@@ -137,13 +134,15 @@ jobs:
               uses: actions/deploy-pages@v4
 
     domain-maintenance:
+        needs: update-and-deploy
         runs-on: ubuntu-latest
-        # Run ONLY on the 17:00 schedule (00:00 VN) or manual dispatch
-        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && github.event.schedule == '0 17 * * *')
+        # Always run if the previous job succeeded (it handles the scheduling/dispatch trigger logic)
 
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
+              with:
+                ref: 'main' # Ensure we get the latest commit from the previous job
 
             - name: Set up Python
               uses: actions/setup-python@v5
@@ -175,7 +174,7 @@ jobs:
                   commit-message: "fix: update dead domains in Yuusei.txt"
                   title: "Automated Domain Maintenance"
                   body: |
-                    This PR updates dead domains found in Yuusei.txt based on the nightly maintenance check.
+                    This PR updates dead domains found in Yuusei.txt based on the automated maintenance check.
 
                     Please review the changes to ensure the new domains are correct.
                   branch: "maintenance/domain-updates"

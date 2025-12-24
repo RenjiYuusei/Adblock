@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2025.12.25.0039
+! Version: 2025.12.24.0814
 ! Title: Yuusei
-! Last modified: 25-12-2025
+! Last modified: 24-12-2025
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 6be5a9f7a4135e0312a2193d92fb90c8da1aa44a89b81df1ccd65be1cc1e6804
+! Checksum: 3bde79b858131d9a629c99056f38debef4c4da979bc84f424b470a047979f66e
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 ||api.vsphone.com/vsphone/api/vpopDialog/getUserActiveBanner^
@@ -312,7 +312,7 @@ $popup,domain=truyenfull.vision
 /core/*$script,domain=gamek.vn|genk.vn|kenh14.vn|cafef.vn|thanhnien.vn
 /disable-devtool.min.js$script
 /giadinhonline.vn/files/qc/*
-/i.imgur.com/*.gif$domain=keonhacai55.pw|www.motchill36.com|archphotoawards.com|michaelcunninghamwriter.com|encounterlax.com|listnhacai88.com|xoilaczzyy.cc|mitomza.cc|rakhoivq.cc
+/i.imgur.com/*.gif$domain=keonhacai55.pw|www.motchill36.com|iceandvice.com|michaelcunninghamwriter.com|encounterlax.com|listnhacai88.com|xoilaczzyy.cc|mitomza.cc|rakhoivq.cc
 /images/company/21.png$image,domain=michaelcunninghamwriter.com|xoilaczzyy.cc
 /js/ads.js$script,~third-party,domain=~vipurl.in
 /lv/esnk/*$script
@@ -454,22 +454,6 @@ apkmoddone.com##.adNative
 apkmoddone.com##.pAd
 apkmoddone.com##.relatedPostsAd
 apkmoddone.com##div.pAdin
-archphotoawards.com###match-child-1
-archphotoawards.com##+js(aopr, adsRedirectPopups)
-archphotoawards.com##.block-catfish.text-center.d-lg-none.d-block
-archphotoawards.com##.container>ul
-archphotoawards.com##.offer
-archphotoawards.com##.offer__btn
-archphotoawards.com##.pl-lg-0.col-xl-4
-archphotoawards.com##.row.d-none
-archphotoawards.com##.widget-offers__list
-archphotoawards.com##div.d-lg-none.d-block:nth-of-type(3)
-archphotoawards.com,michaelcunninghamwriter.com,encounterlax.com,mitomza.cc,xoilaczzyy.cc##div[id^="dnn_"]
-archphotoawards.com,michaelcunninghamwriter.com,encounterlax.com,xoilaczzyy.cc,mitomza.cc##.company
-archphotoawards.com,mitomza.cc##.menu-cuoc-8xbet
-archphotoawards.com,mitomza.cc,michaelcunninghamwriter.com##.menu-top-nha-cai
-archphotoawards.com,rakhoivq.cc##.sk_balloon
-archphotoawards.com,xoilaczzyy.cc##.match-detail__offer
 asianbookie.com##a[href^="/cgi-bin/to.cgi"]
 audiotruyenfull.com##+js(acs, document.addEventListener, ai_run)
 audiotruyenfull.com##+js(acs, setTimeout, Aff)
@@ -545,6 +529,7 @@ chatboxn.com##a[target="_blank"][rel="nofollow"]
 checkscam.vn##+js(acs, document.addEventListener, open)
 checkscam.vn##.qh_qcbp
 childish2x1.fun,childish2x2.fun,tekora.space,lottedira.store,tekora.fun##+js(acs, $, aff)
+chinaexpressmanchester.co.uk###catfish
 chodansinh.net##.link-gold
 chodansinh.net##[id^="banner"]
 chotlo3s.com###header:style(margin-top: 0 !important)
@@ -597,14 +582,13 @@ economic45882.shop,cdn4.tiptoe34x1.fun##+js(acs, $, arrDirectLink)
 encounterlax.com##.container.mt-1.d-none.d-lg-block
 encounterlax.com##.menu-item-object-custom
 encounterlax.com##.sub-menu.d-none.d-lg-flex
-encounterlax.com,archphotoawards.com,michaelcunninghamwriter.com###quangcaopc
-encounterlax.com,archphotoawards.com,michaelcunninghamwriter.com##.marquee-container
-encounterlax.com,archphotoawards.com,michaelcunninghamwriter.com,xoilaczzyy.cc,rakhoivq.cc###wap_bottombanner
+encounterlax.com,iceandvice.com,michaelcunninghamwriter.com###quangcaopc
+encounterlax.com,iceandvice.com,michaelcunninghamwriter.com##.marquee-container
+encounterlax.com,iceandvice.com,michaelcunninghamwriter.com,xoilaczzyy.cc,rakhoivq.cc###wap_bottombanner
 encounterlax.com,michaelcunninghamwriter.com##.align-items-center.justify-content-between.d-flex.col-12>.d-lg-none.d-block
 ephoto360.com##.line-ads
 ephoto360.com,thiepmung.com,247phim.lol,www.ssphim.lol,phimmoinet.click##.ad-container
 eva.vn##.banrpstn
-famdotechsuccessltd.co.uk###catfish
 fdcdn.xyz##.jw-button-image
 file.gocmod.com##div.ad
 foxtruyen.com##div#ad_info_top
@@ -693,6 +677,22 @@ home1.mannhan22.pro##li.for-mobile-2>[href]
 hsctvn.com##.advertTop
 hsctvn.com##.hsdn>li:has(.adsbygoogle)
 hsctvn.com##.module_plugins
+iceandvice.com###match-child-1
+iceandvice.com##+js(aopr, adsRedirectPopups)
+iceandvice.com##.block-catfish.text-center.d-lg-none.d-block
+iceandvice.com##.container>ul
+iceandvice.com##.offer
+iceandvice.com##.offer__btn
+iceandvice.com##.pl-lg-0.col-xl-4
+iceandvice.com##.row.d-none
+iceandvice.com##.widget-offers__list
+iceandvice.com##div.d-lg-none.d-block:nth-of-type(3)
+iceandvice.com,michaelcunninghamwriter.com,encounterlax.com,mitomza.cc,xoilaczzyy.cc##div[id^="dnn_"]
+iceandvice.com,michaelcunninghamwriter.com,encounterlax.com,xoilaczzyy.cc,mitomza.cc##.company
+iceandvice.com,mitomza.cc##.menu-cuoc-8xbet
+iceandvice.com,mitomza.cc,michaelcunninghamwriter.com##.menu-top-nha-cai
+iceandvice.com,rakhoivq.cc##.sk_balloon
+iceandvice.com,xoilaczzyy.cc##.match-detail__offer
 idpvn.com##[id^="idpvn-"]
 imail.edu.vn##+js(acs, setTimeout, ad_block)
 imail.edu.vn,www.motchill36.com,trumtruyen.xyz,teamlanhlungday.store##+js(acs, setTimeout, Aff)
@@ -716,7 +716,7 @@ keoso.me##.widget-sidebar-block
 ketqua04.net##.baloon
 ketqua04.net##.col-sm-10.kqcenter
 ketqua04.net##.kqbackground.vien ~ a[target="_blank"]
-ketqua04.net,nghean24h.vn,xem.tructiepnba.me,xemtivi4k.com,archphotoawards.com,bongdainfox.tv,90phuttv.link,xx2.thapcam53.info,nn13.thapcam.asia,www.motchill36.com,thapcam73.live,thapcam73.life##a[rel="nofollow"]
+ketqua04.net,nghean24h.vn,xem.tructiepnba.me,xemtivi4k.com,iceandvice.com,bongdainfox.tv,90phuttv.link,xx2.thapcam53.info,nn13.thapcam.asia,www.motchill36.com,thapcam73.live,thapcam73.life##a[rel="nofollow"]
 khiphach.net###qc-kpgame
 kickass.sx##.dssdffds
 kickass.sx##.novertpad.clearleft.downloadButtonGroup.buttonsline
@@ -794,8 +794,8 @@ muare.vn##.admicro_top
 mv.phimmoiaz.cc,anime12.site,anh.moe,xemphimjav.us,hoctot.hocmai.vn,bluphim5.com,samtruyentranh.com,truyenfull.vision,player.phimapi.com,noitu.site,sachmoi.net,xfast.sbs,anime47.best,phimsexvn1.blog##+js(aopr, open)
 myeva.vn###adop_bfd
 myeva.vn##ins[class*="adsby"]
-nettruyen2512.com##.ad_info
-nettruyen2512.com##.ads_insert_shop
+nettruyenindex.com##.ad_info
+nettruyenindex.com##.ads_insert_shop
 nettruyenviet1.com##+js(acs, JSON, fromCharCode)
 ngaytho.me##.body_wrapper1
 nguoiduatin.vn##.ndt-ads
@@ -1244,9 +1244,6 @@ znews.vn##+js(aopr, adtimaConfig)
 znews.vn##.banner-slider-wrapper
 znews.vn##.znews-banner
 zphimsex18.pro,phimsex12x.pro##.quangcaomobile
-zzonemanga.com###ads-footer
-zzonemanga.com###chapter-popup-modal
-zzonemanga.com##.relative:has(.fixed)
 ||*.servimg.com/u/f45/$domain=gocmod.com
 ||123nhadatviet.com/Media/CK/banners/
 ||123nhadatviet.net/Media/CK/banners/
@@ -1322,6 +1319,7 @@ zzonemanga.com##.relative:has(.fixed)
 ||cheaphotelexpert.co.uk^*.gif
 ||checkscam.vn/wp-content/uploads/2025/10/2.png$image
 ||checkscam.vn^*.gif$image
+||chinaexpressmanchester.co.uk^*.gif$image
 ||chodansinh.net^*.gif
 ||chotlo3s.com^*gif
 ||click.advertnative.com^
@@ -1346,7 +1344,6 @@ zzonemanga.com##.relative:has(.fixed)
 ||distinctrobin.com^
 ||down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m7vtp74a0ozne9.webp$image,domain=audiotruyenfull.com
 ||ds.recrampwiped.com^
-||famdotechsuccessltd.co.uk^*.gif$image
 ||farawayinstallation.com^
 ||file1.dangcongsan.vn^*.gif$image,domain=dangcongsan.vn
 ||forum.idichvuseo.com/images/quang-cao
@@ -1579,7 +1576,6 @@ zzonemanga.com##.relative:has(.fixed)
 ||xmedia.antt.vn/upload/*.gif$image,domain=antt.vn
 ||xnhau.blog^$media,domain=xnhau.hot
 ||zaloweb.
-||zzonemanga.com/storage/banners/$image,~third-party
 ~cafef.vn##[id^="adm-slot"]
 ~livescore.com,~msn.com,~dm.de,~medium.com##.qc
 ~vnexpress.net##.banner-bottom
