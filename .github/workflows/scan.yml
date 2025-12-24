@@ -1,0 +1,54 @@
+name: Scan Website for Ads
+
+on:
+    workflow_dispatch:
+        inputs:
+            url:
+                description: 'Website URL to scan'
+                required: true
+                type: string
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    scan-ads:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: '3.x'
+
+            - name: Install dependencies
+              run: |
+                  pip install -r requirements.txt
+
+            - name: Run Scan Script
+              run: |
+                  python scan_ads.py "${{ inputs.url }}" --report-file scan_report.md
+
+            - name: Check for changes
+              id: check_changes
+              run: |
+                  if git diff --quiet Yuusei.txt; then
+                    echo "changed=false" >> $GITHUB_OUTPUT
+                  else
+                    echo "changed=true" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Create Pull Request
+              if: steps.check_changes.outputs.changed == 'true'
+              uses: peter-evans/create-pull-request@v6
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  commit-message: "feat: add rules for ${{ inputs.url }}"
+                  title: "New Adblock Rules for ${{ inputs.url }}"
+                  body-path: scan_report.md
+                  branch: "scan/ads-${{ github.run_id }}"
+                  base: "main"
+                  delete-branch: true
