@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2025.12.25.0125
+! Version: 2025.12.25.0151
 ! Title: Yuusei
 ! Last modified: 25-12-2025
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 638f656deba896a76bc28a54fa33ae3e4af58045f2987de4d23e5cea33eb2305
+! Checksum: 60d301de1d038323489dcf64f8dde01d6ee434e50867ba726e8722e247e345f9
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 ||api.vsphone.com/vsphone/api/vpopDialog/getUserActiveBanner^
