@@ -1,8 +1,7 @@
 import re
 import requests
 import tldextract
-from googlesearch import search as google_search
-from duckduckgo_search import DDGS
+from ddgs import DDGS
 import concurrent.futures
 import time
 import sys
@@ -71,13 +70,14 @@ def check_domain_status(domain):
 
     return False
 
-def search_domain_ddg(query, brand, dead_domain):
+def search_domain_ddgs(query, brand, dead_domain, backend):
     """
-    Searches using DuckDuckGo.
+    Searches using DDGS with specified backend.
     """
     try:
-        print(f"[DDG] Searching for: {query}")
-        results = DDGS().text(query, max_results=5)
+        print(f"[{backend}] Searching for: {query}")
+        # DDGS().text supports backend argument
+        results = DDGS().text(query, max_results=5, backend=backend)
         for result in results:
             url = result['href']
             res_ext = tldextract.extract(url)
@@ -87,32 +87,12 @@ def search_domain_ddg(query, brand, dead_domain):
                 if new_domain != dead_domain and check_domain_status(new_domain):
                     return new_domain
     except Exception as e:
-        print(f"[DDG] Error: {e}")
-    return None
-
-def search_domain_google(query, brand, dead_domain):
-    """
-    Searches using Google.
-    """
-    try:
-        print(f"[Google] Searching for: {query}")
-        # google_search is a generator
-        results = google_search(query, num_results=5, advanced=True)
-        for result in results:
-            url = result.url
-            res_ext = tldextract.extract(url)
-
-            if res_ext.domain.lower() == brand.lower():
-                new_domain = f"{res_ext.subdomain}.{res_ext.domain}.{res_ext.suffix}".strip('.')
-                if new_domain != dead_domain and check_domain_status(new_domain):
-                    return new_domain
-    except Exception as e:
-        print(f"[Google] Error: {e}")
+        print(f"[{backend}] Error: {e}")
     return None
 
 def find_replacement_domain(dead_domain):
     """
-    Searches for a replacement domain using DDG then Google.
+    Searches for a replacement domain using DDGS (DuckDuckGo then Google).
     """
     ext = tldextract.extract(dead_domain)
     brand = ext.domain
@@ -123,14 +103,15 @@ def find_replacement_domain(dead_domain):
 
     query = f"{brand} official site"
 
-    # Try DuckDuckGo first
-    replacement = search_domain_ddg(query, brand, dead_domain)
+    # Try DuckDuckGo first (default or explicit 'duckduckgo')
+    # According to docs, backend="auto" or "duckduckgo"
+    replacement = search_domain_ddgs(query, brand, dead_domain, backend="duckduckgo")
     if replacement:
         print(f"Found replacement via DDG: {replacement}")
         return replacement
 
-    # Fallback to Google
-    replacement = search_domain_google(query, brand, dead_domain)
+    # Fallback to Google via DDGS
+    replacement = search_domain_ddgs(query, brand, dead_domain, backend="google")
     if replacement:
         print(f"Found replacement via Google: {replacement}")
         return replacement
@@ -152,7 +133,7 @@ def process_domain(domain):
     return None
 
 def main():
-    print("Starting domain maintenance (Enhanced)...")
+    print("Starting domain maintenance (DDGS Only)...")
 
     try:
         with open(FILTER_FILE, 'r', encoding='utf-8') as f:
