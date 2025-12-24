@@ -6,15 +6,16 @@ import tldextract
 from fake_useragent import UserAgent
 import sys
 from urllib.parse import urlparse
+from collections import Counter
 
 def get_known_ad_signatures(filter_file):
     """
-    Parses the filter file to find known ad domains.
+    Parses the filter file to find known ad domains and extract generic keywords from cosmetic rules.
     """
     ad_domains = set()
 
-    # Generic keywords often used in ad classes/IDs (English & Vietnamese)
-    generic_keywords = [
+    # Base generic keywords (English & Vietnamese)
+    generic_keywords = {
         # English
         'ads', 'advert', 'advertising', 'banner', 'sponsor', 'promo', 'overlay',
         'popup', 'popunder', 'ad-box', 'ad-container', 'ad-wrapper', 'ad-slot',
@@ -25,7 +26,24 @@ def get_known_ad_signatures(filter_file):
         # Vietnamese
         'quangcao', 'quang-cao', 'qc', 'qc-float', 'tai-tro', 'doi-tac',
         'lien-ket', 'quang_cao', 'banner-doc', 'banner-ngang', 'qc_sticky'
-    ]
+    }
+
+    # Helper to clean and split selector parts
+    def extract_keywords_from_selector(selector):
+        # Remove operators like >, +, ~
+        clean_sel = re.sub(r'[>+~]', ' ', selector)
+        # Find class (.) and ID (#) tokens
+        tokens = re.findall(r'[.#]([\w-]+)', clean_sel)
+        keywords = []
+        for token in tokens:
+            # Split by - or _
+            parts = re.split(r'[-_]', token)
+            for p in parts:
+                if len(p) > 2 and not p.isdigit(): # Filter out short/numeric noise
+                    keywords.append(p.lower())
+        return keywords
+
+    detected_keywords = []
 
     try:
         with open(filter_file, 'r', encoding='utf-8') as f:
@@ -40,10 +58,49 @@ def get_known_ad_signatures(filter_file):
                     if parts:
                         domain = parts[0].split('/')[0]
                         ad_domains.add(domain)
+
+                # Extract keywords from cosmetic rules like domain.com##.class
+                if '##' in line:
+                    parts = line.split('##')
+                    if len(parts) == 2:
+                        selector = parts[1]
+                        # Ignore procedural filters
+                        if not selector.startswith('+js') and not selector.startswith('^'):
+                            detected_keywords.extend(extract_keywords_from_selector(selector))
+
     except FileNotFoundError:
         print(f"Warning: Filter file {filter_file} not found. Using default keywords only.")
 
-    return ad_domains, generic_keywords
+    # Analyze frequency of extracted keywords
+    # If a keyword appears frequently (e.g., > 3 times) in the existing filter list, it's likely a good generic ad term
+    # But we must be careful not to include generic site structure terms like 'header', 'content', 'wrapper'
+    # So we should probably intersect or filter against a 'stoplist' or rely on the user manual list + explicit additions.
+    # However, for this task, the user asked to "read Yuusei.txt to expand keywords".
+
+    common_terms = Counter(detected_keywords).most_common(50)
+
+    # Simple stoplist of common web terms to exclude from becoming "ad keywords"
+    stoplist = {
+        'header', 'footer', 'content', 'container', 'wrapper', 'main', 'sidebar', 'menu',
+        'nav', 'navigation', 'body', 'left', 'right', 'top', 'bottom', 'center', 'home',
+        'page', 'post', 'article', 'section', 'row', 'col', 'column', 'box', 'block',
+        'list', 'item', 'text', 'title', 'image', 'img', 'link', 'button', 'btn',
+        'mobile', 'desktop', 'visible', 'hidden', 'clearfix', 'active', 'show', 'hide'
+    }
+
+    print("Top extracted potential keywords from filter file:")
+    added_count = 0
+    for term, count in common_terms:
+        if term not in stoplist and term not in generic_keywords:
+            # Add to generic list if it appears often enough (heuristic: > 2 times)
+            if count > 2:
+                generic_keywords.add(term)
+                # print(f"  + Added: {term} (count: {count})")
+                added_count += 1
+
+    print(f"Expanded keyword list with {added_count} new terms from {filter_file}.")
+
+    return ad_domains, list(generic_keywords)
 
 def generate_ublock_rule(tag, attr, value, domain):
     """
