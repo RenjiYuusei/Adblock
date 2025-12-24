@@ -30,7 +30,7 @@ jobs:
 
             - name: Run Scan Script
               run: |
-                  python scan_ads.py "${{ inputs.url }}"
+                  python scan_ads.py "${{ inputs.url }}" --report-file scan_report.md
 
             - name: Check for changes
               id: check_changes
@@ -48,10 +48,7 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   commit-message: "feat: add rules for ${{ inputs.url }}"
                   title: "New Adblock Rules for ${{ inputs.url }}"
-                  body: |
-                    Automated scan detected potential ads on ${{ inputs.url }}.
-
-                    Please review the added rules in Yuusei.txt.
+                  body-path: scan_report.md
                   branch: "scan/ads-${{ github.run_id }}"
                   base: "main"
                   delete-branch: true

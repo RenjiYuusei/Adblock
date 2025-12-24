@@ -1,4 +1,4 @@
 requests
 tldextract
-ddgs
 beautifulsoup4
+fake-useragent
