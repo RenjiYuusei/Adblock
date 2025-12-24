@@ -1,3 +1,4 @@
 requests
 tldextract
 ddgs
+beautifulsoup4
