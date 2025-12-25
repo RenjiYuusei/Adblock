@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2025.12.25.0815
+! Version: 2025.12.25.1053
 ! Title: Yuusei
 ! Last modified: 25-12-2025
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 61a52661d907d02d70dfdc4bf669a814329b1c1dbf2159a22748faa73294e4f3
+! Checksum: eb5d397a642540eae5a54679f8656b53e260fae983a2bdf3897e0f84e5910b13
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -543,7 +543,7 @@ cj-entertainment.com##.widget_offer
 cj-entertainment.com##header>.container
 cj-entertainment.com,mitomza.cc,rakhoivq.cc##.footer-banner
 cliphot69.shop###custom_html-42
-cliphotvn69.com,mobiblogss.com,cliphot69.shop,www.gvnvh18z.com,phimsexhayvn81.com,sayhentai.live,xamvn.guru##.float-ck-center-lt
+cliphotvn69.com,mobiblogss.com,cliphot69.shop,www.gvnvh18z.com,phimsexhayvn82.com,sayhentai.live,xamvn.guru##.float-ck-center-lt
 cliphubs.com,viet69hay.life##+js(acs, document.addEventListener, pop)
 clipphot.biz##+js(acs, document.addEventListener, POP)
 coinphoton.com##.header-fix-ads
@@ -1071,7 +1071,7 @@ vlxx.bz##.ff-banner
 vlxx.bz##div.banner-catfish-bottom
 vlxx.bz,cheaphotelexpert.co.uk##.banner-preload
 vlxx.bz,clipsexsub3x.net,newshound.org.uk,javhdz.hot,cheaphotelexpert.co.uk##.catfish-bottom
-vlxx.bz,dualeotruyenvx.com,yurineko.my,haysex.mobi,cliphot69.shop,doctruyen3qui19.com,ihentai.network,hentaivc.pro,buomtv.media,truyenvn.shop,javtiful.com,quatvn.my,phimsexhayvn81.com,phim18hdxx.com,vn5.sexviet88.xyz,sex.xinhmupvn.net,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.onl,truyenqqno.com,clipsexsub3x.net,sayhentai.live,motphim.pokemonviet.com,lxmanga.my,phimlongtieng.net,newtruyenhot.pro,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,sexviet88.xyz##+js(acs, WebAssembly, instantiate)
+vlxx.bz,dualeotruyenvx.com,yurineko.my,haysex.mobi,cliphot69.shop,doctruyen3qui19.com,ihentai.network,hentaivc.pro,buomtv.media,truyenvn.shop,javtiful.com,quatvn.my,phimsexhayvn82.com,phim18hdxx.com,vn5.sexviet88.xyz,sex.xinhmupvn.net,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.onl,truyenqqno.com,clipsexsub3x.net,sayhentai.live,motphim.pokemonviet.com,lxmanga.my,phimlongtieng.net,newtruyenhot.pro,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,sexviet88.xyz##+js(acs, WebAssembly, instantiate)
 vlxx.bz,sex.xinhmupvn.net,newshound.org.uk,cheaphotelexpert.co.uk##.catfish-top
 vlxx.rip,trangsexdam.net##.hd-tube-desktop
 vlxx.rip,trangsexdam.net##.hd-tube-mobile
@@ -1469,7 +1469,7 @@ zzonemanga.com##.relative:has(.fixed)
 ||phimmoichillz.top/pop$image
 ||phimmoichillz.top^*.gif$image
 ||phimmotchill.us/banner$image
-||phimsexhayvn81.com^*.gif$image
+||phimsexhayvn82.com^*.gif$image
 ||photo2.tinhte.vn/data/attachment-files/*banner
 ||photo2.tinhte.vn^*.gif$domain=live4.vebo4.net
 ||player.gliacloud.com^
