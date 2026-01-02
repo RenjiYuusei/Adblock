@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.01.01.0823
+! Version: 2026.01.02.0817
 ! Title: Yuusei
-! Last modified: 01-01-2026
+! Last modified: 02-01-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 8919044df0aa0f989bfa9ffaeaa1588d925ab736a23008bd5b12a9c3d3cab2c4
+! Checksum: a3f92d9f138859df669bb92e11282f9f62323e0d01cde3b93a2dab050c983419
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -439,6 +439,7 @@ anime13.site,animetvn4.com,motchillzz.site###fbox-background
 anime1s.com##div.py-2.md\:py-6.mx-auto.w-full.max-w-screen-3xl>div.relative
 anime47.best###qc_clgt
 anime47.best###swiper-wrapper
+anime47.best##+js(nostif, Adblock)
 anime47.best##.affiliate-swiper
 animehay.life###header-ads + center
 animehay.life##div[style="position: fixed; bottom: 0px; z-index: 98; width: 100%; text-align: center; box-sizing: border-box;"]
@@ -1373,7 +1374,7 @@ zzonemanga.net##.relative:has(.fixed)
 ||grandcasinozerkalo.ru.com^$popup
 ||gullyending.com^
 ||hellobabygirl.live/*/adx*.js$domain=nung18.com|phimxxx.ai
-||hentaivn.gold/banner_image/$image
+||hentaivn.cheap/banner_image/$image
 ||hhkungfu.us^*.gif$image,domain=z.chinav.sex|phimsexvn1.blog
 ||hhtq.io/ads/$script,~third-party
 ||hinhso.com^$domain=diendanmaychu.vn,image
