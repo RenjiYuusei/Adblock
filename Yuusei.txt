@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.01.17.0814
+! Version: 2026.01.18.0823
 ! Title: Yuusei
-! Last modified: 17-01-2026
+! Last modified: 18-01-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: be2524d5fcf6c8c39ac4ce69eac0a1fd5e66562909dcbfeb22171f6c62d404a8
+! Checksum: 6a032fce004ae69956df6afa6df8443c997dd5f3876b70a0cb704edca93444d6
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
