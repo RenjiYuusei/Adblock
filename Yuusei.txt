@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.01.25.0825
+! Version: 2026.01.26.0823
 ! Title: Yuusei
-! Last modified: 25-01-2026
+! Last modified: 26-01-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: b5bd734920ffcef5c47e232bc6443a3110bd18631d82e70247e12191dcc38fa8
+! Checksum: 8c4b8ddb84ff2f591052513003bbb1d98b46c98af229268ede8102c379f6c623
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -1089,6 +1089,7 @@ videophapluat.baophapluat.vn##[class^="sticky-top"]
 videophapluat.baophapluat.vn##[href*="vietcombank.com.vn"]
 vieclam.tv###bnc0
 vieclam.tv###bnc1
+viet69.cm##.footer-fixed-br-container
 viet69vn.at##.footer-fixed-br-container
 vietcetera.com##.styles_topBanner__NL_gW
 vietfones.vn##.vfs_banner
