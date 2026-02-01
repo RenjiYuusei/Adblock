@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.01.31.0826
+! Version: 2026.02.01.0853
 ! Title: Yuusei
-! Last modified: 31-01-2026
+! Last modified: 01-02-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: c6ae9521786ebe71e7dcba1baeb3f705cc755ba05159ddbfc7f7c32284aa47b0
+! Checksum: cacaa3795fdcca4277db3705e43e67040534400992088f854c2e91fdf1e9cca7
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -313,7 +313,7 @@ $popup,domain=truyenfull.vision
 /core/*$script,domain=gamek.vn|genk.vn|kenh14.vn|cafef.vn|thanhnien.vn
 /disable-devtool.min.js$script
 /giadinhonline.vn/files/qc/*
-/i.imgur.com/*.gif$domain=keonhacai55.lol|www.motchill42.com|borealisrecords.com|vebozxn.cc|joebrower.com|listnhacai88.com|mcortechnologies.com|mitomzh.cc|rakhoivq.cc
+/i.imgur.com/*.gif$domain=keonhacai55.lol|www.motchill42.com|borealisrecords.com|vebozxn.cc|culturalanalysis.com|listnhacai88.com|mcortechnologies.com|mitomzh.cc|rakhoivq.cc
 /images/company/21.png$image,domain=vebozxn.cc|mcortechnologies.com|borealisrecords.com
 /js/ads.js$script,~third-party,domain=~vipurl.in
 /lv/esnk/*$script
@@ -321,7 +321,7 @@ $popup,domain=truyenfull.vision
 /player/vast.js$script
 /plugins/AdsManager/*$script,~third-party
 /polyad.
-/pop.js$script,domain=motchillk.mx
+/pop.js$script,domain=motchillk.ac
 /popunder7.
 /qcao/*$domain=~thegioididong.com
 /quang%20cao/*
@@ -516,8 +516,8 @@ borealisrecords.com,mcortechnologies.com##.match-detail__offer
 borealisrecords.com,mitomzh.cc##.menu-cuoc-8xbet
 borealisrecords.com,mitomzh.cc,vebozxn.cc##.menu-top-nha-cai
 borealisrecords.com,rakhoivq.cc##.sk_balloon
-borealisrecords.com,vebozxn.cc,joebrower.com,mcortechnologies.com,mitomzh.cc##.company
-borealisrecords.com,vebozxn.cc,joebrower.com,mitomzh.cc,mcortechnologies.com##div[id^="dnn_"]
+borealisrecords.com,vebozxn.cc,culturalanalysis.com,mcortechnologies.com,mitomzh.cc##.company
+borealisrecords.com,vebozxn.cc,culturalanalysis.com,mitomzh.cc,mcortechnologies.com##div[id^="dnn_"]
 bunchatv.net##.AdsBT1_container__mj9mh
 bunchatv.net##.AdsBottom_adsBottom__h3oS6
 bunchatv.net##.AdsPrBtn_adsButton__8xvdb
@@ -579,6 +579,13 @@ congthucvatly.com##.mb-4>[style="min-height: 350px;"]
 congthucvatly.com,phuongtrinhhoahoc.com,xem16.net,r.cakeo3.rocks,phimmoii.to##.fixed
 contuhoc.com,cbox.ws##a[rel="noopener noreferrer"]
 cryptoviet.com##.widget-wrap.widget_text
+culturalanalysis.com##.container.mt-1.d-none.d-lg-block
+culturalanalysis.com##.menu-item-object-custom
+culturalanalysis.com##.sub-menu.d-none.d-lg-flex
+culturalanalysis.com,borealisrecords.com,vebozxn.cc###quangcaopc
+culturalanalysis.com,borealisrecords.com,vebozxn.cc##.marquee-container
+culturalanalysis.com,borealisrecords.com,vebozxn.cc,mcortechnologies.com,rakhoivq.cc###wap_bottombanner
+culturalanalysis.com,vebozxn.cc##.align-items-center.justify-content-between.d-flex.col-12>.d-lg-none.d-block
 cungthi.online,vn-z.vn##.adsbygoogle
 cungtv.xyz###pc-top-banner
 cungtv.xyz###quang-cao
@@ -675,7 +682,7 @@ hh3dhay.life,tram3d.com##+js(acs, document.createElement, ;break;case)
 hh3dhay.life,tram3d.online,animevietsub.vip,animevietsub.ee##+js(acs, eval, $._Eu)
 hhanime3d.ee,hhtq.lol###top_addd
 hhdragon.vip##.catfish-img
-hhninja30.tv,hhtq13.vip,hhtqvietsub.cc,hhtutien.cc,animeweb.vip,animehay.bar,hhtq3d.net,hhvsub1.com,phimdacap.tv,motchillk.mx,hhdragon.vip,hh2d.tv###catfish
+hhninja30.tv,hhtq13.vip,hhtqvietsub.cc,hhtutien.cc,animeweb.vip,animehay.bar,hhtq3d.net,hhvsub1.com,phimdacap.tv,motchillk.ac,hhdragon.vip,hh2d.tv###catfish
 hhtq.lol###overlay
 hhtq.lol###xs-addd0
 hhtq.lol##.btn-fanpage.btn-default.btn-block.btn
@@ -710,13 +717,6 @@ javtiful.com###latest-censored-videos>.row>div.pb-3.col:nth-of-type(1)
 javtopxx2.com###fbox-background
 javtopxx2.com##.logo-player
 javtopxx2.com##.sticky_bottom
-joebrower.com##.container.mt-1.d-none.d-lg-block
-joebrower.com##.menu-item-object-custom
-joebrower.com##.sub-menu.d-none.d-lg-flex
-joebrower.com,borealisrecords.com,vebozxn.cc###quangcaopc
-joebrower.com,borealisrecords.com,vebozxn.cc##.marquee-container
-joebrower.com,borealisrecords.com,vebozxn.cc,mcortechnologies.com,rakhoivq.cc###wap_bottombanner
-joebrower.com,vebozxn.cc##.align-items-center.justify-content-between.d-flex.col-12>.d-lg-none.d-block
 kenh14.vn##.ads-sponsor
 kenh14.vn##.khw-adk14-wrapper
 keonhacai55.lol##.container>.row>center
@@ -801,7 +801,7 @@ monkeydtruyen.com###affLayer2
 monkeydtruyen.com##.affActive:style(display:block!important)
 monkeydtruyen.com##.affClick
 motchillec.cc##.overlay-1
-motchillk.mx,xxcap3.space##+js(aopr, sessionStorage)
+motchillk.ac,xxcap3.space##+js(aopr, sessionStorage)
 motchillki.fm##.aam-banner-wrapper
 motchillki.fm##.cat-footer-wrapper
 motchillki.fm##.cat-header-wrapper
@@ -1349,7 +1349,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||cdn.adop.asia^
 ||cdn.adxcontent.com^
 ||cdn.giavang.org/images/ads/$image,domain=giavang.org
-||cdn.lfastcdn.com^*.gif$image,domain=bongdainfox.tv|mcortechnologies.com|rakhoivq.cc|joebrower.com|mitomzh.cc|vebozxn.cc
+||cdn.lfastcdn.com^*.gif$image,domain=bongdainfox.tv|mcortechnologies.com|rakhoivq.cc|culturalanalysis.com|mitomzh.cc|vebozxn.cc
 ||cdn.monkeydarchive.com/images/banner/$image,domain=monkeyd.net.vn
 ||cdn.tpmedia.online^
 ||cdn.webhoctienganh.com/asset/home/img/banner/$image,domain=webhoctienganh.com
@@ -1462,7 +1462,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||meta.vn^$third-party
 ||mialsja.life^$image,domain=phimxxx.ai
 ||mocfun.net/uploads/banners/
-||motchillk.mx^*.gif$image
+||motchillk.ac^*.gif$image
 ||motchillki.fm^*.gif$image
 ||motphimtv.bz^*.gif$image
 ||mplmncb.com/banners-web/$script,image,domain=truyenqqno.com
