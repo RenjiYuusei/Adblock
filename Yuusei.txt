@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.02.05.0829
+! Version: 2026.02.06.0841
 ! Title: Yuusei
-! Last modified: 05-02-2026
+! Last modified: 06-02-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 888cf6da98488792a9273a8e33967e91ef557814acdf152a2679059ff49dd150
+! Checksum: a84da67a6ef4da091f9ea5a8b333466c5e568c1bded9e41e211458b28c96c73f
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -313,7 +313,7 @@ $popup,domain=truyenfull.vision
 /core/*$script,domain=gamek.vn|genk.vn|kenh14.vn|cafef.vn|thanhnien.vn
 /disable-devtool.min.js$script
 /giadinhonline.vn/files/qc/*
-/i.imgur.com/*.gif$domain=keonhacai55.lat|www.motchill43.com|childluresprevention.com|vebozxn.cc|lenirobredo.com|listnhacai88.com|riverrunbookstore.com|mitomzh.cc|rakhoivq.cc
+/i.imgur.com/*.gif$domain=keonhacai55.lat|www.motchill43.com|childluresprevention.com|vebozxn.cc|thenexthope.org|listnhacai88.com|riverrunbookstore.com|mitomzh.cc|rakhoivq.cc
 /images/company/21.png$image,domain=vebozxn.cc|riverrunbookstore.com|childluresprevention.com
 /js/ads.js$script,~third-party,domain=~vipurl.in
 /lv/esnk/*$script
@@ -367,7 +367,7 @@ $popup,domain=truyenfull.vision
 90phuttv.link,live4.xoilac34.org,live4.vebo4.net,vebo8.hair,st.90phut27.com,90phut30.xyz,vebo8.buzz,xoilac9.pro,banhkhuc15.fun,thapcam84.info,thapcam84.life,xoilac9.info##div[class*="size-"]
 90phuttv.link,live4.xoilac34.org,vebo8.fun,vebo8.hair,90phut30.xyz,vebo8.buzz,xoilac9.pro,banhkhuc15.fun,thapcam84.info,thapcam84.life,xoilac9.info##.btn-betnow
 90phuttv.link,live4.xoilac34.org,vebo8.hair,ss.90phut27.com,vebo8.fun##.ft-box
-90phuttv.link,thapcamtvz.org,f4.thapcam55.buzz,ca2.thapcam55.info,noitu.site##.modal
+90phuttv.link,thapcamtvz.org,f4.thapcam55.buzz,ca2.thapcam55.info,noitu.site,gavangtv10.net##.modal
 90phuttv.link,thapcamtvz.org,thapcam73.live,thapcam73.life,thapcam84.info,thapcam84.life,xoilac9.info##.mzdal
 @@/favicon.ico
 @@/images/ad-300x250.jpg$~third-party,image,domain=lehait.net
@@ -552,8 +552,8 @@ childluresprevention.com,mitomzh.cc##.menu-cuoc-8xbet
 childluresprevention.com,mitomzh.cc,vebozxn.cc##.menu-top-nha-cai
 childluresprevention.com,rakhoivq.cc##.sk_balloon
 childluresprevention.com,riverrunbookstore.com##.match-detail__offer
-childluresprevention.com,vebozxn.cc,lenirobredo.com,mitomzh.cc,riverrunbookstore.com##div[id^="dnn_"]
-childluresprevention.com,vebozxn.cc,lenirobredo.com,riverrunbookstore.com,mitomzh.cc##.company
+childluresprevention.com,vebozxn.cc,thenexthope.org,mitomzh.cc,riverrunbookstore.com##div[id^="dnn_"]
+childluresprevention.com,vebozxn.cc,thenexthope.org,riverrunbookstore.com,mitomzh.cc##.company
 chodansinh.net##.link-gold
 chodansinh.net##[id^="banner"]
 chotlo3s.com###header:style(margin-top: 0 !important)
@@ -639,6 +639,9 @@ game8.vn,cunghocvui.com##+js(acs, document.addEventListener, open)
 gameio.vn###tubia
 gamer18.net##.fixed-banner-bottom
 gamer18.net##div[id^="divFLR"]
+gavangtv10.net###card-bottom > li:nth-of-type(2) ~ li
+gavangtv10.net##.bn-popup-bottom-sdwdwxw
+gavangtv10.net##.bt-btn-list
 genk.vn##.khw-ads-wrapper.clearfix
 genzsex.blog##.adx-ad-item
 ghienphimz.net##.no-ads
@@ -653,7 +656,7 @@ giavang.org##.tradingview-widget-copyright
 gicovietnam.blogspot.com#@#.inline-ad
 goal.90phut24.xyz##.group-link:has(a[href*="&utm_"])
 goal.90phut24.xyz,90phuttv.link##.topnhacai
-goal.90phut24.xyz,90phuttv.link,thapcamtvz.org,f4.thapcam55.buzz,ca2.thapcam55.info,bat.vebo5.info,thapcam84.info,thapcam84.life,xoilac9.info##.active.bg-overlay
+goal.90phut24.xyz,90phuttv.link,thapcamtvz.org,f4.thapcam55.buzz,ca2.thapcam55.info,bat.vebo5.info,thapcam84.info,thapcam84.life,xoilac9.info,gavangtv10.net##.active.bg-overlay
 goal.90phut24.xyz,robong.cc##.btn-bet
 gockhuat.net###ad_global_below_navbar
 gocmod.com###bannerContainer1
@@ -731,13 +734,6 @@ kinhtedothi.vn##.top-banner-mobile
 laophatgia.net##+js(acs, document.getElementsByClassName, reading-content)
 laptrinhcanban.com##.ezoic-ad
 lazi.vn##.quang_cao_pc_right_hoc_tap
-lenirobredo.com##.container.mt-1.d-none.d-lg-block
-lenirobredo.com##.menu-item-object-custom
-lenirobredo.com##.sub-menu.d-none.d-lg-flex
-lenirobredo.com,childluresprevention.com,vebozxn.cc###quangcaopc
-lenirobredo.com,childluresprevention.com,vebozxn.cc##.marquee-container
-lenirobredo.com,childluresprevention.com,vebozxn.cc,riverrunbookstore.com,rakhoivq.cc###wap_bottombanner
-lenirobredo.com,vebozxn.cc##.align-items-center.justify-content-between.d-flex.col-12>.d-lg-none.d-block
 lichngaytot.com##.advbox
 lichvannien365.com##div[style="padding: 0px; margin: 10px 0 0 0 ; width: 100%;text-align: center;min-height: 280px;"]
 lichvannien365.com##div[style="width: 100%; min-height: 240px; text-align: center;"]
@@ -813,6 +809,8 @@ nhacdj.vn###top-adv
 nhipcaudautu.vn#@#.ads_top
 noitu.site##.modal-backdrop.show
 nung18.com##.jw-overlays>img[src]
+onflix.me##.absolute.inset-0.\-z-10
+onflix.me##.fixed.inset-0.z-\[100\].flex.items-center.justify-center.bg-black\/50.p-4.animate-in.fade-in.duration-300
 outlook.live.com##.LBktY>.GssDD
 outlook.live.com##.jGG6V.KsO3l.cGYzY:has(.m9Rge)
 phapluatplus.baophapluat.vn##div[style="text-align:center;margin-top:0px;margin-bottom:0px;"]
@@ -917,6 +915,7 @@ robong.cc##.chat-spr
 robong.cc##.h_spr
 robong.cc##.show.modal-backdrop.fade
 robong.cc##.sspp-modal
+robong.cc,embedrb.com##.sspp-area
 rophim.moe##+js(acs, addEvent, popu)
 rphang.online##.bbMediaWrapper-inner>.samCodeUnit
 rphang.online##.js-replyNewMessageContainer.block-body>div.samCodeUnit>.samItem
@@ -988,6 +987,13 @@ thefaplive.com##body>.container>div
 thefaplive.com,phimsexsub.website###wap_bottombanner
 themphotv5.com##.w-full.cursor-pointer.block>div
 themphotv5.com##div.ReactModalPortal
+thenexthope.org##.container.mt-1.d-none.d-lg-block
+thenexthope.org##.menu-item-object-custom
+thenexthope.org##.sub-menu.d-none.d-lg-flex
+thenexthope.org,childluresprevention.com,vebozxn.cc###quangcaopc
+thenexthope.org,childluresprevention.com,vebozxn.cc##.marquee-container
+thenexthope.org,childluresprevention.com,vebozxn.cc,riverrunbookstore.com,rakhoivq.cc###wap_bottombanner
+thenexthope.org,vebozxn.cc##.align-items-center.justify-content-between.d-flex.col-12>.d-lg-none.d-block
 thethao247.vn##div[class$="_ads"]
 thethaovanhoa.vn##.zone-top
 thethaovanhoa.vn##[id^="pos-"]
@@ -1150,7 +1156,7 @@ vozer.io#@#[class^="div-gpt-ad"]
 vozer.net##.Notices.PanelScroller
 vsc69.com##a.news__item--action:nth-of-type(2)
 vtipster.net##div[class*="qca"]
-vuetips.com,comanalysis.ch##+js(aeld, click, ads)
+vuetips.com,comanalysis.ch,onflix.me##+js(aeld, click, ads)
 vungtv.xyz###container-ads
 vuonhoalan.net##.content_middle_rightbar
 watch.rkplayer.xyz##.banner-bottom-append-custom
@@ -1178,12 +1184,6 @@ www.motchill43.com##.banner-container
 www.motchill43.com##.catfish-top
 www.motchill43.com,xnhau.hot,teamlanhlung8.shop,xemphimjav.xyz##+js(aopr, localStorage)
 www.nettruyenupp.com##+js(aopr, sp)
-www.rophim.la##+js(aeld, click, isSwapping)
-www.rophim.la##.is-catfish
-www.rophim.la##.modal-backdrop
-www.rophim.la##.sspp-modal
-www.rophim.la##.swiper-slide:has(> .sspp-area)
-www.rophim.la,robong.cc,embedrb.com##.sspp-area
 www.saostar.vn###mobi-sapo
 www.saostar.vn###page-skin-top-holder
 www.saostar.vn###pc-bill-top
@@ -1213,22 +1213,23 @@ xem.rakhoi53.xyz##.text-white.py-1.px-3.rounded-3xl.font-semibold.text-sm.capita
 xem.rakhoi53.xyz##.text-white.py-1.px-3.rounded-3xl.font-semibold.text-sm.capitalize.sm\:leading-6.bg-green-1.rounded-xl
 xem.tructiepnba.me##.truct-catfish
 xem.tructiepnba.me##.truct-widget
-xem1.gv03.live##.css-129gw94.MuiBox-root
-xem1.gv03.live##.css-14ol860.MuiBox-root
-xem1.gv03.live##.css-15ay2jw.MuiModal-root.MuiDialog-root
-xem1.gv03.live##.css-16qutiz.MuiStack-root
-xem1.gv03.live##.css-1b1vivg.MuiGrid-container.MuiGrid-root
-xem1.gv03.live##.css-1mn784h.MuiBox-root
-xem1.gv03.live##.css-1sf7al5.MuiModal-root.MuiDialog-root
-xem1.gv03.live##.css-1td3ryn.MuiGrid-container.MuiGrid-root
-xem1.gv03.live##.css-1xa35cf.MuiStack-root
-xem1.gv03.live##.css-bv106l.MuiBox-root
-xem1.gv03.live##.css-e1zul9.MuiStack-root
-xem1.gv03.live##.css-txea3r.MuiContainer-maxWidthLg.MuiContainer-root
-xem1.gv03.live##.css-ylxsn9.MuiStack-root
-xem1.gv03.live##.vjs-banner-bar
-xem1.gv03.live##div.css-1hw7nre.MuiBox-root
-xem1.gv03.live,www.bachnguyetquang.online##body:style(overflow: auto!important)
+xem1.gv04.live,xem1.gv05.live##.css-129gw94.MuiBox-root
+xem1.gv04.live,xem1.gv05.live##.css-14ol860.MuiBox-root
+xem1.gv04.live,xem1.gv05.live##.css-15ay2jw.MuiModal-root.MuiDialog-root
+xem1.gv04.live,xem1.gv05.live##.css-16qutiz.MuiStack-root
+xem1.gv04.live,xem1.gv05.live##.css-1b1vivg.MuiGrid-container.MuiGrid-root
+xem1.gv04.live,xem1.gv05.live##.css-1mn784h.MuiBox-root
+xem1.gv04.live,xem1.gv05.live##.css-1sf7al5.MuiModal-root.MuiDialog-root
+xem1.gv04.live,xem1.gv05.live##.css-1td3ryn.MuiGrid-container.MuiGrid-root
+xem1.gv04.live,xem1.gv05.live##.css-1xa35cf.MuiStack-root
+xem1.gv04.live,xem1.gv05.live##.css-bv106l.MuiBox-root
+xem1.gv04.live,xem1.gv05.live##.css-e1zul9.MuiStack-root
+xem1.gv04.live,xem1.gv05.live##.css-txea3r.MuiContainer-maxWidthLg.MuiContainer-root
+xem1.gv04.live,xem1.gv05.live##.css-ylxsn9.MuiStack-root
+xem1.gv04.live,xem1.gv05.live##.vjs-banner-bar
+xem1.gv04.live,xem1.gv05.live##.vjs-banner-btn
+xem1.gv04.live,xem1.gv05.live##div.css-1hw7nre.MuiBox-root
+xem1.gv04.live,xem1.gv05.live,www.bachnguyetquang.online##body:style(overflow: auto!important)
 xem1080.com##.banner-masthead
 xem16.net##+js(json-prune, props.children.[].props.tvc)
 xemphim.site,motchillzz.site##+js(set, maxAds, 0)
@@ -1304,10 +1305,11 @@ zzonemanga.io##.relative:has(.fixed)
 ||animevietsub.vip/ads/$script
 ||animevietsub9.com/vast/$image
 ||ants.vn^$third-party
-||api-gavang.gvtv1.com/banners/graph$xmlhttprequest,domain=xem1.gv03.live
+||api-gavang.gvtv1.com/banners/graph$xmlhttprequest,domain=xem1.gv04.live|xem1.gv05.live
 ||api.adfly.vn^
 ||api.anime3s.com/i9bet.php$xmlhttprequest,~third-party
 ||api.anime3s.com^*.gif$image,domain=xemphim.site|anime13.site
+||api.onflix.xyz/api/ads/$xmlhttprequest
 ||api.ybox.vn/graphql?query=*Ads
 ||apinas.nct.vn^
 ||as-technology.co.uk^*.gif$image
@@ -1335,10 +1337,11 @@ zzonemanga.io##.relative:has(.fixed)
 ||cdn.adop.asia^
 ||cdn.adxcontent.com^
 ||cdn.giavang.org/images/ads/$image,domain=giavang.org
-||cdn.lfastcdn.com^*.gif$image,domain=bongdainfox.tv|riverrunbookstore.com|rakhoivq.cc|lenirobredo.com|mitomzh.cc|vebozxn.cc
+||cdn.lfastcdn.com^*.gif$image,domain=bongdainfox.tv|riverrunbookstore.com|rakhoivq.cc|thenexthope.org|mitomzh.cc|vebozxn.cc
 ||cdn.monkeydarchive.com/images/banner/$image,domain=monkeyd.net.vn
 ||cdn.tpmedia.online^
 ||cdn.webhoctienganh.com/asset/home/img/banner/$image,domain=webhoctienganh.com
+||cdn1.fastestcdn-global.com/gavangtv/*.gif$image
 ||cdnstoremedia.com^
 ||cdnv.tpmedia.online^
 ||cf.shopee.vn/file/$image,domain=tctruyen.org
@@ -1400,7 +1403,6 @@ zzonemanga.io##.relative:has(.fixed)
 ||huongdanjava.com$csp=script-src data: 'self' 'unsafe-inline' http: https:
 ||i.ex-cdn.com/nhadautu.vn/files/qc/$domain=nhadautu.vn
 ||i.ex-cdn.com/vietnamfinance.vn/files/qc$image,domain=vietnamfinance.vn
-||i.finallygotthexds.site/vpromolink/$image,domain=www.rophim.la|goatembed.com
 ||i.ibb.co^*.gif$image,domain=phimtuoitho.tv
 ||i.ibb.co^*.gif$image,domain=sex.javnong.cc
 ||i.imgur.com/81uid6d.jpg$domain=vozer.net
@@ -1515,6 +1517,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||sexlive.biz/_next/image?url=%2Fimages%2F*.avif&w=*&q=75$image
 ||sexlive.biz/mb66.mp4$media,~third-party
 ||sexlive.biz^*.avif$~third-party
+||sf-static.onflixcdn.pics/images/ads/$image
 ||sggp.org.vn/*banner
 ||shope.ee^$popup,domain=cunghocvui.com|truyensextv.com
 ||sieukhung.ltd^*.gif$image
@@ -1528,7 +1531,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||static.masothue.com/js/shopee_bell.js$script
 ||static.philacct.com^
 ||static.ybox.vn^*.gif$domain=ybox.vn
-||stc02bc54661548.cloud.anycastapnic.com^*.gif$image,domain=xem1.gv03.live|gavangtv10.net
+||stc02bc54661548.cloud.anycastapnic.com^*.gif$image,domain=xem1.gv04.live|xem1.gv05.live|gavangtv10.net
 ||storage.fshare.vn/images/$third-party
 ||subnhanhcx.info/400x300.jpg$image
 ||subnhanhcx.info^*.gif$image
