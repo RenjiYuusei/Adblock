@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.02.19.0846
+! Version: 2026.02.20.0842
 ! Title: Yuusei
-! Last modified: 19-02-2026
+! Last modified: 20-02-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 36a8d67d6142e0cdcdfaf7410d632f0fc48a29b7b0c5c778a6f507f9d764a43f
+! Checksum: e31a38a94c2bb2a850594f6ce2eee047fc08bcde8dc02f8661b1d1ccb6a3f585
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -614,7 +614,7 @@ doisongphapluat.com.vn,vtcnews.vn##.sys-ads
 download.vn##div[id^="adsbg"]
 dualeotruyenvh.com##+js(acs, document.addEventListener, popunder)
 dualeotruyenvh.com##[id$="bnr"]
-dualeotruyenvh.com,lx9x.net,cliphot69.shop,doctruyen3qhubx.com,ihentai.network,hentaivc.vip,buomtv.media,truyenvn.shop,javtiful.com,quatvn.my,phimsexhayvn115.com,phim18hdxx.com,vn6.sexviet88.xyz,gaisexmup.net,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.app,truyenqqno.com,clipsexsub3x.net,sayhentai.world,motphim.pokemonviet.com,lxmanga.space,phimlongtieng.net,newtruyenhot.pro,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,sexviet88.xyz,viet69.bi,goctruyentranhvui19.com,viet69vn.at##+js(acs, WebAssembly, instantiate)
+dualeotruyenvh.com,lx9x.net,cliphot69.shop,doctruyen3qhubx.com,ihentai.network,hentaivc.vip,buomtv.media,truyenvn.shop,javtiful.com,quatvn.my,phimsexhayvn115.com,phim18hdxx.com,vn6.sexviet88.xyz,xinhmupvn.net,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.app,truyenqqno.com,clipsexsub3x.net,sayhentai.world,motphim.pokemonviet.com,lxmanga.space,phimlongtieng.net,newtruyenhot.pro,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,sexviet88.xyz,viet69.bi,goctruyentranhvui19.com,viet69vn.at##+js(acs, WebAssembly, instantiate)
 dubaotiente.net##.ad-pin-right-bottom
 ebookbkmt.com##.top-right
 economic45882.shop,cdn4.tiptoe34x1.fun##+js(acs, $, arrDirectLink)
@@ -644,9 +644,6 @@ fullcliphot.org##div#recent-content:nth-of-type(1)
 fullcliphot.org,fulllivehot.live,clipphot.biz##.cashfish
 fullcliphot.org,fulllivehot.live,clipphot.biz##.mini-player
 gaingon3d.com###iklan-atas-wrapper
-gaisexmup.net##+js(aopr, Cookies)
-gaisexmup.net##.catfix
-gaisexmup.net,sexhihi.fit,laalmirchitakeaway.co.uk##.catfish-top
 game24h.vn###vi-smartbanner
 game24h.vn##.LRBanner
 game8.vn##.bg_allpopupss
@@ -774,7 +771,7 @@ luatduonggia.vn##.ads-tags
 luatduonggia.vn##.img_side_bar
 luatduonggia.vn##.poka-image
 luminatra.co.uk###catfish
-lx9x.net,gaisexmup.net,sexhihi.fit##.xx-ads
+lx9x.net,xinhmupvn.net,sexhihi.fit##.xx-ads
 lxmanga.space##+js(acs, $, PopUnder)
 magarethowell.co.uk###vl-header-adx
 magarethowell.co.uk##+js(acs, window.addEventListener, Ads)
@@ -806,6 +803,10 @@ motchill.fm##.cat-footer-wrapper
 motchill.fm##.cat-header-wrapper
 motchill.fm##.disable-ads-icon
 motchill.fm##.popup-overlay
+motchill.us.org###vl-header-adx
+motchill.us.org##.banner-preload
+motchill.us.org##.catfish-bottom
+motchill.us.org##.float-contact
 motchillk.bz##+js(aopr, sessionStorage)
 motchillte.cc##.overlay-1
 motchilltvphim.com##+js(acs, jQuery, click_time)
@@ -873,7 +874,6 @@ phimmoichillz.top###preload
 phimmoissz.info###adspm4u
 phimno1.live##.block.ad
 phimsex368.pro,phimsex12x.pro##.quangcaomobile
-phimsexvl69.net,trangsexdam.net,vlxx.rip###f186fb23a33995d91ce3c2212189178c8
 phimtho.cc#%#//scriptlet("abort-current-inline-script", "$", "p0pUpRandom")
 phimvuihd.one##+js(set, urlAds, '')
 phimvuihd.one##div[data-widget-id]
@@ -1107,6 +1107,7 @@ vebozxn.cc##.widget_offer
 vebozxn.cc##header>.container
 vebozxn.cc,mitomzh.cc,rakhoivq.cc##.footer-banner
 vesotantai.com##.item-qc
+vi.xnxx.studio,trangsexdam.net,vlxx.rip###f186fb23a33995d91ce3c2212189178c8
 videophapluat.baophapluat.vn##[class^="sticky-top"]
 videophapluat.baophapluat.vn##[href*="vietcombank.com.vn"]
 vieclam.tv###bnc0
@@ -1237,6 +1238,9 @@ xemtivi4k.com###adstop2
 xemtivi4k.com##.col-lg-4.hidden-xs.d-flex.flex-column.address-wrap
 xemtivi4k.com##.float-right
 xfast.sbs###overlay
+xinhmupvn.net##+js(aopr, Cookies)
+xinhmupvn.net##.catfix
+xinhmupvn.net,sexhihi.fit,laalmirchitakeaway.co.uk##.catfish-top
 xiuren.org###bannerIn
 xiuren.org###exoIMFrame
 xiuren.org###nativeAds_1505931906161
@@ -1323,7 +1327,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||bullionglidingscuttle.com/lv/esnk/2031811/code.js$domain=lxmanga.space,script,redirect=noop.js
 ||buomtv.media/palivn/ad/$image,~third-party
 ||cap3.life/api/ads$xmlhttprequest
-||cdn-01.w3img.com^*.gif$image,domain=phimsexvl69.net|vlxx.rip
+||cdn-01.w3img.com^*.gif$image,domain=vi.xnxx.studio|vlxx.rip
 ||cdn-data.gtvplus.vn/banners/$image,domain=gametv.vn
 ||cdn-live.bunchatv.net^*.gif$image,domain=bunchatv.net
 ||cdn-live.taoxanh.biz/live-dev/cms/*.gif$image,domain=bunchatv.net
@@ -1369,7 +1373,6 @@ zzonemanga.io##.relative:has(.fixed)
 ||forum.idichvuseo.com/images/quang-cao
 ||fundingchoicesmessages.google.com^$third-party
 ||fv.togataurnfuls.com^
-||gaisexmup.net^*.gif$image,domain=gaisexmup.net
 ||gamer18.net^*.gif$image
 ||gammaplatform.com^$third-party
 ||genieesspv.jp^$third-party
@@ -1446,6 +1449,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||mialsja.life^$image,domain=phimxxx.ai
 ||mocfun.net/uploads/banners/
 ||motchill.fm^*.gif$image
+||motchill.us.org^*.gif$image
 ||motchillk.bz^*.gif$image
 ||motchillz.sh^*.gif$~third-party
 ||motphimtv.bz^*.gif$image
@@ -1490,7 +1494,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||qthang.net/js/blocker$script,~third-party
 ||quaivatdienanh.com/*banner$image
 ||quatvn.my^*.gif$image
-||quoracdn.net^$image,domain=lx9x.net|phim18vip.top|pheclip.love|gaisexmup.net|sexhihi.fit|phevl.sh|fulllivehot.live|haysexvn.lol|chich69.top|viet69hayz.life|sieudam.sh
+||quoracdn.net^$image,domain=lx9x.net|phim18vip.top|pheclip.love|xinhmupvn.net|sexhihi.fit|phevl.sh|fulllivehot.live|haysexvn.lol|chich69.top|viet69hayz.life|sieudam.sh
 ||quoracdn.net^$image,domain=www.motchill46.com|phimlongtieng.net
 ||realclick.vn^$third-party
 ||rphang.online^*.gif
@@ -1583,6 +1587,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||xem16.net^*.gif
 ||xfast.sbs/media/$image,domain=fullcliphot.org|fulllivehot.live
 ||xfast.sbs^*.gif$image,domain=clipphot.biz
+||xinhmupvn.net^*.gif$image,domain=xinhmupvn.net
 ||xmedia.antt.vn/upload/*.gif$image,domain=antt.vn
 ||xnhau.blog^$media,domain=xnhau.hot
 ||xoilackvb.cc^*.gif$image,domain=colatv41.live
