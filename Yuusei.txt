@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.02.20.0842
+! Version: 2026.02.21.0827
 ! Title: Yuusei
-! Last modified: 20-02-2026
+! Last modified: 21-02-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: e31a38a94c2bb2a850594f6ce2eee047fc08bcde8dc02f8661b1d1ccb6a3f585
+! Checksum: 02465c7c5dffa9cd3794f169b89fa33d9918bfb6f7ef230f9c7ff74e1f5e5ff1
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -718,6 +718,10 @@ home1.mannhan22.pro##li.for-mobile-2>[href]
 hsctvn.com##.advertTop
 hsctvn.com##.hsdn>li:has(.adsbygoogle)
 hsctvn.com##.module_plugins
+idirectsolutions.co.za###vl-header-adx
+idirectsolutions.co.za##.catfish-bottom
+idirectsolutions.co.za##.catfish-popup
+idirectsolutions.co.za##.catfish-top
 idpvn.com##[id^="idpvn-"]
 imail.edu.vn##+js(acs, setTimeout, ad_block)
 imail.edu.vn,www.motchill46.com,trumtruyen.xyz,teamlanhlungday.store##+js(acs, setTimeout, Aff)
@@ -1065,6 +1069,9 @@ truyenfull.vision###shoppe_ads_fly
 truyenfull.vision##.ads-responsive
 truyenfull.vision##[id^="ads-"]
 truyenmmhayl.com##.fixed
+truyenqq.com.vn###flyer
+truyenqq.com.vn##.md-overlay
+truyenqq.com.vn##.md-show.md-effect.popup1
 truyenqqno.com###ad_info_top
 truyenqqno.com###catfish-banner-reading-container
 truyenqqno.com###catfishAd
@@ -1411,6 +1418,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||iads.staticscdn.net^
 ||iamcdn.net/players/playera.dmins.js
 ||iamcdn.net/players/playhydraxs.min.js
+||idirectsolutions.co.za^*.gif$image
 ||ihentai.network/banner_image/$image
 ||iili.io^*.gif$image,domain=phimtuoitho.tv
 ||image-eu-na-ctnytbefjq.4shares.live/90link/*.gif$image
@@ -1553,6 +1561,7 @@ zzonemanga.io##.relative:has(.fixed)
 ||traderviet.tv/data/siropu/am/user/$image
 ||tructiep.vn/website/adv/
 ||truyenconect.com/uploads/*-truyenconect_com-*.
+||truyenqq.com.vn/*banner$image
 ||truyensextv.com/anh/$image
 ||truyensextv.com^*.gif
 ||truyenvn.shop^*banner$image
