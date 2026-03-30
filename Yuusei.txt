@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.03.29.0856
+! Version: 2026.03.30.0859
 ! Title: Yuusei
-! Last modified: 29-03-2026
+! Last modified: 30-03-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 4ef153cdb34f475467d5314ffdb3f1d549e588d78b25d4412e1d3adfb6751f1e
+! Checksum: b9043b7a6477a26c5503fc9b5606f16b5d7a116f40e50b9ee07896acebb2cb14
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -820,17 +820,17 @@ monkeydtruyen.com##.affActive:style(display:block!important)
 monkeydtruyen.com##.affClick
 motchill.us.org##.float-contact
 motchill.us.org,beerbrothers.co.za###vl-header-adx
-motchillir.sh##.aam-banner-wrapper
-motchillir.sh##.cat-footer-wrapper
-motchillir.sh##.cat-header-wrapper
-motchillir.sh##.disable-ads-icon
-motchillir.sh##.popup-overlay
 motchillk.bot##+js(aopr, sessionStorage)
 motchillte.cc##.overlay-1
 motchilltv.team##+js(aeld, click, popup)
 motchilltvphim.com##+js(acs, jQuery, click_time)
 motchilltvphim.com,phimmoissz.info,subnhanhcx.info##.sda-catfish
 motchilltvphim.com,phimtho.cc,subnhanhcx.info###popup_banner_beta
+motchillx.io##.aam-banner-wrapper
+motchillx.io##.cat-footer-wrapper
+motchillx.io##.cat-header-wrapper
+motchillx.io##.disable-ads-icon
+motchillx.io##.popup-overlay
 motchillzz.site,api.anime3s.com##.t_logo
 motchillzz.site,xemphim.site,motphimtv.bz,motchillzl.io,phimhdc.com,phimhdcs.com##.mp-adz
 motphimchillvl.org###catfish_ad_top
@@ -1398,6 +1398,7 @@ zzonemanga.co##.relative:has(.fixed)
 ||goal.90phut24.xyz^*.gif$image
 ||gocmod.com/*code.js$script,domain=gocmod.com
 ||googleusercontent.com^$domain=hhtqvietsub.cc
+||gq.kalingacurvant.com^
 ||gullyending.com^
 ||hellobabygirl.live/*/adx*.js$domain=nung18.net|phimxxx.ac
 ||hentaivn.show/banner_image/$image
@@ -1463,8 +1464,8 @@ zzonemanga.co##.relative:has(.fixed)
 ||mialsja.life^$image,domain=phimxxx.ac
 ||mocfun.net/uploads/banners/
 ||motchill.us.org^*.gif$image
-||motchillir.sh^*.gif$image
 ||motchillk.bot^*.gif$image
+||motchillx.io^*.gif$image
 ||motphimtv.bz^*.gif$image
 ||mplmncb.com/banners-web/$script,image,domain=truyenqqno.com
 ||mplmncb.com/popup/$script,domain=truyenqqno.com
