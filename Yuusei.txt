@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.04.13.0908
+! Version: 2026.04.14.0902
 ! Title: Yuusei
-! Last modified: 13-04-2026
+! Last modified: 14-04-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 27c86e7515aff9088c9107835d45113fd081ca2131cfff4b6a3f93332c1283ce
+! Checksum: 4b01b73c4ad05c6738048b293872c6d4d8d75183f7ab76c3fcfc780c8a33ad12
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -467,6 +467,8 @@ apkmoddone.com##.adNative
 apkmoddone.com##.pAd
 apkmoddone.com##.relatedPostsAd
 apkmoddone.com##div.pAdin
+asahichinese-fl.com,bajabaysurfntaco.com##+js(acs, window.addEventListener, Ads)
+asahichinese-fl.com,haysexvn.lol###vl-header-adx
 asianbookie.com##a[href^="/cgi-bin/to.cgi"]
 audiotruyenfull.com##+js(acs, document.addEventListener, ai_run)
 audiotruyenfull.com##.code-block-24.code-block
@@ -527,6 +529,7 @@ cap3.fit##+js(aeld, click, setTimeout)
 cap3.fit##+js(aeld, fullscreenchange, e.target)
 cap3.fit##.p-4.justify-center.items-center.flex.backdrop-blur-sm.bg-black\/80.z-\[9999\].inset-0.fixed
 cap3.fit,qmh.bz##.header>app-banner
+cave9x.net,phimnung3x.pro,xemsexhihi.net,asahichinese-fl.com##.xx-ads
 cdn.codexa.fun##+js(acs, $, arrDirectLink)
 chap.vn##.my_responsive_add
 chap.vn##.titleBar + *
@@ -602,7 +605,7 @@ doisongphapluat.com.vn,vtcnews.vn##.sys-ads
 download.vn##div[id^="adsbg"]
 dualeotruyenbx.com##+js(acs, document.addEventListener, popunder)
 dualeotruyenbx.com##[id$="bnr"]
-dualeotruyenbx.com,weedposters.net,cliphot69.shop,doctruyen3qhubz.net,ihentai.network,hentaivcc.com,buomtv.media,truyenvn.shop,javtiful.com,quatvn.my,phimsexhayvne.com,phim18hdxx.com,vn6.sexviet88.xyz,phimnung3x.pro,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.ceo,truyenqqno.com,genz3x.com,sayhentai.vc,motphim.pokemonviet.com,lxmanga.space,phimlongtieng.net,newtruyentranh10.com,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,viet69.mu,goctruyentranhvui19.com,viet69vn.at,misskon.com,luottruyen5.com##+js(acs, WebAssembly, instantiate)
+dualeotruyenbx.com,cave9x.net,cliphot69.shop,doctruyen3qhubz.net,ihentai.network,hentaivcc.com,buomtv.media,truyenvn.shop,javtiful.com,quatvn.my,phimsexhayvne.com,phim18hdxx.com,vn6.sexviet88.xyz,phimnung3x.pro,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.ceo,truyenqqno.com,genz3x.com,sayhentai.vc,motphim.pokemonviet.com,lxmanga.space,phimlongtieng.net,newtruyentranh10.com,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,viet69.mu,goctruyentranhvui19.com,viet69vn.at,misskon.com,luottruyen5.com##+js(acs, WebAssembly, instantiate)
 dubaotiente.net##.ad-pin-right-bottom
 ebookbkmt.com##.top-right
 ephoto360.com##.line-ads
@@ -831,8 +834,6 @@ nung18.net##.jw-overlays>img[src]
 onflix.my##.absolute.inset-0.\-z-10
 onflix.my##.space-y-0.py-2.lg\:pl-14.md\:px-12.px-1.w-full>.duration-300.fade-in.animate-in.p-4.bg-black\/50.justify-center.items-center.flex.z-\[100\].inset-0.fixed
 onflix.my##body>.duration-300.fade-in.animate-in.p-4.bg-black\/50.justify-center.items-center.flex.z-\[100\].inset-0.fixed
-ordersabiangthai.com,bajabaysurfntaco.com##+js(acs, window.addEventListener, Ads)
-ordersabiangthai.com,haysexvn.lol###vl-header-adx
 outlook.live.com##.LBktY>.GssDD
 outlook.live.com##div[data-viewport-type="element"] .Ogt7j
 pezmoku.com###section_553754114
@@ -1175,7 +1176,6 @@ vtipster.net##div[class*="qca"]
 vungtv.xyz###container-ads
 vuonhoalan.net##.content_middle_rightbar
 webhoctienganh.com##.button-action-float-banner
-weedposters.net,phimnung3x.pro,xemsexhihi.net,ordersabiangthai.com##.xx-ads
 www.2banh.vn##.grp-grp.header_wp
 www.2banh.vn##.lb_overlay
 www.asu.baby##+js(aopr, initialAdURLs)
@@ -1319,12 +1319,12 @@ znews.vn##.znews-banner
 ||api.onflix.xyz/api/ads/$xmlhttprequest
 ||api.ybox.vn/graphql?query=*Ads
 ||apinas.nct.vn^
+||asahichinese-fl.com^*.gif$image
 ||ax.mpcdn.top/tags/js?id=motchill$script,domain=motchillzl.id
 ||ax.mpcdn.top^*.gif$domain=motchillzl.id
 ||bajabaysurfntaco.com^*.gif$image
 ||baomoi.com$csp=script-src data: blob: * 'self' 'unsafe-inline'
 ||baonga.com/FileUpload/Images/*banner
-||bf.333xbet.com^$media,third-party
 ||bidgear-syndication.com^
 ||blog.abit.vn/wp-content/uploads/2020/05/abit_$image
 ||blogger.googleusercontent.com^$image,domain=hhninja30.tv|hhtm.net|yanhh3d.app
@@ -1432,7 +1432,6 @@ znews.vn##.znews-banner
 ||img.iketqua.com^*.gif$image
 ||img.lazcdn.com^*.gif$image,domain=tctruyen.org
 ||img.yeuketqua.net^
-||imgcdn.mikelarsenal.pro/images/$image,domain=phimxxx.ac
 ||javhdz.xxx/js/ads-javhd.js$script,~third-party
 ||javtopxx2.com^*.gif$image
 ||jf.nairydeices.com/rXAp4JBa7jNUt/114370$domain=lxmanga.space,script,redirect=noop.js
@@ -1477,7 +1476,6 @@ znews.vn##.znews-banner
 ||on-web-cdn.gviet.vn/public/js/player/ads/ima3.js$script,domain=vtvcab.vn,redirect=google-ima.js
 ||onflixstream.site/ads$media,~third-party
 ||onnetwork.tv^$third-party
-||ordersabiangthai.com^*.gif$image
 ||oursty.com^
 ||pezmoku.com^*.gif$image
 ||phim.vkool8.net/images/ads/$image
@@ -1506,7 +1504,7 @@ znews.vn##.znews-banner
 ||qthang.net/js/blocker$script,~third-party
 ||quaivatdienanh.com/*banner$image
 ||quatvn.my^*.gif$image
-||quoracdn.net^$image,domain=weedposters.net|phim18vip.top|pheclip.site|phimnung3x.pro|xemsexhihi.net|phevl.hot|fulllivehot.live|haysexvn.lol|chich69.men|viet69hay.bar
+||quoracdn.net^$image,domain=cave9x.net|phim18vip.top|pheclip.site|phimnung3x.pro|xemsexhihi.net|phevl.hot|fulllivehot.live|haysexvn.lol|chich69.men|viet69hay.bar
 ||quoracdn.net^$image,domain=www.motchill54.com|phimlongtieng.net
 ||realclick.vn^$third-party
 ||rphang.online^*.gif
@@ -1554,7 +1552,6 @@ znews.vn##.znews-banner
 ||tags.native-ad.net^
 ||tailieuvnu.com/wp-content/uploads/2022/12/28/shopee-2*.png$image
 ||taoanhdep.com$csp=script-src 'self' 'unsafe-inline' data: https:
-||telendos.net/OK9_FINAL_1202.mp4$domain=thungphim.us
 ||telendos.net^*.gif$domain=thungphim.us
 ||tennisontelly.uk^*.gif$image
 ||tepbac.com/upload/advertiment/$image
