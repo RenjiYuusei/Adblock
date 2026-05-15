@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.05.14.0939
+! Version: 2026.05.15.0939
 ! Title: Yuusei
-! Last modified: 14-05-2026
+! Last modified: 15-05-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: e24e6169864e47f08e296b37bcef0e3af7d285474d9bce21daf3ddd4df779e61
+! Checksum: 4703e60d6da17f79e49908ac0b2c167a6a9a74a7821b28a31eb0093381a7defd
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -682,7 +682,7 @@ hh3dhay.life##+js(acs, Symbol, break;case $)
 hh3dhay.life,tram3d.com##+js(acs, document.createElement, ;break;case)
 hh3dhay.life,tram3d.online,animevietsub.site##+js(acs, eval, $._Eu)
 hhdragon.site##.catfish-img
-hhninja30.tv,hhtq13.vip,hhtq.today,hhtq.today,animehay02.site,hhtq3d.net,hhvsub1.com,phimdacap.tv,motchillk.bid,hhdragon.site,hh2d.top###catfish
+hhninja30.tv,hhtq13.vip,hhtq.today,animehay02.site,hhtq3d.net,hhvsub1.com,phimdacap.tv,motchillk.bid,hhdragon.site,hh2d.top###catfish
 hhtq.boats###overlay
 hhtq.boats###xs-addd0
 hhtq.boats##.btn-fanpage.btn-default.btn-block.btn
@@ -1197,6 +1197,8 @@ www.iosviet.com##+js(set, timer, 0)
 www.iosviet.com##[href^="https://shope.ee"]
 www.nettruyenupp.com##+js(aopr, sp)
 www.paylia.io##a.news__item--action:nth-of-type(2)
+www.qmh.cat##+js(set, open, noopFunc)
+www.qmh.cat##.global-sticky-ads
 www.saostar.vn###mobi-sapo
 www.saostar.vn###page-skin-top-holder
 www.saostar.vn###pc-bill-top
@@ -1587,6 +1589,7 @@ zpic.biz##.ad-banner
 ||vads.net.vn^
 ||vesotantai.com/upload/photo/$image
 ||video.qmh.cat/uploads/banners/$image,domain=cap3.sbs|qmh.cat
+||video.viphubss.shop/uploads/banners/$image,domain=qmh.cat
 ||vietjack.com/FrontEndWeb/js/sp.js$script
 ||vietjack.com/git/images/dehocki.png$image,~third-party
 ||vn-motchill.com^*.gif$image
