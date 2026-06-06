@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.06.05.0951
+! Version: 2026.06.06.0938
 ! Title: Yuusei
-! Last modified: 05-06-2026
+! Last modified: 06-06-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 0eeb6ebd987117161b6ef4236efc00f52e841685055b96e01eb084d5e694328d
+! Checksum: bba08171d3f4aa83134af81fd08f9ac17a7a9b3961f98ab85b7c3ce16e3dc4fe
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -541,7 +541,7 @@ chotlo3s.com##div[id^="hide_float"]
 cliphot69.wiki###custom_html-42
 cliphotnewx.com,haysexvn.shop###vl-header-adx
 cliphotnewx.com,sexnhathdd.blog##+js(acs, window.addEventListener, Ads)
-cliphotvn69.com,dynadot.rsocdomains.com,cliphot69.wiki,www.gvnvh18z.com,phimsexhayvne.com,sayhentai.sh,xamvn.buzz##.float-ck-center-lt
+cliphotvn69.com,dynadot.rsocdomains.com,cliphot69.wiki,www.gvnvh18z.com,phimsexhayvne.com,sayhentai.sh,xamvn.skin##.float-ck-center-lt
 cliphubs.com,viet69hay.site##+js(acs, document.addEventListener, pop)
 clipphimsex3x.net,sexhihi.cool,javhdz.men,laalmirchitakeaway.co.uk##.catfish-bottom
 clipphot.vip##+js(acs, document.addEventListener, POP)
@@ -596,7 +596,7 @@ doisongphapluat.com.vn,vtcnews.vn##.sys-ads
 download.vn##div[id^="adsbg"]
 dualeotruyenpy.com##+js(acs, document.addEventListener, popunder)
 dualeotruyenpy.com##[id$="bnr"]
-dualeotruyenpy.com,quatnhau.net,cliphot69.wiki,doctruyen3qhub.live,qmanga.art,hentaivkl.com,buomtv.life,truyenvn.sbs,javtiful.com,quatvn.now,phimsexhayvne.com,phim18hdxx.com,sexviet88.it.com,sexmupxinh.net,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.lol,truyenqqko.com,clipphimsex3x.net,sayhentai.sh,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,viet69.be,viet69vn.at,misskon.com,luottruyen7.com##+js(acs, WebAssembly, instantiate)
+dualeotruyenpy.com,sexnung24h.net,cliphot69.wiki,doctruyen3qhub.live,qmanga.art,hentaivkl.com,buomtv.life,truyenvn.sbs,javtiful.com,quatvn.now,phimsexhayvne.com,phim18hdxx.com,sexviet88.it.com,sexmupxinh.net,demo.14412882.com,hhtq5.vip,sexdiary.club,vn2.xvideos69.xxx,umetruyenz.org,damconuong.lol,truyenqqko.com,clipphimsex3x.net,sayhentai.sh,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,viet69.be,viet69vn.at,misskon.com,luottruyen7.com##+js(acs, WebAssembly, instantiate)
 dubaotiente.net##.ad-pin-right-bottom
 ebookbkmt.com##.top-right
 ephoto360.com##.line-ads
@@ -811,8 +811,8 @@ outlook.live.com##div[data-viewport-type="element"] .Ogt7j
 pezmoku.com###section_553754114
 pezmoku.com##.section-catfish
 phapluatplus.baophapluat.vn##div[style="text-align:center;margin-top:0px;margin-bottom:0px;"]
-pheclip.dev,phim18vip.site##.in.fade.modal-backdrop
-pheclip.dev,phim18vip.site,subnhanh.plus##+js(acs, $, pop)
+pheclip.baby,phim18vip.site##.in.fade.modal-backdrop
+pheclip.baby,phim18vip.site,subnhanh.plus##+js(acs, $, pop)
 phim.haysex.asia###mp-preload-popup-overlay
 phim.haysex.asia##.banner-play
 phim1080.in##.ff-banner
@@ -821,9 +821,9 @@ phim18hdxx.com##.cash-fish-pc
 phim18hdxx.com##.preload-pc
 phim18hdxx.com##.top-mobile-banner
 phim18hdxx.com##.under-player-pc-banner
-phim18vip.site,pheclip.dev###pc-preload-modal
-phim18vip.site,pheclip.dev##.quang-cao
-phim18vip.site,phevl.app###popup
+phim18vip.site,pheclip.baby###pc-preload-modal
+phim18vip.site,pheclip.baby##.quang-cao
+phim18vip.site,phevl.sex###popup
 phimbet.top###banner
 phimbet.top,hh3dhay.ceo,toku8.com###overlay
 phimchautinhtri.net##.ban-top-left-host
@@ -859,7 +859,6 @@ pops.vn#@##adsContainer
 qdnd.vn##.box-banner
 qmanga.art,khotruyen.ac##.gwd-banner-image
 quantrimang.com###adrighttop
-quatnhau.net,sexmupxinh.net,sexhihi.cool,cliphotnewx.com##.xx-ads
 quatvn.now##+js(acs, window.addEventListener, localStorage)
 quatvn.now##.adace-slideup-slot-wrap
 quatvn.now##.adace-slot
@@ -906,6 +905,7 @@ sexlive.biz,haysexvn.shop,viet69hay.site##.popup
 sexmupxinh.net##+js(aopr, Cookies)
 sexmupxinh.net##.catfix
 sexmupxinh.net,sexhihi.cool,laalmirchitakeaway.co.uk##.catfish-top
+sexnung24h.net,sexmupxinh.net,sexhihi.cool,cliphotnewx.com##.xx-ads
 sexphimhayh.pro,sexhayvl.co.uk##.quangcaomobile
 sextop.asia##div[style^="position:fixed;inset:0px;z-index:100000;"]
 sextop.asia,dynadot.rsocdomains.com###video_player ~ div[id]
@@ -1066,7 +1066,7 @@ truyensextv.com,lxmanga.space##.sticky-footer
 truyensextv.com,yanhh3d.hot,z.chinav.sex##+js(acs, document.addEventListener, opup)
 truyensieuhay.com##.footer-info
 truyensieuhay.com,hhtrungquoc9.com,hhtq13.vip,hhtq3d.net###topbanner
-truyensieuhay.com,xemphim.site,quangcaoyenbai.com,phimchill.life,thefaplive.com,mv.dailyphimz.com,mv.phimbathu.one,sexhihi.cool,anime47.best,teamlanhlung8.shop,phimhdc.com,forum.timfshare.com,honghotduongpho.vn,chich69.men,comong.info##+js(aopr, document.cookie)
+truyensieuhay.com,xemphim.site,quangcaoyenbai.com,phimchill.life,thefaplive.com,mv.dailyphimz.com,mv.phimbathu.one,sexhihi.cool,anime47.best,teamlanhlung8.shop,phimhdc.com,forum.timfshare.com,honghotduongpho.vn,chich69.mobi,comong.info##+js(aopr, document.cookie)
 tuoi69.com###bar_float_r
 tuoi69.com##.quangcaomb
 tuoinung.cfd###hide_float_right
@@ -1184,7 +1184,7 @@ www.toptruyenzone3.com,doctruyen3qhub.live##.advertisement
 www.truyen35zz.com##+js(acs, jQuery, click_ads)
 www.vn2c.my#@#.advertiser
 www.webtretho.vn##.wtt-ads
-xamvn.buzz##.js-notices
+xamvn.skin##.js-notices
 xehay.vn###banner1ab
 xem1080.com##.banner-masthead
 xem16.net##+js(json-prune, props.children.[].props.tvc)
@@ -1367,7 +1367,7 @@ zpic.biz##.ad-banner
 ||i.imgur.com/81uid6d.jpg$domain=vozer.net
 ||i.imgur.com/FbUH5AQ.png$domain=vozer.net
 ||i.imgur.com^$image,domain=nhacdj.vn|banbuondalat.com|go.tructiepnba.me|phimbet.top
-||i.imgur.com^$image,domain=phim18hdxx.com|xamvn.buzz
+||i.imgur.com^$image,domain=phim18hdxx.com|xamvn.skin
 ||i.imgur.com^*.gif$image,domain=ghienphimz.show|mv.dailyphimz.com|mv.phimmoiaz.cc|xemtivi4k.com|rophim.moe|vutruphim.tv|soicau247s.org|phim24k.top|jophim.top|rophimz.top
 ||i.imgur.com^*.gif$image,domain=z.chinav.sex|quatvn.now
 ||iads.staticscdn.net^
@@ -1446,7 +1446,7 @@ zpic.biz##.ad-banner
 ||quaivatdienanh.com/*banner$image
 ||quatvn.now^*.gif$image
 ||quechoa9.live/images/partners/$image
-||quoracdn.net^$image,domain=quatnhau.net|phim18vip.site|pheclip.dev|sexmupxinh.net|sexhihi.cool|phevl.app|fulllivehot.live|haysexvn.shop|chich69.men|viet69hay.site
+||quoracdn.net^$image,domain=sexnung24h.net|phim18vip.site|pheclip.baby|sexmupxinh.net|sexhihi.cool|phevl.sex|fulllivehot.live|haysexvn.shop|chich69.mobi|viet69hay.site
 ||quoracdn.net^$image,domain=www.1phim1.com|phimlongtieng.net
 ||realclick.vn^$third-party
 ||rphang.online^*.gif
