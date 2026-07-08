@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.07.07.0934
+! Version: 2026.07.08.0907
 ! Title: Yuusei
-! Last modified: 07-07-2026
+! Last modified: 08-07-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 9eb01fc693497a87224afced8d82aa58034287ad92527bbee820aca40026af4d
+! Checksum: 520425e1fdb7d4e8e5991574f18f6d413bf5e4b1700b2292ce44bba16d5184c7
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -311,7 +311,7 @@ $popup,domain=truyenfull.today
 /core/*$script,domain=gamek.vn|genk.vn|kenh14.vn|cafef.vn|thanhnien.vn
 /disable-devtool.min.js$script
 /giadinhonline.vn/files/qc/*
-/i.imgur.com/*.gif$domain=www.1phim9.com|listnhacai88.com|rakhoizr.cc
+/i.imgur.com/*.gif$domain=www.1phim9.com|listnhacai88.com|rakhoizf.cc
 /jwplayer/vast.js$script
 /lv/esnk/*$script
 /newchill/*gif$image
@@ -562,7 +562,7 @@ doisongphapluat.com.vn,vtcnews.vn##.sys-ads
 download.vn##div[id^="adsbg"]
 dualeotruyenhn.com##+js(acs, document.addEventListener, popunder)
 dualeotruyenhn.com##[id$="bnr"]
-dualeotruyenhn.com,phimsexhay.mobi,cliphot69.shop,doctruyen3qhub2.com,qmanga.art,hentaivkl.pro,buomtv.life,truyenvn.sbs,javtiful.com,quatvn.lol,phimsexhayvne.com,phim18hdxx.com,sexviet88.it.com,sexmupxinh.net,demo.14412882.com,hhtq5.vip,sexdiary.club,xvideos.xemvl.xxx,umetruyenz.org,damconuong.shop,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,viet69.be,viet69vn.at,misskon.com,luottruyen11.com##+js(acs, WebAssembly, instantiate)
+dualeotruyenhn.com,phimsexhay.mobi,cliphot69.shop,doctruyen3qhub2.com,qmanga.art,hentaivkl.pro,buomtv.life,truyenvn.sbs,javtiful.com,quatvn.lol,phimsexhayvne.com,phim18hdxx.com,sexviet88.it.com,sexmupxinh.net,demo.14412882.com,hhtq5.vip,sexdiary.club,xvideos.xemvl.xxx,umetruyenz.org,damconuong.shop,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,sex.xinh3x.me,viet69.be,viet69vn.at,misskon.com,luottruyen12.com##+js(acs, WebAssembly, instantiate)
 dubaotiente.net##.ad-pin-right-bottom
 ebookbkmt.com##.top-right
 ephoto360.com##.line-ads
@@ -837,12 +837,12 @@ quykhu.com#@#.ad-unit
 quykhu.com#@#.adsbox
 quykhu.com#@#.adsbygoogle
 quykhu.com#@#[class^="div-gpt-ad"]
-rakhoizr.cc###wap_bottombanner
-rakhoizr.cc##.bookmaker-selector-container
-rakhoizr.cc##.btn-8xbet
-rakhoizr.cc##.btn-odds
-rakhoizr.cc##.footer-banner
-rakhoizr.cc##.sk_balloon
+rakhoizf.cc###wap_bottombanner
+rakhoizf.cc##.bookmaker-selector-container
+rakhoizf.cc##.btn-8xbet
+rakhoizf.cc##.btn-odds
+rakhoizf.cc##.footer-banner
+rakhoizf.cc##.sk_balloon
 reatimes.vn##div[class^="adv-"]
 rophim.moe##+js(acs, addEvent, popu)
 rophimzz.fit##.sspp-area
@@ -968,9 +968,9 @@ toithuthuat.com##.box
 toithuthuat.com##.pum
 topthuthuat.com,canhrau.com##.widget.widget_text
 toquoc.vn,baoxaydung.vn,tienphong.vn,taichinhdoanhnghiep.net.vn,coiphim.show,ghienphimz.show,nettruyenar.com##.banner
-tram3d.cam,animevietsub.love##+js(acs, eval, $._Eu)
 tram3d.com##+js(acs, document.createElement, ;break;case)
 tram3d.mom##+js(acs, setTimeout, appendChild)
+tram3d.my,animevietsub.love##+js(acs, eval, $._Eu)
 trangsexdam.net##.w1e48c4420b7073bc11916c6c1de226bb
 tratu.soha.vn#@#.adheader
 truyen247.pro##+js(acs, eval)
@@ -1207,7 +1207,7 @@ zpic.st##.ad-banner
 ||cdn.adxcontent.com^
 ||cdn.giavang.org/images/ads/$image,domain=giavang.org
 ||cdn.lfastcdn.com/2026/04/dzzmi8.gif$image
-||cdn.lfastcdn.com^*.gif$image,domain=bongdainfox.tv|rakhoizr.cc
+||cdn.lfastcdn.com^*.gif$image,domain=bongdainfox.tv|rakhoizf.cc
 ||cdn.monkeydarchive.com/images/banner/$image,domain=monkeyd.net.vn
 ||cdn.tpmedia.online^
 ||cdn.webhoctienganh.com/asset/home/img/banner/$image,domain=webhoctienganh.com
