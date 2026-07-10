@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.07.09.0926
+! Version: 2026.07.10.0928
 ! Title: Yuusei
-! Last modified: 09-07-2026
+! Last modified: 10-07-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 7d522a4b04d4ec8b6abad4c47fdc888cec149fe47b358ce3868ed084b13ca287
+! Checksum: 43cd18dd992d87964a5c087b4ae2ea3ba4e044ed69543a728e4661fc4ec7a627
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -740,7 +740,7 @@ motchilltvphim.com,subnhanh.plus##.sda-catfish
 motchillxe.cc##.overlay-1
 motchillzz.site,api.anime3s.com##.t_logo
 motchillzz.site,xemphim.site,motphimtv.bz,phimhdc.com,phimhdcss.com##.mp-adz
-motphimchilll.live###catfish_ad_top
+motphimchilll.lol###catfish_ad_top
 motphimr.app##.bg-black\/70.justify-center.items-center.flex.z-\[9999\].inset-0.fixed
 mphimtv.my##+js(set, urlAds, '')
 mphimtv.my##div[data-widget-id]
@@ -1107,8 +1107,8 @@ www.saostar.vn##div.layout.pt-mobi-top:style(padding-top: 0 !important)
 www.saostar.vn##header.bg-white:style(margin-top: 0px !important)
 www.sieutamphim.pro###scriptDiv
 www.sieutamphim.pro##+js(aopw, _$_d52e)
-www.toptruyenzone6.com##+js(acs, setTimeout, open)
-www.toptruyenzone6.com,doctruyen3qhub2.com##.advertisement
+www.toptruyenzone7.com##+js(acs, setTimeout, open)
+www.toptruyenzone7.com,doctruyen3qhub2.com##.advertisement
 www.vn2c.my#@#.advertiser
 www.webtretho.vn##.wtt-ads
 x.phimsexvn1.co.uk###ads-wrapper
@@ -1285,7 +1285,7 @@ zpic.st##.ad-banner
 ||iamcdn.net/players/playhydraxs.min.js
 ||iili.io^*.gif$image,domain=phimtuoitho.tv
 ||image.cdend.com^*.gif$image,domain=rophim.moe
-||imagedelivery.net^$image,domain=motphimchilll.live
+||imagedelivery.net^$image,domain=motphimchilll.lol
 ||images.tuyensinh247.com^*.gif$third-party
 ||img.congdongmassage.com/banner/$image,domain=congdongmassage.com
 ||img.iketqua.com^*.gif$image
