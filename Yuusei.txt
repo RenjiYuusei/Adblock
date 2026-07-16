@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.07.15.0853
+! Version: 2026.07.16.0903
 ! Title: Yuusei
-! Last modified: 15-07-2026
+! Last modified: 16-07-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 83826872e896c55853974b9bf777b2ed9e1497fcbe117cde8a8d7fcb9b331dc7
+! Checksum: 804239acec19d204daec6d91815ac60e6aab950a5311fce2b46b0c856ff56704
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -749,7 +749,7 @@ motphimchilll.cfd###catfish_ad_top
 motphimw.fm##.bg-black\/70.justify-center.items-center.flex.z-\[9999\].inset-0.fixed
 mphimtv.my##+js(set, urlAds, '')
 mphimtv.my##div[data-widget-id]
-mv.phimmoiaz.cc,anime14.site,zpic.st,javgiga.wordpress.com,hoctot.hocmai.vn,freetube.com.mx,truyenfull.live,player.phimapi.com,sachmoi.net,xfast.sbs,anime47.best,x.phimsexvn1.co.uk,qmhsex.xyz##+js(aopr, open)
+mv.phimmoiaz.cc,anime14.site,zpic.st,javgiga.wordpress.com,hoctot.hocmai.vn,freetube.com.mx,truyenfull.live,player.phimapi.com,sachmoi.net,xfast.sbs,anime47.best,x.phimsexvn1.co.uk,qmhsex.xyz,cdn.codexa.fun##+js(aopr, open)
 nettruyen11s.com##.ad_info
 nettruyen11s.com##.ads_insert_shop
 nettruyenar.com,hhvsub1.com##+js(acs, WebAssembly, globalThis)
@@ -1353,7 +1353,7 @@ zpic.st##.ad-banner
 ||qc.coccoc.com^$third-party
 ||qc.violet.vn^
 ||qmanga.art/banner_image/$image
-||qmh.homes/uploads/banners/$image,domain=cap3.study
+||qmh.hair/uploads/banners/$image,domain=cap3.study
 ||qthang.net/js/blocker$script,~third-party
 ||quaivatdienanh.com/*banner$image
 ||quatvn.mom^*.gif$image
@@ -1431,7 +1431,7 @@ zpic.st##.ad-banner
 ||vn-motchill.com^*.gif$image
 ||vnesports.net^*.gif
 ||vov.vn/ads/show-ads
-||wikicv.net/static/js/adx/$script
+||wikicv.org/static/js/adx/$script
 ||wr.brandonketting.com^
 ||www.1phim12.com/3s.m3u8$rewrite=abp-resource:blank-mp3,domain=www.1phim12.com
 ||www.bongdalu812.com^*.gif
