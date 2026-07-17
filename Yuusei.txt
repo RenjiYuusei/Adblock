@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.07.16.0903
+! Version: 2026.07.17.0907
 ! Title: Yuusei
-! Last modified: 16-07-2026
+! Last modified: 17-07-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 804239acec19d204daec6d91815ac60e6aab950a5311fce2b46b0c856ff56704
+! Checksum: 21245d1afd2b753e5c8c8b5b4a8d719a4e80a868c9256d8ff6ca1374643c7684
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -315,7 +315,7 @@ $popup,domain=truyenfull.live
 /jwplayer/vast.js$script
 /lv/esnk/*$script
 /newchill/*gif$image
-/player/html.php?aid=*&video_id=*&referer=https*xnhau.xxx$domain=xnhau.xxx
+/player/html.php?aid=*&video_id=*&referer=https*xnhau.you$domain=xnhau.you
 /player/jwplayer-*/vast.js$script
 /player/vast.js$script
 /plugins/AdsManager/*$script,~third-party
@@ -562,7 +562,7 @@ doisongphapluat.com.vn,vtcnews.vn##.sys-ads
 download.vn##div[id^="adsbg"]
 dualeotruyenhn.com##+js(acs, document.addEventListener, popunder)
 dualeotruyenhn.com##[id$="bnr"]
-dualeotruyenhn.com,phimsexlondep.net,cliphot69.shop,doctruyen3qhub3.com,qmanga.art,hentaivkl.pro,buomtv.baby,truyenvn.sbs,javtiful.com,quatvn.mom,phimsexhayvne.com,phim18hd.site,sexviet88.org.uk,sexmupxinh.net,demo.14412882.com,hhtq5.vip,sexdiary.club,xvideos.xemvl.xxx,umetruyenz.org,damconuong.shop,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,xinh3x.it.com,viet69.be,viet69vn.at,misskon.com,luottruyen12.com##+js(acs, WebAssembly, instantiate)
+dualeotruyenhn.com,phimsexlondep.net,cliphot69.shop,doctruyen3qhub3.com,qmanga.art,hentaivkl.pro,buomtv.baby,truyenvn.sbs,javtiful.com,quatvn.mom,phimsexhayvne.com,phim18hd.site,sexviet88.org.uk,sexmupxinh.net,demo.14412882.com,hhtq5.vip,sexdiary.club,xvideos.xemvl.xxx,umetruyenz.org,damconuong.shop,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,xinh3x.it.com,viet69.be,viet69vn.at,misskon.com,luottruyen13.com##+js(acs, WebAssembly, instantiate)
 dubaotiente.net##.ad-pin-right-bottom
 ebookbkmt.com##.top-right
 ephoto360.com##.line-ads
@@ -720,11 +720,6 @@ mannhan97.xyz##.images_fixed
 mannhan97.xyz##.popup
 mannhan97.xyz##.sticky
 mannhan97.xyz##a.btn_fb:nth-of-type(2)
-mannhantv.link###hots-btn
-mannhantv.link##.bn-popup-bottom-sdwdwxw
-mannhantv.link##[href="/top-nha-cai.html"]
-mannhantv.link##li.for-desktop-2>[href]
-mannhantv.link##li.for-mobile-2>[href]
 metruyen.fit###layer-popup-link3
 metruyen.fit###virtualLayer
 metruyencv.com##.text-muted
@@ -851,8 +846,8 @@ rakhoiil.cc##.footer-banner
 rakhoiil.cc##.sk_balloon
 reatimes.vn##div[class^="adv-"]
 rophim.moe##+js(acs, addEvent, popu)
-rophim10.com.im##.adserver
-rophim10.com.im##.mt-3.topics-line.topics-grid.topics-list
+rophim10.im##.adserver
+rophim10.im##.mt-3.topics-line.topics-grid.topics-list
 rophimzz.live##.sspp-area
 rophimzz.live,motphimw.fm##+js(aeld, click, ads)
 rphang.online##.bbMediaWrapper-inner>.samCodeUnit
@@ -930,6 +925,11 @@ thefaplive.com###popup_fi
 thefaplive.com###wap_bottombanner
 thefaplive.com##.hidden-md.right.col-3
 thefaplive.com##body>.container>div
+thethao15.mannhan.pro###hots-btn
+thethao15.mannhan.pro##.bn-popup-bottom-sdwdwxw
+thethao15.mannhan.pro##[href="/top-nha-cai.html"]
+thethao15.mannhan.pro##li.for-desktop-2>[href]
+thethao15.mannhan.pro##li.for-mobile-2>[href]
 thethao247.vn##div[class$="_ads"]
 thethaovanhoa.vn##.zone-top
 thethaovanhoa.vn##[id^="pos-"]
@@ -1127,11 +1127,11 @@ xiuren.org###exoIMFrame
 xiuren.org###nativeAds_1505931906161
 xiuren.org##div[id^="exo_slider_"]
 xlz.buzzscorelinez.com##.banner-bottom-1
-xnhau.xxx##+js(acs, document.addEventListener, lastPopunderTime)
-xnhau.xxx##+js(aeld, click, /acquirecardedsullen|POPUNDER_INTERVAL|lastPopunderTime/)
-xnhau.xxx##.fp-ui>div[style]
-xnhau.xxx##.sponsor
-xnhau.xxx##.spot
+xnhau.you##+js(acs, document.addEventListener, lastPopunderTime)
+xnhau.you##+js(aeld, click, /acquirecardedsullen|POPUNDER_INTERVAL|lastPopunderTime/)
+xnhau.you##.fp-ui>div[style]
+xnhau.you##.sponsor
+xnhau.you##.spot
 xnxx-sex-videos.com##+js(acs, setTimeout, window.location)
 xnxx-sex-videos.com##+js(ra, target|onclick, a[href^="/video/"])
 xnxx.com###content-ad-top-zone
@@ -1349,7 +1349,7 @@ zpic.st##.ad-banner
 ||pub.akadigital.vn^
 ||pub.lavamedia.vn^
 ||pub.lavanetwork.net^$third-party
-||q3ei4f.rophim10.com.im^
+||q3ei4f.rophim10.im^
 ||qc.coccoc.com^$third-party
 ||qc.violet.vn^
 ||qmanga.art/banner_image/$image
@@ -1452,7 +1452,7 @@ zpic.st##.ad-banner
 ||xfast.sbs/media/$image,domain=fullcliphot.org|fulllivehot.co
 ||xfast.sbs^*.gif$image,domain=clipphot.vip
 ||xmedia.antt.vn/upload/*.gif$image,domain=antt.vn
-||xnhau.blog^$media,domain=xnhau.xxx
+||xnhau.blog^$media,domain=xnhau.you
 ||xoilackvb.cc^*.gif$image,domain=colatv45.live
 ||zaloweb.
 ~cafef.vn##[id^="adm-slot"]
