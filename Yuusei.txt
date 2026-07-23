@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.07.22.0904
+! Version: 2026.07.23.0911
 ! Title: Yuusei
-! Last modified: 22-07-2026
+! Last modified: 23-07-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: c735fe5b71ffc1da822889b00ca5c419e5fce68dd7580da35b7c2b2b412d3453
+! Checksum: b9d6ed1402d459105ded6fa7799509e134b9088bffb98f060ae990f17b24b636
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -413,6 +413,7 @@ $popup,domain=truyenfull.live
 @@||www3.doubleclick.net^$xmlhttprequest,domain=the.tube
 @@||xahoingaynay.com.vn/upload/20989/20200817/Asset_2_8x_9596af5d4e.png$~third-party
 @@||yhocdata.com$generichide
+anhdoc.com,sexmupxinh.net,xemsexhihi.xyz##.xx-ads
 anime14.site###menubentrai
 anime14.site##.gnartyx-offads
 anime14.site,animetvn.com,motchillzz.site###fbox-background
@@ -564,7 +565,7 @@ doisongphapluat.com.vn,vtcnews.vn##.sys-ads
 download.vn##div[id^="adsbg"]
 dualeotruyenvt.com##+js(acs, document.addEventListener, popunder)
 dualeotruyenvt.com##[id$="bnr"]
-dualeotruyenvt.com,phimsexne.net,cliphot69.click,doctruyen3qhub3.com,qmanga.art,hentaivkl.pro,buomtv.baby,truyenvn.sbs,javtiful.com,quatvn.asia,phimsexhayvne.com,phim18hd.site,sexviet88.org.uk,sexmupxinh.net,demo.14412882.com,hhtq5.vip,xvideos.xemvl.xxx,umetruyenz.org,damconuong.store,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,xinh3x.it.com,viet69.be,viet69vn.at,misskon.com,luottruyen13.com##+js(acs, WebAssembly, instantiate)
+dualeotruyenvt.com,anhdoc.com,cliphot69.click,doctruyen3qhub3.com,qmanga.art,hentaivkl.pro,buomtv.baby,truyenvn.sbs,javtiful.com,quatvn.asia,phimsexhayvne.com,phim18hd.site,sexviet88.org.uk,sexmupxinh.net,demo.14412882.com,hhtq5.vip,xvideos.xemvl.xxx,umetruyenz.org,damconuong.store,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,xinh3x.it.com,viet69.be,viet69vn.at,misskon.com,luottruyen13.com##+js(acs, WebAssembly, instantiate)
 dubaotiente.net##.ad-pin-right-bottom
 ebookbkmt.com##.top-right
 ephoto360.com##.line-ads
@@ -801,7 +802,6 @@ phimmoichillz.top###pm_quangcao
 phimmoichillz.top###preload
 phimsex.bar###popup-ad-box
 phimsex.bar##.banner-ad
-phimsexne.net,sexmupxinh.net,xemsexhihi.xyz##.xx-ads
 phimsexonlines.com##+js(acs, window.addEventListener, Ads)
 phimsexsuong3x.net,xemsexhihi.xyz,javhdz.video,laalmirchitakeaway.co.uk##.catfish-bottom
 phimtho.cc#%#//scriptlet("abort-current-inline-script", "$", "p0pUpRandom")
@@ -1361,7 +1361,7 @@ zpic.st##.ad-banner
 ||qthang.net/js/blocker$script,~third-party
 ||quaivatdienanh.com/*banner$image
 ||quatvn.asia^*.gif$image
-||quoracdn.net^$image,domain=phimsexne.net|phim18vip.site|pheclip.fit|sexmupxinh.net|xemsexhihi.xyz|phevl.top|fulllivehot.co|haysexvn.shop|chichvn.men|viet69hay.pics
+||quoracdn.net^$image,domain=anhdoc.com|phim18vip.site|pheclip.fit|sexmupxinh.net|xemsexhihi.xyz|phevl.top|fulllivehot.co|haysexvn.shop|chichvn.men|viet69hay.pics
 ||quoracdn.net^$image,domain=www.1phim14.com|phimlongtieng.net
 ||realclick.vn^$third-party
 ||rophims.fm^*.gif,~third-party
