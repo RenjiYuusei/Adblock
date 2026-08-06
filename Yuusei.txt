@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.08.05.0858
+! Version: 2026.08.06.0901
 ! Title: Yuusei
-! Last modified: 05-08-2026
+! Last modified: 06-08-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 792cf4fb489aceb5a07e8eb32efe5b8e457dea015031b93b0d44e1cfe8e6020e
+! Checksum: 5b8d243a7bb636499d5c6ecca7c5f5db995d1dd0d289c51e5b18f8fb39aaf5a5
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -366,7 +366,6 @@ $popup,domain=truyenfull.live
 @@||cdnjs.cloudflare.com/ajax/libs/videojs-contrib-ads/6.0.0/videojs-contrib-ads.js$script,domain=sctvonline.vn
 @@||cotuong.top$generichide
 @@||crumpetprankerstench.com/on.js$domain=lxmanga.space
-@@||dafontvn.com$generichide
 @@||dantri.com.vn$generichide
 @@||dieutri.vn$generichide
 @@||dl.thuthuatjb.com$generichide
@@ -390,7 +389,7 @@ $popup,domain=truyenfull.live
 @@||molympiad.net$generichide
 @@||on-web-cdn.gviet.vn/public/js/player/ads/ima3.js$script,domain=vtvcab.vn
 @@||pagead2.googlesyndication.com^$domain=gaingon3d.com
-@@||pagead2.googlesyndication.com^$script,xmlhttprequest,image,domain=thuthuatmeovat.net|kites.vn|phuongtrinhhoahoc.com|letrongdai.vn|traderviet.tv|thelanb.com|lehait.net|nhacsong.pro|kientruc360.info|vnjpclub.com|753x.blogspot.com|ichi.pro|gocmod.com|tromcap.com|dafontvn.com|www.gvnvh18z.com|sesenblog.com|xaydungplus.com|windowslite.net|tiengnhatdongian.com|quangcaoyenbai.com|ios.codevn.net|audiotruyenfull.com|minhpc.com|vongquaymayman.com|toilaquantri.com|taisachonthi.com|mifirm.net|anonyviet.com|4g.tintuc247.top|web1s.asia|vanhoatamlinh.com|duan24h.net|www.iosviet.com|hoctoan123.com|yhocdata.com|imail.edu.vn|thitotnghiepthpt.vn|chuyenreview.net|streamc.xyz|dl.thuthuatjb.com|idpvn.com|lumionvietnam.com|thuvienphatquang.com|sign.codevn.net|googleapiscdn.com|laodong.vn
+@@||pagead2.googlesyndication.com^$script,xmlhttprequest,image,domain=thuthuatmeovat.net|kites.vn|phuongtrinhhoahoc.com|letrongdai.vn|traderviet.tv|thelanb.com|lehait.net|nhacsong.pro|kientruc360.info|vnjpclub.com|753x.blogspot.com|ichi.pro|gocmod.com|tromcap.com|www.gvnvh18z.com|sesenblog.com|xaydungplus.com|windowslite.net|tiengnhatdongian.com|quangcaoyenbai.com|ios.codevn.net|audiotruyenfull.com|minhpc.com|vongquaymayman.com|toilaquantri.com|taisachonthi.com|mifirm.net|anonyviet.com|4g.tintuc247.top|web1s.asia|vanhoatamlinh.com|duan24h.net|www.iosviet.com|hoctoan123.com|yhocdata.com|imail.edu.vn|thitotnghiepthpt.vn|chuyenreview.net|streamc.xyz|dl.thuthuatjb.com|idpvn.com|lumionvietnam.com|thuvienphatquang.com|sign.codevn.net|googleapiscdn.com|laodong.vn
 @@||player.sohatv.vn/resource/$script,domain=cafef.vn|gamek.vn|genk.vn|kenh14.vn|thanhnien.vn
 @@||securepubads.g.doubleclick.net^$script,domain=laodong.vn
 @@||services.vlitag.com^$xmlhttprequest,script,domain=game24h.vn
@@ -800,7 +799,7 @@ phimmoi.cash,phim24k.top,jophim.top,rophimz.top,xem20.net##.float-ck-center-lt
 phimmoi.com.mx##.bg-black\/70.justify-center.items-center.flex.z-\[9999\].inset-0.fixed
 phimmoichillz.top###pm_quangcao
 phimmoichillz.top###preload
-phimsex4k.com##+js(acs, window.addEventListener, Ads)
+phimsexnhatban.net##+js(acs, window.addEventListener, Ads)
 phimsexsuong3x.net,vlsexhihi.com,javhdz.fun,laalmirchitakeaway.co.uk##.catfish-bottom
 phimtho.cc#%#//scriptlet("abort-current-inline-script", "$", "p0pUpRandom")
 phongroblox.com#@##horizontal-ad
@@ -1285,7 +1284,6 @@ zpic.st##.ad-banner
 ||javhdz.fun/js/ads-javhd.js$script,~third-party
 ||javtopxx2.com^*.gif$image
 ||jf.nairydeices.com/rXAp4JBa7jNUt/114370$domain=lxmanga.space,script,redirect=noop.js
-||jigwipfhowim.in^
 ||js.aiservice.vn^
 ||jsc.yodimedia.com^
 ||kenhgamez.cc^*.gif
@@ -1330,8 +1328,8 @@ zpic.st##.ad-banner
 ||phimlongtieng.net/2s.m3u8
 ||phimmoichillz.top/pop$image
 ||phimmoichillz.top^*.gif$image
-||phimsex4k.com^*.gif$image
 ||phimsexhayvne.com^*.gif$image
+||phimsexnhatban.net^*.gif$image
 ||phimsexsuong3x.net^*.gif$image
 ||photo2.tinhte.vn/data/attachment-files/*banner
 ||player.gliacloud.com^
