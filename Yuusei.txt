@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.08.08.0808
+! Version: 2026.08.09.0813
 ! Title: Yuusei
-! Last modified: 08-08-2026
+! Last modified: 09-08-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 8d2ba53cac17d2c9428801b2c7891ff92e8a3652e82600a2215e3f2d464d6d07
+! Checksum: ae60fd7a35500111a6397884cf4ad3632e0f2bd9e5444ae7de981f8cda4012bc
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -311,7 +311,7 @@ $popup,domain=truyenfull.live
 /core/*$script,domain=gamek.vn|genk.vn|kenh14.vn|cafef.vn|thanhnien.vn
 /disable-devtool.min.js$script
 /giadinhonline.vn/files/qc/*
-/i.imgur.com/*.gif$domain=www.1phim18.com|listnhacai88.com|rakhoizd.cc
+/i.imgur.com/*.gif$domain=www.1phim19.com|listnhacai88.com|rakhoizd.cc
 /jwplayer/vast.js$script
 /lv/esnk/*$script
 /newchill/*gif$image
@@ -513,7 +513,7 @@ chotlo3s.com###header:style(margin-top: 0 !important)
 chotlo3s.com##div[id^="float"]
 chotlo3s.com##div[id^="hide_float"]
 cliphot69.loan###custom_html-42
-cliphotvn69.com,dynadot.rsocdomains.com,cliphot69.loan,www.gvnvh18z.com,phimsexhayvne.com,sayhentai.cx,xamvn.boats##.float-ck-center-lt
+cliphotvn69.com,dynadot.rsocdomains.com,cliphot69.loan,www.gvnvh18z.com,phimsexhayvne.com,sayhentai.cx,xamvn.beauty##.float-ck-center-lt
 cliphubs.com,viet69hay.cyou,clipphot.vip##+js(acs, document.addEventListener, pop)
 cmangax18.com##+js(nostif, ads_num)
 coinphoton.com##.header-fix-ads
@@ -657,7 +657,7 @@ hsctvn.com##.module_plugins
 i2pd.website##.active.bg-overlay
 idpvn.com##[id^="idpvn-"]
 imail.edu.vn##+js(acs, setTimeout, ad_block)
-imail.edu.vn,www.1phim18.com,trumtruyen.xyz,teamlanhlungday.store,audiotruyenfull.com##+js(acs, setTimeout, Aff)
+imail.edu.vn,www.1phim19.com,trumtruyen.xyz,teamlanhlungday.store,audiotruyenfull.com##+js(acs, setTimeout, Aff)
 ios.codevn.net##+js(acs, jQuery, Popup)
 ios.codevn.net##+js(acs, setInterval, offsetHeight)
 ios.codevn.net#@#div[id*="ScriptRoot"]
@@ -679,7 +679,7 @@ keoso.me##.widget-sidebar-block
 ketqua16.net##.baloon
 ketqua16.net##.col-sm-10.kqcenter
 ketqua16.net##.kqbackground.vien ~ a[target="_blank"]
-ketqua16.net,nghean24h.vn,new.tructiepnba.me,tv.manhvl.com,bongdainfox.tv,www.1phim18.com,thapcam73.live,thapcam73.life,i2pd.website##a[rel="nofollow"]
+ketqua16.net,nghean24h.vn,new.tructiepnba.me,tv.manhvl.com,bongdainfox.tv,www.1phim19.com,thapcam73.live,thapcam73.life,i2pd.website##a[rel="nofollow"]
 kickass.sx##.dssdffds
 kickass.sx##.novertpad.clearleft.downloadButtonGroup.buttonsline
 kienthuc.net.vn##.sponsor-zone
@@ -793,7 +793,7 @@ phimdacap.tv###ads-popup
 phimlongtieng.net##+js(acs, document.createElement, script)
 phimlongtieng.net##.banner-preload-container
 phimlongtieng.net##div[class^="catfish-"]
-phimlongtieng.net,www.1phim18.com,vn-motchill.com##.banner-preload
+phimlongtieng.net,www.1phim19.com,vn-motchill.com##.banner-preload
 phimmoi.cash###catfish_wrap
 phimmoi.cash,phim24k.top,jophim.top,rophimz.top,xem20.net##.float-ck-center-lt
 phimmoichillz.top###pm_quangcao
@@ -988,7 +988,7 @@ tuoitre.vn,vnexpress.net###admbackground
 tv.manhvl.com###adstop2
 tv.manhvl.com##.col-lg-4.hidden-xs.d-flex.flex-column.address-wrap
 tv.manhvl.com##.float-right
-tvhayd.org,www.1phim18.com,misseschloe.co.za,vn-motchill.com##.catfish-bottom
+tvhayd.org,www.1phim19.com,misseschloe.co.za,vn-motchill.com##.catfish-bottom
 universalwindscreens.co.uk##.banner-fixed
 v4u.vn##.Flagrow-Ads-under-header
 vailonxx.me##+js(acs, jQuery, window.open)
@@ -1056,11 +1056,11 @@ voz.vn##div[style]:has(.adsbypubpower)
 vozer.net##.Notices.PanelScroller
 vuonhoalan.net##.content_middle_rightbar
 webhoctienganh.com##.button-action-float-banner
-www.1phim18.com##.BanerTop100
-www.1phim18.com##.adv-300-right
-www.1phim18.com,amlich.org##.banner-container
-www.1phim18.com,javgiga.wordpress.com##+js(aopr, localStorage)
-www.1phim18.com,misseschloe.co.za##.catfish-top
+www.1phim19.com##.BanerTop100
+www.1phim19.com##.adv-300-right
+www.1phim19.com,amlich.org##.banner-container
+www.1phim19.com,javgiga.wordpress.com##+js(aopr, localStorage)
+www.1phim19.com,misseschloe.co.za##.catfish-top
 www.2banh.vn##.grp-grp.header_wp
 www.2banh.vn##.lb_overlay
 www.7mvn9.com###bottomFixedDiv
@@ -1099,9 +1099,9 @@ www.webtretho.vn##.wtt-ads
 x.phimsexvn1.co.uk###ads-wrapper
 x.phimsexvn1.co.uk###cashfit-spacer
 x.phimsexvn1.co.uk##.ads-header
-xamvn.boats##.float-contact
-xamvn.boats##.float-contact2
-xamvn.boats##.js-notices
+xamvn.beauty##.float-contact
+xamvn.beauty##.float-contact2
+xamvn.beauty##.js-notices
 xehay.vn###banner1ab
 xem1080.com##.banner-masthead
 xem20.net##+js(json-prune, props.children.[].props.tvc)
@@ -1269,7 +1269,7 @@ zpic.st##.ad-banner
 ||i.imgur.com/81uid6d.jpg$domain=vozer.net
 ||i.imgur.com/FbUH5AQ.png$domain=vozer.net
 ||i.imgur.com^$image,domain=nhacdj.vn|banbuondalat.com|new.tructiepnba.me|phimbet.top
-||i.imgur.com^$image,domain=phim18hd.site|xamvn.boats
+||i.imgur.com^$image,domain=phim18hd.site|xamvn.beauty
 ||i.imgur.com^*.gif$image,domain=ghienphimz.show|mv.dailyphimz.com|mv.phimmoiaz.cc|tv.manhvl.com|rophim.moe|soicau247s.org|phim24k.top|jophim.top|rophimz.top
 ||i.imgur.com^*.gif$image,domain=z1.chinav.sex|quatvn.autos
 ||iads.staticscdn.net^
@@ -1349,7 +1349,7 @@ zpic.st##.ad-banner
 ||quaivatdienanh.com/*banner$image
 ||quatvn.autos^*.gif$image
 ||quoracdn.net^$image,domain=sexmup69.pro|phim18vip.site|pheclip.pet|sexmupxinh.net|vlsexhihi.pro|phevl.my|fulllivehot.co|haysexvn.shop|chichvn.club|viet69hay.cyou
-||quoracdn.net^$image,domain=www.1phim18.com|phimlongtieng.net
+||quoracdn.net^$image,domain=www.1phim19.com|phimlongtieng.net
 ||realclick.vn^$third-party
 ||rophims.bz^*.gif,~third-party
 ||rphang.online^*.gif
@@ -1418,7 +1418,7 @@ zpic.st##.ad-banner
 ||vov.vn/ads/show-ads
 ||wikicv.org/static/js/adx/$script
 ||wr.brandonketting.com^
-||www.1phim18.com/3s.m3u8$rewrite=abp-resource:blank-mp3,domain=www.1phim18.com
+||www.1phim19.com/3s.m3u8$rewrite=abp-resource:blank-mp3,domain=www.1phim19.com
 ||www.bongdalu812.com^*.gif
 ||www.clbgamesvn.com/diendan/popup/popup.js$script,~third-party
 ||www.hayvn.net^*.gif$image
