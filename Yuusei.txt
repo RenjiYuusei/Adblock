@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.08.12.0822
+! Version: 2026.08.13.0823
 ! Title: Yuusei
-! Last modified: 12-08-2026
+! Last modified: 13-08-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: a2686e0c3b3e1632c1919abc8f751b05c76dbf0f01942674771b68945f125e9c
+! Checksum: 8749a2e572d877762ca6302698011130ac96c360cec8b822ea7cf21bbc54a5f5
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -341,7 +341,6 @@ $popup,domain=truyenfull.live
 123nhadatviet.net,123nhadatviet.com,tuoitre.vn##.banner-top
 18tube.uk##+js(acs, document.addEventListener, ads)
 18tube.uk##.ads-gated
-1phimsex.com##+js(acs, window.addEventListener, Ads)
 24h.com.vn###background_bg_link
 24h.com.vn###subRightAboveHome
 24h.com.vn##.adv-24h-mid
@@ -412,9 +411,6 @@ $popup,domain=truyenfull.live
 @@||www3.doubleclick.net^$xmlhttprequest,domain=the.tube
 @@||xahoingaynay.com.vn/upload/20989/20200817/Asset_2_8x_9596af5d4e.png$~third-party
 @@||yhocdata.com$generichide
-aizuriquartet.com##.btn-company
-aizuriquartet.com##.odds-comp-logo
-aizuriquartet.com##.xlz-ads-item
 anime14.site###menubentrai
 anime14.site##.gnartyx-offads
 anime14.site,animetvn.com,motchillzz.site###fbox-background
@@ -504,7 +500,7 @@ cap3.garden##.global-sticky-ads
 cap3.garden##.header>app-banner
 cap3.garden##.p-4.justify-center.items-center.flex.backdrop-blur-sm.bg-black\/80.z-\[9999\].inset-0.fixed
 cdn.codexa.fun##+js(acs, $, arrDirectLink)
-cdn.lfastcdn.com^*.gif$image,domain=aizuriquartet.com
+cdn.lfastcdn.com^*.gif$image,domain=xoilaczzssz.tv
 chap.vn##.my_responsive_add
 chap.vn##.titleBar + *
 chap.vn##[class1="my_responsive_add"]
@@ -1112,6 +1108,7 @@ xem1080.com##.banner-masthead
 xem20.net##+js(json-prune, props.children.[].props.tvc)
 xemphim.site,motchillzz.site##+js(set, maxAds, 0)
 xemphim.site,motchillzz.site##.sticky_bottom
+xemphimsexonline.net##+js(acs, window.addEventListener, Ads)
 xfast.sbs###overlay
 xiuren.org###bannerIn
 xiuren.org###exoIMFrame
@@ -1126,6 +1123,9 @@ xnhau.ink##.spot
 xnxx-sex-videos.com##+js(acs, setTimeout, window.location)
 xnxx-sex-videos.com##+js(ra, target|onclick, a[href^="/video/"])
 xnxx.com###content-ad-top-zone
+xoilaczzssz.tv##.btn-company
+xoilaczzssz.tv##.odds-comp-logo
+xoilaczzssz.tv##.xlz-ads-item
 yanhh3d.mom,hhtm.net###catfish-ads
 ybox.vn###ybox-H1>div[style]
 ycongnghe.com##.td-container-wrap.td-logo-wrap-full.td-banner-wrap-full
@@ -1143,7 +1143,6 @@ zpic.st##.ad-banner
 ||*.servimg.com/u/f45/$domain=gocmod.com
 ||123nhadatviet.com/Media/CK/banners/
 ||123nhadatviet.net/Media/CK/banners/
-||1phimsex.com^*.gif$image
 ||2banh.vn/images/banners/
 ||ad.vidverto.io^
 ||adcenter.cx^
@@ -1163,7 +1162,6 @@ zpic.st##.ad-banner
 ||agtcmuohbt.in^
 ||ahaphimz.com/js/pov.js$script
 ||aiactiv.io^
-||aizuriquartet.com/wp-content/themes/bongda/dist/images/company/21-1.png$image
 ||aj1047.online^
 ||ajsc.yodimedia.com^
 ||amcdn.vn^
@@ -1433,11 +1431,13 @@ zpic.st##.ad-banner
 ||xamer.xyz/styles/file/$image
 ||xc.1357668.com^$image,domain=www.7mvn9.com
 ||xem20.net^*.gif
+||xemphimsexonline.net^*.gif$image
 ||xfast.sbs/media/$image,domain=fullcliphot.org|fulllivehot.us
 ||xfast.sbs^*.gif$image,domain=clipphot.co
 ||xmedia.antt.vn/upload/*.gif$image,domain=antt.vn
 ||xnhau.blog^$media,domain=xnhau.ink
 ||xoilackvb.cc^*.gif$image,domain=colatv45.live
+||xoilaczzssz.tv/wp-content/themes/bongda/dist/images/company/21-1.png$image
 ||zaloweb.
 ~cafef.vn##[id^="adm-slot"]
 ~livescore.com,~msn.com,~dm.de,~medium.com##.qc
