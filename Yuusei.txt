@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.08.15.0753
+! Version: 2026.08.16.0756
 ! Title: Yuusei
-! Last modified: 15-08-2026
+! Last modified: 16-08-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 36f3d2278fb7e7ed8745a52953f7d0a0debe0751c152427a97a5b3fe1208d4e7
+! Checksum: 6f928737b226a62bdf793678c757057fd217842343855b7e67df5c29f48775ec
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -462,7 +462,7 @@ bing.com##.b_algo:has(.rms_img[src*="/th?id=OADD2."][src$="21.2"])
 bing.com##.b_algo:has(.rms_img[src*="=AdsPlus"])
 blog.abit.vn##.button-dangkyngay
 blogkiienthuc.net##.textwidget
-boctem.org,yanhh3d.mom###popup-giua-man-hinh
+boctem.org,yanhh3d.pw###popup-giua-man-hinh
 bongda12h365.com##.list-dat-cuoc
 bongdanet.online###xs-ads
 bongdanet.online##.ads-home-hide
@@ -500,7 +500,7 @@ cap3.garden##.global-sticky-ads
 cap3.garden##.header>app-banner
 cap3.garden##.p-4.justify-center.items-center.flex.backdrop-blur-sm.bg-black\/80.z-\[9999\].inset-0.fixed
 cdn.codexa.fun##+js(acs, $, arrDirectLink)
-cdn.lfastcdn.com^*.gif$image,domain=xoilaczzssz.tv
+cdn.lfastcdn.com^*.gif$image,domain=condohotelsdubai.com
 chap.vn##.my_responsive_add
 chap.vn##.titleBar + *
 chap.vn##[class1="my_responsive_add"]
@@ -533,6 +533,9 @@ colatv45.live##div.ad.chat-message
 comong.info###layer-popup-link3
 comong.info###transparentLayer
 comong.info###virtualLayer
+condohotelsdubai.com##.btn-company
+condohotelsdubai.com##.odds-comp-logo
+condohotelsdubai.com##.xlz-ads-item
 congan.com.vn###subiz_wrapper
 congan.com.vn##.ad-embed
 congthucvatly.com##.mb-4>[style="min-height: 350px;"]
@@ -700,8 +703,6 @@ linkneverdie.net,linkneverdie.top,linkneverdie2.com##+js(acs, document.createEle
 linkneverdie.net,linkneverdie.top,linkneverdie2.com##+js(aopr, pushOnPage)
 linkneverdie.net,linkneverdie.top,linkneverdie2.com##+js(nostif, DisplayAHTML, 5001)
 linkneverdie.net,linkneverdie.top,linkneverdie2.com##+js(nostif, callback, 6004)
-littlestepss.com###popup-ad-box
-littlestepss.com##.banner-ad
 lmssplus.org##p[style="color: rgb(174, 174, 174); margin-top: 10px; margin-bottom: 20px;"]
 loigiaihay.com###countdown
 loigiaihay.com##.section-gqc1
@@ -923,6 +924,8 @@ thethaovanhoa.vn##[id^="pos-"]
 thitruongtaichinhtiente.vn##.c-banner-item
 thitruongtaichinhtiente.vn,congly.vn##.c-banner
 thoidai.com.vn,petrotimes.vn##.__ads_click
+thomas-jankowski.com###popup-ad-box
+thomas-jankowski.com##.banner-ad
 thuocbietduoc.com.vn###neo-right-ads
 thuongtruong.com.vn###BannerAdv
 thuthuatjb.com##.stream-item
@@ -975,7 +978,7 @@ truyenqqko.com##.text_ads
 truyenqqko.com##div#ad_info
 truyenqqko.com,foxtruyen2.com###ad_info_top
 truyensextv.com,lxmanga.space##.sticky-footer
-truyensextv.com,yanhh3d.mom,z1.chinav.sex##+js(acs, document.addEventListener, opup)
+truyensextv.com,yanhh3d.pw,z1.chinav.sex##+js(acs, document.addEventListener, opup)
 truyensieuhay.com##.footer-info
 truyensieuhay.com,hhtrungquoc9.com,hhtq13.vip,hhtq3d.net###topbanner
 truyensieuhay.com,xemphim.site,quangcaoyenbai.com,phimchill.life,thefaplive.com,mv.dailyphimz.com,mv.phimbathu.one,vsexhihi.com,anime47.best,phimhdc.com,honghotduongpho.vn,chichvn.my,comong.info,qmhsex.club##+js(aopr, document.cookie)
@@ -1123,10 +1126,7 @@ xnhau.ink##.spot
 xnxx-sex-videos.com##+js(acs, setTimeout, window.location)
 xnxx-sex-videos.com##+js(ra, target|onclick, a[href^="/video/"])
 xnxx.com###content-ad-top-zone
-xoilaczzssz.tv##.btn-company
-xoilaczzssz.tv##.odds-comp-logo
-xoilaczzssz.tv##.xlz-ads-item
-yanhh3d.mom,hhtm.net###catfish-ads
+yanhh3d.pw,hhtm.net###catfish-ads
 ybox.vn###ybox-H1>div[style]
 ycongnghe.com##.td-container-wrap.td-logo-wrap-full.td-banner-wrap-full
 ycongnghe.com##.td-crumb-container
@@ -1152,7 +1152,7 @@ zpic.st##.ad-banner
 ||adpia.vn^$third-party
 ||ads*.autodaily.vn
 ||ads-cdn.fptplay.net^
-||ads.bizwd.net^$image,domain=littlestepss.com
+||ads.bizwd.net^$image,domain=thomas-jankowski.com
 ||ads.mxhnkn.pro^
 ||ads.nghenhinvietnam.vn^$domain=nghenhinvietnam.vn
 ||ads.starzd.online^
@@ -1183,7 +1183,7 @@ zpic.st##.ad-banner
 ||baonga.com/FileUpload/Images/*banner
 ||bidgear-syndication.com^
 ||blog.abit.vn/wp-content/uploads/2020/05/abit_$image
-||blogger.googleusercontent.com^$image,domain=hhninja6.mom|hhtm.net|yanhh3d.mom
+||blogger.googleusercontent.com^$image,domain=hhninja6.mom|hhtm.net|yanhh3d.pw
 ||blogger.googleusercontent.com^*.gif$image,domain=www.gvnvh18z.com
 ||blueseeddigital.com^$third-party
 ||blvtap.com^*.gif$image,domain=vietsub.help
@@ -1221,6 +1221,7 @@ zpic.st##.ad-banner
 ||coiphim.show/client_assets/js/dataview/adsview.js$script,~third-party
 ||coiphim.show/client_assets/js/minijumb.js$script,~third-party
 ||coiphim.show^*.gif$image
+||condohotelsdubai.com/wp-content/themes/bongda/dist/images/company/21-1.png$image
 ||content.accesstrade.vn/evidence_add_lost/2026/img/upload/1782901020_add_lost_add_lost_tmpkr5r8ybs.png$image
 ||content.mediacdn.me^*.gif$image
 ||contineljs.com^
@@ -1437,7 +1438,6 @@ zpic.st##.ad-banner
 ||xmedia.antt.vn/upload/*.gif$image,domain=antt.vn
 ||xnhau.blog^$media,domain=xnhau.ink
 ||xoilackvb.cc^*.gif$image,domain=colatv45.live
-||xoilaczzssz.tv/wp-content/themes/bongda/dist/images/company/21-1.png$image
 ||zaloweb.
 ~cafef.vn##[id^="adm-slot"]
 ~livescore.com,~msn.com,~dm.de,~medium.com##.qc
