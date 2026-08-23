@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.08.22.0753
+! Version: 2026.08.23.0758
 ! Title: Yuusei
-! Last modified: 22-08-2026
+! Last modified: 23-08-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: e6891442304e692c7f1928c20328ad92f3c7bf34fe4c4ec6c0a894bd92aee564
+! Checksum: b2035f9844beb477beb19b161a5a80487f652b7073613dc63c70b961082a86a4
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -429,12 +429,12 @@ animehay11.site##body>div[style^="position: fixed"]
 animehay11.site##div[style="position: fixed; bottom: 0px; z-index: 98; width: 100%; text-align: center; box-sizing: border-box;"]
 animetvn.com###mobile-ads
 animetvn.com##.gnarty-offads
-animevietsub.vc###_preload-ads-1
-animevietsub.vc###invideo_wrapper
-animevietsub.vc##.Ads
-animevietsub.vc##.mobile-catfish-top
-animevietsub.vc##.mobile-catfixx
-animevietsub.vc,phimtuoitho.tv##.pc-catfixx
+animevietsub.work###_preload-ads-1
+animevietsub.work###invideo_wrapper
+animevietsub.work##.Ads
+animevietsub.work##.mobile-catfish-top
+animevietsub.work##.mobile-catfixx
+animevietsub.work,phimtuoitho.tv##.pc-catfixx
 animevietsub9.com##+js(aopr, _0x3f9b)
 aoe.vn##+js(aopr, parseInt)
 apkmoddone.com##.adNative
@@ -508,6 +508,8 @@ chatboxn.com##a[target="_blank"][rel="nofollow"]
 checkscam.vn##.qh_qcbp
 chodansinh.net##.link-gold
 chodansinh.net##[id^="banner"]
+chophim.app##.p-4.bg-black\/65.justify-center.items-center.flex.z-\[90\].inset-0.fixed
+chophim.app##.pointer-events-none.justify-center.flex.z-\[80\].bottom-0.inset-x-0.fixed
 chophimviet.top###scriptDiv:has(.adsbygoogle)
 chotlo3s.com###header:style(margin-top: 0 !important)
 chotlo3s.com##div[id^="float"]
@@ -963,7 +965,7 @@ topthuthuat.com,canhrau.com##.widget.widget_text
 toquoc.vn,baoxaydung.vn,tienphong.vn,taichinhdoanhnghiep.net.vn,coiphim.show,ghienphimz.show,nettruyenar.com##.banner
 tram3d.com##+js(acs, document.createElement, ;break;case)
 tram3d.mom##+js(acs, setTimeout, appendChild)
-tram3d.my,animevietsub.vc##+js(acs, eval, $._Eu)
+tram3d.my,animevietsub.work##+js(acs, eval, $._Eu)
 trangsexdam.net##.w1e48c4420b7073bc11916c6c1de226bb
 tratu.soha.vn#@#.adheader
 truyen247.pro##+js(acs, eval)
@@ -1174,7 +1176,7 @@ zpic.st##.ad-banner
 ||anime1s.com/_next/image?url=https%3A%2F%2F*.ibyteimg.com$image
 ||anime1s.com/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com$image
 ||animehay11.site/sw.js$script,~third-party
-||animevietsub.vc/ads/$script
+||animevietsub.work/ads/$script
 ||animevietsub9.com/vast/$image
 ||ants.vn^$third-party
 ||api.adfly.vn^
@@ -1301,7 +1303,7 @@ zpic.st##.ad-banner
 ||kienthuc.net.vn/*.ads
 ||laalmirchitakeaway.co.uk^*.gif
 ||laodong.vn/*QuangcaoOnline
-||lh3.googleusercontent.com/*=s0$image,domain=animevietsub.vc|googleapiscdn.com
+||lh3.googleusercontent.com/*=s0$image,domain=animevietsub.work|googleapiscdn.com
 ||listnhacai88.com^*.gif$image
 ||lmovixat.in^
 ||lxmanga.space/storage/images/banners
@@ -1397,7 +1399,7 @@ zpic.st##.ad-banner
 ||tinmoi.vn/?mod=ajax&act=getAds
 ||tinxe.vn/Banner/LoadBanner$xmlhttprequest
 ||tinxe.vn/bn-campaign-for-iframe$subdocument,~third-party
-||tizihay.com^*.gif$image,domain=phimchill.life|phimchill.life
+||tizihay.com^*.gif$image,domain=phimchill.life
 ||toithuthuat.com^*.gif
 ||traderviet.tv/data/siropu/am/user/$image
 ||tructiep.vn/website/adv/
