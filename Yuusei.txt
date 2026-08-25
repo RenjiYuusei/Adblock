@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.08.24.0756
+! Version: 2026.08.25.0755
 ! Title: Yuusei
-! Last modified: 24-08-2026
+! Last modified: 25-08-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 4ba13e3227919fa857808a6d1e5eaefee2cbd230a46a3abc9edcf4eb9d405510
+! Checksum: 3a3346c3eb5a1f845f0712f8b4061ae9f71e353a0225c698fa52d96715908713
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -573,8 +573,6 @@ ephoto360.com##.line-ads
 ephoto360.com,thiepmung.com,phimchill.life##.ad-container
 eva.vn##.banrpstn
 fdcdn.xyz##.jw-button-image
-fenwickcandles.com###popup-ad-box
-fenwickcandles.com##.banner-ad
 file.gocmod.com##div.ad
 freeplayervideo.com,abysscdn.com,player-cdn.com###player + div[id]
 freeplayervideo.com,abysscdn.com,player-cdn.com##.playover
@@ -770,6 +768,8 @@ olm.vn##.olm-ads
 ombak700.org##+js(aopr, sp)
 outlook.live.com##.LBktY>.GssDD
 outlook.live.com##div[data-viewport-type="element"] .Ogt7j
+pancazorla.com###popup-ad-box
+pancazorla.com##.banner-ad
 phapluatplus.baophapluat.vn##div[style="text-align:center;margin-top:0px;margin-bottom:0px;"]
 phe69.my###ad-banner
 phe69.my###phe-overlay-root
@@ -808,7 +808,7 @@ phimmoi.cash,phim24k.top,jophim.top,rophimz.top,xem20.net##.float-ck-center-lt
 phimmoic.sh##.bg-black\/70.justify-center.items-center.flex.z-\[9999\].inset-0.fixed
 phimmoichillz.top###pm_quangcao
 phimmoichillz.top###preload
-phimsexhaymoi.com##+js(acs, window.addEventListener, Ads)
+phimsexnhathay.pro##+js(acs, window.addEventListener, Ads)
 phimsexsuong3x.net,isexhihi.net,javhdz.cam,laalmirchitakeaway.co.uk##.catfish-bottom
 phimtho.cc#%#//scriptlet("abort-current-inline-script", "$", "p0pUpRandom")
 phongroblox.com#@##horizontal-ad
@@ -1159,7 +1159,7 @@ zpic.st##.ad-banner
 ||adpia.vn^$third-party
 ||ads*.autodaily.vn
 ||ads-cdn.fptplay.net^
-||ads.bizwd.net^$image,domain=fenwickcandles.com
+||ads.bizwd.net^$image,domain=pancazorla.com
 ||ads.mxhnkn.pro^
 ||ads.nghenhinvietnam.vn^$domain=nghenhinvietnam.vn
 ||ads.starzd.online^
@@ -1338,8 +1338,8 @@ zpic.st##.ad-banner
 ||phimlongtieng.net/2s.m3u8
 ||phimmoichillz.top/pop$image
 ||phimmoichillz.top^*.gif$image
-||phimsexhaymoi.com^*.gif$image
 ||phimsexhayvne.com^*.gif$image
+||phimsexnhathay.pro^*.gif$image
 ||phimsexsuong3x.net^*.gif$image
 ||photo2.tinhte.vn/data/attachment-files/*banner
 ||player.gliacloud.com^
