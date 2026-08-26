@@ -2,10 +2,10 @@
 
 **Bộ lọc quảng cáo đơn giản, hiệu quả, tối ưu cho người Việt.**
 
-- **Phiên bản**: 2026.08.25.0755
-- **Số lượng quy tắc**: 2499
-- **Cập nhật lần cuối**: 25-08-2026
-- **Checksum**: `0db7a33de60078455aac8902985a299fda478b2afb71906962d3716d317f9be1`
+- **Phiên bản**: 2026.08.26.0756
+- **Số lượng quy tắc**: 2500
+- **Cập nhật lần cuối**: 26-08-2026
+- **Checksum**: `20f3f4d343d19c5cbf6a60d461b59fbc4d81dd75f1225bd64a896706c325e5df`
 
 ## 🚀 Cài Đặt
 
