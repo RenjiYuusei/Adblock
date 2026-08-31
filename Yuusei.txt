@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.08.30.1006
+! Version: 2026.08.31.0959
 ! Title: Yuusei
-! Last modified: 30-08-2026
+! Last modified: 31-08-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: bae22f78fdb86e4f43be101cf28a59ccf8e81c225c370e20758fd5d7eed5708b
+! Checksum: afdd13cd685768e5e9ee50638983e9789055445c99397746934636f13f309b65
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -315,7 +315,7 @@ $popup,domain=truyenfull.live
 /jwplayer/vast.js$script
 /lv/esnk/*$script
 /newchill/*gif$image
-/player/html.php?aid=*&video_id=*&referer=https*xnhau.show$domain=xnhau.show
+/player/html.php?aid=*&video_id=*&referer=https*xnhau.city$domain=xnhau.city
 /player/jwplayer-*/vast.js$script
 /player/vast.js$script
 /plugins/AdsManager/*$script,~third-party
@@ -1123,11 +1123,11 @@ xiuren.org###bannerIn
 xiuren.org###exoIMFrame
 xiuren.org###nativeAds_1505931906161
 xiuren.org##div[id^="exo_slider_"]
-xnhau.show##+js(acs, document.addEventListener, lastPopunderTime)
-xnhau.show##+js(aeld, click, /acquirecardedsullen|POPUNDER_INTERVAL|lastPopunderTime/)
-xnhau.show##.fp-ui>div[style]
-xnhau.show##.sponsor
-xnhau.show##.spot
+xnhau.city##+js(acs, document.addEventListener, lastPopunderTime)
+xnhau.city##+js(aeld, click, /acquirecardedsullen|POPUNDER_INTERVAL|lastPopunderTime/)
+xnhau.city##.fp-ui>div[style]
+xnhau.city##.sponsor
+xnhau.city##.spot
 xnxx-sex-videos.com##+js(acs, setTimeout, window.location)
 xnxx-sex-videos.com##+js(ra, target|onclick, a[href^="/video/"])
 xnxx.com###content-ad-top-zone
@@ -1438,7 +1438,7 @@ zpic.st##.ad-banner
 ||xfast.sbs/media/$image,domain=fullcliphot.org|fulllivehot.us
 ||xfast.sbs^*.gif$image,domain=clipphot.co
 ||xmedia.antt.vn/upload/*.gif$image,domain=antt.vn
-||xnhau.blog^$media,domain=xnhau.show
+||xnhau.blog^$media,domain=xnhau.city
 ||xoilackvb.cc^*.gif$image,domain=colatv45.live
 ||zaloweb.
 ~cafef.vn##[id^="adm-slot"]
