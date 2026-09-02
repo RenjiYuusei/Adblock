@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.09.01.1007
+! Version: 2026.09.02.0926
 ! Title: Yuusei
-! Last modified: 01-09-2026
+! Last modified: 02-09-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 2c9945152701ae3b500ca8314b36b7cf3e455e026d1cf88e1ff2bfb2257b57e4
+! Checksum: 3d8c600bdf3d6a528aac722a483f5360f0afeffc7bb8e9b9503b63a0964e799f
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -520,7 +520,7 @@ chotlo3s.com###header:style(margin-top: 0 !important)
 chotlo3s.com##div[id^="float"]
 chotlo3s.com##div[id^="hide_float"]
 cliphot69.info###custom_html-42
-cliphotvn69.com,dynadot.rsocdomains.com,cliphot69.info,www.gvnvh18z.com,phimsexhayvne.com,sayhentai.cx,xamvn.courses##.float-ck-center-lt
+cliphotvn69.com,dynadot.rsocdomains.com,cliphot69.info,www.gvnvh18z.com,phimsexhayvne.com,sayhentai.cx,xamvn.courses,sexviet69.cc##.float-ck-center-lt
 cliphubs.com,viet69hay.space,clipphot.co##+js(acs, document.addEventListener, pop)
 cmangax18.com##+js(nostif, ads_num)
 coinphoton.com##.header-fix-ads
@@ -1370,6 +1370,7 @@ zpic.st##.ad-banner
 ||sexmupxinh.net^*.gif$image,domain=sexmupxinh.net
 ||sexviet88z.cc^*.gif
 ||sggp.org.vn/*banner
+||sharelink.me/images/*.gif$domain=sexviet69.cc
 ||shope.ee^$popup,domain=cunghocvui.com|truyensextv.com
 ||smartf.vn/wp-content/themes/hongtq_smartf_theme/img/quang-cao/$image
 ||sohuutritue.net.vn/files/qc/
