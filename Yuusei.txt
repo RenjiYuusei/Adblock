@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.09.08.0937
+! Version: 2026.09.09.0938
 ! Title: Yuusei
-! Last modified: 08-09-2026
+! Last modified: 09-09-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: d1bc03392dc45a62e3037c021700e7e83ecb256997961e1365b66bd5beadd151
+! Checksum: 8fedd2ad656d1331ced1577bed11a57902bbadd1d2c951d4d22d429ca72388c7
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -462,7 +462,6 @@ baonga.com##.monkey-content-duoicanbiet
 baonga.com##.monkey-section-tinnoibat
 baonga.com##div.monkey-qc
 baoquangninh.vn##.bottom-right-ads
-beta.asianbookie.org##a[href^="/cgi-bin/to.cgi"]
 bing.com##.b_algo:has(.rms_img[src*="/th?id=OADD2."][src$="21.2"])
 bing.com##.b_algo:has(.rms_img[src*="=AdsPlus"])
 blog.abit.vn##.button-dangkyngay
@@ -718,8 +717,6 @@ luatduonggia.vn##.ads-tags
 luatduonggia.vn##.img_side_bar
 luatduonggia.vn##.poka-image
 lxmanga.space##+js(acs, $, PopUnder)
-maboxfrancaise.com###popup-ad-box
-maboxfrancaise.com##.banner-ad
 mamphim.space##.modal-backdrop
 mamphim.space##.sspp-modal
 mannhan97.xyz##.bet-btn-8423
@@ -775,8 +772,8 @@ ombak700.org##+js(aopr, sp)
 outlook.live.com##.LBktY>.GssDD
 outlook.live.com##div[data-viewport-type="element"] .Ogt7j
 phapluatplus.baophapluat.vn##div[style="text-align:center;margin-top:0px;margin-bottom:0px;"]
-phe69.uk###ad-banner
-phe69.uk###phe-overlay-root
+phe69.men###ad-banner
+phe69.men###phe-overlay-root
 pheclip.chat,phim18vip.site##.in.fade.modal-backdrop
 pheclip.chat,phim18vip.site,subnhanh.plus##+js(acs, $, pop)
 phim.haysex.asia###mp-preload-popup-overlay
@@ -931,6 +928,8 @@ thethao1.mannhan24.pro##li.for-mobile-2>[href]
 thethao247.vn##div[class$="_ads"]
 thethaovanhoa.vn##.zone-top
 thethaovanhoa.vn##[id^="pos-"]
+thischickmakescakes.com###popup-ad-box
+thischickmakescakes.com##.banner-ad
 thitruongtaichinhtiente.vn##.c-banner-item
 thitruongtaichinhtiente.vn,congly.vn##.c-banner
 thoidai.com.vn,petrotimes.vn##.__ads_click
@@ -1079,6 +1078,7 @@ www.2banh.vn##.lb_overlay
 www.7mvn9.com###bottomFixedDiv
 www.7mvn9.com###js_pup_navigation
 www.7mvn9.com##tr[id^="word_"]
+www.asianbookie.org##a[href^="/cgi-bin/to.cgi"]
 www.asu.baby##+js(aopr, initialAdURLs)
 www.asu.baby##.nhacai
 www.asu.baby##.nhacai2
@@ -1158,7 +1158,7 @@ zpic.st##.ad-banner
 ||adpia.vn^$third-party
 ||ads*.autodaily.vn
 ||ads-cdn.fptplay.net^
-||ads.bizwd.net^$image,domain=maboxfrancaise.com
+||ads.bizwd.net^$image,domain=thischickmakescakes.com
 ||ads.mxhnkn.pro^
 ||ads.nghenhinvietnam.vn^$domain=nghenhinvietnam.vn
 ||ads.starzd.online^
@@ -1330,8 +1330,8 @@ zpic.st##.ad-banner
 ||on-web-cdn.gviet.vn/public/js/player/ads/ima3.js$script,domain=vtvcab.vn,redirect=google-ima.js
 ||onnetwork.tv^$third-party
 ||oursty.com^
-||phe69.uk/wp-content/3rd-ads/jsad/ads-t11.js$script,~third-party
-||phe69.uk^*.gif
+||phe69.men/wp-content/3rd-ads/jsad/ads-t11.js$script,~third-party
+||phe69.men^*.gif
 ||phimhdc.com^*.gif$image
 ||phimhdcss.com/js/ad.js$script,~third-party
 ||phimhdcss.com/storage/files/*.gif$image,~third-party
