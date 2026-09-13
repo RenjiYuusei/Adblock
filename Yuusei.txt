@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.09.12.0942
+! Version: 2026.09.13.0940
 ! Title: Yuusei
-! Last modified: 12-09-2026
+! Last modified: 13-09-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 129ab76ee8a3f5f84509beb6dab913ca41a85c58419c7ff2f0b9d4410325ceff
+! Checksum: 8da78dd76964bd58addc553189a0cfd545d187301a40459cd3796f19128f87b6
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -962,7 +962,7 @@ tinxe.vn##.box-bound-midd-middetail.box-bound-midd
 toquoc.vn,baoxaydung.vn,tienphong.vn,taichinhdoanhnghiep.net.vn,coiphim.show,ghienphimz.show,nettruyenar.com##.banner
 tram3d.com##+js(acs, document.createElement, ;break;case)
 tram3d.mom##+js(acs, setTimeout, appendChild)
-tram3d.my,animevietsub.li##+js(acs, eval, $._Eu)
+tram3d.skin,animevietsub.li##+js(acs, eval, $._Eu)
 trangsexdam.net##.w1e48c4420b7073bc11916c6c1de226bb
 tratu.soha.vn#@#.adheader
 truyen247.pro##+js(acs, eval)
