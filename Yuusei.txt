@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.09.18.0945
+! Version: 2026.09.19.0943
 ! Title: Yuusei
-! Last modified: 18-09-2026
+! Last modified: 19-09-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: e9e7768efc24126687fb4e5f212ee2e3fb574b9aff539c8444570815d916973e
+! Checksum: f8ff011e6602dd367e5f074cde09277ac41127425edb4efc240f9ed6fc8fe9db
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -357,7 +357,6 @@ $popup,domain=truyenfull.live
 @@||4.bp.blogspot.com/-Faf4F4bEgfs/X6bgItBh8RI/AAAAAAAADr4/TI07qDfVYWk4cPdNAj8Mn5Q_yVzuG2cJgCK4BGAYYCw/s1600/gvnvh18.png$image,domain=www.gvnvh18z.com
 @@||ads.gatacivi.com^$stylesheet,script,~third-party
 @@||ads.zalo.me$script,stylesheet,xmlhttprequest,media,~third-party
-@@||alwingulla.com/88/tag.min.js$xmlhttprequest,script,domain=apkmoddone.com
 @@||anime47.best/ads/v/8.26.9/jw
 @@||anime47.best/ads/v/8.26.9/translations
 @@||audiotruyenfull.com$generichide
@@ -413,7 +412,6 @@ $popup,domain=truyenfull.live
 @@||www3.doubleclick.net^$xmlhttprequest,domain=the.tube
 @@||xahoingaynay.com.vn/upload/20989/20200817/Asset_2_8x_9596af5d4e.png$~third-party
 @@||yhocdata.com$generichide
-anime1s.com##div.py-2.md\:py-6.mx-auto.w-full.max-w-screen-3xl>div.relative
 anime47.best###qc_clgt
 anime47.best###swiper-wrapper
 anime47.best##+js(nostif, Adblock)
@@ -440,10 +438,6 @@ animevietsub.zip,phimtuoitho.tv##.pc-catfixx
 animevietsub9.com##+js(aopr, _0x3f9b)
 aoe.vn##+js(aopr, parseInt)
 api.anime3s.com##.t_logo
-apkmoddone.com##.adNative
-apkmoddone.com##.pAd
-apkmoddone.com##.relatedPostsAd
-apkmoddone.com##div.pAdin
 audiotruyenfull.com##+js(acs, document.addEventListener, ai_run)
 audiotruyenfull.com##.code-block-24.code-block
 autodaily.vn,xehay.vn###banner3double
@@ -1165,13 +1159,10 @@ zpic.io##.ad-banner
 ||adtimaserver.vn^
 ||af.bundleunum.com^
 ||agtcmuohbt.in^
-||ahaphimz.com/js/pov.js$script
 ||aiactiv.io^
 ||aj1047.online^
 ||ajsc.yodimedia.com^
 ||amcdn.vn^
-||anime1s.com/_next/image?url=https%3A%2F%2F*.ibyteimg.com$image
-||anime1s.com/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com$image
 ||animehay12.site/sw.js$script,~third-party
 ||animesub.site^*.gif
 ||animevietsub.zip/ads/$script
@@ -1181,7 +1172,6 @@ zpic.io##.ad-banner
 ||api.anime3s.com/i9bet.php$xmlhttprequest,~third-party
 ||api.anime3s.com^*.gif$image,domain=xemphim.site|animesub.site
 ||api.mamphim.site^*.gif$domain=mamphim.space
-||api.ybox.vn/graphql?query=*Ads
 ||apinas.nct.vn^
 ||baddaythemovie.co.uk^*.gif$image
 ||baomoi.com$csp=script-src data: blob: * 'self' 'unsafe-inline'
