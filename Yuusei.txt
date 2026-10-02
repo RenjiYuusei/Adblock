@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.10.01.1039
+! Version: 2026.10.02.1039
 ! Title: Yuusei
-! Last modified: 01-10-2026
+! Last modified: 02-10-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: bb8f72fa3f5090ffeabff26ec7d0e19d82de4fa3fe79dcca0b86ac6c67c40262
+! Checksum: 58da7af212d686afdd6bc0697514a6f1fccf57d34464208e414d7500f7672e3c
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -454,6 +454,8 @@ baonga.com##.monkey-content-duoicanbiet
 baonga.com##.monkey-section-tinnoibat
 baonga.com##div.monkey-qc
 baoquangninh.vn##.bottom-right-ads
+barisdogansutcu.com###popup-ad-box
+barisdogansutcu.com##.banner-ad
 beatvn.online##+js(acs, document.addEventListener, Redirect)
 bing.com##.b_algo:has(.rms_img[src*="/th?id=OADD2."][src$="21.2"])
 bing.com##.b_algo:has(.rms_img[src*="=AdsPlus"])
@@ -517,7 +519,7 @@ chotlo3s.com##div[id^="float"]
 chotlo3s.com##div[id^="hide_float"]
 cliphot69.space###custom_html-42
 cliphotvn69.com,dynadot.rsocdomains.com,cliphot69.space,www.gvnvh18z.com,phimsexhayvne.com,sayhentai.cx,xamvn.lifesty,sexviet69.cc##.float-ck-center-lt
-cliphubs.com,viet69hay.quest,clipphot.co##+js(acs, document.addEventListener, pop)
+cliphubs.com,viet69hay.beauty,clipphot.co##+js(acs, document.addEventListener, pop)
 cmangax18.com##+js(nostif, ads_num)
 coinphoton.com##.header-fix-ads
 coinphoton.com##.lepopup-popup-container
@@ -565,7 +567,7 @@ doisongphapluat.com.vn,vtcnews.vn##.sys-ads
 download.vn##div[id^="adsbg"]
 dualeotruyenbw.com##+js(acs, document.addEventListener, popunder)
 dualeotruyenbw.com##[id$="bnr"]
-dualeotruyenbw.com,sexvietsub.tv,cliphot69.space,doctruyen3qhub.fit,qmanga.art,hentaivkl.pro,buomtv.diy,truyenvn.sbs,javtiful.com,quatvn.diy,phimsexhayvne.com,phim18hd.site,sexviet88.cam,sexmupxinh.net,demo.14412882.com,hhtq5.vip,umetruyenz.org,damconuong.pet,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,ftscontent.com,viet69.be,viet69vn.at,misskon.com,luottruyen19.com##+js(acs, WebAssembly, instantiate)
+dualeotruyenbw.com,sex678.net,cliphot69.space,doctruyen3qhub.fit,qmanga.art,hentaivkl.pro,buomtv.diy,truyenvn.sbs,javtiful.com,quatvn.diy,phimsexhayvne.com,phim18hd.site,sexviet88.cam,sexmupxinh.net,demo.14412882.com,hhtq5.vip,umetruyenz.org,damconuong.pet,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.space,phimlongtieng.net,www.sieutamphim.pro,vevocloud.com,ftscontent.com,viet69.be,viet69vn.at,misskon.com,luottruyen19.com##+js(acs, WebAssembly, instantiate)
 dubaotiente.net##.ad-pin-right-bottom
 ebookbkmt.com##.top-right
 ephoto360.com##.line-ads
@@ -627,7 +629,7 @@ googleapiscdn.com#@#.ad_unit
 haysexvn.shop###vl-header-adx
 haysexvn.shop##+js(acs, document.addEventListener, adx)
 haysexvn.shop##.castfish-wrappe
-haysexvn.shop,viet69hay.quest##.popup
+haysexvn.shop,viet69hay.beauty##.popup
 hh2d.top##+js(acs, $, adblock)
 hh3d.boats###top-banner-pc
 hh3d.boats,animehay13.site###sponsor-balloon
@@ -820,8 +822,6 @@ plcdn.xyz##+js(aopr, keyPlayer)
 plcdn.xyz,xoilac.livecdnem.com##.odds-button
 plcdn.xyz,xoilac.livecdnem.com##.odds-button2
 pops.vn#@##adsContainer
-primarycare1.com###popup-ad-box
-primarycare1.com##.banner-ad
 qdnd.vn##.box-banner
 qmanga.art,khotruyen.ac##.gwd-banner-image
 quantrimang.com###adrighttop
@@ -868,13 +868,13 @@ saostar.vn###mobi-top
 saostar.vn##.pc-bill
 sayhentai.cx#@#.c-ads
 sex.javnong.cc##+js(aopr, Math.round)
+sex678.net,sexmupxinh.net,vlsexhihi.vip##.xx-ads
 sexmupxinh.net##+js(aopr, Cookies)
 sexmupxinh.net##.catfix
 sexmupxinh.net,vlsexhihi.vip,laalmirchitakeaway.co.uk##.catfish-top
 sexphimhayw.pro,sexhayvl.co.uk##.quangcaomobile
 sextop.asia##div[style^="position:fixed;inset:0px;z-index:100000;"]
 sextop.asia,dynadot.rsocdomains.com###video_player ~ div[id]
-sexvietsub.tv,sexmupxinh.net,vlsexhihi.vip##.xx-ads
 soha.vn,gamek.vn##[id^="admzone"]
 soicau247s.org##.linkBanner
 sport5.vn,afamily.vn##.afw-topbanner
@@ -1012,7 +1012,7 @@ videophapluat.baophapluat.vn##[class^="sticky-top"]
 videophapluat.baophapluat.vn##[href*="vietcombank.com.vn"]
 vieclam.tv###bnc0
 vieclam.tv###bnc1
-viet69hay.quest###castfish
+viet69hay.beauty###castfish
 viet69vn.at,viet69.be##.footer-fixed-br-container
 vietcetera.com##.styles_topBanner__NL_gW
 vietfones.vn##.vfs_banner
@@ -1154,7 +1154,7 @@ zpic.org##.ad-banner
 ||adpia.vn^$third-party
 ||ads*.autodaily.vn
 ||ads-cdn.fptplay.net^
-||ads.bizwd.net^$image,domain=primarycare1.com
+||ads.bizwd.net^$image,domain=barisdogansutcu.com
 ||ads.mxhnkn.pro^
 ||ads.nghenhinvietnam.vn^$domain=nghenhinvietnam.vn
 ||ads.starzd.online^
@@ -1356,7 +1356,7 @@ zpic.org##.ad-banner
 ||qthang.net/js/blocker$script,~third-party
 ||quaivatdienanh.com/*banner$image
 ||quatvn.diy^*.gif$image
-||quoracdn.net^$image,domain=sexvietsub.tv|sexmupxinh.net|vlsexhihi.vip|fulllivehot.us|haysexvn.shop|viet69hay.quest
+||quoracdn.net^$image,domain=sex678.net|sexmupxinh.net|vlsexhihi.vip|fulllivehot.us|haysexvn.shop|viet69hay.beauty
 ||quoracdn.net^$image,domain=www.1phim34.com|phimlongtieng.net
 ||realclick.vn^$third-party
 ||rophimss.nl^*.gif,~third-party
