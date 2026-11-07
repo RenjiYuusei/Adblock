@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.11.06.1143
+! Version: 2026.11.07.1111
 ! Title: Yuusei
-! Last modified: 06-11-2026
+! Last modified: 07-11-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: c95931a9549f7f82865eacea3ff01bcccfefcd3d20afa6f6c2c6e628a751e87f
+! Checksum: af09fc8605a5e45aa9974d2a3bdb94711f2d3f99b3fc477cd32c8fcc85769e2b
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -438,7 +438,6 @@ animevietsub.best##.Ads
 animevietsub.best##.mobile-catfish-top
 animevietsub.best##.mobile-catfixx
 animevietsub.best,phimtuoitho.tv##.pc-catfixx
-animevietsub9.com##+js(aopr, _0x3f9b)
 aoe.vn##+js(aopr, parseInt)
 api.anime3s.com##.t_logo
 audiotruyenfull.com##+js(acs, document.addEventListener, ai_run)
@@ -631,8 +630,7 @@ haysexvn.shop##.castfish-wrappe
 haysexvn.shop,viet69hayz.quest##.popup
 hentaibox.top##+js(acs, document.addEventListener, popunder)
 hentaibox.top##[id$="bnr"]
-hentaibox.top,heoxinh.tv,cliphot69.golf,doctruyen3qhub.fit,qmanga.art,hentaivkl.pro,buomtv.biz,truyenvn.sbs,javtiful.com,quatvn.si,phimsexhayvne.com,phim18hd.site,sexviet88.cam,sexmupxinh.net,demo.14412882.com,hhtq5.vip,umetruyenz.org,damconuong.cool,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.top,ww2.8phimx.com,www.sieutamphim.fun,vevocloud.com,ftscontent.com,viet69.be,viet69vn.at,misskon.com,luottruyen21.com##+js(acs, WebAssembly, instantiate)
-heoxinh.tv,sexmupxinh.net,vlsexhihi.one##.xx-ads
+hentaibox.top,phimdem.pro,cliphot69.golf,doctruyen3qhub.fit,qmanga.art,hentaivkl.pro,buomtv.biz,truyenvn.sbs,javtiful.com,quatvn.si,phimsexhayvne.com,phim18hd.site,sexviet88.cam,sexmupxinh.net,demo.14412882.com,hhtq5.vip,umetruyenz.org,damconuong.cool,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.top,ww2.8phimx.com,www.sieutamphim.fun,vevocloud.com,ftscontent.com,viet69.be,viet69vn.at,misskon.com,luottruyen21.com##+js(acs, WebAssembly, instantiate)
 hh2d.top##+js(acs, $, adblock)
 hh3dhay.ceo,hhtq.sh###top_addd
 hhdragon.blog##.catfish-img
@@ -798,6 +796,7 @@ phimchill.life###mb-catfish
 phimchill.life###pc-catfish
 phimchill.life##.popUpBannerBox
 phimdacap.tv###ads-popup
+phimdem.pro,sexmupxinh.net,vlsexhihi.one##.xx-ads
 phimmoic.fit##.bg-black\/70.justify-center.items-center.flex.z-\[9999\].inset-0.fixed
 phimmoichillz.top###pm_quangcao
 phimmoichillz.top###preload
@@ -1183,7 +1182,6 @@ zpic.org##.ad-banner
 ||animehay16.site/sw.js$script,~third-party
 ||animesub.site^*.gif
 ||animevietsub.best/ads/$script
-||animevietsub9.com/vast/$image
 ||ants.vn^$third-party
 ||api.adfly.vn^
 ||api.anime3s.com/i9bet.php$xmlhttprequest,~third-party
@@ -1247,7 +1245,6 @@ zpic.org##.ad-banner
 ||cruncherpatiencestoreroom.com^$popup,domain=qmhv3.mom
 ||dance.bytecdn.cfd^*.gif$image,domain=qmhsex.shop
 ||danketoan.com/banner/
-||data.voz.vn/94bf/16a14febddab31.gif$image
 ||datvietvacmedia.com^
 ||delivery.yomedia.vn^
 ||discordapp.$image,domain=thefaplive.com
@@ -1344,7 +1341,6 @@ zpic.org##.ad-banner
 ||ngaytho.me^*.gif
 ||nhipcaudautu.vn/*gafin$script
 ||nhipcaudautu.vn/Media/*.gif
-||notepad.vn/media/images/like68.jpg
 ||ob.joyrodetoment.com^
 ||on-web-cdn.gviet.vn/public/js/player/ads/ima3.js$script,domain=vtvcab.vn,redirect=google-ima.js
 ||onewayind.com/uploads/*-www.worldsbiggestwaterslide.com-*.
