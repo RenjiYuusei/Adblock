@@ -1,11 +1,11 @@
 ! ----------  About ----------
-! Version: 2026.11.25.1334
+! Version: 2026.11.26.1326
 ! Title: Yuusei
-! Last modified: 25-11-2026
+! Last modified: 26-11-2026
 ! RenjiYuusei Adblock filter
 ! Copyright: Yuusei
 ! Homepage: https://github.com/RenjiYuusei/Adblock
-! Checksum: 216e5d89e16c38620b5bd7f40d49b1a4b0aabb12a57e85343c728e52a79cfcd9
+! Checksum: 3ee9b47bfc426c385d490aad455f669e1d89ec4a8cdda9ed624899a0f16001d8
 ! License: GPLv3 (https://spdx.org/licenses/GPL-3.0-only.html)
 ! ----------  Yuusei  ----------
 anonyviet.com###sp-wrapper-hovering
@@ -559,8 +559,6 @@ doctruyenqq.net##.md-show.md-effect.popup1
 docufind.org.uk/wp-content/themes/vlxx/js/*-adx.js$script
 docviewer.yandex.com##.js-doc-html>div>div[id]
 doisongphapluat.com.vn,vtcnews.vn##.sys-ads
-domusangularia.com###popup-ad-box
-domusangularia.com##.banner-ad
 download.vn##div[id^="adsbg"]
 dubaotiente.net##.ad-pin-right-bottom
 ebookbkmt.com##.top-right
@@ -587,6 +585,8 @@ fshare.vn##.quang-cao-ben-phai
 fullcliphot.org##div#recent-content:nth-of-type(1)
 fullcliphot.org,fulllivehot.us,clipphot.co##.cashfish
 fullcliphot.org,fulllivehot.us,clipphot.co##.mini-player
+funkolandia.com###popup-ad-box
+funkolandia.com##.banner-ad
 gaingon3d.com###iklan-atas-wrapper
 game24h.vn###vi-smartbanner
 game24h.vn##.LRBanner
@@ -631,7 +631,7 @@ haysexvn.shop##.castfish-wrappe
 haysexvn.shop,viet69hayz.pics##.popup
 hentaibox.top##+js(acs, document.addEventListener, popunder)
 hentaibox.top##[id$="bnr"]
-hentaibox.top,xemphim3x.pro,cliphot69.study,doctruyen3qhub.club,qmanga.art,hentaivkl.pro,buomtv.biz,truyenvn.sbs,javtiful.com,quatvn.stream,phimsexhayvne.com,phim18hd.site,sexviet88.cam,sexmupxinh.net,demo.14412882.com,hhtq5.vip,umetruyenz.org,damconuong.help,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.top,ww6.motphimy.com,www.sieutamphim.cloud,vevocloud.com,ftscontent.com,viet69.be,viet69vn.at,misskon.com,luottruyen22.com##+js(acs, WebAssembly, instantiate)
+hentaibox.top,phimsex9x.com,cliphot69.study,doctruyen3qhub.club,qmanga.art,hentaivkl.pro,buomtv.biz,truyenvn.sbs,javtiful.com,quatvn.stream,phimsexhayvne.com,phim18hd.site,sexviet88.cam,sexmupxinh.net,demo.14412882.com,hhtq5.vip,umetruyenz.org,damconuong.help,truyenqqko.com,phimsexsuong3x.net,sayhentai.cx,lxmanga.top,ww6.motphimy.com,www.sieutamphim.cloud,vevocloud.com,ftscontent.com,viet69.be,viet69vn.at,misskon.com,luottruyen22.com##+js(acs, WebAssembly, instantiate)
 hh2d.top##+js(acs, $, adblock)
 hh3dhay.ceo,hhtq.sh###top_addd
 hhdragon.blog##.catfish-img
@@ -803,7 +803,8 @@ phimmoihd.shop##.\32 xl\:left-2.sm\:left-1.left-0.-translate-y-1\/2.z-40.top-1\/
 phimmoihd.shop##.\32 xl\:right-2.sm\:right-1.right-0.-translate-y-1\/2.z-40.top-1\/2.fixed
 phimmoihd.shop##.p-4.bg-black\/70.overflow-y-auto.justify-center.items-center.flex.z-\[70\].inset-0.fixed
 phimmoihd.shop##.pt-3.pb-1.px-2.z-\[60\].bottom-0.inset-x-0.fixed
-phimsexsuong3x.net,gaisexhihi.pro,javhdz.sh,laalmirchitakeaway.co.uk##.catfish-bottom
+phimsex9x.com,sexmupxinh.net,haysexhihi.me##.xx-ads
+phimsexsuong3x.net,haysexhihi.me,javhdz.sh,laalmirchitakeaway.co.uk##.catfish-bottom
 phongroblox.com#@##horizontal-ad
 phongroblox.com#@#.blogAd
 phunumoi.net.vn,nhipcaudautu.vn,vnexpress.net##div[id^="ads_"]
@@ -873,7 +874,7 @@ sayhentai.cx#@#.c-ads
 sex.javnong.cc##+js(aopr, Math.round)
 sexmupxinh.net##+js(aopr, Cookies)
 sexmupxinh.net##.catfix
-sexmupxinh.net,gaisexhihi.pro,laalmirchitakeaway.co.uk##.catfish-top
+sexmupxinh.net,haysexhihi.me,laalmirchitakeaway.co.uk##.catfish-top
 sexphimhayw.pro,xphimsexvl.com##.quangcaomobile
 sextop.asia##div[style^="position:fixed;inset:0px;z-index:100000;"]
 sextop.asia,dynadot.rsocdomains.com###video_player ~ div[id]
@@ -994,7 +995,7 @@ truyenqqko.com,pagerrentablespotlight.com###ad_info_top
 truyensextv.com,lxmanga.top##.sticky-footer
 truyensextv.com,yanhh3d.now,x.chinav.sex##+js(acs, document.addEventListener, opup)
 truyensieuhay.com##.footer-info
-truyensieuhay.com,animesub.site,quangcaoyenbai.com,phimchill.life,thefaplive.com,mv.dailyphimz.com,mv.phimbathu.one,gaisexhihi.pro,anime47.best,phimhdc.com,honghotduongpho.vn,comong.info,qmhsex.guru##+js(aopr, document.cookie)
+truyensieuhay.com,animesub.site,quangcaoyenbai.com,phimchill.life,thefaplive.com,mv.dailyphimz.com,mv.phimbathu.one,haysexhihi.me,anime47.best,phimhdc.com,honghotduongpho.vn,comong.info,qmhsex.guru##+js(aopr, document.cookie)
 truyensieuhay.com,hhtrungquoc9.com,hhtq13.vip,hhtq3d.net###topbanner
 tuoitre.vn###LeaderBoardTop
 tuoitre.vn###adsMainFooter
@@ -1132,7 +1133,6 @@ xamvn.team##.js-notices
 xehay.vn###banner1ab
 xem1080.com##.banner-masthead
 xem20.net##+js(json-prune, props.children.[].props.tvc)
-xemphim3x.pro,sexmupxinh.net,gaisexhihi.pro##.xx-ads
 xemphimsex9x.com##+js(acs, window.addEventListener, Ads)
 xfast.sbs###overlay
 xiuren.org###bannerIn
@@ -1170,7 +1170,7 @@ zpic.org##.ad-banner
 ||adpia.vn^$third-party
 ||ads*.autodaily.vn
 ||ads-cdn.fptplay.net^
-||ads.bizwd.net^$image,domain=domusangularia.com
+||ads.bizwd.net^$image,domain=funkolandia.com
 ||ads.mxhnkn.pro^
 ||ads.nghenhinvietnam.vn^$domain=nghenhinvietnam.vn
 ||ads.starzd.online^
@@ -1344,7 +1344,6 @@ zpic.org##.ad-banner
 ||ob.joyrodetoment.com^
 ||on-web-cdn.gviet.vn/public/js/player/ads/ima3.js$script,domain=vtvcab.vn,redirect=google-ima.js
 ||onewayind.com/uploads/*-www.worldsbiggestwaterslide.com-*.
-||onnetwork.tv^$third-party
 ||oursty.com^
 ||ovn-banner.megatech.global^$image,domain=giovang.guru
 ||phe69.men/wp-content/3rd-ads/jsad/ads-t11.js$script,~third-party
@@ -1425,7 +1424,7 @@ zpic.org##.ad-banner
 ||tudomuaban.com/public/upload/ad/
 ||tuyensinh247.com/$image,third-party
 ||tuyensinhso.vn/images/banners/*.gif$image,~third-party
-||tzhay.xyz^*.gif$image,domain=phimchill.life
+||tvphim.help^*.gif$image,domain=phimchill.life
 ||uniad.$third-party
 ||universalwindscreens.co.uk/images/banners/$image
 ||v9banners.com^
